@@ -1,0 +1,30 @@
+{
+  "" : {
+    "const-values" : "/Users/samuelskulsky/Coding/Flutter Projects/scavhuntapp-1/ios/build/Pods.build/Release-iphoneos/url_launcher_ios.build/Objects-normal/arm64/url_launcher_ios-master.swiftconstvalues",
+    "dependencies" : "/Users/samuelskulsky/Coding/Flutter Projects/scavhuntapp-1/ios/build/Pods.build/Release-iphoneos/url_launcher_ios.build/Objects-normal/arm64/url_launcher_ios-master.d",
+    "diagnostics" : "/Users/samuelskulsky/Coding/Flutter Projects/scavhuntapp-1/ios/build/Pods.build/Release-iphoneos/url_launcher_ios.build/Objects-normal/arm64/url_launcher_ios-master.dia",
+    "emit-module-dependencies" : "/Users/samuelskulsky/Coding/Flutter Projects/scavhuntapp-1/ios/build/Pods.build/Release-iphoneos/url_launcher_ios.build/Objects-normal/arm64/url_launcher_ios-master-emit-module.d",
+    "emit-module-diagnostics" : "/Users/samuelskulsky/Coding/Flutter Projects/scavhuntapp-1/ios/build/Pods.build/Release-iphoneos/url_launcher_ios.build/Objects-normal/arm64/url_launcher_ios-master-emit-module.dia",
+    "swift-dependencies" : "/Users/samuelskulsky/Coding/Flutter Projects/scavhuntapp-1/ios/build/Pods.build/Release-iphoneos/url_launcher_ios.build/Objects-normal/arm64/url_launcher_ios-master.swiftdeps"
+  },
+  "/Users/samuelskulsky/.pub-cache/hosted/pub.dev/url_launcher_ios-6.3.1/ios/url_launcher_ios/Sources/url_launcher_ios/Launcher.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphoneos/url_launcher_ios.build/Objects-normal/arm64/Launcher.o",
+    "llvm-bc" : "/Users/samuelskulsky/Coding/Flutter Projects/scavhuntapp-1/ios/build/Pods.build/Release-iphoneos/url_launcher_ios.build/Objects-normal/arm64/Launcher.bc",
+    "object" : "/Users/samuelskulsky/Coding/Flutter Projects/scavhuntapp-1/ios/build/Pods.build/Release-iphoneos/url_launcher_ios.build/Objects-normal/arm64/Launcher.o"
+  },
+  "/Users/samuelskulsky/.pub-cache/hosted/pub.dev/url_launcher_ios-6.3.1/ios/url_launcher_ios/Sources/url_launcher_ios/URLLaunchSession.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphoneos/url_launcher_ios.build/Objects-normal/arm64/URLLaunchSession.o",
+    "llvm-bc" : "/Users/samuelskulsky/Coding/Flutter Projects/scavhuntapp-1/ios/build/Pods.build/Release-iphoneos/url_launcher_ios.build/Objects-normal/arm64/URLLaunchSession.bc",
+    "object" : "/Users/samuelskulsky/Coding/Flutter Projects/scavhuntapp-1/ios/build/Pods.build/Release-iphoneos/url_launcher_ios.build/Objects-normal/arm64/URLLaunchSession.o"
+  },
+  "/Users/samuelskulsky/.pub-cache/hosted/pub.dev/url_launcher_ios-6.3.1/ios/url_launcher_ios/Sources/url_launcher_ios/URLLauncherPlugin.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphoneos/url_launcher_ios.build/Objects-normal/arm64/URLLauncherPlugin.o",
+    "llvm-bc" : "/Users/samuelskulsky/Coding/Flutter Projects/scavhuntapp-1/ios/build/Pods.build/Release-iphoneos/url_launcher_ios.build/Objects-normal/arm64/URLLauncherPlugin.bc",
+    "object" : "/Users/samuelskulsky/Coding/Flutter Projects/scavhuntapp-1/ios/build/Pods.build/Release-iphoneos/url_launcher_ios.build/Objects-normal/arm64/URLLauncherPlugin.o"
+  },
+  "/Users/samuelskulsky/.pub-cache/hosted/pub.dev/url_launcher_ios-6.3.1/ios/url_launcher_ios/Sources/url_launcher_ios/messages.g.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphoneos/url_launcher_ios.build/Objects-normal/arm64/messages.g.o",
+    "llvm-bc" : "/Users/samuelskulsky/Coding/Flutter Projects/scavhuntapp-1/ios/build/Pods.build/Release-iphoneos/url_launcher_ios.build/Objects-normal/arm64/messages.g.bc",
+    "object" : "/Users/samuelskulsky/Coding/Flutter Projects/scavhuntapp-1/ios/build/Pods.build/Release-iphoneos/url_launcher_ios.build/Objects-normal/arm64/messages.g.o"
+  }
+}

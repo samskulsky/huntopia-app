@@ -1,0 +1,130 @@
+{
+  "" : {
+    "const-values" : "/Users/samuelskulsky/Coding/Flutter Projects/scavhuntapp-1/ios/build/Pods.build/Release-iphoneos/apple_maps_flutter.build/Objects-normal/arm64/apple_maps_flutter-master.swiftconstvalues",
+    "dependencies" : "/Users/samuelskulsky/Coding/Flutter Projects/scavhuntapp-1/ios/build/Pods.build/Release-iphoneos/apple_maps_flutter.build/Objects-normal/arm64/apple_maps_flutter-master.d",
+    "diagnostics" : "/Users/samuelskulsky/Coding/Flutter Projects/scavhuntapp-1/ios/build/Pods.build/Release-iphoneos/apple_maps_flutter.build/Objects-normal/arm64/apple_maps_flutter-master.dia",
+    "emit-module-dependencies" : "/Users/samuelskulsky/Coding/Flutter Projects/scavhuntapp-1/ios/build/Pods.build/Release-iphoneos/apple_maps_flutter.build/Objects-normal/arm64/apple_maps_flutter-master-emit-module.d",
+    "emit-module-diagnostics" : "/Users/samuelskulsky/Coding/Flutter Projects/scavhuntapp-1/ios/build/Pods.build/Release-iphoneos/apple_maps_flutter.build/Objects-normal/arm64/apple_maps_flutter-master-emit-module.dia",
+    "swift-dependencies" : "/Users/samuelskulsky/Coding/Flutter Projects/scavhuntapp-1/ios/build/Pods.build/Release-iphoneos/apple_maps_flutter.build/Objects-normal/arm64/apple_maps_flutter-master.swiftdeps"
+  },
+  "/Users/samuelskulsky/.pub-cache/git/apple_maps_flutter-75b89c19ef3bdac294e9555a99942b53716d4e32/ios/Classes/Annotations/AnnotationController.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphoneos/apple_maps_flutter.build/Objects-normal/arm64/AnnotationController.o",
+    "llvm-bc" : "/Users/samuelskulsky/Coding/Flutter Projects/scavhuntapp-1/ios/build/Pods.build/Release-iphoneos/apple_maps_flutter.build/Objects-normal/arm64/AnnotationController.bc",
+    "object" : "/Users/samuelskulsky/Coding/Flutter Projects/scavhuntapp-1/ios/build/Pods.build/Release-iphoneos/apple_maps_flutter.build/Objects-normal/arm64/AnnotationController.o"
+  },
+  "/Users/samuelskulsky/.pub-cache/git/apple_maps_flutter-75b89c19ef3bdac294e9555a99942b53716d4e32/ios/Classes/Annotations/AnnotationDelegate.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphoneos/apple_maps_flutter.build/Objects-normal/arm64/AnnotationDelegate.o",
+    "llvm-bc" : "/Users/samuelskulsky/Coding/Flutter Projects/scavhuntapp-1/ios/build/Pods.build/Release-iphoneos/apple_maps_flutter.build/Objects-normal/arm64/AnnotationDelegate.bc",
+    "object" : "/Users/samuelskulsky/Coding/Flutter Projects/scavhuntapp-1/ios/build/Pods.build/Release-iphoneos/apple_maps_flutter.build/Objects-normal/arm64/AnnotationDelegate.o"
+  },
+  "/Users/samuelskulsky/.pub-cache/git/apple_maps_flutter-75b89c19ef3bdac294e9555a99942b53716d4e32/ios/Classes/Annotations/AnnotationIcon.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphoneos/apple_maps_flutter.build/Objects-normal/arm64/AnnotationIcon.o",
+    "llvm-bc" : "/Users/samuelskulsky/Coding/Flutter Projects/scavhuntapp-1/ios/build/Pods.build/Release-iphoneos/apple_maps_flutter.build/Objects-normal/arm64/AnnotationIcon.bc",
+    "object" : "/Users/samuelskulsky/Coding/Flutter Projects/scavhuntapp-1/ios/build/Pods.build/Release-iphoneos/apple_maps_flutter.build/Objects-normal/arm64/AnnotationIcon.o"
+  },
+  "/Users/samuelskulsky/.pub-cache/git/apple_maps_flutter-75b89c19ef3bdac294e9555a99942b53716d4e32/ios/Classes/Annotations/FlutterAnnotation.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphoneos/apple_maps_flutter.build/Objects-normal/arm64/FlutterAnnotation.o",
+    "llvm-bc" : "/Users/samuelskulsky/Coding/Flutter Projects/scavhuntapp-1/ios/build/Pods.build/Release-iphoneos/apple_maps_flutter.build/Objects-normal/arm64/FlutterAnnotation.bc",
+    "object" : "/Users/samuelskulsky/Coding/Flutter Projects/scavhuntapp-1/ios/build/Pods.build/Release-iphoneos/apple_maps_flutter.build/Objects-normal/arm64/FlutterAnnotation.o"
+  },
+  "/Users/samuelskulsky/.pub-cache/git/apple_maps_flutter-75b89c19ef3bdac294e9555a99942b53716d4e32/ios/Classes/Annotations/FlutterAnnotationView.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphoneos/apple_maps_flutter.build/Objects-normal/arm64/FlutterAnnotationView.o",
+    "llvm-bc" : "/Users/samuelskulsky/Coding/Flutter Projects/scavhuntapp-1/ios/build/Pods.build/Release-iphoneos/apple_maps_flutter.build/Objects-normal/arm64/FlutterAnnotationView.bc",
+    "object" : "/Users/samuelskulsky/Coding/Flutter Projects/scavhuntapp-1/ios/build/Pods.build/Release-iphoneos/apple_maps_flutter.build/Objects-normal/arm64/FlutterAnnotationView.o"
+  },
+  "/Users/samuelskulsky/.pub-cache/git/apple_maps_flutter-75b89c19ef3bdac294e9555a99942b53716d4e32/ios/Classes/MapView/AppleMapController.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphoneos/apple_maps_flutter.build/Objects-normal/arm64/AppleMapController.o",
+    "llvm-bc" : "/Users/samuelskulsky/Coding/Flutter Projects/scavhuntapp-1/ios/build/Pods.build/Release-iphoneos/apple_maps_flutter.build/Objects-normal/arm64/AppleMapController.bc",
+    "object" : "/Users/samuelskulsky/Coding/Flutter Projects/scavhuntapp-1/ios/build/Pods.build/Release-iphoneos/apple_maps_flutter.build/Objects-normal/arm64/AppleMapController.o"
+  },
+  "/Users/samuelskulsky/.pub-cache/git/apple_maps_flutter-75b89c19ef3bdac294e9555a99942b53716d4e32/ios/Classes/MapView/AppleMapsViewFactory.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphoneos/apple_maps_flutter.build/Objects-normal/arm64/AppleMapsViewFactory.o",
+    "llvm-bc" : "/Users/samuelskulsky/Coding/Flutter Projects/scavhuntapp-1/ios/build/Pods.build/Release-iphoneos/apple_maps_flutter.build/Objects-normal/arm64/AppleMapsViewFactory.bc",
+    "object" : "/Users/samuelskulsky/Coding/Flutter Projects/scavhuntapp-1/ios/build/Pods.build/Release-iphoneos/apple_maps_flutter.build/Objects-normal/arm64/AppleMapsViewFactory.o"
+  },
+  "/Users/samuelskulsky/.pub-cache/git/apple_maps_flutter-75b89c19ef3bdac294e9555a99942b53716d4e32/ios/Classes/MapView/FlutterMapView.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphoneos/apple_maps_flutter.build/Objects-normal/arm64/FlutterMapView.o",
+    "llvm-bc" : "/Users/samuelskulsky/Coding/Flutter Projects/scavhuntapp-1/ios/build/Pods.build/Release-iphoneos/apple_maps_flutter.build/Objects-normal/arm64/FlutterMapView.bc",
+    "object" : "/Users/samuelskulsky/Coding/Flutter Projects/scavhuntapp-1/ios/build/Pods.build/Release-iphoneos/apple_maps_flutter.build/Objects-normal/arm64/FlutterMapView.o"
+  },
+  "/Users/samuelskulsky/.pub-cache/git/apple_maps_flutter-75b89c19ef3bdac294e9555a99942b53716d4e32/ios/Classes/MapView/MapViewExtension.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphoneos/apple_maps_flutter.build/Objects-normal/arm64/MapViewExtension.o",
+    "llvm-bc" : "/Users/samuelskulsky/Coding/Flutter Projects/scavhuntapp-1/ios/build/Pods.build/Release-iphoneos/apple_maps_flutter.build/Objects-normal/arm64/MapViewExtension.bc",
+    "object" : "/Users/samuelskulsky/Coding/Flutter Projects/scavhuntapp-1/ios/build/Pods.build/Release-iphoneos/apple_maps_flutter.build/Objects-normal/arm64/MapViewExtension.o"
+  },
+  "/Users/samuelskulsky/.pub-cache/git/apple_maps_flutter-75b89c19ef3bdac294e9555a99942b53716d4e32/ios/Classes/Overlays/FlutterOverlay.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphoneos/apple_maps_flutter.build/Objects-normal/arm64/FlutterOverlay.o",
+    "llvm-bc" : "/Users/samuelskulsky/Coding/Flutter Projects/scavhuntapp-1/ios/build/Pods.build/Release-iphoneos/apple_maps_flutter.build/Objects-normal/arm64/FlutterOverlay.bc",
+    "object" : "/Users/samuelskulsky/Coding/Flutter Projects/scavhuntapp-1/ios/build/Pods.build/Release-iphoneos/apple_maps_flutter.build/Objects-normal/arm64/FlutterOverlay.o"
+  },
+  "/Users/samuelskulsky/.pub-cache/git/apple_maps_flutter-75b89c19ef3bdac294e9555a99942b53716d4e32/ios/Classes/Overlays/Polygons/FlutterPolygon.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphoneos/apple_maps_flutter.build/Objects-normal/arm64/FlutterPolygon.o",
+    "llvm-bc" : "/Users/samuelskulsky/Coding/Flutter Projects/scavhuntapp-1/ios/build/Pods.build/Release-iphoneos/apple_maps_flutter.build/Objects-normal/arm64/FlutterPolygon.bc",
+    "object" : "/Users/samuelskulsky/Coding/Flutter Projects/scavhuntapp-1/ios/build/Pods.build/Release-iphoneos/apple_maps_flutter.build/Objects-normal/arm64/FlutterPolygon.o"
+  },
+  "/Users/samuelskulsky/.pub-cache/git/apple_maps_flutter-75b89c19ef3bdac294e9555a99942b53716d4e32/ios/Classes/Overlays/Polygons/PolygonController.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphoneos/apple_maps_flutter.build/Objects-normal/arm64/PolygonController.o",
+    "llvm-bc" : "/Users/samuelskulsky/Coding/Flutter Projects/scavhuntapp-1/ios/build/Pods.build/Release-iphoneos/apple_maps_flutter.build/Objects-normal/arm64/PolygonController.bc",
+    "object" : "/Users/samuelskulsky/Coding/Flutter Projects/scavhuntapp-1/ios/build/Pods.build/Release-iphoneos/apple_maps_flutter.build/Objects-normal/arm64/PolygonController.o"
+  },
+  "/Users/samuelskulsky/.pub-cache/git/apple_maps_flutter-75b89c19ef3bdac294e9555a99942b53716d4e32/ios/Classes/Overlays/Polygons/PolygonDelegate.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphoneos/apple_maps_flutter.build/Objects-normal/arm64/PolygonDelegate.o",
+    "llvm-bc" : "/Users/samuelskulsky/Coding/Flutter Projects/scavhuntapp-1/ios/build/Pods.build/Release-iphoneos/apple_maps_flutter.build/Objects-normal/arm64/PolygonDelegate.bc",
+    "object" : "/Users/samuelskulsky/Coding/Flutter Projects/scavhuntapp-1/ios/build/Pods.build/Release-iphoneos/apple_maps_flutter.build/Objects-normal/arm64/PolygonDelegate.o"
+  },
+  "/Users/samuelskulsky/.pub-cache/git/apple_maps_flutter-75b89c19ef3bdac294e9555a99942b53716d4e32/ios/Classes/Overlays/Polylines/FlutterPolyline.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphoneos/apple_maps_flutter.build/Objects-normal/arm64/FlutterPolyline.o",
+    "llvm-bc" : "/Users/samuelskulsky/Coding/Flutter Projects/scavhuntapp-1/ios/build/Pods.build/Release-iphoneos/apple_maps_flutter.build/Objects-normal/arm64/FlutterPolyline.bc",
+    "object" : "/Users/samuelskulsky/Coding/Flutter Projects/scavhuntapp-1/ios/build/Pods.build/Release-iphoneos/apple_maps_flutter.build/Objects-normal/arm64/FlutterPolyline.o"
+  },
+  "/Users/samuelskulsky/.pub-cache/git/apple_maps_flutter-75b89c19ef3bdac294e9555a99942b53716d4e32/ios/Classes/Overlays/Polylines/PolylineController.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphoneos/apple_maps_flutter.build/Objects-normal/arm64/PolylineController.o",
+    "llvm-bc" : "/Users/samuelskulsky/Coding/Flutter Projects/scavhuntapp-1/ios/build/Pods.build/Release-iphoneos/apple_maps_flutter.build/Objects-normal/arm64/PolylineController.bc",
+    "object" : "/Users/samuelskulsky/Coding/Flutter Projects/scavhuntapp-1/ios/build/Pods.build/Release-iphoneos/apple_maps_flutter.build/Objects-normal/arm64/PolylineController.o"
+  },
+  "/Users/samuelskulsky/.pub-cache/git/apple_maps_flutter-75b89c19ef3bdac294e9555a99942b53716d4e32/ios/Classes/Overlays/Polylines/PolylineDelegate.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphoneos/apple_maps_flutter.build/Objects-normal/arm64/PolylineDelegate.o",
+    "llvm-bc" : "/Users/samuelskulsky/Coding/Flutter Projects/scavhuntapp-1/ios/build/Pods.build/Release-iphoneos/apple_maps_flutter.build/Objects-normal/arm64/PolylineDelegate.bc",
+    "object" : "/Users/samuelskulsky/Coding/Flutter Projects/scavhuntapp-1/ios/build/Pods.build/Release-iphoneos/apple_maps_flutter.build/Objects-normal/arm64/PolylineDelegate.o"
+  },
+  "/Users/samuelskulsky/.pub-cache/git/apple_maps_flutter-75b89c19ef3bdac294e9555a99942b53716d4e32/ios/Classes/Overlays/circles/CircleController.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphoneos/apple_maps_flutter.build/Objects-normal/arm64/CircleController.o",
+    "llvm-bc" : "/Users/samuelskulsky/Coding/Flutter Projects/scavhuntapp-1/ios/build/Pods.build/Release-iphoneos/apple_maps_flutter.build/Objects-normal/arm64/CircleController.bc",
+    "object" : "/Users/samuelskulsky/Coding/Flutter Projects/scavhuntapp-1/ios/build/Pods.build/Release-iphoneos/apple_maps_flutter.build/Objects-normal/arm64/CircleController.o"
+  },
+  "/Users/samuelskulsky/.pub-cache/git/apple_maps_flutter-75b89c19ef3bdac294e9555a99942b53716d4e32/ios/Classes/Overlays/circles/CircleDelegate.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphoneos/apple_maps_flutter.build/Objects-normal/arm64/CircleDelegate.o",
+    "llvm-bc" : "/Users/samuelskulsky/Coding/Flutter Projects/scavhuntapp-1/ios/build/Pods.build/Release-iphoneos/apple_maps_flutter.build/Objects-normal/arm64/CircleDelegate.bc",
+    "object" : "/Users/samuelskulsky/Coding/Flutter Projects/scavhuntapp-1/ios/build/Pods.build/Release-iphoneos/apple_maps_flutter.build/Objects-normal/arm64/CircleDelegate.o"
+  },
+  "/Users/samuelskulsky/.pub-cache/git/apple_maps_flutter-75b89c19ef3bdac294e9555a99942b53716d4e32/ios/Classes/Overlays/circles/FlutterCircle.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphoneos/apple_maps_flutter.build/Objects-normal/arm64/FlutterCircle.o",
+    "llvm-bc" : "/Users/samuelskulsky/Coding/Flutter Projects/scavhuntapp-1/ios/build/Pods.build/Release-iphoneos/apple_maps_flutter.build/Objects-normal/arm64/FlutterCircle.bc",
+    "object" : "/Users/samuelskulsky/Coding/Flutter Projects/scavhuntapp-1/ios/build/Pods.build/Release-iphoneos/apple_maps_flutter.build/Objects-normal/arm64/FlutterCircle.o"
+  },
+  "/Users/samuelskulsky/.pub-cache/git/apple_maps_flutter-75b89c19ef3bdac294e9555a99942b53716d4e32/ios/Classes/SwiftAppleMapsFlutterPlugin.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphoneos/apple_maps_flutter.build/Objects-normal/arm64/SwiftAppleMapsFlutterPlugin.o",
+    "llvm-bc" : "/Users/samuelskulsky/Coding/Flutter Projects/scavhuntapp-1/ios/build/Pods.build/Release-iphoneos/apple_maps_flutter.build/Objects-normal/arm64/SwiftAppleMapsFlutterPlugin.bc",
+    "object" : "/Users/samuelskulsky/Coding/Flutter Projects/scavhuntapp-1/ios/build/Pods.build/Release-iphoneos/apple_maps_flutter.build/Objects-normal/arm64/SwiftAppleMapsFlutterPlugin.o"
+  },
+  "/Users/samuelskulsky/.pub-cache/git/apple_maps_flutter-75b89c19ef3bdac294e9555a99942b53716d4e32/ios/Classes/Utils/JsonConversion.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphoneos/apple_maps_flutter.build/Objects-normal/arm64/JsonConversion.o",
+    "llvm-bc" : "/Users/samuelskulsky/Coding/Flutter Projects/scavhuntapp-1/ios/build/Pods.build/Release-iphoneos/apple_maps_flutter.build/Objects-normal/arm64/JsonConversion.bc",
+    "object" : "/Users/samuelskulsky/Coding/Flutter Projects/scavhuntapp-1/ios/build/Pods.build/Release-iphoneos/apple_maps_flutter.build/Objects-normal/arm64/JsonConversion.o"
+  },
+  "/Users/samuelskulsky/.pub-cache/git/apple_maps_flutter-75b89c19ef3bdac294e9555a99942b53716d4e32/ios/Classes/Utils/TouchHandler.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphoneos/apple_maps_flutter.build/Objects-normal/arm64/TouchHandler.o",
+    "llvm-bc" : "/Users/samuelskulsky/Coding/Flutter Projects/scavhuntapp-1/ios/build/Pods.build/Release-iphoneos/apple_maps_flutter.build/Objects-normal/arm64/TouchHandler.bc",
+    "object" : "/Users/samuelskulsky/Coding/Flutter Projects/scavhuntapp-1/ios/build/Pods.build/Release-iphoneos/apple_maps_flutter.build/Objects-normal/arm64/TouchHandler.o"
+  },
+  "/Users/samuelskulsky/.pub-cache/git/apple_maps_flutter-75b89c19ef3bdac294e9555a99942b53716d4e32/ios/Classes/Utils/Utils.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphoneos/apple_maps_flutter.build/Objects-normal/arm64/Utils.o",
+    "llvm-bc" : "/Users/samuelskulsky/Coding/Flutter Projects/scavhuntapp-1/ios/build/Pods.build/Release-iphoneos/apple_maps_flutter.build/Objects-normal/arm64/Utils.bc",
+    "object" : "/Users/samuelskulsky/Coding/Flutter Projects/scavhuntapp-1/ios/build/Pods.build/Release-iphoneos/apple_maps_flutter.build/Objects-normal/arm64/Utils.o"
+  },
+  "/Users/samuelskulsky/.pub-cache/git/apple_maps_flutter-75b89c19ef3bdac294e9555a99942b53716d4e32/ios/Classes/models/SnapshotOptions.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphoneos/apple_maps_flutter.build/Objects-normal/arm64/SnapshotOptions.o",
+    "llvm-bc" : "/Users/samuelskulsky/Coding/Flutter Projects/scavhuntapp-1/ios/build/Pods.build/Release-iphoneos/apple_maps_flutter.build/Objects-normal/arm64/SnapshotOptions.bc",
+    "object" : "/Users/samuelskulsky/Coding/Flutter Projects/scavhuntapp-1/ios/build/Pods.build/Release-iphoneos/apple_maps_flutter.build/Objects-normal/arm64/SnapshotOptions.o"
+  }
+}

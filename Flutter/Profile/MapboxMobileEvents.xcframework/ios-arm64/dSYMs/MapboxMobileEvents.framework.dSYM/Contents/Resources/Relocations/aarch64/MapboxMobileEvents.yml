@@ -1,0 +1,780 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     '/Users/sam/scavhuntapp/Flutter/Profile/iphoneos/Profile-iphoneos/MapboxMobileEvents/MapboxMobileEvents.framework/MapboxMobileEvents'
+relocations:
+  - { offsetInCU: 0x34, offset: 0x560CD, size: 0x8, addend: 0x0, symName: _MapboxMobileEventsVersionString, symObjAddr: 0x0, symBinAddr: 0x1B4D8, symSize: 0x0 }
+  - { offsetInCU: 0x69, offset: 0x56102, size: 0x8, addend: 0x0, symName: _MapboxMobileEventsVersionNumber, symObjAddr: 0x30, symBinAddr: 0x1B508, symSize: 0x0 }
+  - { offsetInCU: 0x27, offset: 0x5613F, size: 0x8, addend: 0x0, symName: _mme_linkCLLocationCategory, symObjAddr: 0x0, symBinAddr: 0x4000, symSize: 0x4 }
+  - { offsetInCU: 0x43, offset: 0x5615B, size: 0x8, addend: 0x0, symName: _mme_linkCLLocationCategory, symObjAddr: 0x0, symBinAddr: 0x4000, symSize: 0x4 }
+  - { offsetInCU: 0x59, offset: 0x56171, size: 0x8, addend: 0x0, symName: '-[CLLocation(MMEMobileEvents) mme_roundedSpeed]', symObjAddr: 0x4, symBinAddr: 0x4004, symSize: 0x18 }
+  - { offsetInCU: 0x90, offset: 0x561A8, size: 0x8, addend: 0x0, symName: '-[CLLocation(MMEMobileEvents) mme_roundedCourse]', symObjAddr: 0x1C, symBinAddr: 0x401C, symSize: 0x18 }
+  - { offsetInCU: 0xC7, offset: 0x561DF, size: 0x8, addend: 0x0, symName: '-[CLLocation(MMEMobileEvents) mme_roundedAltitude]', symObjAddr: 0x34, symBinAddr: 0x4034, symSize: 0x18 }
+  - { offsetInCU: 0xFE, offset: 0x56216, size: 0x8, addend: 0x0, symName: '-[CLLocation(MMEMobileEvents) mme_roundedHorizontalAccuracy]', symObjAddr: 0x4C, symBinAddr: 0x404C, symSize: 0x18 }
+  - { offsetInCU: 0x135, offset: 0x5624D, size: 0x8, addend: 0x0, symName: '-[CLLocation(MMEMobileEvents) mme_roundedVerticalAccuracy]', symObjAddr: 0x64, symBinAddr: 0x4064, symSize: 0x18 }
+  - { offsetInCU: 0x16C, offset: 0x56284, size: 0x8, addend: 0x0, symName: '-[CLLocation(MMEMobileEvents) mme_latitudeRoundedWithPrecision:]', symObjAddr: 0x7C, symBinAddr: 0x407C, symSize: 0x2C }
+  - { offsetInCU: 0x1B3, offset: 0x562CB, size: 0x8, addend: 0x0, symName: '-[CLLocation(MMEMobileEvents) mme_longitudeRoundedWithPrecision:]', symObjAddr: 0xA8, symBinAddr: 0x40A8, symSize: 0x30 }
+  - { offsetInCU: 0x1FA, offset: 0x56312, size: 0x8, addend: 0x0, symName: '-[CLLocation(MMEMobileEvents) mme_value:withPrecision:]', symObjAddr: 0xD8, symBinAddr: 0x40D8, symSize: 0x30 }
+  - { offsetInCU: 0x27, offset: 0x563C7, size: 0x8, addend: 0x0, symName: _mme_linkCLLocationManagerCategory, symObjAddr: 0x0, symBinAddr: 0x4108, symSize: 0x4 }
+  - { offsetInCU: 0x7A, offset: 0x5641A, size: 0x8, addend: 0x0, symName: _mme_linkCLLocationManagerCategory, symObjAddr: 0x0, symBinAddr: 0x4108, symSize: 0x4 }
+  - { offsetInCU: 0x90, offset: 0x56430, size: 0x8, addend: 0x0, symName: '-[CLLocationManager(MMEMobileEvents) mme_authorizationStatus]', symObjAddr: 0x4, symBinAddr: 0x410C, symSize: 0x4 }
+  - { offsetInCU: 0xC5, offset: 0x56465, size: 0x8, addend: 0x0, symName: '-[CLLocationManager(MMEMobileEvents) mme_authorizationStatusString]', symObjAddr: 0x8, symBinAddr: 0x4110, symSize: 0x3C }
+  - { offsetInCU: 0x11C, offset: 0x564BC, size: 0x8, addend: 0x0, symName: '-[CLLocationManager(MMEMobileEvents) mme_accuracyStatus]', symObjAddr: 0x44, symBinAddr: 0x414C, symSize: 0x4 }
+  - { offsetInCU: 0x151, offset: 0x564F1, size: 0x8, addend: 0x0, symName: '-[CLLocationManager(MMEMobileEvents) mme_accuracyAutorizationString]', symObjAddr: 0x48, symBinAddr: 0x4150, symSize: 0x44 }
+  - { offsetInCU: 0x27, offset: 0x56591, size: 0x8, addend: 0x0, symName: '-[MMEAPIClient initWithAccessToken:userAgentBase:hostSDKVersion:]', symObjAddr: 0x0, symBinAddr: 0x4194, symSize: 0x100 }
+  - { offsetInCU: 0x4B, offset: 0x565B5, size: 0x8, addend: 0x0, symName: _kMMEMaxRequestCount, symObjAddr: 0x26B8, symBinAddr: 0x1B518, symSize: 0x0 }
+  - { offsetInCU: 0x61, offset: 0x565CB, size: 0x8, addend: 0x0, symName: '-[MMEAPIClient batchFromEvents:]', symObjAddr: 0x15C, symBinAddr: 0x42F0, symSize: 0xA4 }
+  - { offsetInCU: 0x255, offset: 0x567BF, size: 0x8, addend: 0x0, symName: '-[MMEAPIClient initWithAccessToken:userAgentBase:hostSDKVersion:]', symObjAddr: 0x0, symBinAddr: 0x4194, symSize: 0x100 }
+  - { offsetInCU: 0x2BC, offset: 0x56826, size: 0x8, addend: 0x0, symName: '-[MMEAPIClient dealloc]', symObjAddr: 0x100, symBinAddr: 0x4294, symSize: 0x5C }
+  - { offsetInCU: 0x2EF, offset: 0x56859, size: 0x8, addend: 0x0, symName: '-[MMEAPIClient postEvents:completionHandler:]', symObjAddr: 0x200, symBinAddr: 0x4394, symSize: 0x23C }
+  - { offsetInCU: 0x388, offset: 0x568F2, size: 0x8, addend: 0x0, symName: '___45-[MMEAPIClient postEvents:completionHandler:]_block_invoke', symObjAddr: 0x43C, symBinAddr: 0x45D0, symSize: 0x138 }
+  - { offsetInCU: 0x46D, offset: 0x569D7, size: 0x8, addend: 0x0, symName: ___copy_helper_block_e8_32s40s48s56b, symObjAddr: 0x574, symBinAddr: 0x4708, symSize: 0x44 }
+  - { offsetInCU: 0x496, offset: 0x56A00, size: 0x8, addend: 0x0, symName: ___destroy_helper_block_e8_32s40s48s56s, symObjAddr: 0x5B8, symBinAddr: 0x474C, symSize: 0x38 }
+  - { offsetInCU: 0x4B5, offset: 0x56A1F, size: 0x8, addend: 0x0, symName: '-[MMEAPIClient postEvent:completionHandler:]', symObjAddr: 0x5F0, symBinAddr: 0x4784, symSize: 0xAC }
+  - { offsetInCU: 0x508, offset: 0x56A72, size: 0x8, addend: 0x0, symName: '-[MMEAPIClient postMetadata:filePaths:completionHandler:]', symObjAddr: 0x69C, symBinAddr: 0x4830, symSize: 0x158 }
+  - { offsetInCU: 0x59B, offset: 0x56B05, size: 0x8, addend: 0x0, symName: '___57-[MMEAPIClient postMetadata:filePaths:completionHandler:]_block_invoke', symObjAddr: 0x7F4, symBinAddr: 0x4988, symSize: 0x12C }
+  - { offsetInCU: 0x679, offset: 0x56BE3, size: 0x8, addend: 0x0, symName: _MMEDispatchMainIfNeeded, symObjAddr: 0x920, symBinAddr: 0x4AB4, symSize: 0x60 }
+  - { offsetInCU: 0x74A, offset: 0x56CB4, size: 0x8, addend: 0x0, symName: '-[MMEAPIClient startGettingConfigUpdates]', symObjAddr: 0x980, symBinAddr: 0x4B14, symSize: 0x180 }
+  - { offsetInCU: 0x77D, offset: 0x56CE7, size: 0x8, addend: 0x0, symName: '___41-[MMEAPIClient startGettingConfigUpdates]_block_invoke', symObjAddr: 0xB00, symBinAddr: 0x4C94, symSize: 0x78 }
+  - { offsetInCU: 0x843, offset: 0x56DAD, size: 0x8, addend: 0x0, symName: '___41-[MMEAPIClient startGettingConfigUpdates]_block_invoke_2', symObjAddr: 0xB78, symBinAddr: 0x4D0C, symSize: 0x80 }
+  - { offsetInCU: 0x8B7, offset: 0x56E21, size: 0x8, addend: 0x0, symName: '___41-[MMEAPIClient startGettingConfigUpdates]_block_invoke_3', symObjAddr: 0xBF8, symBinAddr: 0x4D8C, symSize: 0xC }
+  - { offsetInCU: 0x906, offset: 0x56E70, size: 0x8, addend: 0x0, symName: ___copy_helper_block_e8_32s40s, symObjAddr: 0xC04, symBinAddr: 0x4D98, symSize: 0x28 }
+  - { offsetInCU: 0x92F, offset: 0x56E99, size: 0x8, addend: 0x0, symName: ___destroy_helper_block_e8_32s40s, symObjAddr: 0xC2C, symBinAddr: 0x4DC0, symSize: 0x28 }
+  - { offsetInCU: 0x94E, offset: 0x56EB8, size: 0x8, addend: 0x0, symName: ___copy_helper_block_e8_32s, symObjAddr: 0xC54, symBinAddr: 0x4DE8, symSize: 0x8 }
+  - { offsetInCU: 0x975, offset: 0x56EDF, size: 0x8, addend: 0x0, symName: ___destroy_helper_block_e8_32s, symObjAddr: 0xC5C, symBinAddr: 0x4DF0, symSize: 0x8 }
+  - { offsetInCU: 0x994, offset: 0x56EFE, size: 0x8, addend: 0x0, symName: '+[MMEAPIClient parseDigestHeader:]', symObjAddr: 0xC64, symBinAddr: 0x4DF8, symSize: 0x1AC }
+  - { offsetInCU: 0xA3C, offset: 0x56FA6, size: 0x8, addend: 0x0, symName: '-[MMEAPIClient processRequest:]', symObjAddr: 0xE10, symBinAddr: 0x4FA4, symSize: 0x9C }
+  - { offsetInCU: 0xA7F, offset: 0x56FE9, size: 0x8, addend: 0x0, symName: '___31-[MMEAPIClient processRequest:]_block_invoke', symObjAddr: 0xEAC, symBinAddr: 0x5040, symSize: 0x2E0 }
+  - { offsetInCU: 0xB8B, offset: 0x570F5, size: 0x8, addend: 0x0, symName: '-[MMEAPIClient stopGettingConfigUpdates]', symObjAddr: 0x118C, symBinAddr: 0x5320, symSize: 0x38 }
+  - { offsetInCU: 0xBBE, offset: 0x57128, size: 0x8, addend: 0x0, symName: '-[MMEAPIClient isGettingConfigUpdates]', symObjAddr: 0x11C4, symBinAddr: 0x5358, symSize: 0x34 }
+  - { offsetInCU: 0xBF5, offset: 0x5715F, size: 0x8, addend: 0x0, symName: '-[MMEAPIClient statusErrorFromRequest:andHTTPResponse:]', symObjAddr: 0x11F8, symBinAddr: 0x538C, symSize: 0x174 }
+  - { offsetInCU: 0xCB4, offset: 0x5721E, size: 0x8, addend: 0x0, symName: '-[MMEAPIClient unexpectedResponseError:fromRequest:andResponse:]', symObjAddr: 0x136C, symBinAddr: 0x5500, symSize: 0x124 }
+  - { offsetInCU: 0xD5F, offset: 0x572C9, size: 0x8, addend: 0x0, symName: '-[MMEAPIClient requestForConfiguration]', symObjAddr: 0x1490, symBinAddr: 0x5624, symSize: 0x274 }
+  - { offsetInCU: 0xDF9, offset: 0x57363, size: 0x8, addend: 0x0, symName: '-[MMEAPIClient requestForBinary:boundary:]', symObjAddr: 0x1704, symBinAddr: 0x5898, symSize: 0x208 }
+  - { offsetInCU: 0xE93, offset: 0x573FD, size: 0x8, addend: 0x0, symName: '-[MMEAPIClient requestForEvents:]', symObjAddr: 0x190C, symBinAddr: 0x5AA0, symSize: 0x330 }
+  - { offsetInCU: 0xF5E, offset: 0x574C8, size: 0x8, addend: 0x0, symName: '___33-[MMEAPIClient requestForEvents:]_block_invoke', symObjAddr: 0x1C3C, symBinAddr: 0x5DD0, symSize: 0x68 }
+  - { offsetInCU: 0xFC7, offset: 0x57531, size: 0x8, addend: 0x0, symName: '-[MMEAPIClient mimeTypeForPath:]', symObjAddr: 0x1CA4, symBinAddr: 0x5E38, symSize: 0x68 }
+  - { offsetInCU: 0x10BC, offset: 0x57626, size: 0x8, addend: 0x0, symName: '-[MMEAPIClient createBodyWithBoundary:metadata:filePaths:]', symObjAddr: 0x1D0C, symBinAddr: 0x5EA0, symSize: 0x458 }
+  - { offsetInCU: 0x11B4, offset: 0x5771E, size: 0x8, addend: 0x0, symName: '-[MMEAPIClient configurationUpdateTimer]', symObjAddr: 0x2164, symBinAddr: 0x62F8, symSize: 0x8 }
+  - { offsetInCU: 0x11EB, offset: 0x57755, size: 0x8, addend: 0x0, symName: '-[MMEAPIClient setConfigurationUpdateTimer:]', symObjAddr: 0x216C, symBinAddr: 0x6300, symSize: 0xC }
+  - { offsetInCU: 0x122C, offset: 0x57796, size: 0x8, addend: 0x0, symName: '-[MMEAPIClient sessionWrapper]', symObjAddr: 0x2178, symBinAddr: 0x630C, symSize: 0x8 }
+  - { offsetInCU: 0x1263, offset: 0x577CD, size: 0x8, addend: 0x0, symName: '-[MMEAPIClient setSessionWrapper:]', symObjAddr: 0x2180, symBinAddr: 0x6314, symSize: 0xC }
+  - { offsetInCU: 0x12A4, offset: 0x5780E, size: 0x8, addend: 0x0, symName: '-[MMEAPIClient applicationBundle]', symObjAddr: 0x218C, symBinAddr: 0x6320, symSize: 0x8 }
+  - { offsetInCU: 0x12DB, offset: 0x57845, size: 0x8, addend: 0x0, symName: '-[MMEAPIClient setApplicationBundle:]', symObjAddr: 0x2194, symBinAddr: 0x6328, symSize: 0xC }
+  - { offsetInCU: 0x131C, offset: 0x57886, size: 0x8, addend: 0x0, symName: '-[MMEAPIClient .cxx_destruct]', symObjAddr: 0x21A0, symBinAddr: 0x6334, symSize: 0x3C }
+  - { offsetInCU: 0x27, offset: 0x57D59, size: 0x8, addend: 0x0, symName: '+[MMECategoryLoader loadCategories]', symObjAddr: 0x0, symBinAddr: 0x6370, symSize: 0x1C }
+  - { offsetInCU: 0x4A, offset: 0x57D7C, size: 0x8, addend: 0x0, symName: '+[MMECategoryLoader loadCategories]', symObjAddr: 0x0, symBinAddr: 0x6370, symSize: 0x1C }
+  - { offsetInCU: 0x27, offset: 0x57DFD, size: 0x8, addend: 0x0, symName: '-[MMECertPin init]', symObjAddr: 0x0, symBinAddr: 0x638C, symSize: 0x84 }
+  - { offsetInCU: 0x4F, offset: 0x57E25, size: 0x8, addend: 0x0, symName: _rsa2048Asn1Header, symObjAddr: 0x1888, symBinAddr: 0x1B530, symSize: 0x0 }
+  - { offsetInCU: 0x7D, offset: 0x57E53, size: 0x8, addend: 0x0, symName: _rsa4096Asn1Header, symObjAddr: 0x18A0, symBinAddr: 0x1B548, symSize: 0x0 }
+  - { offsetInCU: 0x125, offset: 0x57EFB, size: 0x8, addend: 0x0, symName: '-[MMECertPin init]', symObjAddr: 0x0, symBinAddr: 0x638C, symSize: 0x84 }
+  - { offsetInCU: 0x18C, offset: 0x57F62, size: 0x8, addend: 0x0, symName: '-[MMECertPin handleChallenge:completionHandler:]', symObjAddr: 0x84, symBinAddr: 0x6410, symSize: 0x4AC }
+  - { offsetInCU: 0x3FB, offset: 0x581D1, size: 0x8, addend: 0x0, symName: ___Block_byref_object_copy_, symObjAddr: 0x530, symBinAddr: 0x68BC, symSize: 0x10 }
+  - { offsetInCU: 0x420, offset: 0x581F6, size: 0x8, addend: 0x0, symName: ___Block_byref_object_dispose_, symObjAddr: 0x540, symBinAddr: 0x68CC, symSize: 0x8 }
+  - { offsetInCU: 0x43F, offset: 0x58215, size: 0x8, addend: 0x0, symName: '___48-[MMECertPin handleChallenge:completionHandler:]_block_invoke', symObjAddr: 0x548, symBinAddr: 0x68D4, symSize: 0xB4 }
+  - { offsetInCU: 0x4B6, offset: 0x5828C, size: 0x8, addend: 0x0, symName: ___copy_helper_block_e8_32s40r, symObjAddr: 0x5FC, symBinAddr: 0x6988, symSize: 0x34 }
+  - { offsetInCU: 0x4DF, offset: 0x582B5, size: 0x8, addend: 0x0, symName: ___destroy_helper_block_e8_32s40r, symObjAddr: 0x630, symBinAddr: 0x69BC, symSize: 0x2C }
+  - { offsetInCU: 0x4FE, offset: 0x582D4, size: 0x8, addend: 0x0, symName: '___48-[MMECertPin handleChallenge:completionHandler:]_block_invoke.5', symObjAddr: 0x65C, symBinAddr: 0x69E8, symSize: 0x14 }
+  - { offsetInCU: 0x552, offset: 0x58328, size: 0x8, addend: 0x0, symName: ___copy_helper_block_e8_32b, symObjAddr: 0x670, symBinAddr: 0x69FC, symSize: 0x10 }
+  - { offsetInCU: 0x57B, offset: 0x58351, size: 0x8, addend: 0x0, symName: '___48-[MMECertPin handleChallenge:completionHandler:]_block_invoke.7', symObjAddr: 0x688, symBinAddr: 0x6A0C, symSize: 0x6C }
+  - { offsetInCU: 0x5E7, offset: 0x583BD, size: 0x8, addend: 0x0, symName: ___copy_helper_block_e8_32s40b, symObjAddr: 0x6F4, symBinAddr: 0x6A78, symSize: 0x34 }
+  - { offsetInCU: 0x610, offset: 0x583E6, size: 0x8, addend: 0x0, symName: '___48-[MMECertPin handleChallenge:completionHandler:]_block_invoke.9', symObjAddr: 0x750, symBinAddr: 0x6AAC, symSize: 0x6C }
+  - { offsetInCU: 0x67C, offset: 0x58452, size: 0x8, addend: 0x0, symName: '___48-[MMECertPin handleChallenge:completionHandler:]_block_invoke_2', symObjAddr: 0x7BC, symBinAddr: 0x6B18, symSize: 0x6C }
+  - { offsetInCU: 0x6E8, offset: 0x584BE, size: 0x8, addend: 0x0, symName: '___48-[MMECertPin handleChallenge:completionHandler:]_block_invoke_3', symObjAddr: 0x828, symBinAddr: 0x6B84, symSize: 0x6C }
+  - { offsetInCU: 0x754, offset: 0x5852A, size: 0x8, addend: 0x0, symName: '___48-[MMECertPin handleChallenge:completionHandler:]_block_invoke_4', symObjAddr: 0x894, symBinAddr: 0x6BF0, symSize: 0x14 }
+  - { offsetInCU: 0x7A8, offset: 0x5857E, size: 0x8, addend: 0x0, symName: '+[MMECertPin trustEvaluate:]', symObjAddr: 0x8A8, symBinAddr: 0x6C04, symSize: 0x40 }
+  - { offsetInCU: 0x871, offset: 0x58647, size: 0x8, addend: 0x0, symName: '+[MMECertPin trustCopyKey:]', symObjAddr: 0x8E8, symBinAddr: 0x6C44, symSize: 0x8 }
+  - { offsetInCU: 0x8EA, offset: 0x586C0, size: 0x8, addend: 0x0, symName: '-[MMECertPin hashSubjectPublicKeyInfoFromCertificate:]', symObjAddr: 0x8F0, symBinAddr: 0x6C4C, symSize: 0x310 }
+  - { offsetInCU: 0xBFE, offset: 0x589D4, size: 0x8, addend: 0x0, symName: '___54-[MMECertPin hashSubjectPublicKeyInfoFromCertificate:]_block_invoke', symObjAddr: 0xC00, symBinAddr: 0x6F5C, symSize: 0x64 }
+  - { offsetInCU: 0xC78, offset: 0x58A4E, size: 0x8, addend: 0x0, symName: ___copy_helper_block_e8_32s40r48w, symObjAddr: 0xC64, symBinAddr: 0x6FC0, symSize: 0x40 }
+  - { offsetInCU: 0xCA1, offset: 0x58A77, size: 0x8, addend: 0x0, symName: ___destroy_helper_block_e8_32s40r48w, symObjAddr: 0xCA4, symBinAddr: 0x7000, symSize: 0x34 }
+  - { offsetInCU: 0xCC0, offset: 0x58A96, size: 0x8, addend: 0x0, symName: '___54-[MMECertPin hashSubjectPublicKeyInfoFromCertificate:]_block_invoke.11', symObjAddr: 0xCD8, symBinAddr: 0x7034, symSize: 0x5C }
+  - { offsetInCU: 0xD3A, offset: 0x58B10, size: 0x8, addend: 0x0, symName: ___copy_helper_block_e8_32s40s48w, symObjAddr: 0xD34, symBinAddr: 0x7090, symSize: 0x38 }
+  - { offsetInCU: 0xD63, offset: 0x58B39, size: 0x8, addend: 0x0, symName: ___destroy_helper_block_e8_32s40s48w, symObjAddr: 0xD6C, symBinAddr: 0x70C8, symSize: 0x30 }
+  - { offsetInCU: 0xD82, offset: 0x58B58, size: 0x8, addend: 0x0, symName: '-[MMECertPin getPublicKeyDataFromCertificate:]', symObjAddr: 0xD9C, symBinAddr: 0x70F8, symSize: 0xA0 }
+  - { offsetInCU: 0xDD9, offset: 0x58BAF, size: 0x8, addend: 0x0, symName: '-[MMECertPin getPublicKeyDataFromCertificate_legacy_ios:]', symObjAddr: 0xE3C, symBinAddr: 0x7198, symSize: 0x2FC }
+  - { offsetInCU: 0xF97, offset: 0x58D6D, size: 0x8, addend: 0x0, symName: '___57-[MMECertPin getPublicKeyDataFromCertificate_legacy_ios:]_block_invoke', symObjAddr: 0x1138, symBinAddr: 0x7494, symSize: 0x50 }
+  - { offsetInCU: 0x1065, offset: 0x58E3B, size: 0x8, addend: 0x0, symName: ___copy_helper_block_e8_32s40s48r56r64r, symObjAddr: 0x1188, symBinAddr: 0x74E4, symSize: 0x5C }
+  - { offsetInCU: 0x108E, offset: 0x58E64, size: 0x8, addend: 0x0, symName: ___destroy_helper_block_e8_32s40s48r56r64r, symObjAddr: 0x11E4, symBinAddr: 0x7540, symSize: 0x4C }
+  - { offsetInCU: 0x10AD, offset: 0x58E83, size: 0x8, addend: 0x0, symName: '-[MMECertPin getPublicKeyDataFromCertificate_unified:]', symObjAddr: 0x1230, symBinAddr: 0x758C, symSize: 0x80 }
+  - { offsetInCU: 0x120B, offset: 0x58FE1, size: 0x8, addend: 0x0, symName: '-[MMECertPin publicKeyInfoHashesCache]', symObjAddr: 0x12B0, symBinAddr: 0x760C, symSize: 0x8 }
+  - { offsetInCU: 0x1242, offset: 0x59018, size: 0x8, addend: 0x0, symName: '-[MMECertPin setPublicKeyInfoHashesCache:]', symObjAddr: 0x12B8, symBinAddr: 0x7614, symSize: 0xC }
+  - { offsetInCU: 0x1283, offset: 0x59059, size: 0x8, addend: 0x0, symName: '-[MMECertPin lockQueue]', symObjAddr: 0x12C4, symBinAddr: 0x7620, symSize: 0x8 }
+  - { offsetInCU: 0x12BA, offset: 0x59090, size: 0x8, addend: 0x0, symName: '-[MMECertPin setLockQueue:]', symObjAddr: 0x12CC, symBinAddr: 0x7628, symSize: 0xC }
+  - { offsetInCU: 0x12FB, offset: 0x590D1, size: 0x8, addend: 0x0, symName: '-[MMECertPin .cxx_destruct]', symObjAddr: 0x12D8, symBinAddr: 0x7634, symSize: 0x30 }
+  - { offsetInCU: 0x27, offset: 0x597F4, size: 0x8, addend: 0x0, symName: '+[MMECommonEventData sysInfoByName:]', symObjAddr: 0x0, symBinAddr: 0x7664, symSize: 0x88 }
+  - { offsetInCU: 0x41, offset: 0x5980E, size: 0x8, addend: 0x0, symName: _MMEApplicationStateForeground, symObjAddr: 0x5A8, symBinAddr: 0x28730, symSize: 0x0 }
+  - { offsetInCU: 0x61, offset: 0x5982E, size: 0x8, addend: 0x0, symName: _MMEApplicationStateBackground, symObjAddr: 0x5B0, symBinAddr: 0x28738, symSize: 0x0 }
+  - { offsetInCU: 0x77, offset: 0x59844, size: 0x8, addend: 0x0, symName: _MMEApplicationStateInactive, symObjAddr: 0x5B8, symBinAddr: 0x28740, symSize: 0x0 }
+  - { offsetInCU: 0x8D, offset: 0x5985A, size: 0x8, addend: 0x0, symName: _MMEApplicationStateUnknown, symObjAddr: 0x5C0, symBinAddr: 0x28748, symSize: 0x0 }
+  - { offsetInCU: 0xA3, offset: 0x59870, size: 0x8, addend: 0x0, symName: _MMEApplicationStateExtension, symObjAddr: 0x5C8, symBinAddr: 0x28750, symSize: 0x0 }
+  - { offsetInCU: 0x19C, offset: 0x59969, size: 0x8, addend: 0x0, symName: '+[MMECommonEventData sysInfoByName:]', symObjAddr: 0x0, symBinAddr: 0x7664, symSize: 0x88 }
+  - { offsetInCU: 0x2B2, offset: 0x59A7F, size: 0x8, addend: 0x0, symName: '+[MMECommonEventData commonCrashEventData]', symObjAddr: 0x88, symBinAddr: 0x76EC, symSize: 0x110 }
+  - { offsetInCU: 0x305, offset: 0x59AD2, size: 0x8, addend: 0x0, symName: '-[MMECommonEventData init]', symObjAddr: 0x198, symBinAddr: 0x77FC, symSize: 0x1B4 }
+  - { offsetInCU: 0x33C, offset: 0x59B09, size: 0x8, addend: 0x0, symName: '+[MMECommonEventData applicationState]', symObjAddr: 0x34C, symBinAddr: 0x79B0, symSize: 0x70 }
+  - { offsetInCU: 0x36F, offset: 0x59B3C, size: 0x8, addend: 0x0, symName: '+[MMECommonEventData platformInfo]', symObjAddr: 0x3BC, symBinAddr: 0x7A20, symSize: 0x20 }
+  - { offsetInCU: 0x3B2, offset: 0x59B7F, size: 0x8, addend: 0x0, symName: '-[MMECommonEventData vendorId]', symObjAddr: 0x3DC, symBinAddr: 0x7A40, symSize: 0x8 }
+  - { offsetInCU: 0x3E9, offset: 0x59BB6, size: 0x8, addend: 0x0, symName: '-[MMECommonEventData setVendorId:]', symObjAddr: 0x3E4, symBinAddr: 0x7A48, symSize: 0xC }
+  - { offsetInCU: 0x42A, offset: 0x59BF7, size: 0x8, addend: 0x0, symName: '-[MMECommonEventData model]', symObjAddr: 0x3F0, symBinAddr: 0x7A54, symSize: 0x8 }
+  - { offsetInCU: 0x461, offset: 0x59C2E, size: 0x8, addend: 0x0, symName: '-[MMECommonEventData setModel:]', symObjAddr: 0x3F8, symBinAddr: 0x7A5C, symSize: 0xC }
+  - { offsetInCU: 0x4A2, offset: 0x59C6F, size: 0x8, addend: 0x0, symName: '-[MMECommonEventData osVersion]', symObjAddr: 0x404, symBinAddr: 0x7A68, symSize: 0x8 }
+  - { offsetInCU: 0x4D9, offset: 0x59CA6, size: 0x8, addend: 0x0, symName: '-[MMECommonEventData setOsVersion:]', symObjAddr: 0x40C, symBinAddr: 0x7A70, symSize: 0xC }
+  - { offsetInCU: 0x51A, offset: 0x59CE7, size: 0x8, addend: 0x0, symName: '-[MMECommonEventData platform]', symObjAddr: 0x418, symBinAddr: 0x7A7C, symSize: 0x8 }
+  - { offsetInCU: 0x551, offset: 0x59D1E, size: 0x8, addend: 0x0, symName: '-[MMECommonEventData setPlatform:]', symObjAddr: 0x420, symBinAddr: 0x7A84, symSize: 0xC }
+  - { offsetInCU: 0x592, offset: 0x59D5F, size: 0x8, addend: 0x0, symName: '-[MMECommonEventData device]', symObjAddr: 0x42C, symBinAddr: 0x7A90, symSize: 0x8 }
+  - { offsetInCU: 0x5C9, offset: 0x59D96, size: 0x8, addend: 0x0, symName: '-[MMECommonEventData setDevice:]', symObjAddr: 0x434, symBinAddr: 0x7A98, symSize: 0xC }
+  - { offsetInCU: 0x60A, offset: 0x59DD7, size: 0x8, addend: 0x0, symName: '-[MMECommonEventData scale]', symObjAddr: 0x440, symBinAddr: 0x7AA4, symSize: 0x8 }
+  - { offsetInCU: 0x63F, offset: 0x59E0C, size: 0x8, addend: 0x0, symName: '-[MMECommonEventData setScale:]', symObjAddr: 0x448, symBinAddr: 0x7AAC, symSize: 0x8 }
+  - { offsetInCU: 0x67D, offset: 0x59E4A, size: 0x8, addend: 0x0, symName: '-[MMECommonEventData .cxx_destruct]', symObjAddr: 0x450, symBinAddr: 0x7AB4, symSize: 0x54 }
+  - { offsetInCU: 0x35, offset: 0x59EF1, size: 0x8, addend: 0x0, symName: _MMEAPIClientBaseAPIURL, symObjAddr: 0x1BA8, symBinAddr: 0x28770, symSize: 0x0 }
+  - { offsetInCU: 0x55, offset: 0x59F11, size: 0x8, addend: 0x0, symName: _MMEAPIClientBaseChinaAPIURL, symObjAddr: 0x1BB0, symBinAddr: 0x28778, symSize: 0x0 }
+  - { offsetInCU: 0x6B, offset: 0x59F27, size: 0x8, addend: 0x0, symName: _MMEAPIClientBaseEventsURL, symObjAddr: 0x1BB8, symBinAddr: 0x28780, symSize: 0x0 }
+  - { offsetInCU: 0x81, offset: 0x59F3D, size: 0x8, addend: 0x0, symName: _MMEAPIClientBaseChinaEventsURL, symObjAddr: 0x1BC0, symBinAddr: 0x28788, symSize: 0x0 }
+  - { offsetInCU: 0x97, offset: 0x59F53, size: 0x8, addend: 0x0, symName: _MMEAPIClientEventsPath, symObjAddr: 0x1BC8, symBinAddr: 0x28790, symSize: 0x0 }
+  - { offsetInCU: 0xAD, offset: 0x59F69, size: 0x8, addend: 0x0, symName: _MMEAPIClientEventsConfigPath, symObjAddr: 0x1BD0, symBinAddr: 0x28798, symSize: 0x0 }
+  - { offsetInCU: 0xC3, offset: 0x59F7F, size: 0x8, addend: 0x0, symName: _MMEAPIClientAttachmentsPath, symObjAddr: 0x1BD8, symBinAddr: 0x287A0, symSize: 0x0 }
+  - { offsetInCU: 0xD9, offset: 0x59F95, size: 0x8, addend: 0x0, symName: _MMEAPIClientHeaderFieldUserAgentKey, symObjAddr: 0x1BE0, symBinAddr: 0x287A8, symSize: 0x0 }
+  - { offsetInCU: 0xEF, offset: 0x59FAB, size: 0x8, addend: 0x0, symName: _MMEAPIClientHeaderFieldContentTypeKey, symObjAddr: 0x1BE8, symBinAddr: 0x287B0, symSize: 0x0 }
+  - { offsetInCU: 0x105, offset: 0x59FC1, size: 0x8, addend: 0x0, symName: _MMEAPIClientHeaderFieldContentTypeValue, symObjAddr: 0x1BF0, symBinAddr: 0x287B8, symSize: 0x0 }
+  - { offsetInCU: 0x11B, offset: 0x59FD7, size: 0x8, addend: 0x0, symName: _MMEAPIClientAttachmentsHeaderFieldContentTypeValue, symObjAddr: 0x1BF8, symBinAddr: 0x287C0, symSize: 0x0 }
+  - { offsetInCU: 0x131, offset: 0x59FED, size: 0x8, addend: 0x0, symName: _MMEAPIClientHeaderFieldContentEncodingKey, symObjAddr: 0x1C00, symBinAddr: 0x287C8, symSize: 0x0 }
+  - { offsetInCU: 0x147, offset: 0x5A003, size: 0x8, addend: 0x0, symName: _MMEAPIClientHTTPMethodPost, symObjAddr: 0x1C08, symBinAddr: 0x287D0, symSize: 0x0 }
+  - { offsetInCU: 0x15D, offset: 0x5A019, size: 0x8, addend: 0x0, symName: _MMEAPIClientHTTPMethodGet, symObjAddr: 0x1C10, symBinAddr: 0x287D8, symSize: 0x0 }
+  - { offsetInCU: 0x173, offset: 0x5A02F, size: 0x8, addend: 0x0, symName: _MMEResponseKey, symObjAddr: 0x1C18, symBinAddr: 0x287E0, symSize: 0x0 }
+  - { offsetInCU: 0x189, offset: 0x5A045, size: 0x8, addend: 0x0, symName: _MMEDebugEventType, symObjAddr: 0x1C20, symBinAddr: 0x287E8, symSize: 0x0 }
+  - { offsetInCU: 0x19F, offset: 0x5A05B, size: 0x8, addend: 0x0, symName: _MMEDebugEventTypeError, symObjAddr: 0x1C28, symBinAddr: 0x287F0, symSize: 0x0 }
+  - { offsetInCU: 0x1B5, offset: 0x5A071, size: 0x8, addend: 0x0, symName: _MMEDebugEventTypeFlush, symObjAddr: 0x1C30, symBinAddr: 0x287F8, symSize: 0x0 }
+  - { offsetInCU: 0x1CB, offset: 0x5A087, size: 0x8, addend: 0x0, symName: _MMEDebugEventTypePush, symObjAddr: 0x1C38, symBinAddr: 0x28800, symSize: 0x0 }
+  - { offsetInCU: 0x1E1, offset: 0x5A09D, size: 0x8, addend: 0x0, symName: _MMEDebugEventTypePost, symObjAddr: 0x1C40, symBinAddr: 0x28808, symSize: 0x0 }
+  - { offsetInCU: 0x1F7, offset: 0x5A0B3, size: 0x8, addend: 0x0, symName: _MMEDebugEventTypePostFailed, symObjAddr: 0x1C48, symBinAddr: 0x28810, symSize: 0x0 }
+  - { offsetInCU: 0x20D, offset: 0x5A0C9, size: 0x8, addend: 0x0, symName: _MMEDebugEventTypeTurnstile, symObjAddr: 0x1C50, symBinAddr: 0x28818, symSize: 0x0 }
+  - { offsetInCU: 0x223, offset: 0x5A0DF, size: 0x8, addend: 0x0, symName: _MMEDebugEventTypeTurnstileFailed, symObjAddr: 0x1C58, symBinAddr: 0x28820, symSize: 0x0 }
+  - { offsetInCU: 0x239, offset: 0x5A0F5, size: 0x8, addend: 0x0, symName: _MMEDebugEventTypeBackgroundTask, symObjAddr: 0x1C60, symBinAddr: 0x28828, symSize: 0x0 }
+  - { offsetInCU: 0x24F, offset: 0x5A10B, size: 0x8, addend: 0x0, symName: _MMEDebugEventTypeMetricCollection, symObjAddr: 0x1C68, symBinAddr: 0x28830, symSize: 0x0 }
+  - { offsetInCU: 0x265, offset: 0x5A121, size: 0x8, addend: 0x0, symName: _MMEDebugEventTypeLocationManager, symObjAddr: 0x1C70, symBinAddr: 0x28838, symSize: 0x0 }
+  - { offsetInCU: 0x27B, offset: 0x5A137, size: 0x8, addend: 0x0, symName: _MMEDebugEventTypeTelemetryMetrics, symObjAddr: 0x1C78, symBinAddr: 0x28840, symSize: 0x0 }
+  - { offsetInCU: 0x291, offset: 0x5A14D, size: 0x8, addend: 0x0, symName: _MMEDebugEventTypeCertPinning, symObjAddr: 0x1C80, symBinAddr: 0x28848, symSize: 0x0 }
+  - { offsetInCU: 0x2A7, offset: 0x5A163, size: 0x8, addend: 0x0, symName: _MMEEventTypeAppUserTurnstile, symObjAddr: 0x1C88, symBinAddr: 0x28850, symSize: 0x0 }
+  - { offsetInCU: 0x2BD, offset: 0x5A179, size: 0x8, addend: 0x0, symName: _MMEEventTypeTelemetryMetrics, symObjAddr: 0x1C90, symBinAddr: 0x28858, symSize: 0x0 }
+  - { offsetInCU: 0x2D3, offset: 0x5A18F, size: 0x8, addend: 0x0, symName: _MMEEventTypeLocation, symObjAddr: 0x1C98, symBinAddr: 0x28860, symSize: 0x0 }
+  - { offsetInCU: 0x2E9, offset: 0x5A1A5, size: 0x8, addend: 0x0, symName: _MMEEventTypeVisit, symObjAddr: 0x1CA0, symBinAddr: 0x28868, symSize: 0x0 }
+  - { offsetInCU: 0x2FF, offset: 0x5A1BB, size: 0x8, addend: 0x0, symName: _MMEEventTypeLocalDebug, symObjAddr: 0x1CA8, symBinAddr: 0x28870, symSize: 0x0 }
+  - { offsetInCU: 0x315, offset: 0x5A1D1, size: 0x8, addend: 0x0, symName: _MMEEventTypeMapLoad, symObjAddr: 0x1CB0, symBinAddr: 0x28878, symSize: 0x0 }
+  - { offsetInCU: 0x32B, offset: 0x5A1E7, size: 0x8, addend: 0x0, symName: _MMEventTypeOfflineDownloadStart, symObjAddr: 0x1CB8, symBinAddr: 0x28880, symSize: 0x0 }
+  - { offsetInCU: 0x341, offset: 0x5A1FD, size: 0x8, addend: 0x0, symName: _MMEventTypeOfflineDownloadEnd, symObjAddr: 0x1CC0, symBinAddr: 0x28888, symSize: 0x0 }
+  - { offsetInCU: 0x357, offset: 0x5A213, size: 0x8, addend: 0x0, symName: _MMEEventKeyArrivalDate, symObjAddr: 0x1CC8, symBinAddr: 0x28890, symSize: 0x0 }
+  - { offsetInCU: 0x36D, offset: 0x5A229, size: 0x8, addend: 0x0, symName: _MMEEventKeyDepartureDate, symObjAddr: 0x1CD0, symBinAddr: 0x28898, symSize: 0x0 }
+  - { offsetInCU: 0x383, offset: 0x5A23F, size: 0x8, addend: 0x0, symName: _MMEEventKeyLatitude, symObjAddr: 0x1CD8, symBinAddr: 0x288A0, symSize: 0x0 }
+  - { offsetInCU: 0x399, offset: 0x5A255, size: 0x8, addend: 0x0, symName: _MMEEventKeyLongitude, symObjAddr: 0x1CE0, symBinAddr: 0x288A8, symSize: 0x0 }
+  - { offsetInCU: 0x3AF, offset: 0x5A26B, size: 0x8, addend: 0x0, symName: _MMEEventKeyMaxZoomLevel, symObjAddr: 0x1CE8, symBinAddr: 0x288B0, symSize: 0x0 }
+  - { offsetInCU: 0x3C5, offset: 0x5A281, size: 0x8, addend: 0x0, symName: _MMEEventKeyMinZoomLevel, symObjAddr: 0x1CF0, symBinAddr: 0x288B8, symSize: 0x0 }
+  - { offsetInCU: 0x3DB, offset: 0x5A297, size: 0x8, addend: 0x0, symName: _MMEEventKeyZoomLevel, symObjAddr: 0x1CF8, symBinAddr: 0x288C0, symSize: 0x0 }
+  - { offsetInCU: 0x3F1, offset: 0x5A2AD, size: 0x8, addend: 0x0, symName: _MMEEventKeySpeed, symObjAddr: 0x1D00, symBinAddr: 0x288C8, symSize: 0x0 }
+  - { offsetInCU: 0x407, offset: 0x5A2C3, size: 0x8, addend: 0x0, symName: _MMEEventKeyStyleURL, symObjAddr: 0x1D08, symBinAddr: 0x288D0, symSize: 0x0 }
+  - { offsetInCU: 0x41D, offset: 0x5A2D9, size: 0x8, addend: 0x0, symName: _MMEEventKeyCourse, symObjAddr: 0x1D10, symBinAddr: 0x288D8, symSize: 0x0 }
+  - { offsetInCU: 0x433, offset: 0x5A2EF, size: 0x8, addend: 0x0, symName: _MMEEventKeySpeedAccuracy, symObjAddr: 0x1D18, symBinAddr: 0x288E0, symSize: 0x0 }
+  - { offsetInCU: 0x449, offset: 0x5A305, size: 0x8, addend: 0x0, symName: _MMEEventKeyCourseAccuracy, symObjAddr: 0x1D20, symBinAddr: 0x288E8, symSize: 0x0 }
+  - { offsetInCU: 0x45F, offset: 0x5A31B, size: 0x8, addend: 0x0, symName: _MMEEventKeyVerticalAccuracy, symObjAddr: 0x1D28, symBinAddr: 0x288F0, symSize: 0x0 }
+  - { offsetInCU: 0x475, offset: 0x5A331, size: 0x8, addend: 0x0, symName: _MMEEventKeyFloor, symObjAddr: 0x1D30, symBinAddr: 0x288F8, symSize: 0x0 }
+  - { offsetInCU: 0x48B, offset: 0x5A347, size: 0x8, addend: 0x0, symName: _MMEEventHorizontalAccuracy, symObjAddr: 0x1D38, symBinAddr: 0x28900, symSize: 0x0 }
+  - { offsetInCU: 0x4A1, offset: 0x5A35D, size: 0x8, addend: 0x0, symName: _MMEEventKeyLocalDebugDescription, symObjAddr: 0x1D40, symBinAddr: 0x28908, symSize: 0x0 }
+  - { offsetInCU: 0x4B7, offset: 0x5A373, size: 0x8, addend: 0x0, symName: _MMEEventKeyErrorCode, symObjAddr: 0x1D48, symBinAddr: 0x28910, symSize: 0x0 }
+  - { offsetInCU: 0x4CD, offset: 0x5A389, size: 0x8, addend: 0x0, symName: _MMEEventKeyErrorDomain, symObjAddr: 0x1D50, symBinAddr: 0x28918, symSize: 0x0 }
+  - { offsetInCU: 0x4E3, offset: 0x5A39F, size: 0x8, addend: 0x0, symName: _MMEEventKeyErrorDescription, symObjAddr: 0x1D58, symBinAddr: 0x28920, symSize: 0x0 }
+  - { offsetInCU: 0x4F9, offset: 0x5A3B5, size: 0x8, addend: 0x0, symName: _MMEEventKeyErrorFailureReason, symObjAddr: 0x1D60, symBinAddr: 0x28928, symSize: 0x0 }
+  - { offsetInCU: 0x50F, offset: 0x5A3CB, size: 0x8, addend: 0x0, symName: _MMEEventKeyErrorNoReason, symObjAddr: 0x1D68, symBinAddr: 0x28930, symSize: 0x0 }
+  - { offsetInCU: 0x525, offset: 0x5A3E1, size: 0x8, addend: 0x0, symName: _MMEEventKeyErrorNoDomain, symObjAddr: 0x1D70, symBinAddr: 0x28938, symSize: 0x0 }
+  - { offsetInCU: 0x53B, offset: 0x5A3F7, size: 0x8, addend: 0x0, symName: _MMEEventKeyEvent, symObjAddr: 0x1D78, symBinAddr: 0x28940, symSize: 0x0 }
+  - { offsetInCU: 0x551, offset: 0x5A40D, size: 0x8, addend: 0x0, symName: _MMEEventKeyCreated, symObjAddr: 0x1D80, symBinAddr: 0x28948, symSize: 0x0 }
+  - { offsetInCU: 0x567, offset: 0x5A423, size: 0x8, addend: 0x0, symName: _MMEEventKeyVendorId, symObjAddr: 0x1D88, symBinAddr: 0x28950, symSize: 0x0 }
+  - { offsetInCU: 0x57D, offset: 0x5A439, size: 0x8, addend: 0x0, symName: _MMEEventKeyModel, symObjAddr: 0x1D90, symBinAddr: 0x28958, symSize: 0x0 }
+  - { offsetInCU: 0x593, offset: 0x5A44F, size: 0x8, addend: 0x0, symName: _MMEEventKeyDevice, symObjAddr: 0x1D98, symBinAddr: 0x28960, symSize: 0x0 }
+  - { offsetInCU: 0x5A9, offset: 0x5A465, size: 0x8, addend: 0x0, symName: _MMEEventKeyConfig, symObjAddr: 0x1DA0, symBinAddr: 0x28968, symSize: 0x0 }
+  - { offsetInCU: 0x5BF, offset: 0x5A47B, size: 0x8, addend: 0x0, symName: _MMEEventKeySkuId, symObjAddr: 0x1DA8, symBinAddr: 0x28970, symSize: 0x0 }
+  - { offsetInCU: 0x5D5, offset: 0x5A491, size: 0x8, addend: 0x0, symName: _MMEEventKeyEnabledTelemetry, symObjAddr: 0x1DB0, symBinAddr: 0x28978, symSize: 0x0 }
+  - { offsetInCU: 0x5EB, offset: 0x5A4A7, size: 0x8, addend: 0x0, symName: _MMEEventKeyOperatingSystem, symObjAddr: 0x1DB8, symBinAddr: 0x28980, symSize: 0x0 }
+  - { offsetInCU: 0x601, offset: 0x5A4BD, size: 0x8, addend: 0x0, symName: _MMEEventKeyResolution, symObjAddr: 0x1DC0, symBinAddr: 0x28988, symSize: 0x0 }
+  - { offsetInCU: 0x617, offset: 0x5A4D3, size: 0x8, addend: 0x0, symName: _MMEEventKeyAccessibilityFontScale, symObjAddr: 0x1DC8, symBinAddr: 0x28990, symSize: 0x0 }
+  - { offsetInCU: 0x62D, offset: 0x5A4E9, size: 0x8, addend: 0x0, symName: _MMEEventKeyOrientation, symObjAddr: 0x1DD0, symBinAddr: 0x28998, symSize: 0x0 }
+  - { offsetInCU: 0x643, offset: 0x5A4FF, size: 0x8, addend: 0x0, symName: _MMEEventKeyPluggedIn, symObjAddr: 0x1DD8, symBinAddr: 0x289A0, symSize: 0x0 }
+  - { offsetInCU: 0x659, offset: 0x5A515, size: 0x8, addend: 0x0, symName: _MMEEventKeyWifi, symObjAddr: 0x1DE0, symBinAddr: 0x289A8, symSize: 0x0 }
+  - { offsetInCU: 0x66F, offset: 0x5A52B, size: 0x8, addend: 0x0, symName: _MMEEventKeyShapeForOfflineRegion, symObjAddr: 0x1DE8, symBinAddr: 0x289B0, symSize: 0x0 }
+  - { offsetInCU: 0x685, offset: 0x5A541, size: 0x8, addend: 0x0, symName: _MMEEventKeySource, symObjAddr: 0x1DF0, symBinAddr: 0x289B8, symSize: 0x0 }
+  - { offsetInCU: 0x69B, offset: 0x5A557, size: 0x8, addend: 0x0, symName: _MMEEventKeySessionId, symObjAddr: 0x1DF8, symBinAddr: 0x289C0, symSize: 0x0 }
+  - { offsetInCU: 0x6B1, offset: 0x5A56D, size: 0x8, addend: 0x0, symName: _MMEEventKeyApplicationState, symObjAddr: 0x1E00, symBinAddr: 0x289C8, symSize: 0x0 }
+  - { offsetInCU: 0x6C7, offset: 0x5A583, size: 0x8, addend: 0x0, symName: _MMEEventKeyAltitude, symObjAddr: 0x1E08, symBinAddr: 0x289D0, symSize: 0x0 }
+  - { offsetInCU: 0x6DD, offset: 0x5A599, size: 0x8, addend: 0x0, symName: _MMEEventKeyLocationAuthorization, symObjAddr: 0x1E10, symBinAddr: 0x289D8, symSize: 0x0 }
+  - { offsetInCU: 0x6F3, offset: 0x5A5AF, size: 0x8, addend: 0x0, symName: _MMEEventKeyAccuracyAuthorization, symObjAddr: 0x1E18, symBinAddr: 0x289E0, symSize: 0x0 }
+  - { offsetInCU: 0x709, offset: 0x5A5C5, size: 0x8, addend: 0x0, symName: _MMEEventKeyLocationEnabled, symObjAddr: 0x1E20, symBinAddr: 0x289E8, symSize: 0x0 }
+  - { offsetInCU: 0x71F, offset: 0x5A5DB, size: 0x8, addend: 0x0, symName: _MMEEventKeyFailedRequests, symObjAddr: 0x1E28, symBinAddr: 0x289F0, symSize: 0x0 }
+  - { offsetInCU: 0x735, offset: 0x5A5F1, size: 0x8, addend: 0x0, symName: _MMEEventKeyHeader, symObjAddr: 0x1E30, symBinAddr: 0x289F8, symSize: 0x0 }
+  - { offsetInCU: 0x74B, offset: 0x5A607, size: 0x8, addend: 0x0, symName: _MMEEventKeyPlatform, symObjAddr: 0x1E38, symBinAddr: 0x28A00, symSize: 0x0 }
+  - { offsetInCU: 0x761, offset: 0x5A61D, size: 0x8, addend: 0x0, symName: _MMEEventKeyUserAgent, symObjAddr: 0x1E40, symBinAddr: 0x28A08, symSize: 0x0 }
+  - { offsetInCU: 0x777, offset: 0x5A633, size: 0x8, addend: 0x0, symName: _MMEEventKeyiOS, symObjAddr: 0x1E48, symBinAddr: 0x28A10, symSize: 0x0 }
+  - { offsetInCU: 0x78D, offset: 0x5A649, size: 0x8, addend: 0x0, symName: _MMEEventKeyMac, symObjAddr: 0x1E50, symBinAddr: 0x28A18, symSize: 0x0 }
+  - { offsetInCU: 0x7A3, offset: 0x5A65F, size: 0x8, addend: 0x0, symName: _MMEEventKeyApproximate, symObjAddr: 0x1E58, symBinAddr: 0x28A20, symSize: 0x0 }
+  - { offsetInCU: 0x7B9, offset: 0x5A675, size: 0x8, addend: 0x0, symName: _MMEEventKeyLocationsForeground, symObjAddr: 0x1E60, symBinAddr: 0x28A28, symSize: 0x0 }
+  - { offsetInCU: 0x7CF, offset: 0x5A68B, size: 0x8, addend: 0x0, symName: _MMEEventKeyLocationsBackground, symObjAddr: 0x1E68, symBinAddr: 0x28A30, symSize: 0x0 }
+  - { offsetInCU: 0x7E5, offset: 0x5A6A1, size: 0x8, addend: 0x0, symName: _MMEEventKeyLocationsWithApproximateValues, symObjAddr: 0x1E70, symBinAddr: 0x28A38, symSize: 0x0 }
+  - { offsetInCU: 0x7FB, offset: 0x5A6B7, size: 0x8, addend: 0x0, symName: _MMEEventKeyLocationsDroppedBecauseOfHAF, symObjAddr: 0x1E78, symBinAddr: 0x28A40, symSize: 0x0 }
+  - { offsetInCU: 0x811, offset: 0x5A6CD, size: 0x8, addend: 0x0, symName: _MMEEventKeyLocationsDroppedDueTimeout, symObjAddr: 0x1E80, symBinAddr: 0x28A48, symSize: 0x0 }
+  - { offsetInCU: 0x827, offset: 0x5A6E3, size: 0x8, addend: 0x0, symName: _MMEEventKeyLocationsConvertedIntoEvents, symObjAddr: 0x1E88, symBinAddr: 0x28A50, symSize: 0x0 }
+  - { offsetInCU: 0x83D, offset: 0x5A6F9, size: 0x8, addend: 0x0, symName: _MMEEventSDKIdentifier, symObjAddr: 0x1E90, symBinAddr: 0x28A58, symSize: 0x0 }
+  - { offsetInCU: 0x853, offset: 0x5A70F, size: 0x8, addend: 0x0, symName: _MMEEventSDKVersion, symObjAddr: 0x1E98, symBinAddr: 0x28A60, symSize: 0x0 }
+  - { offsetInCU: 0x869, offset: 0x5A725, size: 0x8, addend: 0x0, symName: _MMEEventDateUTC, symObjAddr: 0x1EA0, symBinAddr: 0x28A68, symSize: 0x0 }
+  - { offsetInCU: 0x87F, offset: 0x5A73B, size: 0x8, addend: 0x0, symName: _MMEEventRequests, symObjAddr: 0x1EA8, symBinAddr: 0x28A70, symSize: 0x0 }
+  - { offsetInCU: 0x895, offset: 0x5A751, size: 0x8, addend: 0x0, symName: _MMEEventTotalDataSent, symObjAddr: 0x1EB0, symBinAddr: 0x28A78, symSize: 0x0 }
+  - { offsetInCU: 0x8AB, offset: 0x5A767, size: 0x8, addend: 0x0, symName: _MMEEventCellDataSent, symObjAddr: 0x1EB8, symBinAddr: 0x28A80, symSize: 0x0 }
+  - { offsetInCU: 0x8C1, offset: 0x5A77D, size: 0x8, addend: 0x0, symName: _MMEEventWiFiDataSent, symObjAddr: 0x1EC0, symBinAddr: 0x28A88, symSize: 0x0 }
+  - { offsetInCU: 0x8D7, offset: 0x5A793, size: 0x8, addend: 0x0, symName: _MMEEventTotalDataReceived, symObjAddr: 0x1EC8, symBinAddr: 0x28A90, symSize: 0x0 }
+  - { offsetInCU: 0x8ED, offset: 0x5A7A9, size: 0x8, addend: 0x0, symName: _MMEEventCellDataReceived, symObjAddr: 0x1ED0, symBinAddr: 0x28A98, symSize: 0x0 }
+  - { offsetInCU: 0x903, offset: 0x5A7BF, size: 0x8, addend: 0x0, symName: _MMEEventWiFiDataReceived, symObjAddr: 0x1ED8, symBinAddr: 0x28AA0, symSize: 0x0 }
+  - { offsetInCU: 0x919, offset: 0x5A7D5, size: 0x8, addend: 0x0, symName: _MMEEventAppWakeups, symObjAddr: 0x1EE0, symBinAddr: 0x28AA8, symSize: 0x0 }
+  - { offsetInCU: 0x92F, offset: 0x5A7EB, size: 0x8, addend: 0x0, symName: _MMEEventEventCountPerType, symObjAddr: 0x1EE8, symBinAddr: 0x28AB0, symSize: 0x0 }
+  - { offsetInCU: 0x945, offset: 0x5A801, size: 0x8, addend: 0x0, symName: _MMEEventEventCountFailed, symObjAddr: 0x1EF0, symBinAddr: 0x28AB8, symSize: 0x0 }
+  - { offsetInCU: 0x95B, offset: 0x5A817, size: 0x8, addend: 0x0, symName: _MMEEventEventCountTotal, symObjAddr: 0x1EF8, symBinAddr: 0x28AC0, symSize: 0x0 }
+  - { offsetInCU: 0x971, offset: 0x5A82D, size: 0x8, addend: 0x0, symName: _MMEEventEventCountMax, symObjAddr: 0x1F00, symBinAddr: 0x28AC8, symSize: 0x0 }
+  - { offsetInCU: 0x987, offset: 0x5A843, size: 0x8, addend: 0x0, symName: _MMEEventDeviceLat, symObjAddr: 0x1F08, symBinAddr: 0x28AD0, symSize: 0x0 }
+  - { offsetInCU: 0x99D, offset: 0x5A859, size: 0x8, addend: 0x0, symName: _MMEEventDeviceLon, symObjAddr: 0x1F10, symBinAddr: 0x28AD8, symSize: 0x0 }
+  - { offsetInCU: 0x9B3, offset: 0x5A86F, size: 0x8, addend: 0x0, symName: _MMEEventDeviceTimeDrift, symObjAddr: 0x1F18, symBinAddr: 0x28AE0, symSize: 0x0 }
+  - { offsetInCU: 0x9C9, offset: 0x5A885, size: 0x8, addend: 0x0, symName: _MMEEventConfigResponse, symObjAddr: 0x1F20, symBinAddr: 0x28AE8, symSize: 0x0 }
+  - { offsetInCU: 0x9DF, offset: 0x5A89B, size: 0x8, addend: 0x0, symName: _MMEEventStatusDenied, symObjAddr: 0x1F28, symBinAddr: 0x28AF0, symSize: 0x0 }
+  - { offsetInCU: 0x9F5, offset: 0x5A8B1, size: 0x8, addend: 0x0, symName: _MMEEventStatusRestricted, symObjAddr: 0x1F30, symBinAddr: 0x28AF8, symSize: 0x0 }
+  - { offsetInCU: 0xA0B, offset: 0x5A8C7, size: 0x8, addend: 0x0, symName: _MMEEventStatusNotDetermined, symObjAddr: 0x1F38, symBinAddr: 0x28B00, symSize: 0x0 }
+  - { offsetInCU: 0xA21, offset: 0x5A8DD, size: 0x8, addend: 0x0, symName: _MMEEventStatusAuthorizedAlways, symObjAddr: 0x1F40, symBinAddr: 0x28B08, symSize: 0x0 }
+  - { offsetInCU: 0xA37, offset: 0x5A8F3, size: 0x8, addend: 0x0, symName: _MMEEventStatusAuthorizedWhenInUse, symObjAddr: 0x1F48, symBinAddr: 0x28B10, symSize: 0x0 }
+  - { offsetInCU: 0xA4D, offset: 0x5A909, size: 0x8, addend: 0x0, symName: _MMEEventUnknown, symObjAddr: 0x1F50, symBinAddr: 0x28B18, symSize: 0x0 }
+  - { offsetInCU: 0xA63, offset: 0x5A91F, size: 0x8, addend: 0x0, symName: _MMEAccuracyAuthorizationFull, symObjAddr: 0x1F58, symBinAddr: 0x28B20, symSize: 0x0 }
+  - { offsetInCU: 0xA79, offset: 0x5A935, size: 0x8, addend: 0x0, symName: _MMEAccuracyAuthorizationReduced, symObjAddr: 0x1F60, symBinAddr: 0x28B28, symSize: 0x0 }
+  - { offsetInCU: 0xA8F, offset: 0x5A94B, size: 0x8, addend: 0x0, symName: _MMEVisionEventPrefix, symObjAddr: 0x1F68, symBinAddr: 0x28B30, symSize: 0x0 }
+  - { offsetInCU: 0xAA5, offset: 0x5A961, size: 0x8, addend: 0x0, symName: _MMENavigationEventPrefix, symObjAddr: 0x1F70, symBinAddr: 0x28B38, symSize: 0x0 }
+  - { offsetInCU: 0xABB, offset: 0x5A977, size: 0x8, addend: 0x0, symName: _MMEEventTypeNavigationDepart, symObjAddr: 0x1F78, symBinAddr: 0x28B40, symSize: 0x0 }
+  - { offsetInCU: 0xAD1, offset: 0x5A98D, size: 0x8, addend: 0x0, symName: _MMEEventTypeNavigationArrive, symObjAddr: 0x1F80, symBinAddr: 0x28B48, symSize: 0x0 }
+  - { offsetInCU: 0xAE7, offset: 0x5A9A3, size: 0x8, addend: 0x0, symName: _MMEEventTypeNavigationCancel, symObjAddr: 0x1F88, symBinAddr: 0x28B50, symSize: 0x0 }
+  - { offsetInCU: 0xAFD, offset: 0x5A9B9, size: 0x8, addend: 0x0, symName: _MMEEventTypeNavigationFeedback, symObjAddr: 0x1F90, symBinAddr: 0x28B58, symSize: 0x0 }
+  - { offsetInCU: 0xB13, offset: 0x5A9CF, size: 0x8, addend: 0x0, symName: _MMEEventTypeNavigationReroute, symObjAddr: 0x1F98, symBinAddr: 0x28B60, symSize: 0x0 }
+  - { offsetInCU: 0xB29, offset: 0x5A9E5, size: 0x8, addend: 0x0, symName: _MMEventTypeNavigationCarplayConnect, symObjAddr: 0x1FA0, symBinAddr: 0x28B68, symSize: 0x0 }
+  - { offsetInCU: 0xB3F, offset: 0x5A9FB, size: 0x8, addend: 0x0, symName: _MMEventTypeNavigationCarplayDisconnect, symObjAddr: 0x1FA8, symBinAddr: 0x28B70, symSize: 0x0 }
+  - { offsetInCU: 0xB55, offset: 0x5AA11, size: 0x8, addend: 0x0, symName: _MMESearchEventPrefix, symObjAddr: 0x1FB0, symBinAddr: 0x28B78, symSize: 0x0 }
+  - { offsetInCU: 0xB6B, offset: 0x5AA27, size: 0x8, addend: 0x0, symName: _MMEEventTypeSearchSelected, symObjAddr: 0x1FB8, symBinAddr: 0x28B80, symSize: 0x0 }
+  - { offsetInCU: 0xB81, offset: 0x5AA3D, size: 0x8, addend: 0x0, symName: _MMEEventTypeSearchFeedback, symObjAddr: 0x1FC0, symBinAddr: 0x28B88, symSize: 0x0 }
+  - { offsetInCU: 0xB97, offset: 0x5AA53, size: 0x8, addend: 0x0, symName: _MMEEventSource, symObjAddr: 0x1FC8, symBinAddr: 0x28B90, symSize: 0x0 }
+  - { offsetInCU: 0xBAD, offset: 0x5AA69, size: 0x8, addend: 0x0, symName: _MMEEventMobileCrash, symObjAddr: 0x1FD0, symBinAddr: 0x28B98, symSize: 0x0 }
+  - { offsetInCU: 0xBC3, offset: 0x5AA7F, size: 0x8, addend: 0x0, symName: _MMEEventKeyOSVersion, symObjAddr: 0x1FD8, symBinAddr: 0x28BA0, symSize: 0x0 }
+  - { offsetInCU: 0xBD9, offset: 0x5AA95, size: 0x8, addend: 0x0, symName: _MMEEventKeyBuildType, symObjAddr: 0x1FE0, symBinAddr: 0x28BA8, symSize: 0x0 }
+  - { offsetInCU: 0xBEF, offset: 0x5AAAB, size: 0x8, addend: 0x0, symName: _MMEEventKeyIsSilentCrash, symObjAddr: 0x1FE8, symBinAddr: 0x28BB0, symSize: 0x0 }
+  - { offsetInCU: 0xC05, offset: 0x5AAC1, size: 0x8, addend: 0x0, symName: _MMEEventKeyStackTrace, symObjAddr: 0x1FF0, symBinAddr: 0x28BB8, symSize: 0x0 }
+  - { offsetInCU: 0xC1B, offset: 0x5AAD7, size: 0x8, addend: 0x0, symName: _MMEEventKeyStackTraceHash, symObjAddr: 0x1FF8, symBinAddr: 0x28BC0, symSize: 0x0 }
+  - { offsetInCU: 0xC31, offset: 0x5AAED, size: 0x8, addend: 0x0, symName: _MMEEventKeyInstallationId, symObjAddr: 0x2000, symBinAddr: 0x28BC8, symSize: 0x0 }
+  - { offsetInCU: 0xC47, offset: 0x5AB03, size: 0x8, addend: 0x0, symName: _MMEEventKeyThreadDetails, symObjAddr: 0x2008, symBinAddr: 0x28BD0, symSize: 0x0 }
+  - { offsetInCU: 0xC5D, offset: 0x5AB19, size: 0x8, addend: 0x0, symName: _MMEEventKeyAppId, symObjAddr: 0x2010, symBinAddr: 0x28BD8, symSize: 0x0 }
+  - { offsetInCU: 0xC73, offset: 0x5AB2F, size: 0x8, addend: 0x0, symName: _MMEEventKeyAppVersion, symObjAddr: 0x2018, symBinAddr: 0x28BE0, symSize: 0x0 }
+  - { offsetInCU: 0xC89, offset: 0x5AB45, size: 0x8, addend: 0x0, symName: _MMEEventKeyAppStartDate, symObjAddr: 0x2020, symBinAddr: 0x28BE8, symSize: 0x0 }
+  - { offsetInCU: 0xC9F, offset: 0x5AB5B, size: 0x8, addend: 0x0, symName: _MMEEventKeyCustomData, symObjAddr: 0x2028, symBinAddr: 0x28BF0, symSize: 0x0 }
+  - { offsetInCU: 0xCB5, offset: 0x5AB71, size: 0x8, addend: 0x0, symName: _MMEErrorDomain, symObjAddr: 0x2030, symBinAddr: 0x28BF8, symSize: 0x0 }
+  - { offsetInCU: 0xCD0, offset: 0x5AB8C, size: 0x8, addend: 0x0, symName: _MMEErrorEventAttributesKey, symObjAddr: 0x2038, symBinAddr: 0x28C00, symSize: 0x0 }
+  - { offsetInCU: 0xCE6, offset: 0x5ABA2, size: 0x8, addend: 0x0, symName: _MMEErrorUnderlyingExceptionKey, symObjAddr: 0x2040, symBinAddr: 0x28C08, symSize: 0x0 }
+  - { offsetInCU: 0xCFC, offset: 0x5ABB8, size: 0x8, addend: 0x0, symName: _MMEErrorDescriptionKey, symObjAddr: 0x2048, symBinAddr: 0x28C10, symSize: 0x0 }
+  - { offsetInCU: 0xD12, offset: 0x5ABCE, size: 0x8, addend: 0x0, symName: _MMEEventKeyVendorID, symObjAddr: 0x2050, symBinAddr: 0x28C18, symSize: 0x0 }
+  - { offsetInCU: 0xD28, offset: 0x5ABE4, size: 0x8, addend: 0x0, symName: _MMEEventKeyInstallationID, symObjAddr: 0x2058, symBinAddr: 0x28C20, symSize: 0x0 }
+  - { offsetInCU: 0xD3E, offset: 0x5ABFA, size: 0x8, addend: 0x0, symName: _MMEEventKeyAppID, symObjAddr: 0x2060, symBinAddr: 0x28C28, symSize: 0x0 }
+  - { offsetInCU: 0xD54, offset: 0x5AC10, size: 0x8, addend: 0x0, symName: _MMEEventKeyGestureId, symObjAddr: 0x2068, symBinAddr: 0x28C30, symSize: 0x0 }
+  - { offsetInCU: 0xD6A, offset: 0x5AC26, size: 0x8, addend: 0x0, symName: _MMEEventKeyGestureID, symObjAddr: 0x2070, symBinAddr: 0x28C38, symSize: 0x0 }
+  - { offsetInCU: 0xD80, offset: 0x5AC3C, size: 0x8, addend: 0x0, symName: _MMEEventGestureSingleTap, symObjAddr: 0x2078, symBinAddr: 0x28C40, symSize: 0x0 }
+  - { offsetInCU: 0xD96, offset: 0x5AC52, size: 0x8, addend: 0x0, symName: _MMEEventGestureDoubleTap, symObjAddr: 0x2080, symBinAddr: 0x28C48, symSize: 0x0 }
+  - { offsetInCU: 0xDAC, offset: 0x5AC68, size: 0x8, addend: 0x0, symName: _MMEEventGestureTwoFingerSingleTap, symObjAddr: 0x2088, symBinAddr: 0x28C50, symSize: 0x0 }
+  - { offsetInCU: 0xDC2, offset: 0x5AC7E, size: 0x8, addend: 0x0, symName: _MMEEventGestureQuickZoom, symObjAddr: 0x2090, symBinAddr: 0x28C58, symSize: 0x0 }
+  - { offsetInCU: 0xDD8, offset: 0x5AC94, size: 0x8, addend: 0x0, symName: _MMEEventGesturePanStart, symObjAddr: 0x2098, symBinAddr: 0x28C60, symSize: 0x0 }
+  - { offsetInCU: 0xDEE, offset: 0x5ACAA, size: 0x8, addend: 0x0, symName: _MMEEventGesturePinchStart, symObjAddr: 0x20A0, symBinAddr: 0x28C68, symSize: 0x0 }
+  - { offsetInCU: 0xE04, offset: 0x5ACC0, size: 0x8, addend: 0x0, symName: _MMEEventGestureRotateStart, symObjAddr: 0x20A8, symBinAddr: 0x28C70, symSize: 0x0 }
+  - { offsetInCU: 0xE1A, offset: 0x5ACD6, size: 0x8, addend: 0x0, symName: _MMEEventGesturePitchStart, symObjAddr: 0x20B0, symBinAddr: 0x28C78, symSize: 0x0 }
+  - { offsetInCU: 0xE30, offset: 0x5ACEC, size: 0x8, addend: 0x0, symName: _MMEEventTypeMapTap, symObjAddr: 0x20B8, symBinAddr: 0x28C80, symSize: 0x0 }
+  - { offsetInCU: 0xE46, offset: 0x5AD02, size: 0x8, addend: 0x0, symName: _MMEEventTypeMapDragEnd, symObjAddr: 0x20C0, symBinAddr: 0x28C88, symSize: 0x0 }
+  - { offsetInCU: 0xE5C, offset: 0x5AD18, size: 0x8, addend: 0x0, symName: _MMEAPIClientBaseURL, symObjAddr: 0x20C8, symBinAddr: 0x28C90, symSize: 0x0 }
+  - { offsetInCU: 0x27, offset: 0x5AD65, size: 0x8, addend: 0x0, symName: '+[MMEDate recordTimeOffsetFromServer:]', symObjAddr: 0x0, symBinAddr: 0x7B08, symSize: 0x20 }
+  - { offsetInCU: 0x35, offset: 0x5AD73, size: 0x8, addend: 0x0, symName: '+[MMEDate iso8601DateFormatter]', symObjAddr: 0x2C, symBinAddr: 0x7B34, symSize: 0xB4 }
+  - { offsetInCU: 0x5F, offset: 0x5AD9D, size: 0x8, addend: 0x0, symName: _iso8601DateFormatter._iso8601DateFormatter, symObjAddr: 0x43A8, symBinAddr: 0x34E10, symSize: 0x0 }
+  - { offsetInCU: 0xA2, offset: 0x5ADE0, size: 0x8, addend: 0x0, symName: '+[MMEDate iso8601DateOnlyFormatter]', symObjAddr: 0xE0, symBinAddr: 0x7BE8, symSize: 0xB4 }
+  - { offsetInCU: 0xCC, offset: 0x5AE0A, size: 0x8, addend: 0x0, symName: _iso8601DateOnlyFormatter._iso8601ShortDateFormatter, symObjAddr: 0x43B0, symBinAddr: 0x34E18, symSize: 0x0 }
+  - { offsetInCU: 0x10A, offset: 0x5AE48, size: 0x8, addend: 0x0, symName: '+[MMEDate HTTPDateFormatter]', symObjAddr: 0x194, symBinAddr: 0x7C9C, symSize: 0x88 }
+  - { offsetInCU: 0x134, offset: 0x5AE72, size: 0x8, addend: 0x0, symName: _HTTPDateFormatter._httpDateFormatter, symObjAddr: 0x43B8, symBinAddr: 0x34E20, symSize: 0x0 }
+  - { offsetInCU: 0x17D, offset: 0x5AEBB, size: 0x8, addend: 0x0, symName: __timeOffsetFromServer, symObjAddr: 0x43A0, symBinAddr: 0x34E08, symSize: 0x0 }
+  - { offsetInCU: 0x1EF, offset: 0x5AF2D, size: 0x8, addend: 0x0, symName: '+[MMEDate recordTimeOffsetFromServer:]', symObjAddr: 0x0, symBinAddr: 0x7B08, symSize: 0x20 }
+  - { offsetInCU: 0x232, offset: 0x5AF70, size: 0x8, addend: 0x0, symName: '+[MMEDate recordedTimeOffsetFromServer]', symObjAddr: 0x20, symBinAddr: 0x7B28, symSize: 0xC }
+  - { offsetInCU: 0x265, offset: 0x5AFA3, size: 0x8, addend: 0x0, symName: '+[MMEDate dateWithRecordedOffset]', symObjAddr: 0x21C, symBinAddr: 0x7D24, symSize: 0x2C }
+  - { offsetInCU: 0x298, offset: 0x5AFD6, size: 0x8, addend: 0x0, symName: '+[MMEDate dateWithOffset:]', symObjAddr: 0x248, symBinAddr: 0x7D50, symSize: 0x30 }
+  - { offsetInCU: 0x2DB, offset: 0x5B019, size: 0x8, addend: 0x0, symName: '+[MMEDate dateWithDate:]', symObjAddr: 0x278, symBinAddr: 0x7D80, symSize: 0x70 }
+  - { offsetInCU: 0x322, offset: 0x5B060, size: 0x8, addend: 0x0, symName: '+[MMEDate date]', symObjAddr: 0x2E8, symBinAddr: 0x7DF0, symSize: 0x18 }
+  - { offsetInCU: 0x359, offset: 0x5B097, size: 0x8, addend: 0x0, symName: '+[MMEDate supportsSecureCoding]', symObjAddr: 0x300, symBinAddr: 0x7E08, symSize: 0x8 }
+  - { offsetInCU: 0x38C, offset: 0x5B0CA, size: 0x8, addend: 0x0, symName: '-[MMEDate initWithTimeIntervalSinceReferenceDate:offset:]', symObjAddr: 0x308, symBinAddr: 0x7E10, symSize: 0x60 }
+  - { offsetInCU: 0x3E3, offset: 0x5B121, size: 0x8, addend: 0x0, symName: '-[MMEDate initWithOffset:]', symObjAddr: 0x368, symBinAddr: 0x7E70, symSize: 0x3C }
+  - { offsetInCU: 0x42A, offset: 0x5B168, size: 0x8, addend: 0x0, symName: '-[MMEDate init]', symObjAddr: 0x3A4, symBinAddr: 0x7EAC, symSize: 0x4C }
+  - { offsetInCU: 0x461, offset: 0x5B19F, size: 0x8, addend: 0x0, symName: '-[MMEDate initWithTimeIntervalSinceReferenceDate:]', symObjAddr: 0x3F0, symBinAddr: 0x7EF8, symSize: 0x40 }
+  - { offsetInCU: 0x4A8, offset: 0x5B1E6, size: 0x8, addend: 0x0, symName: '-[MMEDate timeIntervalSinceReferenceDate]', symObjAddr: 0x430, symBinAddr: 0x7F38, symSize: 0x10 }
+  - { offsetInCU: 0x4DD, offset: 0x5B21B, size: 0x8, addend: 0x0, symName: '-[MMEDate description]', symObjAddr: 0x440, symBinAddr: 0x7F48, symSize: 0x84 }
+  - { offsetInCU: 0x548, offset: 0x5B286, size: 0x8, addend: 0x0, symName: '-[MMEDate isEqual:]', symObjAddr: 0x4C4, symBinAddr: 0x7FCC, symSize: 0xE0 }
+  - { offsetInCU: 0x59F, offset: 0x5B2DD, size: 0x8, addend: 0x0, symName: '-[MMEDate copyWithZone:]', symObjAddr: 0x5A4, symBinAddr: 0x80AC, symSize: 0x40 }
+  - { offsetInCU: 0x5E2, offset: 0x5B320, size: 0x8, addend: 0x0, symName: '-[MMEDate classForCoder]', symObjAddr: 0x5E4, symBinAddr: 0x80EC, symSize: 0xC }
+  - { offsetInCU: 0x615, offset: 0x5B353, size: 0x8, addend: 0x0, symName: '-[MMEDate initWithCoder:]', symObjAddr: 0x5F0, symBinAddr: 0x80F8, symSize: 0xE4 }
+  - { offsetInCU: 0x689, offset: 0x5B3C7, size: 0x8, addend: 0x0, symName: '-[MMEDate encodeWithCoder:]', symObjAddr: 0x6D4, symBinAddr: 0x81DC, symSize: 0x78 }
+  - { offsetInCU: 0x6CC, offset: 0x5B40A, size: 0x8, addend: 0x0, symName: '-[MMEDate offsetToServer]', symObjAddr: 0x74C, symBinAddr: 0x8254, symSize: 0x10 }
+  - { offsetInCU: 0x701, offset: 0x5B43F, size: 0x8, addend: 0x0, symName: '-[MMEDate offsetFromServer]', symObjAddr: 0x75C, symBinAddr: 0x8264, symSize: 0x10 }
+  - { offsetInCU: 0x736, offset: 0x5B474, size: 0x8, addend: 0x0, symName: '-[MMEDate sinceReferenceDate]', symObjAddr: 0x76C, symBinAddr: 0x8274, symSize: 0x10 }
+  - { offsetInCU: 0x76B, offset: 0x5B4A9, size: 0x8, addend: 0x0, symName: '-[MMEDate setSinceReferenceDate:]', symObjAddr: 0x77C, symBinAddr: 0x8284, symSize: 0x10 }
+  - { offsetInCU: 0x7A9, offset: 0x5B4E7, size: 0x8, addend: 0x0, symName: '-[NSDate(MMEDate) mme_startOfTomorrow]', symObjAddr: 0x78C, symBinAddr: 0x8294, symSize: 0xB8 }
+  - { offsetInCU: 0x27, offset: 0x5B5EF, size: 0x8, addend: 0x0, symName: '+[MMEDependencyManager sharedManager]', symObjAddr: 0x0, symBinAddr: 0x834C, symSize: 0x40 }
+  - { offsetInCU: 0x35, offset: 0x5B5FD, size: 0x8, addend: 0x0, symName: '+[MMEDependencyManager sharedManager]', symObjAddr: 0x0, symBinAddr: 0x834C, symSize: 0x40 }
+  - { offsetInCU: 0x5F, offset: 0x5B627, size: 0x8, addend: 0x0, symName: _sharedManager.onceToken, symObjAddr: 0x1A30, symBinAddr: 0x34E28, symSize: 0x0 }
+  - { offsetInCU: 0xAC, offset: 0x5B674, size: 0x8, addend: 0x0, symName: __sharedInstance, symObjAddr: 0x1A38, symBinAddr: 0x34E30, symSize: 0x0 }
+  - { offsetInCU: 0x130, offset: 0x5B6F8, size: 0x8, addend: 0x0, symName: '___37+[MMEDependencyManager sharedManager]_block_invoke', symObjAddr: 0x40, symBinAddr: 0x838C, symSize: 0x28 }
+  - { offsetInCU: 0x157, offset: 0x5B71F, size: 0x8, addend: 0x0, symName: '-[MMEDependencyManager locationManagerInstance]', symObjAddr: 0x68, symBinAddr: 0x83B4, symSize: 0x1C }
+  - { offsetInCU: 0x27, offset: 0x5B821, size: 0x8, addend: 0x0, symName: '-[MMEDispatchManager scheduleBlock:afterDelay:]', symObjAddr: 0x0, symBinAddr: 0x83D0, symSize: 0x58 }
+  - { offsetInCU: 0x5B, offset: 0x5B855, size: 0x8, addend: 0x0, symName: '-[MMEDispatchManager scheduleBlock:afterDelay:]', symObjAddr: 0x0, symBinAddr: 0x83D0, symSize: 0x58 }
+  - { offsetInCU: 0x27, offset: 0x5B9DA, size: 0x8, addend: 0x0, symName: '+[MMEEvent nilAttributes]', symObjAddr: 0x0, symBinAddr: 0x8428, symSize: 0x38 }
+  - { offsetInCU: 0x35, offset: 0x5B9E8, size: 0x8, addend: 0x0, symName: '+[MMEEvent nilAttributes]', symObjAddr: 0x0, symBinAddr: 0x8428, symSize: 0x38 }
+  - { offsetInCU: 0x5F, offset: 0x5BA12, size: 0x8, addend: 0x0, symName: _nilAttributes.nilAttributes, symObjAddr: 0xA550, symBinAddr: 0x34E38, symSize: 0x0 }
+  - { offsetInCU: 0x83, offset: 0x5BA36, size: 0x8, addend: 0x0, symName: '+[MMEEvent redactedStackFrame:]', symObjAddr: 0x38, symBinAddr: 0x8460, symSize: 0x29C }
+  - { offsetInCU: 0xAD, offset: 0x5BA60, size: 0x8, addend: 0x0, symName: '_redactedStackFrame:.allowedSymbols', symObjAddr: 0xA558, symBinAddr: 0x34E40, symSize: 0x0 }
+  - { offsetInCU: 0x261, offset: 0x5BC14, size: 0x8, addend: 0x0, symName: '+[MMEEvent eventWithAttributes:]', symObjAddr: 0x2D4, symBinAddr: 0x86FC, symSize: 0x7C }
+  - { offsetInCU: 0x2C8, offset: 0x5BC7B, size: 0x8, addend: 0x0, symName: '+[MMEEvent eventWithAttributes:error:]', symObjAddr: 0x350, symBinAddr: 0x8778, symSize: 0x50 }
+  - { offsetInCU: 0x31F, offset: 0x5BCD2, size: 0x8, addend: 0x0, symName: '+[MMEEvent turnstileEventWithAttributes:]', symObjAddr: 0x3A0, symBinAddr: 0x87C8, symSize: 0x60 }
+  - { offsetInCU: 0x376, offset: 0x5BD29, size: 0x8, addend: 0x0, symName: '+[MMEEvent visitEventWithAttributes:]', symObjAddr: 0x400, symBinAddr: 0x8828, symSize: 0x60 }
+  - { offsetInCU: 0x3CD, offset: 0x5BD80, size: 0x8, addend: 0x0, symName: '+[MMEEvent crashEventReporting:error:]', symObjAddr: 0x460, symBinAddr: 0x8888, symSize: 0x564 }
+  - { offsetInCU: 0x544, offset: 0x5BEF7, size: 0x8, addend: 0x0, symName: '+[MMEEvent debugEventWithAttributes:]', symObjAddr: 0x9C4, symBinAddr: 0x8DEC, symSize: 0x60 }
+  - { offsetInCU: 0x597, offset: 0x5BF4A, size: 0x8, addend: 0x0, symName: '+[MMEEvent debugEventWithError:]', symObjAddr: 0xA24, symBinAddr: 0x8E4C, symSize: 0x198 }
+  - { offsetInCU: 0x5EE, offset: 0x5BFA1, size: 0x8, addend: 0x0, symName: '+[MMEEvent debugEventWithException:]', symObjAddr: 0xBBC, symBinAddr: 0x8FE4, symSize: 0xF4 }
+  - { offsetInCU: 0x645, offset: 0x5BFF8, size: 0x8, addend: 0x0, symName: '+[MMEEvent eventWithDate:name:attributes:]', symObjAddr: 0xCB0, symBinAddr: 0x90D8, symSize: 0xD0 }
+  - { offsetInCU: 0x6BC, offset: 0x5C06F, size: 0x8, addend: 0x0, symName: '+[MMEEvent eventWithName:attributes:]', symObjAddr: 0xD80, symBinAddr: 0x91A8, symSize: 0x7C }
+  - { offsetInCU: 0x713, offset: 0x5C0C6, size: 0x8, addend: 0x0, symName: '+[MMEEvent telemetryMetricsEventWithDateString:attributes:]', symObjAddr: 0xDFC, symBinAddr: 0x9224, symSize: 0x94 }
+  - { offsetInCU: 0x77A, offset: 0x5C12D, size: 0x8, addend: 0x0, symName: '+[MMEEvent locationEventWithAttributes:instanceIdentifer:commonEventData:]', symObjAddr: 0xE90, symBinAddr: 0x92B8, symSize: 0x154 }
+  - { offsetInCU: 0x7F1, offset: 0x5C1A4, size: 0x8, addend: 0x0, symName: '+[MMEEvent mapLoadEventWithDateString:commonEventData:]', symObjAddr: 0xFE4, symBinAddr: 0x940C, symSize: 0x258 }
+  - { offsetInCU: 0x854, offset: 0x5C207, size: 0x8, addend: 0x0, symName: '+[MMEEvent mapTapEventWithDateString:attributes:]', symObjAddr: 0x123C, symBinAddr: 0x9664, symSize: 0x128 }
+  - { offsetInCU: 0x8B7, offset: 0x5C26A, size: 0x8, addend: 0x0, symName: '+[MMEEvent mapDragEndEventWithDateString:attributes:]', symObjAddr: 0x1364, symBinAddr: 0x978C, symSize: 0x128 }
+  - { offsetInCU: 0x91E, offset: 0x5C2D1, size: 0x8, addend: 0x0, symName: '+[MMEEvent mapOfflineDownloadStartEventWithDateString:attributes:]', symObjAddr: 0x148C, symBinAddr: 0x98B4, symSize: 0x8C }
+  - { offsetInCU: 0x985, offset: 0x5C338, size: 0x8, addend: 0x0, symName: '+[MMEEvent mapOfflineDownloadEndEventWithDateString:attributes:]', symObjAddr: 0x1518, symBinAddr: 0x9940, symSize: 0x8C }
+  - { offsetInCU: 0x9EC, offset: 0x5C39F, size: 0x8, addend: 0x0, symName: '+[MMEEvent navigationEventWithName:attributes:]', symObjAddr: 0x15A4, symBinAddr: 0x99CC, symSize: 0xC }
+  - { offsetInCU: 0xA3E, offset: 0x5C3F1, size: 0x8, addend: 0x0, symName: '+[MMEEvent visionEventWithName:attributes:]', symObjAddr: 0x15B0, symBinAddr: 0x99D8, symSize: 0xC }
+  - { offsetInCU: 0xA90, offset: 0x5C443, size: 0x8, addend: 0x0, symName: '+[MMEEvent searchEventWithName:attributes:]', symObjAddr: 0x15BC, symBinAddr: 0x99E4, symSize: 0xC }
+  - { offsetInCU: 0xAE2, offset: 0x5C495, size: 0x8, addend: 0x0, symName: '+[MMEEvent carplayEventWithName:attributes:]', symObjAddr: 0x15C8, symBinAddr: 0x99F0, symSize: 0xC }
+  - { offsetInCU: 0xB34, offset: 0x5C4E7, size: 0x8, addend: 0x0, symName: '+[MMEEvent eventWithDateString:name:attributes:]', symObjAddr: 0x15D4, symBinAddr: 0x99FC, symSize: 0x98 }
+  - { offsetInCU: 0xBB0, offset: 0x5C563, size: 0x8, addend: 0x0, symName: '+[MMEEvent supportsSecureCoding]', symObjAddr: 0x166C, symBinAddr: 0x9A94, symSize: 0x8 }
+  - { offsetInCU: 0xBE4, offset: 0x5C597, size: 0x8, addend: 0x0, symName: '-[MMEEvent init]', symObjAddr: 0x1674, symBinAddr: 0x9A9C, symSize: 0x4C }
+  - { offsetInCU: 0xC1C, offset: 0x5C5CF, size: 0x8, addend: 0x0, symName: '-[MMEEvent initWithAttributes:error:]', symObjAddr: 0x16C0, symBinAddr: 0x9AE8, symSize: 0x410 }
+  - { offsetInCU: 0xCB2, offset: 0x5C665, size: 0x8, addend: 0x0, symName: '-[MMEEvent date]', symObjAddr: 0x1AD0, symBinAddr: 0x9EF8, symSize: 0x18 }
+  - { offsetInCU: 0xCEA, offset: 0x5C69D, size: 0x8, addend: 0x0, symName: '-[MMEEvent name]', symObjAddr: 0x1AE8, symBinAddr: 0x9F10, symSize: 0x7C }
+  - { offsetInCU: 0xD22, offset: 0x5C6D5, size: 0x8, addend: 0x0, symName: '-[MMEEvent attributes]', symObjAddr: 0x1B64, symBinAddr: 0x9F8C, symSize: 0x30 }
+  - { offsetInCU: 0xD5A, offset: 0x5C70D, size: 0x8, addend: 0x0, symName: '-[MMEEvent isEqualToEvent:]', symObjAddr: 0x1B94, symBinAddr: 0x9FBC, symSize: 0xB8 }
+  - { offsetInCU: 0xDBD, offset: 0x5C770, size: 0x8, addend: 0x0, symName: '-[MMEEvent isEqual:]', symObjAddr: 0x1C4C, symBinAddr: 0xA074, symSize: 0x74 }
+  - { offsetInCU: 0xE06, offset: 0x5C7B9, size: 0x8, addend: 0x0, symName: '-[MMEEvent hash]', symObjAddr: 0x1CC0, symBinAddr: 0xA0E8, symSize: 0x5C }
+  - { offsetInCU: 0xE3E, offset: 0x5C7F1, size: 0x8, addend: 0x0, symName: '-[MMEEvent description]', symObjAddr: 0x1D1C, symBinAddr: 0xA144, symSize: 0xB0 }
+  - { offsetInCU: 0xEA0, offset: 0x5C853, size: 0x8, addend: 0x0, symName: '-[MMEEvent copyWithZone:]', symObjAddr: 0x1DCC, symBinAddr: 0xA1F4, symSize: 0x90 }
+  - { offsetInCU: 0xEF6, offset: 0x5C8A9, size: 0x8, addend: 0x0, symName: '-[MMEEvent initWithCoder:]', symObjAddr: 0x1E5C, symBinAddr: 0xA284, symSize: 0x284 }
+  - { offsetInCU: 0xF9E, offset: 0x5C951, size: 0x8, addend: 0x0, symName: '-[MMEEvent encodeWithCoder:]', symObjAddr: 0x20E0, symBinAddr: 0xA508, symSize: 0x6C }
+  - { offsetInCU: 0xFE3, offset: 0x5C996, size: 0x8, addend: 0x0, symName: '-[MMEEvent dateStorage]', symObjAddr: 0x214C, symBinAddr: 0xA574, symSize: 0x8 }
+  - { offsetInCU: 0x101A, offset: 0x5C9CD, size: 0x8, addend: 0x0, symName: '-[MMEEvent setDateStorage:]', symObjAddr: 0x2154, symBinAddr: 0xA57C, symSize: 0xC }
+  - { offsetInCU: 0x105B, offset: 0x5CA0E, size: 0x8, addend: 0x0, symName: '-[MMEEvent attributesStorage]', symObjAddr: 0x2160, symBinAddr: 0xA588, symSize: 0x8 }
+  - { offsetInCU: 0x1092, offset: 0x5CA45, size: 0x8, addend: 0x0, symName: '-[MMEEvent setAttributesStorage:]', symObjAddr: 0x2168, symBinAddr: 0xA590, symSize: 0xC }
+  - { offsetInCU: 0x10D3, offset: 0x5CA86, size: 0x8, addend: 0x0, symName: '-[MMEEvent .cxx_destruct]', symObjAddr: 0x2174, symBinAddr: 0xA59C, symSize: 0x30 }
+  - { offsetInCU: 0x27, offset: 0x5CBC9, size: 0x8, addend: 0x0, symName: '+[MMEEventLogger sharedLogger]', symObjAddr: 0x0, symBinAddr: 0xA5CC, symSize: 0x40 }
+  - { offsetInCU: 0x35, offset: 0x5CBD7, size: 0x8, addend: 0x0, symName: '+[MMEEventLogger sharedLogger]', symObjAddr: 0x0, symBinAddr: 0xA5CC, symSize: 0x40 }
+  - { offsetInCU: 0x5F, offset: 0x5CC01, size: 0x8, addend: 0x0, symName: _sharedLogger._sharedLogger, symObjAddr: 0x3390, symBinAddr: 0x34E48, symSize: 0x0 }
+  - { offsetInCU: 0x75, offset: 0x5CC17, size: 0x8, addend: 0x0, symName: _sharedLogger.onceToken, symObjAddr: 0x3398, symBinAddr: 0x34E50, symSize: 0x0 }
+  - { offsetInCU: 0x1F9, offset: 0x5CD9B, size: 0x8, addend: 0x0, symName: '___30+[MMEEventLogger sharedLogger]_block_invoke', symObjAddr: 0x40, symBinAddr: 0xA60C, symSize: 0x3C }
+  - { offsetInCU: 0x220, offset: 0x5CDC2, size: 0x8, addend: 0x0, symName: '-[MMEEventLogger setHandler:]', symObjAddr: 0x7C, symBinAddr: 0xA648, symSize: 0x40 }
+  - { offsetInCU: 0x263, offset: 0x5CE05, size: 0x8, addend: 0x0, symName: '-[MMEEventLogger logEvent:]', symObjAddr: 0xBC, symBinAddr: 0xA688, symSize: 0xC0 }
+  - { offsetInCU: 0x2CE, offset: 0x5CE70, size: 0x8, addend: 0x0, symName: '-[MMEEventLogger logPriority:withType:andMessage:]', symObjAddr: 0x17C, symBinAddr: 0xA748, symSize: 0x80 }
+  - { offsetInCU: 0x355, offset: 0x5CEF7, size: 0x8, addend: 0x0, symName: '-[MMEEventLogger pushDebugEventWithAttributes:]', symObjAddr: 0x1FC, symBinAddr: 0xA7C8, symSize: 0xD8 }
+  - { offsetInCU: 0x3B4, offset: 0x5CF56, size: 0x8, addend: 0x0, symName: '-[MMEEventLogger defaultBlockHandler]', symObjAddr: 0x2D4, symBinAddr: 0xA8A0, symSize: 0xC }
+  - { offsetInCU: 0x3F7, offset: 0x5CF99, size: 0x8, addend: 0x0, symName: '___37-[MMEEventLogger defaultBlockHandler]_block_invoke', symObjAddr: 0x2E0, symBinAddr: 0xA8AC, symSize: 0x50 }
+  - { offsetInCU: 0x44E, offset: 0x5CFF0, size: 0x8, addend: 0x0, symName: '-[MMEEventLogger isEnabled]', symObjAddr: 0x330, symBinAddr: 0xA8FC, symSize: 0x8 }
+  - { offsetInCU: 0x485, offset: 0x5D027, size: 0x8, addend: 0x0, symName: '-[MMEEventLogger setEnabled:]', symObjAddr: 0x338, symBinAddr: 0xA904, symSize: 0x8 }
+  - { offsetInCU: 0x4C0, offset: 0x5D062, size: 0x8, addend: 0x0, symName: '-[MMEEventLogger handler]', symObjAddr: 0x340, symBinAddr: 0xA90C, symSize: 0x8 }
+  - { offsetInCU: 0x4F7, offset: 0x5D099, size: 0x8, addend: 0x0, symName: '-[MMEEventLogger .cxx_destruct]', symObjAddr: 0x348, symBinAddr: 0xA914, symSize: 0xC }
+  - { offsetInCU: 0x27, offset: 0x5D2CE, size: 0x8, addend: 0x0, symName: '+[MMEEventsManager sharedManager]', symObjAddr: 0x0, symBinAddr: 0xA920, symSize: 0x40 }
+  - { offsetInCU: 0x3A, offset: 0x5D2E1, size: 0x8, addend: 0x0, symName: '+[MMEEventsManager sharedManager]', symObjAddr: 0x0, symBinAddr: 0xA920, symSize: 0x40 }
+  - { offsetInCU: 0x64, offset: 0x5D30B, size: 0x8, addend: 0x0, symName: _sharedManager._sharedManager, symObjAddr: 0x10790, symBinAddr: 0x34E58, symSize: 0x0 }
+  - { offsetInCU: 0x7A, offset: 0x5D321, size: 0x8, addend: 0x0, symName: _sharedManager.onceToken, symObjAddr: 0x10798, symBinAddr: 0x34E60, symSize: 0x0 }
+  - { offsetInCU: 0x33B, offset: 0x5D5E2, size: 0x8, addend: 0x0, symName: '-[MMEEventsManager locationManager]', symObjAddr: 0x2254, symBinAddr: 0xCB54, symSize: 0x80 }
+  - { offsetInCU: 0x367, offset: 0x5D60E, size: 0x8, addend: 0x0, symName: _locationManager.onceToken, symObjAddr: 0x107A0, symBinAddr: 0x34E68, symSize: 0x0 }
+  - { offsetInCU: 0x4A2, offset: 0x5D749, size: 0x8, addend: 0x0, symName: '___33+[MMEEventsManager sharedManager]_block_invoke', symObjAddr: 0x40, symBinAddr: 0xA960, symSize: 0x38 }
+  - { offsetInCU: 0x4C9, offset: 0x5D770, size: 0x8, addend: 0x0, symName: '-[MMEEventsManager init]', symObjAddr: 0x78, symBinAddr: 0xA998, symSize: 0x34 }
+  - { offsetInCU: 0x500, offset: 0x5D7A7, size: 0x8, addend: 0x0, symName: '-[MMEEventsManager initShared]', symObjAddr: 0xAC, symBinAddr: 0xA9CC, symSize: 0xFC }
+  - { offsetInCU: 0x537, offset: 0x5D7DE, size: 0x8, addend: 0x0, symName: '-[MMEEventsManager dealloc]', symObjAddr: 0x1A8, symBinAddr: 0xAAC8, symSize: 0x68 }
+  - { offsetInCU: 0x56A, offset: 0x5D811, size: 0x8, addend: 0x0, symName: '-[MMEEventsManager initializeWithAccessToken:userAgentBase:hostSDKVersion:]', symObjAddr: 0x210, symBinAddr: 0xAB30, symSize: 0x1EC }
+  - { offsetInCU: 0x60F, offset: 0x5D8B6, size: 0x8, addend: 0x0, symName: '___75-[MMEEventsManager initializeWithAccessToken:userAgentBase:hostSDKVersion:]_block_invoke', symObjAddr: 0x3FC, symBinAddr: 0xAD1C, symSize: 0x164 }
+  - { offsetInCU: 0x669, offset: 0x5D910, size: 0x8, addend: 0x0, symName: ___copy_helper_block_e8_32w, symObjAddr: 0x560, symBinAddr: 0xAE80, symSize: 0xC }
+  - { offsetInCU: 0x692, offset: 0x5D939, size: 0x8, addend: 0x0, symName: ___destroy_helper_block_e8_32w, symObjAddr: 0x56C, symBinAddr: 0xAE8C, symSize: 0x8 }
+  - { offsetInCU: 0x6B1, offset: 0x5D958, size: 0x8, addend: 0x0, symName: '-[MMEEventsManager disableLocationMetrics]', symObjAddr: 0x574, symBinAddr: 0xAE94, symSize: 0xB4 }
+  - { offsetInCU: 0x6FF, offset: 0x5D9A6, size: 0x8, addend: 0x0, symName: '-[MMEEventsManager powerStateDidChange:]', symObjAddr: 0x628, symBinAddr: 0xAF48, symSize: 0x8C }
+  - { offsetInCU: 0x776, offset: 0x5DA1D, size: 0x8, addend: 0x0, symName: '___40-[MMEEventsManager powerStateDidChange:]_block_invoke', symObjAddr: 0x6B4, symBinAddr: 0xAFD4, symSize: 0x2C }
+  - { offsetInCU: 0x7B1, offset: 0x5DA58, size: 0x8, addend: 0x0, symName: '-[MMEEventsManager pauseOrResumeMetricsCollectionIfRequired]', symObjAddr: 0x6E0, symBinAddr: 0xB000, symSize: 0x1AC }
+  - { offsetInCU: 0x81E, offset: 0x5DAC5, size: 0x8, addend: 0x0, symName: '___60-[MMEEventsManager pauseOrResumeMetricsCollectionIfRequired]_block_invoke', symObjAddr: 0x88C, symBinAddr: 0xB1AC, symSize: 0x60 }
+  - { offsetInCU: 0x87C, offset: 0x5DB23, size: 0x8, addend: 0x0, symName: '-[MMEEventsManager processAuthorizationStatus:andApplicationState:]', symObjAddr: 0x8FC, symBinAddr: 0xB20C, symSize: 0x180 }
+  - { offsetInCU: 0x8CF, offset: 0x5DB76, size: 0x8, addend: 0x0, symName: '-[MMEEventsManager flush]', symObjAddr: 0xA7C, symBinAddr: 0xB38C, symSize: 0x190 }
+  - { offsetInCU: 0x934, offset: 0x5DBDB, size: 0x8, addend: 0x0, symName: '-[MMEEventsManager resetEventQueuing]', symObjAddr: 0xC0C, symBinAddr: 0xB51C, symSize: 0xA8 }
+  - { offsetInCU: 0x984, offset: 0x5DC2B, size: 0x8, addend: 0x0, symName: '-[MMEEventsManager postEvents:]', symObjAddr: 0xCB4, symBinAddr: 0xB5C4, symSize: 0x134 }
+  - { offsetInCU: 0x9FD, offset: 0x5DCA4, size: 0x8, addend: 0x0, symName: '___31-[MMEEventsManager postEvents:]_block_invoke', symObjAddr: 0xDE8, symBinAddr: 0xB6F8, symSize: 0x130 }
+  - { offsetInCU: 0xA95, offset: 0x5DD3C, size: 0x8, addend: 0x0, symName: ___copy_helper_block_e8_32s40w, symObjAddr: 0xF18, symBinAddr: 0xB828, symSize: 0x30 }
+  - { offsetInCU: 0xABE, offset: 0x5DD65, size: 0x8, addend: 0x0, symName: ___destroy_helper_block_e8_32s40w, symObjAddr: 0xF48, symBinAddr: 0xB858, symSize: 0x28 }
+  - { offsetInCU: 0xADD, offset: 0x5DD84, size: 0x8, addend: 0x0, symName: '-[MMEEventsManager sendTurnstileEvent]', symObjAddr: 0xF70, symBinAddr: 0xB880, symSize: 0x5C0 }
+  - { offsetInCU: 0xB67, offset: 0x5DE0E, size: 0x8, addend: 0x0, symName: '___38-[MMEEventsManager sendTurnstileEvent]_block_invoke', symObjAddr: 0x1530, symBinAddr: 0xBE40, symSize: 0xA0 }
+  - { offsetInCU: 0xBFF, offset: 0x5DEA6, size: 0x8, addend: 0x0, symName: '-[MMEEventsManager sendPendingMetricsEvent]', symObjAddr: 0x15D0, symBinAddr: 0xBEE0, symSize: 0x78 }
+  - { offsetInCU: 0xC44, offset: 0x5DEEB, size: 0x8, addend: 0x0, symName: '___43-[MMEEventsManager sendPendingMetricsEvent]_block_invoke', symObjAddr: 0x1648, symBinAddr: 0xBF58, symSize: 0x78 }
+  - { offsetInCU: 0xC7E, offset: 0x5DF25, size: 0x8, addend: 0x0, symName: '-[MMEEventsManager sendTelemetryMetricsEvent]', symObjAddr: 0x16C0, symBinAddr: 0xBFD0, symSize: 0xD0 }
+  - { offsetInCU: 0xCE6, offset: 0x5DF8D, size: 0x8, addend: 0x0, symName: '___45-[MMEEventsManager sendTelemetryMetricsEvent]_block_invoke', symObjAddr: 0x1790, symBinAddr: 0xC0A0, symSize: 0x34 }
+  - { offsetInCU: 0xD1C, offset: 0x5DFC3, size: 0x8, addend: 0x0, symName: '-[MMEEventsManager enqueueEventWithName:]', symObjAddr: 0x17C4, symBinAddr: 0xC0D4, symSize: 0xC }
+  - { offsetInCU: 0xD5D, offset: 0x5E004, size: 0x8, addend: 0x0, symName: '-[MMEEventsManager enqueueEventWithName:attributes:]', symObjAddr: 0x17D0, symBinAddr: 0xC0E0, symSize: 0x4 }
+  - { offsetInCU: 0xDAD, offset: 0x5E054, size: 0x8, addend: 0x0, symName: '-[MMEEventsManager createAndPushEventBasedOnName:attributes:]', symObjAddr: 0x17D4, symBinAddr: 0xC0E4, symSize: 0x364 }
+  - { offsetInCU: 0xE25, offset: 0x5E0CC, size: 0x8, addend: 0x0, symName: '-[MMEEventsManager postMetadata:filePaths:completionHandler:]', symObjAddr: 0x1B38, symBinAddr: 0xC448, symSize: 0xC0 }
+  - { offsetInCU: 0xE8C, offset: 0x5E133, size: 0x8, addend: 0x0, symName: '___61-[MMEEventsManager postMetadata:filePaths:completionHandler:]_block_invoke', symObjAddr: 0x1BF8, symBinAddr: 0xC508, symSize: 0x14 }
+  - { offsetInCU: 0xEE5, offset: 0x5E18C, size: 0x8, addend: 0x0, symName: '-[MMEEventsManager setDebugLoggingEnabled:]', symObjAddr: 0x1C1C, symBinAddr: 0xC51C, symSize: 0x44 }
+  - { offsetInCU: 0xF26, offset: 0x5E1CD, size: 0x8, addend: 0x0, symName: '-[MMEEventsManager isDebugLoggingEnabled]', symObjAddr: 0x1C60, symBinAddr: 0xC560, symSize: 0x3C }
+  - { offsetInCU: 0xF5A, offset: 0x5E201, size: 0x8, addend: 0x0, symName: '-[MMEEventsManager setDebugHandler:]', symObjAddr: 0x1C9C, symBinAddr: 0xC59C, symSize: 0x50 }
+  - { offsetInCU: 0xF9B, offset: 0x5E242, size: 0x8, addend: 0x0, symName: '-[MMEEventsManager reportError:]', symObjAddr: 0x1CEC, symBinAddr: 0xC5EC, symSize: 0x1A0 }
+  - { offsetInCU: 0x1029, offset: 0x5E2D0, size: 0x8, addend: 0x0, symName: '-[MMEEventsManager reportException:]', symObjAddr: 0x1E8C, symBinAddr: 0xC78C, symSize: 0x108 }
+  - { offsetInCU: 0x1083, offset: 0x5E32A, size: 0x8, addend: 0x0, symName: '-[MMEEventsManager pauseMetricsCollection]', symObjAddr: 0x1F94, symBinAddr: 0xC894, symSize: 0x68 }
+  - { offsetInCU: 0x10B7, offset: 0x5E35E, size: 0x8, addend: 0x0, symName: '-[MMEEventsManager resumeMetricsCollection]', symObjAddr: 0x1FFC, symBinAddr: 0xC8FC, symSize: 0xB0 }
+  - { offsetInCU: 0x10EB, offset: 0x5E392, size: 0x8, addend: 0x0, symName: '-[MMEEventsManager updateNextTurnstileSendDate]', symObjAddr: 0x20AC, symBinAddr: 0xC9AC, symSize: 0x58 }
+  - { offsetInCU: 0x111F, offset: 0x5E3C6, size: 0x8, addend: 0x0, symName: '-[MMEEventsManager pushEvent:]', symObjAddr: 0x2104, symBinAddr: 0xCA04, symSize: 0x150 }
+  - { offsetInCU: 0x1164, offset: 0x5E40B, size: 0x8, addend: 0x0, symName: '___35-[MMEEventsManager locationManager]_block_invoke', symObjAddr: 0x22D4, symBinAddr: 0xCBD4, symSize: 0x34 }
+  - { offsetInCU: 0x11A6, offset: 0x5E44D, size: 0x8, addend: 0x0, symName: '-[MMEEventsManager locationManager:didUpdateLocations:]', symObjAddr: 0x2308, symBinAddr: 0xCC08, symSize: 0x738 }
+  - { offsetInCU: 0x125F, offset: 0x5E506, size: 0x8, addend: 0x0, symName: '-[MMEEventsManager locationManagerDidStartLocationUpdates:]', symObjAddr: 0x2A40, symBinAddr: 0xD340, symSize: 0x4 }
+  - { offsetInCU: 0x129C, offset: 0x5E543, size: 0x8, addend: 0x0, symName: '-[MMEEventsManager locationManagerBackgroundLocationUpdatesDidTimeout:]', symObjAddr: 0x2A44, symBinAddr: 0xD344, symSize: 0x4 }
+  - { offsetInCU: 0x12D9, offset: 0x5E580, size: 0x8, addend: 0x0, symName: '-[MMEEventsManager locationManagerBackgroundLocationUpdatesDidAutomaticallyPause:]', symObjAddr: 0x2A48, symBinAddr: 0xD348, symSize: 0x4 }
+  - { offsetInCU: 0x1316, offset: 0x5E5BD, size: 0x8, addend: 0x0, symName: '-[MMEEventsManager locationManagerDidStopLocationUpdates:]', symObjAddr: 0x2A4C, symBinAddr: 0xD34C, symSize: 0x4 }
+  - { offsetInCU: 0x1353, offset: 0x5E5FA, size: 0x8, addend: 0x0, symName: '-[MMEEventsManager locationManager:didVisit:]', symObjAddr: 0x2A50, symBinAddr: 0xD350, symSize: 0x3DC }
+  - { offsetInCU: 0x13C7, offset: 0x5E66E, size: 0x8, addend: 0x0, symName: '-[MMEEventsManager delegate]', symObjAddr: 0x2E2C, symBinAddr: 0xD72C, symSize: 0x18 }
+  - { offsetInCU: 0x13FE, offset: 0x5E6A5, size: 0x8, addend: 0x0, symName: '-[MMEEventsManager setDelegate:]', symObjAddr: 0x2E44, symBinAddr: 0xD744, symSize: 0xC }
+  - { offsetInCU: 0x143F, offset: 0x5E6E6, size: 0x8, addend: 0x0, symName: '-[MMEEventsManager skuId]', symObjAddr: 0x2E50, symBinAddr: 0xD750, symSize: 0x8 }
+  - { offsetInCU: 0x1476, offset: 0x5E71D, size: 0x8, addend: 0x0, symName: '-[MMEEventsManager setSkuId:]', symObjAddr: 0x2E58, symBinAddr: 0xD758, symSize: 0x8 }
+  - { offsetInCU: 0x14B5, offset: 0x5E75C, size: 0x8, addend: 0x0, symName: '-[MMEEventsManager apiClient]', symObjAddr: 0x2E60, symBinAddr: 0xD760, symSize: 0x8 }
+  - { offsetInCU: 0x14EC, offset: 0x5E793, size: 0x8, addend: 0x0, symName: '-[MMEEventsManager setApiClient:]', symObjAddr: 0x2E68, symBinAddr: 0xD768, symSize: 0xC }
+  - { offsetInCU: 0x152D, offset: 0x5E7D4, size: 0x8, addend: 0x0, symName: '-[MMEEventsManager setLocationManager:]', symObjAddr: 0x2E74, symBinAddr: 0xD774, symSize: 0xC }
+  - { offsetInCU: 0x156E, offset: 0x5E815, size: 0x8, addend: 0x0, symName: '-[MMEEventsManager eventQueue]', symObjAddr: 0x2E80, symBinAddr: 0xD780, symSize: 0x8 }
+  - { offsetInCU: 0x15A5, offset: 0x5E84C, size: 0x8, addend: 0x0, symName: '-[MMEEventsManager setEventQueue:]', symObjAddr: 0x2E88, symBinAddr: 0xD788, symSize: 0xC }
+  - { offsetInCU: 0x15E6, offset: 0x5E88D, size: 0x8, addend: 0x0, symName: '-[MMEEventsManager uniqueIdentifer]', symObjAddr: 0x2E94, symBinAddr: 0xD794, symSize: 0x8 }
+  - { offsetInCU: 0x161D, offset: 0x5E8C4, size: 0x8, addend: 0x0, symName: '-[MMEEventsManager setUniqueIdentifer:]', symObjAddr: 0x2E9C, symBinAddr: 0xD79C, symSize: 0xC }
+  - { offsetInCU: 0x165E, offset: 0x5E905, size: 0x8, addend: 0x0, symName: '-[MMEEventsManager commonEventData]', symObjAddr: 0x2EA8, symBinAddr: 0xD7A8, symSize: 0x8 }
+  - { offsetInCU: 0x1695, offset: 0x5E93C, size: 0x8, addend: 0x0, symName: '-[MMEEventsManager setCommonEventData:]', symObjAddr: 0x2EB0, symBinAddr: 0xD7B0, symSize: 0xC }
+  - { offsetInCU: 0x16D6, offset: 0x5E97D, size: 0x8, addend: 0x0, symName: '-[MMEEventsManager nextTurnstileSendDate]', symObjAddr: 0x2EBC, symBinAddr: 0xD7BC, symSize: 0x8 }
+  - { offsetInCU: 0x170D, offset: 0x5E9B4, size: 0x8, addend: 0x0, symName: '-[MMEEventsManager setNextTurnstileSendDate:]', symObjAddr: 0x2EC4, symBinAddr: 0xD7C4, symSize: 0xC }
+  - { offsetInCU: 0x174E, offset: 0x5E9F5, size: 0x8, addend: 0x0, symName: '-[MMEEventsManager timerManager]', symObjAddr: 0x2ED0, symBinAddr: 0xD7D0, symSize: 0x8 }
+  - { offsetInCU: 0x1785, offset: 0x5EA2C, size: 0x8, addend: 0x0, symName: '-[MMEEventsManager setTimerManager:]', symObjAddr: 0x2ED8, symBinAddr: 0xD7D8, symSize: 0xC }
+  - { offsetInCU: 0x17C6, offset: 0x5EA6D, size: 0x8, addend: 0x0, symName: '-[MMEEventsManager dispatchManager]', symObjAddr: 0x2EE4, symBinAddr: 0xD7E4, symSize: 0x8 }
+  - { offsetInCU: 0x17FD, offset: 0x5EAA4, size: 0x8, addend: 0x0, symName: '-[MMEEventsManager setDispatchManager:]', symObjAddr: 0x2EEC, symBinAddr: 0xD7EC, symSize: 0xC }
+  - { offsetInCU: 0x183E, offset: 0x5EAE5, size: 0x8, addend: 0x0, symName: '-[MMEEventsManager isPaused]', symObjAddr: 0x2EF8, symBinAddr: 0xD7F8, symSize: 0x8 }
+  - { offsetInCU: 0x1875, offset: 0x5EB1C, size: 0x8, addend: 0x0, symName: '-[MMEEventsManager setPaused:]', symObjAddr: 0x2F00, symBinAddr: 0xD800, symSize: 0x8 }
+  - { offsetInCU: 0x18B0, offset: 0x5EB57, size: 0x8, addend: 0x0, symName: '-[MMEEventsManager application]', symObjAddr: 0x2F08, symBinAddr: 0xD808, symSize: 0x8 }
+  - { offsetInCU: 0x18E7, offset: 0x5EB8E, size: 0x8, addend: 0x0, symName: '-[MMEEventsManager setApplication:]', symObjAddr: 0x2F10, symBinAddr: 0xD810, symSize: 0xC }
+  - { offsetInCU: 0x1928, offset: 0x5EBCF, size: 0x8, addend: 0x0, symName: '-[MMEEventsManager backgroundTaskIdentifier]', symObjAddr: 0x2F1C, symBinAddr: 0xD81C, symSize: 0x8 }
+  - { offsetInCU: 0x195F, offset: 0x5EC06, size: 0x8, addend: 0x0, symName: '-[MMEEventsManager setBackgroundTaskIdentifier:]', symObjAddr: 0x2F24, symBinAddr: 0xD824, symSize: 0x8 }
+  - { offsetInCU: 0x199C, offset: 0x5EC43, size: 0x8, addend: 0x0, symName: '-[MMEEventsManager .cxx_destruct]', symObjAddr: 0x2F2C, symBinAddr: 0xD82C, symSize: 0x98 }
+  - { offsetInCU: 0x27, offset: 0x5F28A, size: 0x8, addend: 0x0, symName: '-[MMELocationManager dealloc]', symObjAddr: 0x0, symBinAddr: 0xD8C4, symSize: 0x4C }
+  - { offsetInCU: 0x41, offset: 0x5F2A4, size: 0x8, addend: 0x0, symName: _MMELocationManagerDistanceFilter, symObjAddr: 0xFE0, symBinAddr: 0x1B570, symSize: 0x0 }
+  - { offsetInCU: 0x63, offset: 0x5F2C6, size: 0x8, addend: 0x0, symName: _MMELocationManagerRegionCenterDistanceFilter, symObjAddr: 0xFE8, symBinAddr: 0x1B578, symSize: 0x0 }
+  - { offsetInCU: 0x79, offset: 0x5F2DC, size: 0x8, addend: 0x0, symName: _MMERadiusAccuracyMax, symObjAddr: 0xFF0, symBinAddr: 0x1B580, symSize: 0x0 }
+  - { offsetInCU: 0x8F, offset: 0x5F2F2, size: 0x8, addend: 0x0, symName: _MMELocationManagerRegionIdentifier, symObjAddr: 0x10A8, symBinAddr: 0x28E48, symSize: 0x0 }
+  - { offsetInCU: 0x21C, offset: 0x5F47F, size: 0x8, addend: 0x0, symName: '-[MMELocationManager dealloc]', symObjAddr: 0x0, symBinAddr: 0xD8C4, symSize: 0x4C }
+  - { offsetInCU: 0x24F, offset: 0x5F4B2, size: 0x8, addend: 0x0, symName: '-[MMELocationManager locationManager]', symObjAddr: 0x4C, symBinAddr: 0xD910, symSize: 0x54 }
+  - { offsetInCU: 0x286, offset: 0x5F4E9, size: 0x8, addend: 0x0, symName: '-[MMELocationManager init]', symObjAddr: 0xA0, symBinAddr: 0xD964, symSize: 0xAC }
+  - { offsetInCU: 0x2DC, offset: 0x5F53F, size: 0x8, addend: 0x0, symName: '-[MMELocationManager startUpdatingLocation]', symObjAddr: 0x14C, symBinAddr: 0xDA10, symSize: 0x50 }
+  - { offsetInCU: 0x30F, offset: 0x5F572, size: 0x8, addend: 0x0, symName: '-[MMELocationManager stopUpdatingLocation]', symObjAddr: 0x19C, symBinAddr: 0xDA60, symSize: 0xD8 }
+  - { offsetInCU: 0x342, offset: 0x5F5A5, size: 0x8, addend: 0x0, symName: '-[MMELocationManager locationAuthorizationString]', symObjAddr: 0x274, symBinAddr: 0xDB38, symSize: 0x38 }
+  - { offsetInCU: 0x379, offset: 0x5F5DC, size: 0x8, addend: 0x0, symName: '-[MMELocationManager locationAuthorization]', symObjAddr: 0x2AC, symBinAddr: 0xDB70, symSize: 0x34 }
+  - { offsetInCU: 0x3B0, offset: 0x5F613, size: 0x8, addend: 0x0, symName: '-[MMELocationManager isReducedAccuracy]', symObjAddr: 0x2E0, symBinAddr: 0xDBA4, symSize: 0x38 }
+  - { offsetInCU: 0x406, offset: 0x5F669, size: 0x8, addend: 0x0, symName: '-[MMELocationManager accuracyAuthorizationString]', symObjAddr: 0x318, symBinAddr: 0xDBDC, symSize: 0x38 }
+  - { offsetInCU: 0x43D, offset: 0x5F6A0, size: 0x8, addend: 0x0, symName: '-[MMELocationManager setLocationManager:]', symObjAddr: 0x350, symBinAddr: 0xDC14, symSize: 0x84 }
+  - { offsetInCU: 0x49F, offset: 0x5F702, size: 0x8, addend: 0x0, symName: '-[MMELocationManager stopMonitoringRegions]', symObjAddr: 0x3D4, symBinAddr: 0xDC98, symSize: 0x154 }
+  - { offsetInCU: 0x4E9, offset: 0x5F74C, size: 0x8, addend: 0x0, symName: '-[MMELocationManager setMetricsEnabledForInUsePermissions:]', symObjAddr: 0x528, symBinAddr: 0xDDEC, symSize: 0x98 }
+  - { offsetInCU: 0x538, offset: 0x5F79B, size: 0x8, addend: 0x0, symName: '-[MMELocationManager configurePassiveLocationManager]', symObjAddr: 0x5C0, symBinAddr: 0xDE84, symSize: 0x88 }
+  - { offsetInCU: 0x56B, offset: 0x5F7CE, size: 0x8, addend: 0x0, symName: '-[MMELocationManager startLocationServices]', symObjAddr: 0x648, symBinAddr: 0xDF0C, symSize: 0x160 }
+  - { offsetInCU: 0x5BA, offset: 0x5F81D, size: 0x8, addend: 0x0, symName: '-[MMELocationManager timeoutAllowedCheck]', symObjAddr: 0x7A8, symBinAddr: 0xE06C, symSize: 0x160 }
+  - { offsetInCU: 0x5FD, offset: 0x5F860, size: 0x8, addend: 0x0, symName: '-[MMELocationManager startBackgroundTimeoutTimer]', symObjAddr: 0x908, symBinAddr: 0xE1CC, symSize: 0xBC }
+  - { offsetInCU: 0x640, offset: 0x5F8A3, size: 0x8, addend: 0x0, symName: '-[MMELocationManager establishRegionMonitoringForLocation:]', symObjAddr: 0x9C4, symBinAddr: 0xE288, symSize: 0xD8 }
+  - { offsetInCU: 0x693, offset: 0x5F8F6, size: 0x8, addend: 0x0, symName: '-[MMELocationManager locationManagerDidChangeAuthorization:]', symObjAddr: 0xA9C, symBinAddr: 0xE360, symSize: 0x40 }
+  - { offsetInCU: 0x6E6, offset: 0x5F949, size: 0x8, addend: 0x0, symName: '-[MMELocationManager locationManager:didUpdateLocations:]', symObjAddr: 0xADC, symBinAddr: 0xE3A0, symSize: 0x2BC }
+  - { offsetInCU: 0x78C, offset: 0x5F9EF, size: 0x8, addend: 0x0, symName: '-[MMELocationManager locationManager:didExitRegion:]', symObjAddr: 0xD98, symBinAddr: 0xE65C, symSize: 0x5C }
+  - { offsetInCU: 0x7DA, offset: 0x5FA3D, size: 0x8, addend: 0x0, symName: '-[MMELocationManager locationManager:didVisit:]', symObjAddr: 0xDF4, symBinAddr: 0xE6B8, symSize: 0x80 }
+  - { offsetInCU: 0x82C, offset: 0x5FA8F, size: 0x8, addend: 0x0, symName: '-[MMELocationManager locationManagerDidPauseLocationUpdates:]', symObjAddr: 0xE74, symBinAddr: 0xE738, symSize: 0x80 }
+  - { offsetInCU: 0x86D, offset: 0x5FAD0, size: 0x8, addend: 0x0, symName: '-[MMELocationManager delegate]', symObjAddr: 0xEF4, symBinAddr: 0xE7B8, symSize: 0x18 }
+  - { offsetInCU: 0x8A4, offset: 0x5FB07, size: 0x8, addend: 0x0, symName: '-[MMELocationManager setDelegate:]', symObjAddr: 0xF0C, symBinAddr: 0xE7D0, symSize: 0xC }
+  - { offsetInCU: 0x8E5, offset: 0x5FB48, size: 0x8, addend: 0x0, symName: '-[MMELocationManager isUpdatingLocation]', symObjAddr: 0xF18, symBinAddr: 0xE7DC, symSize: 0x8 }
+  - { offsetInCU: 0x91C, offset: 0x5FB7F, size: 0x8, addend: 0x0, symName: '-[MMELocationManager setUpdatingLocation:]', symObjAddr: 0xF20, symBinAddr: 0xE7E4, symSize: 0x8 }
+  - { offsetInCU: 0x957, offset: 0x5FBBA, size: 0x8, addend: 0x0, symName: '-[MMELocationManager isMetricsEnabledForInUsePermissions]', symObjAddr: 0xF28, symBinAddr: 0xE7EC, symSize: 0x8 }
+  - { offsetInCU: 0x98E, offset: 0x5FBF1, size: 0x8, addend: 0x0, symName: '-[MMELocationManager application]', symObjAddr: 0xF30, symBinAddr: 0xE7F4, symSize: 0x8 }
+  - { offsetInCU: 0x9C5, offset: 0x5FC28, size: 0x8, addend: 0x0, symName: '-[MMELocationManager setApplication:]', symObjAddr: 0xF38, symBinAddr: 0xE7FC, symSize: 0xC }
+  - { offsetInCU: 0xA06, offset: 0x5FC69, size: 0x8, addend: 0x0, symName: '-[MMELocationManager backgroundLocationServiceTimeoutAllowedDate]', symObjAddr: 0xF44, symBinAddr: 0xE808, symSize: 0x8 }
+  - { offsetInCU: 0xA3D, offset: 0x5FCA0, size: 0x8, addend: 0x0, symName: '-[MMELocationManager setBackgroundLocationServiceTimeoutAllowedDate:]', symObjAddr: 0xF4C, symBinAddr: 0xE810, symSize: 0xC }
+  - { offsetInCU: 0xA7E, offset: 0x5FCE1, size: 0x8, addend: 0x0, symName: '-[MMELocationManager backgroundLocationServiceTimeoutTimer]', symObjAddr: 0xF58, symBinAddr: 0xE81C, symSize: 0x8 }
+  - { offsetInCU: 0xAB5, offset: 0x5FD18, size: 0x8, addend: 0x0, symName: '-[MMELocationManager setBackgroundLocationServiceTimeoutTimer:]', symObjAddr: 0xF60, symBinAddr: 0xE824, symSize: 0xC }
+  - { offsetInCU: 0xAF6, offset: 0x5FD59, size: 0x8, addend: 0x0, symName: '-[MMELocationManager hostAppHasBackgroundCapability]', symObjAddr: 0xF6C, symBinAddr: 0xE830, symSize: 0x8 }
+  - { offsetInCU: 0xB2D, offset: 0x5FD90, size: 0x8, addend: 0x0, symName: '-[MMELocationManager setHostAppHasBackgroundCapability:]', symObjAddr: 0xF74, symBinAddr: 0xE838, symSize: 0x8 }
+  - { offsetInCU: 0xB68, offset: 0x5FDCB, size: 0x8, addend: 0x0, symName: '-[MMELocationManager .cxx_destruct]', symObjAddr: 0xF7C, symBinAddr: 0xE840, symSize: 0x50 }
+  - { offsetInCU: 0x27, offset: 0x5FE60, size: 0x8, addend: 0x0, symName: '-[MMEMetrics init]', symObjAddr: 0x0, symBinAddr: 0xE890, symSize: 0xB8 }
+  - { offsetInCU: 0x313, offset: 0x6014C, size: 0x8, addend: 0x0, symName: '-[MMEMetrics init]', symObjAddr: 0x0, symBinAddr: 0xE890, symSize: 0xB8 }
+  - { offsetInCU: 0x34A, offset: 0x60183, size: 0x8, addend: 0x0, symName: '-[MMEMetrics totalBytesSent]', symObjAddr: 0xB8, symBinAddr: 0xE948, symSize: 0xC }
+  - { offsetInCU: 0x381, offset: 0x601BA, size: 0x8, addend: 0x0, symName: '-[MMEMetrics totalBytesReceived]', symObjAddr: 0xC4, symBinAddr: 0xE954, symSize: 0xC }
+  - { offsetInCU: 0x3B8, offset: 0x601F1, size: 0x8, addend: 0x0, symName: '-[MMEMetrics requests]', symObjAddr: 0xD0, symBinAddr: 0xE960, symSize: 0x8 }
+  - { offsetInCU: 0x3EF, offset: 0x60228, size: 0x8, addend: 0x0, symName: '-[MMEMetrics setRequests:]', symObjAddr: 0xD8, symBinAddr: 0xE968, symSize: 0x8 }
+  - { offsetInCU: 0x42C, offset: 0x60265, size: 0x8, addend: 0x0, symName: '-[MMEMetrics cellBytesSent]', symObjAddr: 0xE0, symBinAddr: 0xE970, symSize: 0x8 }
+  - { offsetInCU: 0x463, offset: 0x6029C, size: 0x8, addend: 0x0, symName: '-[MMEMetrics setCellBytesSent:]', symObjAddr: 0xE8, symBinAddr: 0xE978, symSize: 0x8 }
+  - { offsetInCU: 0x4A0, offset: 0x602D9, size: 0x8, addend: 0x0, symName: '-[MMEMetrics wifiBytesSent]', symObjAddr: 0xF0, symBinAddr: 0xE980, symSize: 0x8 }
+  - { offsetInCU: 0x4D7, offset: 0x60310, size: 0x8, addend: 0x0, symName: '-[MMEMetrics setWifiBytesSent:]', symObjAddr: 0xF8, symBinAddr: 0xE988, symSize: 0x8 }
+  - { offsetInCU: 0x514, offset: 0x6034D, size: 0x8, addend: 0x0, symName: '-[MMEMetrics cellBytesReceived]', symObjAddr: 0x100, symBinAddr: 0xE990, symSize: 0x8 }
+  - { offsetInCU: 0x54B, offset: 0x60384, size: 0x8, addend: 0x0, symName: '-[MMEMetrics setCellBytesReceived:]', symObjAddr: 0x108, symBinAddr: 0xE998, symSize: 0x8 }
+  - { offsetInCU: 0x588, offset: 0x603C1, size: 0x8, addend: 0x0, symName: '-[MMEMetrics wifiBytesReceived]', symObjAddr: 0x110, symBinAddr: 0xE9A0, symSize: 0x8 }
+  - { offsetInCU: 0x5BF, offset: 0x603F8, size: 0x8, addend: 0x0, symName: '-[MMEMetrics setWifiBytesReceived:]', symObjAddr: 0x118, symBinAddr: 0xE9A8, symSize: 0x8 }
+  - { offsetInCU: 0x5FC, offset: 0x60435, size: 0x8, addend: 0x0, symName: '-[MMEMetrics appWakeups]', symObjAddr: 0x120, symBinAddr: 0xE9B0, symSize: 0x8 }
+  - { offsetInCU: 0x633, offset: 0x6046C, size: 0x8, addend: 0x0, symName: '-[MMEMetrics setAppWakeups:]', symObjAddr: 0x128, symBinAddr: 0xE9B8, symSize: 0x8 }
+  - { offsetInCU: 0x670, offset: 0x604A9, size: 0x8, addend: 0x0, symName: '-[MMEMetrics eventCountFailed]', symObjAddr: 0x130, symBinAddr: 0xE9C0, symSize: 0x8 }
+  - { offsetInCU: 0x6A7, offset: 0x604E0, size: 0x8, addend: 0x0, symName: '-[MMEMetrics setEventCountFailed:]', symObjAddr: 0x138, symBinAddr: 0xE9C8, symSize: 0x8 }
+  - { offsetInCU: 0x6E4, offset: 0x6051D, size: 0x8, addend: 0x0, symName: '-[MMEMetrics eventCountTotal]', symObjAddr: 0x140, symBinAddr: 0xE9D0, symSize: 0x8 }
+  - { offsetInCU: 0x71B, offset: 0x60554, size: 0x8, addend: 0x0, symName: '-[MMEMetrics setEventCountTotal:]', symObjAddr: 0x148, symBinAddr: 0xE9D8, symSize: 0x8 }
+  - { offsetInCU: 0x758, offset: 0x60591, size: 0x8, addend: 0x0, symName: '-[MMEMetrics eventCountMax]', symObjAddr: 0x150, symBinAddr: 0xE9E0, symSize: 0x8 }
+  - { offsetInCU: 0x78F, offset: 0x605C8, size: 0x8, addend: 0x0, symName: '-[MMEMetrics setEventCountMax:]', symObjAddr: 0x158, symBinAddr: 0xE9E8, symSize: 0x8 }
+  - { offsetInCU: 0x7CC, offset: 0x60605, size: 0x8, addend: 0x0, symName: '-[MMEMetrics deviceLat]', symObjAddr: 0x160, symBinAddr: 0xE9F0, symSize: 0x8 }
+  - { offsetInCU: 0x801, offset: 0x6063A, size: 0x8, addend: 0x0, symName: '-[MMEMetrics setDeviceLat:]', symObjAddr: 0x168, symBinAddr: 0xE9F8, symSize: 0x8 }
+  - { offsetInCU: 0x83F, offset: 0x60678, size: 0x8, addend: 0x0, symName: '-[MMEMetrics deviceLon]', symObjAddr: 0x170, symBinAddr: 0xEA00, symSize: 0x8 }
+  - { offsetInCU: 0x874, offset: 0x606AD, size: 0x8, addend: 0x0, symName: '-[MMEMetrics setDeviceLon:]', symObjAddr: 0x178, symBinAddr: 0xEA08, symSize: 0x8 }
+  - { offsetInCU: 0x8B2, offset: 0x606EB, size: 0x8, addend: 0x0, symName: '-[MMEMetrics recordingStarted]', symObjAddr: 0x180, symBinAddr: 0xEA10, symSize: 0x8 }
+  - { offsetInCU: 0x8E9, offset: 0x60722, size: 0x8, addend: 0x0, symName: '-[MMEMetrics setRecordingStarted:]', symObjAddr: 0x188, symBinAddr: 0xEA18, symSize: 0xC }
+  - { offsetInCU: 0x92A, offset: 0x60763, size: 0x8, addend: 0x0, symName: '-[MMEMetrics dateUTCString]', symObjAddr: 0x194, symBinAddr: 0xEA24, symSize: 0x8 }
+  - { offsetInCU: 0x961, offset: 0x6079A, size: 0x8, addend: 0x0, symName: '-[MMEMetrics setDateUTCString:]', symObjAddr: 0x19C, symBinAddr: 0xEA2C, symSize: 0xC }
+  - { offsetInCU: 0x9A2, offset: 0x607DB, size: 0x8, addend: 0x0, symName: '-[MMEMetrics configResponseDict]', symObjAddr: 0x1A8, symBinAddr: 0xEA38, symSize: 0x8 }
+  - { offsetInCU: 0x9D9, offset: 0x60812, size: 0x8, addend: 0x0, symName: '-[MMEMetrics setConfigResponseDict:]', symObjAddr: 0x1B0, symBinAddr: 0xEA40, symSize: 0xC }
+  - { offsetInCU: 0xA1A, offset: 0x60853, size: 0x8, addend: 0x0, symName: '-[MMEMetrics eventCountPerType]', symObjAddr: 0x1BC, symBinAddr: 0xEA4C, symSize: 0x8 }
+  - { offsetInCU: 0xA51, offset: 0x6088A, size: 0x8, addend: 0x0, symName: '-[MMEMetrics setEventCountPerType:]', symObjAddr: 0x1C4, symBinAddr: 0xEA54, symSize: 0xC }
+  - { offsetInCU: 0xA92, offset: 0x608CB, size: 0x8, addend: 0x0, symName: '-[MMEMetrics failedRequestsDict]', symObjAddr: 0x1D0, symBinAddr: 0xEA60, symSize: 0x8 }
+  - { offsetInCU: 0xAC9, offset: 0x60902, size: 0x8, addend: 0x0, symName: '-[MMEMetrics setFailedRequestsDict:]', symObjAddr: 0x1D8, symBinAddr: 0xEA68, symSize: 0xC }
+  - { offsetInCU: 0xB0A, offset: 0x60943, size: 0x8, addend: 0x0, symName: '-[MMEMetrics locationsInForeground]', symObjAddr: 0x1E4, symBinAddr: 0xEA74, symSize: 0x8 }
+  - { offsetInCU: 0xB41, offset: 0x6097A, size: 0x8, addend: 0x0, symName: '-[MMEMetrics setLocationsInForeground:]', symObjAddr: 0x1EC, symBinAddr: 0xEA7C, symSize: 0x8 }
+  - { offsetInCU: 0xB7E, offset: 0x609B7, size: 0x8, addend: 0x0, symName: '-[MMEMetrics locationsInBackground]', symObjAddr: 0x1F4, symBinAddr: 0xEA84, symSize: 0x8 }
+  - { offsetInCU: 0xBB5, offset: 0x609EE, size: 0x8, addend: 0x0, symName: '-[MMEMetrics setLocationsInBackground:]', symObjAddr: 0x1FC, symBinAddr: 0xEA8C, symSize: 0x8 }
+  - { offsetInCU: 0xBF2, offset: 0x60A2B, size: 0x8, addend: 0x0, symName: '-[MMEMetrics locationsWithApproximateValues]', symObjAddr: 0x204, symBinAddr: 0xEA94, symSize: 0x8 }
+  - { offsetInCU: 0xC29, offset: 0x60A62, size: 0x8, addend: 0x0, symName: '-[MMEMetrics setLocationsWithApproximateValues:]', symObjAddr: 0x20C, symBinAddr: 0xEA9C, symSize: 0x8 }
+  - { offsetInCU: 0xC66, offset: 0x60A9F, size: 0x8, addend: 0x0, symName: '-[MMEMetrics locationsDroppedBecauseOfHAF]', symObjAddr: 0x214, symBinAddr: 0xEAA4, symSize: 0x8 }
+  - { offsetInCU: 0xC9D, offset: 0x60AD6, size: 0x8, addend: 0x0, symName: '-[MMEMetrics setLocationsDroppedBecauseOfHAF:]', symObjAddr: 0x21C, symBinAddr: 0xEAAC, symSize: 0x8 }
+  - { offsetInCU: 0xCDA, offset: 0x60B13, size: 0x8, addend: 0x0, symName: '-[MMEMetrics locationsDroppedDueTimeout]', symObjAddr: 0x224, symBinAddr: 0xEAB4, symSize: 0x8 }
+  - { offsetInCU: 0xD11, offset: 0x60B4A, size: 0x8, addend: 0x0, symName: '-[MMEMetrics setLocationsDroppedDueTimeout:]', symObjAddr: 0x22C, symBinAddr: 0xEABC, symSize: 0x8 }
+  - { offsetInCU: 0xD4E, offset: 0x60B87, size: 0x8, addend: 0x0, symName: '-[MMEMetrics locationsConvertedIntoEvents]', symObjAddr: 0x234, symBinAddr: 0xEAC4, symSize: 0x8 }
+  - { offsetInCU: 0xD85, offset: 0x60BBE, size: 0x8, addend: 0x0, symName: '-[MMEMetrics setLocationsConvertedIntoEvents:]', symObjAddr: 0x23C, symBinAddr: 0xEACC, symSize: 0x8 }
+  - { offsetInCU: 0xDC2, offset: 0x60BFB, size: 0x8, addend: 0x0, symName: '-[MMEMetrics .cxx_destruct]', symObjAddr: 0x244, symBinAddr: 0xEAD4, symSize: 0x54 }
+  - { offsetInCU: 0x27, offset: 0x60C72, size: 0x8, addend: 0x0, symName: '+[MMEMetricsManager sharedManager]', symObjAddr: 0x0, symBinAddr: 0xEB28, symSize: 0x40 }
+  - { offsetInCU: 0x35, offset: 0x60C80, size: 0x8, addend: 0x0, symName: '+[MMEMetricsManager sharedManager]', symObjAddr: 0x0, symBinAddr: 0xEB28, symSize: 0x40 }
+  - { offsetInCU: 0x5F, offset: 0x60CAA, size: 0x8, addend: 0x0, symName: _sharedManager._sharedManager, symObjAddr: 0x8488, symBinAddr: 0x34E70, symSize: 0x0 }
+  - { offsetInCU: 0x75, offset: 0x60CC0, size: 0x8, addend: 0x0, symName: _sharedManager.onceToken, symObjAddr: 0x8490, symBinAddr: 0x34E78, symSize: 0x0 }
+  - { offsetInCU: 0x284, offset: 0x60ECF, size: 0x8, addend: 0x0, symName: '+[MMEMetricsManager pendingMetricsEventPath]', symObjAddr: 0x68, symBinAddr: 0xEB90, symSize: 0x74 }
+  - { offsetInCU: 0x2AE, offset: 0x60EF9, size: 0x8, addend: 0x0, symName: _pendingMetricsEventPath.pendingMetricFile, symObjAddr: 0x8498, symBinAddr: 0x34E80, symSize: 0x0 }
+  - { offsetInCU: 0x2C4, offset: 0x60F0F, size: 0x8, addend: 0x0, symName: _pendingMetricsEventPath.onceToken, symObjAddr: 0x84A0, symBinAddr: 0x34E88, symSize: 0x0 }
+  - { offsetInCU: 0x3A3, offset: 0x60FEE, size: 0x8, addend: 0x0, symName: '___34+[MMEMetricsManager sharedManager]_block_invoke', symObjAddr: 0x40, symBinAddr: 0xEB68, symSize: 0x28 }
+  - { offsetInCU: 0x3CA, offset: 0x61015, size: 0x8, addend: 0x0, symName: '___44+[MMEMetricsManager pendingMetricsEventPath]_block_invoke', symObjAddr: 0xDC, symBinAddr: 0xEC04, symSize: 0xC0 }
+  - { offsetInCU: 0x481, offset: 0x610CC, size: 0x8, addend: 0x0, symName: '+[MMEMetricsManager deletePendingMetricsEventFile]', symObjAddr: 0x19C, symBinAddr: 0xECC4, symSize: 0x110 }
+  - { offsetInCU: 0x502, offset: 0x6114D, size: 0x8, addend: 0x0, symName: '+[MMEMetricsManager createFrameworkMetricsEventDir]', symObjAddr: 0x2AC, symBinAddr: 0xEDD4, symSize: 0x24C }
+  - { offsetInCU: 0x575, offset: 0x611C0, size: 0x8, addend: 0x0, symName: '-[MMEMetricsManager init]', symObjAddr: 0x4F8, symBinAddr: 0xF020, symSize: 0x50 }
+  - { offsetInCU: 0x5AC, offset: 0x611F7, size: 0x8, addend: 0x0, symName: '-[MMEMetricsManager updateMetricsFromEventQueue:]', symObjAddr: 0x548, symBinAddr: 0xF070, symSize: 0x208 }
+  - { offsetInCU: 0x625, offset: 0x61270, size: 0x8, addend: 0x0, symName: '-[MMEMetricsManager updateMetricsFromEventCount:request:error:]', symObjAddr: 0x750, symBinAddr: 0xF278, symSize: 0x340 }
+  - { offsetInCU: 0x6F7, offset: 0x61342, size: 0x8, addend: 0x0, symName: '-[MMEMetricsManager updateEventsFailedCount:]', symObjAddr: 0xA90, symBinAddr: 0xF5B8, symSize: 0x44 }
+  - { offsetInCU: 0x73A, offset: 0x61385, size: 0x8, addend: 0x0, symName: '-[MMEMetricsManager updateSentBytes:]', symObjAddr: 0xAD4, symBinAddr: 0xF5FC, symSize: 0x94 }
+  - { offsetInCU: 0x77D, offset: 0x613C8, size: 0x8, addend: 0x0, symName: '-[MMEMetricsManager updateReceivedBytes:]', symObjAddr: 0xB68, symBinAddr: 0xF690, symSize: 0x94 }
+  - { offsetInCU: 0x7C0, offset: 0x6140B, size: 0x8, addend: 0x0, symName: '-[MMEMetricsManager incrementAppWakeUpCount]', symObjAddr: 0xBFC, symBinAddr: 0xF724, symSize: 0x38 }
+  - { offsetInCU: 0x7F3, offset: 0x6143E, size: 0x8, addend: 0x0, symName: '-[MMEMetricsManager updateConfigurationJSON:]', symObjAddr: 0xC34, symBinAddr: 0xF75C, symSize: 0x54 }
+  - { offsetInCU: 0x836, offset: 0x61481, size: 0x8, addend: 0x0, symName: '-[MMEMetricsManager updateCoordinate:]', symObjAddr: 0xC88, symBinAddr: 0xF7B0, symSize: 0xF0 }
+  - { offsetInCU: 0x879, offset: 0x614C4, size: 0x8, addend: 0x0, symName: '-[MMEMetricsManager resetMetrics]', symObjAddr: 0xD78, symBinAddr: 0xF8A0, symSize: 0x44 }
+  - { offsetInCU: 0x8AC, offset: 0x614F7, size: 0x8, addend: 0x0, symName: '-[MMEMetricsManager incrementLocationsInForeground]', symObjAddr: 0xDBC, symBinAddr: 0xF8E4, symSize: 0x38 }
+  - { offsetInCU: 0x8DF, offset: 0x6152A, size: 0x8, addend: 0x0, symName: '-[MMEMetricsManager incrementLocationsInBackground]', symObjAddr: 0xDF4, symBinAddr: 0xF91C, symSize: 0x38 }
+  - { offsetInCU: 0x912, offset: 0x6155D, size: 0x8, addend: 0x0, symName: '-[MMEMetricsManager incrementLocationsWithApproximateValues]', symObjAddr: 0xE2C, symBinAddr: 0xF954, symSize: 0x38 }
+  - { offsetInCU: 0x945, offset: 0x61590, size: 0x8, addend: 0x0, symName: '-[MMEMetricsManager incrementLocationsDroppedBecauseOfHAF]', symObjAddr: 0xE64, symBinAddr: 0xF98C, symSize: 0x38 }
+  - { offsetInCU: 0x978, offset: 0x615C3, size: 0x8, addend: 0x0, symName: '-[MMEMetricsManager incrementLocationsDroppedDueTimeout]', symObjAddr: 0xE9C, symBinAddr: 0xF9C4, symSize: 0x38 }
+  - { offsetInCU: 0x9AB, offset: 0x615F6, size: 0x8, addend: 0x0, symName: '-[MMEMetricsManager incrementLocationsConvertedIntoEvents]', symObjAddr: 0xED4, symBinAddr: 0xF9FC, symSize: 0x38 }
+  - { offsetInCU: 0x9DE, offset: 0x61629, size: 0x8, addend: 0x0, symName: '-[MMEMetricsManager attributes]', symObjAddr: 0xF0C, symBinAddr: 0xFA34, symSize: 0x9EC }
+  - { offsetInCU: 0xA25, offset: 0x61670, size: 0x8, addend: 0x0, symName: '-[MMEMetricsManager loadPendingTelemetryMetricsEvent]', symObjAddr: 0x18F8, symBinAddr: 0x10420, symSize: 0x17C }
+  - { offsetInCU: 0xAAF, offset: 0x616FA, size: 0x8, addend: 0x0, symName: '-[MMEMetricsManager generateTelemetryMetricsEvent]', symObjAddr: 0x1A74, symBinAddr: 0x1059C, symSize: 0x230 }
+  - { offsetInCU: 0xB4E, offset: 0x61799, size: 0x8, addend: 0x0, symName: '-[MMEMetricsManager jsonStringfromDict:]', symObjAddr: 0x1CA4, symBinAddr: 0x107CC, symSize: 0xF4 }
+  - { offsetInCU: 0xBD5, offset: 0x61820, size: 0x8, addend: 0x0, symName: '-[MMEMetricsManager metrics]', symObjAddr: 0x1D98, symBinAddr: 0x108C0, symSize: 0x8 }
+  - { offsetInCU: 0xC0C, offset: 0x61857, size: 0x8, addend: 0x0, symName: '-[MMEMetricsManager setMetrics:]', symObjAddr: 0x1DA0, symBinAddr: 0x108C8, symSize: 0xC }
+  - { offsetInCU: 0xC4D, offset: 0x61898, size: 0x8, addend: 0x0, symName: '-[MMEMetricsManager .cxx_destruct]', symObjAddr: 0x1DAC, symBinAddr: 0x108D4, symSize: 0xC }
+  - { offsetInCU: 0x27, offset: 0x61A9C, size: 0x8, addend: 0x0, symName: '-[MMENSURLSessionWrapper init]', symObjAddr: 0x0, symBinAddr: 0x108E0, symSize: 0x108 }
+  - { offsetInCU: 0xDA, offset: 0x61B4F, size: 0x8, addend: 0x0, symName: '-[MMENSURLSessionWrapper init]', symObjAddr: 0x0, symBinAddr: 0x108E0, symSize: 0x108 }
+  - { offsetInCU: 0x188, offset: 0x61BFD, size: 0x8, addend: 0x0, symName: '-[MMENSURLSessionWrapper invalidate]', symObjAddr: 0x108, symBinAddr: 0x109E8, symSize: 0x2C }
+  - { offsetInCU: 0x1BB, offset: 0x61C30, size: 0x8, addend: 0x0, symName: '-[MMENSURLSessionWrapper processRequest:completionHandler:]', symObjAddr: 0x134, symBinAddr: 0x10A14, symSize: 0xBC }
+  - { offsetInCU: 0x253, offset: 0x61CC8, size: 0x8, addend: 0x0, symName: '___59-[MMENSURLSessionWrapper processRequest:completionHandler:]_block_invoke', symObjAddr: 0x1F0, symBinAddr: 0x10AD0, symSize: 0x108 }
+  - { offsetInCU: 0x2D5, offset: 0x61D4A, size: 0x8, addend: 0x0, symName: ___Block_byref_object_copy_, symObjAddr: 0x2F8, symBinAddr: 0x10BD8, symSize: 0x10 }
+  - { offsetInCU: 0x2FA, offset: 0x61D6F, size: 0x8, addend: 0x0, symName: ___Block_byref_object_dispose_, symObjAddr: 0x308, symBinAddr: 0x10BE8, symSize: 0x8 }
+  - { offsetInCU: 0x319, offset: 0x61D8E, size: 0x8, addend: 0x0, symName: '___59-[MMENSURLSessionWrapper processRequest:completionHandler:]_block_invoke.4', symObjAddr: 0x310, symBinAddr: 0x10BF0, symSize: 0xF4 }
+  - { offsetInCU: 0x3AA, offset: 0x61E1F, size: 0x8, addend: 0x0, symName: '___59-[MMENSURLSessionWrapper processRequest:completionHandler:]_block_invoke_2', symObjAddr: 0x404, symBinAddr: 0x10CE4, symSize: 0x14 }
+  - { offsetInCU: 0x421, offset: 0x61E96, size: 0x8, addend: 0x0, symName: ___copy_helper_block_e8_32b40r, symObjAddr: 0x494, symBinAddr: 0x10CF8, symSize: 0x3C }
+  - { offsetInCU: 0x44A, offset: 0x61EBF, size: 0x8, addend: 0x0, symName: ___copy_helper_block_e8_32s40s48b, symObjAddr: 0x4FC, symBinAddr: 0x10D34, symSize: 0x3C }
+  - { offsetInCU: 0x473, offset: 0x61EE8, size: 0x8, addend: 0x0, symName: ___destroy_helper_block_e8_32s40s48s, symObjAddr: 0x538, symBinAddr: 0x10D70, symSize: 0x30 }
+  - { offsetInCU: 0x492, offset: 0x61F07, size: 0x8, addend: 0x0, symName: '-[MMENSURLSessionWrapper URLSession:didReceiveChallenge:completionHandler:]', symObjAddr: 0x568, symBinAddr: 0x10DA0, symSize: 0xEC }
+  - { offsetInCU: 0x557, offset: 0x61FCC, size: 0x8, addend: 0x0, symName: '___75-[MMENSURLSessionWrapper URLSession:didReceiveChallenge:completionHandler:]_block_invoke', symObjAddr: 0x654, symBinAddr: 0x10E8C, symSize: 0x4C }
+  - { offsetInCU: 0x5D1, offset: 0x62046, size: 0x8, addend: 0x0, symName: ___copy_helper_block_e8_32s40b48w, symObjAddr: 0x6A0, symBinAddr: 0x10ED8, symSize: 0x40 }
+  - { offsetInCU: 0x5FA, offset: 0x6206F, size: 0x8, addend: 0x0, symName: '-[MMENSURLSessionWrapper URLSession:didBecomeInvalidWithError:]', symObjAddr: 0x710, symBinAddr: 0x10F18, symSize: 0xD8 }
+  - { offsetInCU: 0x649, offset: 0x620BE, size: 0x8, addend: 0x0, symName: '-[MMENSURLSessionWrapper serialQueue]', symObjAddr: 0x7E8, symBinAddr: 0x10FF0, symSize: 0x8 }
+  - { offsetInCU: 0x680, offset: 0x620F5, size: 0x8, addend: 0x0, symName: '-[MMENSURLSessionWrapper setSerialQueue:]', symObjAddr: 0x7F0, symBinAddr: 0x10FF8, symSize: 0xC }
+  - { offsetInCU: 0x6C1, offset: 0x62136, size: 0x8, addend: 0x0, symName: '-[MMENSURLSessionWrapper certPin]', symObjAddr: 0x7FC, symBinAddr: 0x11004, symSize: 0x8 }
+  - { offsetInCU: 0x6F8, offset: 0x6216D, size: 0x8, addend: 0x0, symName: '-[MMENSURLSessionWrapper setCertPin:]', symObjAddr: 0x804, symBinAddr: 0x1100C, symSize: 0xC }
+  - { offsetInCU: 0x739, offset: 0x621AE, size: 0x8, addend: 0x0, symName: '-[MMENSURLSessionWrapper session]', symObjAddr: 0x810, symBinAddr: 0x11018, symSize: 0x8 }
+  - { offsetInCU: 0x770, offset: 0x621E5, size: 0x8, addend: 0x0, symName: '-[MMENSURLSessionWrapper setSession:]', symObjAddr: 0x818, symBinAddr: 0x11020, symSize: 0xC }
+  - { offsetInCU: 0x7B1, offset: 0x62226, size: 0x8, addend: 0x0, symName: '-[MMENSURLSessionWrapper .cxx_destruct]', symObjAddr: 0x824, symBinAddr: 0x1102C, symSize: 0x3C }
+  - { offsetInCU: 0x27, offset: 0x625EA, size: 0x8, addend: 0x0, symName: '+[MMEReachability reachabilityWithHostName:]', symObjAddr: 0x0, symBinAddr: 0x11068, symSize: 0xC }
+  - { offsetInCU: 0x41, offset: 0x62604, size: 0x8, addend: 0x0, symName: _kMMEReachabilityChangedNotification, symObjAddr: 0xB68, symBinAddr: 0x28F50, symSize: 0x0 }
+  - { offsetInCU: 0x24D, offset: 0x62810, size: 0x8, addend: 0x0, symName: '+[MMEReachability reachabilityWithHostName:]', symObjAddr: 0x0, symBinAddr: 0x11068, symSize: 0xC }
+  - { offsetInCU: 0x28E, offset: 0x62851, size: 0x8, addend: 0x0, symName: '+[MMEReachability reachabilityWithHostname:]', symObjAddr: 0xC, symBinAddr: 0x11074, symSize: 0x64 }
+  - { offsetInCU: 0x35F, offset: 0x62922, size: 0x8, addend: 0x0, symName: '+[MMEReachability reachabilityWithAddress:]', symObjAddr: 0x70, symBinAddr: 0x110D8, symSize: 0x60 }
+  - { offsetInCU: 0x419, offset: 0x629DC, size: 0x8, addend: 0x0, symName: '+[MMEReachability reachabilityForInternetConnection]', symObjAddr: 0xD0, symBinAddr: 0x11138, symSize: 0x5C }
+  - { offsetInCU: 0x45F, offset: 0x62A22, size: 0x8, addend: 0x0, symName: '+[MMEReachability reachabilityForLocalWiFi]', symObjAddr: 0x12C, symBinAddr: 0x11194, symSize: 0x64 }
+  - { offsetInCU: 0x4A5, offset: 0x62A68, size: 0x8, addend: 0x0, symName: '-[MMEReachability initWithReachabilityRef:]', symObjAddr: 0x190, symBinAddr: 0x111F8, symSize: 0x7C }
+  - { offsetInCU: 0x542, offset: 0x62B05, size: 0x8, addend: 0x0, symName: '-[MMEReachability dealloc]', symObjAddr: 0x20C, symBinAddr: 0x11274, symSize: 0x78 }
+  - { offsetInCU: 0x583, offset: 0x62B46, size: 0x8, addend: 0x0, symName: '-[MMEReachability startNotifier]', symObjAddr: 0x284, symBinAddr: 0x112EC, symSize: 0x100 }
+  - { offsetInCU: 0x658, offset: 0x62C1B, size: 0x8, addend: 0x0, symName: _TMReachabilityCallback, symObjAddr: 0x384, symBinAddr: 0x113EC, symSize: 0x4C }
+  - { offsetInCU: 0x6A7, offset: 0x62C6A, size: 0x8, addend: 0x0, symName: '-[MMEReachability stopNotifier]', symObjAddr: 0x3D0, symBinAddr: 0x11438, symSize: 0x44 }
+  - { offsetInCU: 0x70A, offset: 0x62CCD, size: 0x8, addend: 0x0, symName: '-[MMEReachability isReachableWithFlags:]', symObjAddr: 0x414, symBinAddr: 0x1147C, symSize: 0x3C }
+  - { offsetInCU: 0x761, offset: 0x62D24, size: 0x8, addend: 0x0, symName: '-[MMEReachability isReachable]', symObjAddr: 0x450, symBinAddr: 0x114B8, symSize: 0x40 }
+  - { offsetInCU: 0x7DB, offset: 0x62D9E, size: 0x8, addend: 0x0, symName: '-[MMEReachability isReachableViaWWAN]', symObjAddr: 0x490, symBinAddr: 0x114F8, symSize: 0x4C }
+  - { offsetInCU: 0x83A, offset: 0x62DFD, size: 0x8, addend: 0x0, symName: '-[MMEReachability isReachableViaWiFi]', symObjAddr: 0x4DC, symBinAddr: 0x11544, symSize: 0x40 }
+  - { offsetInCU: 0x899, offset: 0x62E5C, size: 0x8, addend: 0x0, symName: '-[MMEReachability isConnectionRequired]', symObjAddr: 0x51C, symBinAddr: 0x11584, symSize: 0x4 }
+  - { offsetInCU: 0x8CF, offset: 0x62E92, size: 0x8, addend: 0x0, symName: '-[MMEReachability connectionRequired]', symObjAddr: 0x520, symBinAddr: 0x11588, symSize: 0x38 }
+  - { offsetInCU: 0x92E, offset: 0x62EF1, size: 0x8, addend: 0x0, symName: '-[MMEReachability isConnectionOnDemand]', symObjAddr: 0x558, symBinAddr: 0x115C0, symSize: 0x3C }
+  - { offsetInCU: 0x98D, offset: 0x62F50, size: 0x8, addend: 0x0, symName: '-[MMEReachability isInterventionRequired]', symObjAddr: 0x594, symBinAddr: 0x115FC, symSize: 0x38 }
+  - { offsetInCU: 0x9EC, offset: 0x62FAF, size: 0x8, addend: 0x0, symName: '-[MMEReachability currentReachabilityStatus]', symObjAddr: 0x5CC, symBinAddr: 0x11634, symSize: 0x40 }
+  - { offsetInCU: 0xA24, offset: 0x62FE7, size: 0x8, addend: 0x0, symName: '-[MMEReachability reachabilityFlags]', symObjAddr: 0x60C, symBinAddr: 0x11674, symSize: 0x34 }
+  - { offsetInCU: 0xA83, offset: 0x63046, size: 0x8, addend: 0x0, symName: '-[MMEReachability currentReachabilityString]', symObjAddr: 0x640, symBinAddr: 0x116A8, symSize: 0xA0 }
+  - { offsetInCU: 0xAE6, offset: 0x630A9, size: 0x8, addend: 0x0, symName: '-[MMEReachability currentReachabilityFlags]', symObjAddr: 0x6E0, symBinAddr: 0x11748, symSize: 0xB8 }
+  - { offsetInCU: 0xB3F, offset: 0x63102, size: 0x8, addend: 0x0, symName: '-[MMEReachability reachabilityChanged:]', symObjAddr: 0x798, symBinAddr: 0x11800, symSize: 0xCC }
+  - { offsetInCU: 0xBC7, offset: 0x6318A, size: 0x8, addend: 0x0, symName: '___39-[MMEReachability reachabilityChanged:]_block_invoke', symObjAddr: 0x864, symBinAddr: 0x118CC, symSize: 0x4C }
+  - { offsetInCU: 0xC09, offset: 0x631CC, size: 0x8, addend: 0x0, symName: '-[MMEReachability description]', symObjAddr: 0x8C0, symBinAddr: 0x11918, symSize: 0x80 }
+  - { offsetInCU: 0xC7C, offset: 0x6323F, size: 0x8, addend: 0x0, symName: '-[MMEReachability reachableBlock]', symObjAddr: 0x940, symBinAddr: 0x11998, symSize: 0x8 }
+  - { offsetInCU: 0xCB3, offset: 0x63276, size: 0x8, addend: 0x0, symName: '-[MMEReachability setReachableBlock:]', symObjAddr: 0x948, symBinAddr: 0x119A0, symSize: 0x8 }
+  - { offsetInCU: 0xCF2, offset: 0x632B5, size: 0x8, addend: 0x0, symName: '-[MMEReachability unreachableBlock]', symObjAddr: 0x950, symBinAddr: 0x119A8, symSize: 0x8 }
+  - { offsetInCU: 0xD29, offset: 0x632EC, size: 0x8, addend: 0x0, symName: '-[MMEReachability setUnreachableBlock:]', symObjAddr: 0x958, symBinAddr: 0x119B0, symSize: 0x8 }
+  - { offsetInCU: 0xD68, offset: 0x6332B, size: 0x8, addend: 0x0, symName: '-[MMEReachability reachableOnWWAN]', symObjAddr: 0x960, symBinAddr: 0x119B8, symSize: 0x8 }
+  - { offsetInCU: 0xD9F, offset: 0x63362, size: 0x8, addend: 0x0, symName: '-[MMEReachability setReachableOnWWAN:]', symObjAddr: 0x968, symBinAddr: 0x119C0, symSize: 0x8 }
+  - { offsetInCU: 0xDDA, offset: 0x6339D, size: 0x8, addend: 0x0, symName: '-[MMEReachability reachabilityRef]', symObjAddr: 0x970, symBinAddr: 0x119C8, symSize: 0x8 }
+  - { offsetInCU: 0xE11, offset: 0x633D4, size: 0x8, addend: 0x0, symName: '-[MMEReachability setReachabilityRef:]', symObjAddr: 0x978, symBinAddr: 0x119D0, symSize: 0x8 }
+  - { offsetInCU: 0xE4E, offset: 0x63411, size: 0x8, addend: 0x0, symName: '-[MMEReachability reachabilitySerialQueue]', symObjAddr: 0x980, symBinAddr: 0x119D8, symSize: 0x8 }
+  - { offsetInCU: 0xE85, offset: 0x63448, size: 0x8, addend: 0x0, symName: '-[MMEReachability setReachabilitySerialQueue:]', symObjAddr: 0x988, symBinAddr: 0x119E0, symSize: 0xC }
+  - { offsetInCU: 0xEC6, offset: 0x63489, size: 0x8, addend: 0x0, symName: '-[MMEReachability reachabilityObject]', symObjAddr: 0x994, symBinAddr: 0x119EC, symSize: 0x8 }
+  - { offsetInCU: 0xEFD, offset: 0x634C0, size: 0x8, addend: 0x0, symName: '-[MMEReachability setReachabilityObject:]', symObjAddr: 0x99C, symBinAddr: 0x119F4, symSize: 0xC }
+  - { offsetInCU: 0xF3E, offset: 0x63501, size: 0x8, addend: 0x0, symName: '-[MMEReachability .cxx_destruct]', symObjAddr: 0x9A8, symBinAddr: 0x11A00, symSize: 0x48 }
+  - { offsetInCU: 0x27, offset: 0x63636, size: 0x8, addend: 0x0, symName: '-[MMETimerManager initWithTimeInterval:target:selector:]', symObjAddr: 0x0, symBinAddr: 0x11A48, symSize: 0x88 }
+  - { offsetInCU: 0x105, offset: 0x63714, size: 0x8, addend: 0x0, symName: '-[MMETimerManager initWithTimeInterval:target:selector:]', symObjAddr: 0x0, symBinAddr: 0x11A48, symSize: 0x88 }
+  - { offsetInCU: 0x16C, offset: 0x6377B, size: 0x8, addend: 0x0, symName: '-[MMETimerManager start]', symObjAddr: 0x88, symBinAddr: 0x11AD0, symSize: 0x94 }
+  - { offsetInCU: 0x19F, offset: 0x637AE, size: 0x8, addend: 0x0, symName: '-[MMETimerManager cancel]', symObjAddr: 0x11C, symBinAddr: 0x11B64, symSize: 0x38 }
+  - { offsetInCU: 0x1D2, offset: 0x637E1, size: 0x8, addend: 0x0, symName: '-[MMETimerManager timeInterval]', symObjAddr: 0x154, symBinAddr: 0x11B9C, symSize: 0x8 }
+  - { offsetInCU: 0x207, offset: 0x63816, size: 0x8, addend: 0x0, symName: '-[MMETimerManager target]', symObjAddr: 0x15C, symBinAddr: 0x11BA4, symSize: 0x8 }
+  - { offsetInCU: 0x23E, offset: 0x6384D, size: 0x8, addend: 0x0, symName: '-[MMETimerManager selector]', symObjAddr: 0x164, symBinAddr: 0x11BAC, symSize: 0x8 }
+  - { offsetInCU: 0x275, offset: 0x63884, size: 0x8, addend: 0x0, symName: '-[MMETimerManager timer]', symObjAddr: 0x16C, symBinAddr: 0x11BB4, symSize: 0x8 }
+  - { offsetInCU: 0x2AC, offset: 0x638BB, size: 0x8, addend: 0x0, symName: '-[MMETimerManager setTimer:]', symObjAddr: 0x174, symBinAddr: 0x11BBC, symSize: 0xC }
+  - { offsetInCU: 0x2ED, offset: 0x638FC, size: 0x8, addend: 0x0, symName: '-[MMETimerManager .cxx_destruct]', symObjAddr: 0x180, symBinAddr: 0x11BC8, symSize: 0x30 }
+  - { offsetInCU: 0x27, offset: 0x63960, size: 0x8, addend: 0x0, symName: '-[MMEUIApplicationExtensionWrapper mme_contentSizeScale]', symObjAddr: 0x0, symBinAddr: 0x11BF8, symSize: 0xC }
+  - { offsetInCU: 0xA8, offset: 0x639E1, size: 0x8, addend: 0x0, symName: '-[MMEUIApplicationExtensionWrapper mme_contentSizeScale]', symObjAddr: 0x0, symBinAddr: 0x11BF8, symSize: 0xC }
+  - { offsetInCU: 0xDB, offset: 0x63A14, size: 0x8, addend: 0x0, symName: '-[MMEUIApplicationExtensionWrapper applicationState]', symObjAddr: 0xC, symBinAddr: 0x11C04, symSize: 0x8 }
+  - { offsetInCU: 0x10E, offset: 0x63A47, size: 0x8, addend: 0x0, symName: '-[MMEUIApplicationExtensionWrapper beginBackgroundTaskWithExpirationHandler:]', symObjAddr: 0x14, symBinAddr: 0x11C0C, symSize: 0x10 }
+  - { offsetInCU: 0x14D, offset: 0x63A86, size: 0x8, addend: 0x0, symName: '-[MMEUIApplicationExtensionWrapper endBackgroundTask:]', symObjAddr: 0x24, symBinAddr: 0x11C1C, symSize: 0x4 }
+  - { offsetInCU: 0x188, offset: 0x63AC1, size: 0x8, addend: 0x0, symName: '-[MMEUIApplicationWrapper init]', symObjAddr: 0x28, symBinAddr: 0x11C20, symSize: 0xAC }
+  - { offsetInCU: 0x1BF, offset: 0x63AF8, size: 0x8, addend: 0x0, symName: '-[MMEUIApplicationWrapper initWithApplication:]', symObjAddr: 0xD4, symBinAddr: 0x11CCC, symSize: 0x64 }
+  - { offsetInCU: 0x206, offset: 0x63B3F, size: 0x8, addend: 0x0, symName: '-[MMEUIApplicationWrapper mme_contentSizeScale]', symObjAddr: 0x138, symBinAddr: 0x11D30, symSize: 0x34 }
+  - { offsetInCU: 0x23D, offset: 0x63B76, size: 0x8, addend: 0x0, symName: '-[MMEUIApplicationWrapper applicationState]', symObjAddr: 0x16C, symBinAddr: 0x11D64, symSize: 0x34 }
+  - { offsetInCU: 0x274, offset: 0x63BAD, size: 0x8, addend: 0x0, symName: '-[MMEUIApplicationWrapper beginBackgroundTaskWithExpirationHandler:]', symObjAddr: 0x1A0, symBinAddr: 0x11D98, symSize: 0x54 }
+  - { offsetInCU: 0x2BB, offset: 0x63BF4, size: 0x8, addend: 0x0, symName: '-[MMEUIApplicationWrapper endBackgroundTask:]', symObjAddr: 0x1F4, symBinAddr: 0x11DEC, symSize: 0x3C }
+  - { offsetInCU: 0x2FE, offset: 0x63C37, size: 0x8, addend: 0x0, symName: '-[MMEUIApplicationWrapper application]', symObjAddr: 0x230, symBinAddr: 0x11E28, symSize: 0x8 }
+  - { offsetInCU: 0x335, offset: 0x63C6E, size: 0x8, addend: 0x0, symName: '-[MMEUIApplicationWrapper setApplication:]', symObjAddr: 0x238, symBinAddr: 0x11E30, symSize: 0xC }
+  - { offsetInCU: 0x376, offset: 0x63CAF, size: 0x8, addend: 0x0, symName: '-[MMEUIApplicationWrapper .cxx_destruct]', symObjAddr: 0x244, symBinAddr: 0x11E3C, symSize: 0xC }
+  - { offsetInCU: 0x27, offset: 0x63DB0, size: 0x8, addend: 0x0, symName: '-[MMEUniqueIdentifier initWithTimeInterval:]', symObjAddr: 0x0, symBinAddr: 0x11E48, symSize: 0x48 }
+  - { offsetInCU: 0xB5, offset: 0x63E3E, size: 0x8, addend: 0x0, symName: '-[MMEUniqueIdentifier initWithTimeInterval:]', symObjAddr: 0x0, symBinAddr: 0x11E48, symSize: 0x48 }
+  - { offsetInCU: 0xFC, offset: 0x63E85, size: 0x8, addend: 0x0, symName: '-[MMEUniqueIdentifier rollingInstanceIdentifer]', symObjAddr: 0x48, symBinAddr: 0x11E90, symSize: 0x10C }
+  - { offsetInCU: 0x133, offset: 0x63EBC, size: 0x8, addend: 0x0, symName: '-[MMEUniqueIdentifier timeInterval]', symObjAddr: 0x154, symBinAddr: 0x11F9C, symSize: 0x8 }
+  - { offsetInCU: 0x168, offset: 0x63EF1, size: 0x8, addend: 0x0, symName: '-[MMEUniqueIdentifier setTimeInterval:]', symObjAddr: 0x15C, symBinAddr: 0x11FA4, symSize: 0x8 }
+  - { offsetInCU: 0x1A6, offset: 0x63F2F, size: 0x8, addend: 0x0, symName: '-[MMEUniqueIdentifier instanceIDRotationDate]', symObjAddr: 0x164, symBinAddr: 0x11FAC, symSize: 0x8 }
+  - { offsetInCU: 0x1DD, offset: 0x63F66, size: 0x8, addend: 0x0, symName: '-[MMEUniqueIdentifier setInstanceIDRotationDate:]', symObjAddr: 0x16C, symBinAddr: 0x11FB4, symSize: 0xC }
+  - { offsetInCU: 0x21E, offset: 0x63FA7, size: 0x8, addend: 0x0, symName: '-[MMEUniqueIdentifier instanceID]', symObjAddr: 0x178, symBinAddr: 0x11FC0, symSize: 0x8 }
+  - { offsetInCU: 0x255, offset: 0x63FDE, size: 0x8, addend: 0x0, symName: '-[MMEUniqueIdentifier setInstanceID:]', symObjAddr: 0x180, symBinAddr: 0x11FC8, symSize: 0xC }
+  - { offsetInCU: 0x296, offset: 0x6401F, size: 0x8, addend: 0x0, symName: '-[MMEUniqueIdentifier .cxx_destruct]', symObjAddr: 0x18C, symBinAddr: 0x11FD4, symSize: 0x30 }
+  - { offsetInCU: 0x27, offset: 0x64096, size: 0x8, addend: 0x0, symName: '+[NSBundle(MMEMobileEvents) mme_isExtension]', symObjAddr: 0x0, symBinAddr: 0x12004, symSize: 0x6C }
+  - { offsetInCU: 0x43, offset: 0x640B2, size: 0x8, addend: 0x0, symName: '+[NSBundle(MMEMobileEvents) mme_isExtension]', symObjAddr: 0x0, symBinAddr: 0x12004, symSize: 0x6C }
+  - { offsetInCU: 0x27, offset: 0x6413E, size: 0x8, addend: 0x0, symName: _mme_linkNSDataCategory, symObjAddr: 0x0, symBinAddr: 0x12070, symSize: 0x4 }
+  - { offsetInCU: 0x35, offset: 0x6414C, size: 0x8, addend: 0x0, symName: '-[NSData(GZIP) mme_gzippedDataWithCompressionLevel:]', symObjAddr: 0x4, symBinAddr: 0x12074, symSize: 0x15C }
+  - { offsetInCU: 0x16C, offset: 0x64283, size: 0x8, addend: 0x0, symName: _mme_linkNSDataCategory, symObjAddr: 0x0, symBinAddr: 0x12070, symSize: 0x4 }
+  - { offsetInCU: 0x1ED, offset: 0x64304, size: 0x8, addend: 0x0, symName: '-[NSData(GZIP) mme_gzippedData]', symObjAddr: 0x160, symBinAddr: 0x121D0, symSize: 0x8 }
+  - { offsetInCU: 0x222, offset: 0x64339, size: 0x8, addend: 0x0, symName: '-[NSData(GZIP) mme_gunzippedData]', symObjAddr: 0x168, symBinAddr: 0x121D8, symSize: 0x158 }
+  - { offsetInCU: 0x33A, offset: 0x64451, size: 0x8, addend: 0x0, symName: '-[NSData(GZIP) mme_isGzippedData]', symObjAddr: 0x2C0, symBinAddr: 0x12330, symSize: 0x58 }
+  - { offsetInCU: 0x27, offset: 0x644EF, size: 0x8, addend: 0x0, symName: '+[NSProcessInfo(SystemInfo) mme_operatingSystemVersion]', symObjAddr: 0x0, symBinAddr: 0x12388, symSize: 0xA4 }
+  - { offsetInCU: 0x6E, offset: 0x64536, size: 0x8, addend: 0x0, symName: '+[NSProcessInfo(SystemInfo) mme_operatingSystemVersion]', symObjAddr: 0x0, symBinAddr: 0x12388, symSize: 0xA4 }
+  - { offsetInCU: 0xB1, offset: 0x64579, size: 0x8, addend: 0x0, symName: '+[NSProcessInfo(SystemInfo) mme_stringForProcessorType:subtype:]', symObjAddr: 0xA4, symBinAddr: 0x1242C, symSize: 0x188 }
+  - { offsetInCU: 0x114, offset: 0x645DC, size: 0x8, addend: 0x0, symName: '+[NSProcessInfo(SystemInfo) mme_processorTypeDescription]', symObjAddr: 0x22C, symBinAddr: 0x125B4, symSize: 0x78 }
+  - { offsetInCU: 0x27, offset: 0x6472E, size: 0x8, addend: 0x0, symName: '-[NSString(MMEVersions) mme_stringByRemovingNonUserAgentTokenCharacters]', symObjAddr: 0x0, symBinAddr: 0x1262C, symSize: 0x74 }
+  - { offsetInCU: 0x4B, offset: 0x64752, size: 0x8, addend: 0x0, symName: _MMESemverInvalidVersion, symObjAddr: 0x6F8, symBinAddr: 0x1B5A0, symSize: 0x0 }
+  - { offsetInCU: 0x61, offset: 0x64768, size: 0x8, addend: 0x0, symName: '+[NSString(MMEVersions) mme_semverExpression]', symObjAddr: 0x74, symBinAddr: 0x126A0, symSize: 0x40 }
+  - { offsetInCU: 0x8B, offset: 0x64792, size: 0x8, addend: 0x0, symName: _mme_semverExpression.semverExpression, symObjAddr: 0x2E40, symBinAddr: 0x34E90, symSize: 0x0 }
+  - { offsetInCU: 0xA1, offset: 0x647A8, size: 0x8, addend: 0x0, symName: _mme_semverExpression.onceToken, symObjAddr: 0x2E48, symBinAddr: 0x34E98, symSize: 0x0 }
+  - { offsetInCU: 0xF5, offset: 0x647FC, size: 0x8, addend: 0x0, symName: '-[NSString(MMEVersions) mme_stringByRemovingNonUserAgentTokenCharacters]', symObjAddr: 0x0, symBinAddr: 0x1262C, symSize: 0x74 }
+  - { offsetInCU: 0x17B, offset: 0x64882, size: 0x8, addend: 0x0, symName: '___45+[NSString(MMEVersions) mme_semverExpression]_block_invoke', symObjAddr: 0xB4, symBinAddr: 0x126E0, symSize: 0x90 }
+  - { offsetInCU: 0x1C1, offset: 0x648C8, size: 0x8, addend: 0x0, symName: '-[NSString(MMEVersions) mme_isSemverString]', symObjAddr: 0x144, symBinAddr: 0x12770, symSize: 0x80 }
+  - { offsetInCU: 0x208, offset: 0x6490F, size: 0x8, addend: 0x0, symName: '-[NSString(MMEVersions) mme_semverCoreComponent]', symObjAddr: 0x1C4, symBinAddr: 0x127F0, symSize: 0x17C }
+  - { offsetInCU: 0x25F, offset: 0x64966, size: 0x8, addend: 0x0, symName: '-[NSString(MMEVersions) mme_semverMajorVersion]', symObjAddr: 0x340, symBinAddr: 0x1296C, symSize: 0xB8 }
+  - { offsetInCU: 0x2B6, offset: 0x649BD, size: 0x8, addend: 0x0, symName: '-[NSString(MMEVersions) mme_semverMinorVersion]', symObjAddr: 0x3F8, symBinAddr: 0x12A24, symSize: 0xB8 }
+  - { offsetInCU: 0x30D, offset: 0x64A14, size: 0x8, addend: 0x0, symName: '-[NSString(MMEVersions) mme_semverPatchVersion]', symObjAddr: 0x4B0, symBinAddr: 0x12ADC, symSize: 0xB8 }
+  - { offsetInCU: 0x27, offset: 0x64B41, size: 0x8, addend: 0x0, symName: '+[NSUserDefaults(MME) mme_configuration]', symObjAddr: 0x0, symBinAddr: 0x12B94, symSize: 0x40 }
+  - { offsetInCU: 0x5F, offset: 0x64B79, size: 0x8, addend: 0x0, symName: '+[NSUserDefaults(MME) mme_configuration]', symObjAddr: 0x0, symBinAddr: 0x12B94, symSize: 0x40 }
+  - { offsetInCU: 0x89, offset: 0x64BA3, size: 0x8, addend: 0x0, symName: _mme_configuration.eventsConfiguration, symObjAddr: 0xF108, symBinAddr: 0x34EA0, symSize: 0x0 }
+  - { offsetInCU: 0x9F, offset: 0x64BB9, size: 0x8, addend: 0x0, symName: _mme_configuration.onceToken, symObjAddr: 0xF110, symBinAddr: 0x34EA8, symSize: 0x0 }
+  - { offsetInCU: 0x15F, offset: 0x64C79, size: 0x8, addend: 0x0, symName: '-[NSUserDefaults(MME) mme_userAgentString]', symObjAddr: 0xE4C, symBinAddr: 0x139E0, symSize: 0x40 }
+  - { offsetInCU: 0x18B, offset: 0x64CA5, size: 0x8, addend: 0x0, symName: _mme_userAgentString.userAgent, symObjAddr: 0xF118, symBinAddr: 0x34EB0, symSize: 0x0 }
+  - { offsetInCU: 0x1A2, offset: 0x64CBC, size: 0x8, addend: 0x0, symName: _mme_userAgentString.onceToken, symObjAddr: 0xF120, symBinAddr: 0x34EB8, symSize: 0x0 }
+  - { offsetInCU: 0x210, offset: 0x64D2A, size: 0x8, addend: 0x0, symName: _MMEMainBundle, symObjAddr: 0xF128, symBinAddr: 0x34EC0, symSize: 0x0 }
+  - { offsetInCU: 0x21F, offset: 0x64D39, size: 0x8, addend: 0x0, symName: '+[NSBundle(MME) mme_mainBundle]', symObjAddr: 0x210C, symBinAddr: 0x14CA0, symSize: 0x74 }
+  - { offsetInCU: 0x24B, offset: 0x64D65, size: 0x8, addend: 0x0, symName: _mme_mainBundle.onceToken, symObjAddr: 0xF130, symBinAddr: 0x34EC8, symSize: 0x0 }
+  - { offsetInCU: 0x35B, offset: 0x64E75, size: 0x8, addend: 0x0, symName: '___40+[NSUserDefaults(MME) mme_configuration]_block_invoke', symObjAddr: 0x40, symBinAddr: 0x12BD4, symSize: 0x44 }
+  - { offsetInCU: 0x382, offset: 0x64E9C, size: 0x8, addend: 0x0, symName: '+[NSUserDefaults(MME) mme_resetConfiguration]', symObjAddr: 0x84, symBinAddr: 0x12C18, symSize: 0x7C }
+  - { offsetInCU: 0x3B1, offset: 0x64ECB, size: 0x8, addend: 0x0, symName: '-[NSUserDefaults(MME) mme_registerDefaults]', symObjAddr: 0x100, symBinAddr: 0x12C94, symSize: 0x53C }
+  - { offsetInCU: 0x50C, offset: 0x65026, size: 0x8, addend: 0x0, symName: '-[NSUserDefaults(MME) mme_volatileDomain]', symObjAddr: 0x63C, symBinAddr: 0x131D0, symSize: 0x50 }
+  - { offsetInCU: 0x543, offset: 0x6505D, size: 0x8, addend: 0x0, symName: '-[NSUserDefaults(MME) mme_setObject:forVolatileKey:]', symObjAddr: 0x68C, symBinAddr: 0x13220, symSize: 0x9C }
+  - { offsetInCU: 0x5A6, offset: 0x650C0, size: 0x8, addend: 0x0, symName: '-[NSUserDefaults(MME) mme_objectForVolatileKey:]', symObjAddr: 0x728, symBinAddr: 0x132BC, symSize: 0x58 }
+  - { offsetInCU: 0x5ED, offset: 0x65107, size: 0x8, addend: 0x0, symName: '-[NSUserDefaults(MME) mme_deleteObjectForVolatileKey:]', symObjAddr: 0x780, symBinAddr: 0x13314, symSize: 0x88 }
+  - { offsetInCU: 0x640, offset: 0x6515A, size: 0x8, addend: 0x0, symName: '-[NSUserDefaults(MME) mme_persistentDomain]', symObjAddr: 0x808, symBinAddr: 0x1339C, symSize: 0x50 }
+  - { offsetInCU: 0x677, offset: 0x65191, size: 0x8, addend: 0x0, symName: '-[NSUserDefaults(MME) mme_setObject:forPersistentKey:]', symObjAddr: 0x858, symBinAddr: 0x133EC, symSize: 0x8C }
+  - { offsetInCU: 0x6DA, offset: 0x651F4, size: 0x8, addend: 0x0, symName: '-[NSUserDefaults(MME) mme_deleteObjectForPersistentKey:]', symObjAddr: 0x8E4, symBinAddr: 0x13478, symSize: 0x78 }
+  - { offsetInCU: 0x72D, offset: 0x65247, size: 0x8, addend: 0x0, symName: '-[NSUserDefaults(MME) mme_startupDelay]', symObjAddr: 0x95C, symBinAddr: 0x134F0, symSize: 0xC }
+  - { offsetInCU: 0x762, offset: 0x6527C, size: 0x8, addend: 0x0, symName: '-[NSUserDefaults(MME) mme_eventFlushCount]', symObjAddr: 0x968, symBinAddr: 0x134FC, symSize: 0xC }
+  - { offsetInCU: 0x797, offset: 0x652B1, size: 0x8, addend: 0x0, symName: '-[NSUserDefaults(MME) mme_eventFlushInterval]', symObjAddr: 0x974, symBinAddr: 0x13508, symSize: 0xC }
+  - { offsetInCU: 0x7CC, offset: 0x652E6, size: 0x8, addend: 0x0, symName: '-[NSUserDefaults(MME) mme_identifierRotationInterval]', symObjAddr: 0x980, symBinAddr: 0x13514, symSize: 0xC }
+  - { offsetInCU: 0x801, offset: 0x6531B, size: 0x8, addend: 0x0, symName: '-[NSUserDefaults(MME) mme_configUpdateInterval]', symObjAddr: 0x98C, symBinAddr: 0x13520, symSize: 0xC }
+  - { offsetInCU: 0x836, offset: 0x65350, size: 0x8, addend: 0x0, symName: '-[NSUserDefaults(MME) mme_eventTag]', symObjAddr: 0x998, symBinAddr: 0x1352C, symSize: 0xC }
+  - { offsetInCU: 0x86B, offset: 0x65385, size: 0x8, addend: 0x0, symName: '-[NSUserDefaults(MME) mme_accessToken]', symObjAddr: 0x9A4, symBinAddr: 0x13538, symSize: 0xC }
+  - { offsetInCU: 0x8A0, offset: 0x653BA, size: 0x8, addend: 0x0, symName: '-[NSUserDefaults(MME) mme_setAccessToken:]', symObjAddr: 0x9B0, symBinAddr: 0x13544, symSize: 0xC }
+  - { offsetInCU: 0x8DF, offset: 0x653F9, size: 0x8, addend: 0x0, symName: '-[NSUserDefaults(MME) mme_legacyUserAgentBase]', symObjAddr: 0x9BC, symBinAddr: 0x13550, symSize: 0xC }
+  - { offsetInCU: 0x914, offset: 0x6542E, size: 0x8, addend: 0x0, symName: '-[NSUserDefaults(MME) mme_setLegacyUserAgentBase:]', symObjAddr: 0x9C8, symBinAddr: 0x1355C, symSize: 0x34 }
+  - { offsetInCU: 0x957, offset: 0x65471, size: 0x8, addend: 0x0, symName: '-[NSUserDefaults(MME) mme_legacyHostSDKVersion]', symObjAddr: 0x9FC, symBinAddr: 0x13590, symSize: 0xC }
+  - { offsetInCU: 0x98C, offset: 0x654A6, size: 0x8, addend: 0x0, symName: '-[NSUserDefaults(MME) mme_setLegacyHostSDKVersion:]', symObjAddr: 0xA08, symBinAddr: 0x1359C, symSize: 0x70 }
+  - { offsetInCU: 0x9CF, offset: 0x654E9, size: 0x8, addend: 0x0, symName: '-[NSUserDefaults(MME) mme_clientId]', symObjAddr: 0xA78, symBinAddr: 0x1360C, symSize: 0x78 }
+  - { offsetInCU: 0xA16, offset: 0x65530, size: 0x8, addend: 0x0, symName: '-[NSUserDefaults(MME) mme_configDigestValue]', symObjAddr: 0xAF0, symBinAddr: 0x13684, symSize: 0xC }
+  - { offsetInCU: 0xA4B, offset: 0x65565, size: 0x8, addend: 0x0, symName: '-[NSUserDefaults(MME) mme_setConfigDigestValue:]', symObjAddr: 0xAFC, symBinAddr: 0x13690, symSize: 0xC }
+  - { offsetInCU: 0xA8A, offset: 0x655A4, size: 0x8, addend: 0x0, symName: '-[NSUserDefaults(MME) mme_isCNRegion]', symObjAddr: 0xB08, symBinAddr: 0x1369C, symSize: 0x64 }
+  - { offsetInCU: 0xAE1, offset: 0x655FB, size: 0x8, addend: 0x0, symName: '-[NSUserDefaults(MME) mme_setIsCNRegion:]', symObjAddr: 0xB6C, symBinAddr: 0x13700, symSize: 0x50 }
+  - { offsetInCU: 0xB24, offset: 0x6563E, size: 0x8, addend: 0x0, symName: '-[NSUserDefaults(MME) mme_APIServiceURL]', symObjAddr: 0xBBC, symBinAddr: 0x13750, symSize: 0xDC }
+  - { offsetInCU: 0xB7B, offset: 0x65695, size: 0x8, addend: 0x0, symName: '-[NSUserDefaults(MME) mme_eventsServiceURL]', symObjAddr: 0xC98, symBinAddr: 0x1382C, symSize: 0xDC }
+  - { offsetInCU: 0xBD5, offset: 0x656EF, size: 0x8, addend: 0x0, symName: '-[NSUserDefaults(MME) mme_configServiceURL]', symObjAddr: 0xD74, symBinAddr: 0x13908, symSize: 0xD8 }
+  - { offsetInCU: 0xC2F, offset: 0x65749, size: 0x8, addend: 0x0, symName: '___42-[NSUserDefaults(MME) mme_userAgentString]_block_invoke', symObjAddr: 0xE8C, symBinAddr: 0x13A20, symSize: 0x5F8 }
+  - { offsetInCU: 0xDD3, offset: 0x658ED, size: 0x8, addend: 0x0, symName: '-[NSUserDefaults(MME) mme_legacyUserAgentString]', symObjAddr: 0x1484, symBinAddr: 0x14018, symSize: 0x1B0 }
+  - { offsetInCU: 0xE1C, offset: 0x65936, size: 0x8, addend: 0x0, symName: '-[NSUserDefaults(MME) mme_configUpdateDate]', symObjAddr: 0x1634, symBinAddr: 0x141C8, symSize: 0xB8 }
+  - { offsetInCU: 0xEA5, offset: 0x659BF, size: 0x8, addend: 0x0, symName: '-[NSUserDefaults(MME) mme_setConfigUpdateDate:]', symObjAddr: 0x16EC, symBinAddr: 0x14280, symSize: 0xD0 }
+  - { offsetInCU: 0xF1B, offset: 0x65A35, size: 0x8, addend: 0x0, symName: '-[NSUserDefaults(MME) mme_isCollectionEnabled]', symObjAddr: 0x17BC, symBinAddr: 0x14350, symSize: 0x80 }
+  - { offsetInCU: 0xF64, offset: 0x65A7E, size: 0x8, addend: 0x0, symName: '-[NSUserDefaults(MME) mme_setIsCollectionEnabled:]', symObjAddr: 0x183C, symBinAddr: 0x143D0, symSize: 0x54 }
+  - { offsetInCU: 0xFA9, offset: 0x65AC3, size: 0x8, addend: 0x0, symName: '-[NSUserDefaults(MME) mme_isCollectionEnabledInSimulator]', symObjAddr: 0x1890, symBinAddr: 0x14424, symSize: 0xC }
+  - { offsetInCU: 0xFDF, offset: 0x65AF9, size: 0x8, addend: 0x0, symName: '-[NSUserDefaults(MME) mme_isCollectionEnabledInBackground]', symObjAddr: 0x189C, symBinAddr: 0x14430, symSize: 0x80 }
+  - { offsetInCU: 0x1048, offset: 0x65B62, size: 0x8, addend: 0x0, symName: '-[NSUserDefaults(MME) mme_backgroundStartupDelay]', symObjAddr: 0x191C, symBinAddr: 0x144B0, symSize: 0xC }
+  - { offsetInCU: 0x107E, offset: 0x65B98, size: 0x8, addend: 0x0, symName: '-[NSUserDefaults(MME) mme_backgroundGeofence]', symObjAddr: 0x1928, symBinAddr: 0x144BC, symSize: 0xC }
+  - { offsetInCU: 0x10B4, offset: 0x65BCE, size: 0x8, addend: 0x0, symName: '-[NSUserDefaults(MME) mme_horizontalAccuracy]', symObjAddr: 0x1934, symBinAddr: 0x144C8, symSize: 0xC }
+  - { offsetInCU: 0x10EA, offset: 0x65C04, size: 0x8, addend: 0x0, symName: '-[NSUserDefaults(MME) mme_certificateRevocationList]', symObjAddr: 0x1940, symBinAddr: 0x144D4, symSize: 0x64 }
+  - { offsetInCU: 0x1144, offset: 0x65C5E, size: 0x8, addend: 0x0, symName: '-[NSUserDefaults(MME) mme_certificatePinningConfig]', symObjAddr: 0x19A4, symBinAddr: 0x14538, symSize: 0x14C }
+  - { offsetInCU: 0x119A, offset: 0x65CB4, size: 0x8, addend: 0x0, symName: '-[NSUserDefaults(MME) mme_updateFromConfigServiceData:]', symObjAddr: 0x1AF0, symBinAddr: 0x14684, symSize: 0x98 }
+  - { offsetInCU: 0x1214, offset: 0x65D2E, size: 0x8, addend: 0x0, symName: '-[NSUserDefaults(MME) mme_updateFromAccountType:]', symObjAddr: 0x1B88, symBinAddr: 0x1471C, symSize: 0x34 }
+  - { offsetInCU: 0x1257, offset: 0x65D71, size: 0x8, addend: 0x0, symName: '-[NSUserDefaults(MME) mme_updateFromConfigServiceObject:updateError:]', symObjAddr: 0x1BBC, symBinAddr: 0x14750, symSize: 0x550 }
+  - { offsetInCU: 0x13FF, offset: 0x65F19, size: 0x8, addend: 0x0, symName: '___31+[NSBundle(MME) mme_mainBundle]_block_invoke', symObjAddr: 0x2180, symBinAddr: 0x14D14, symSize: 0xC }
+  - { offsetInCU: 0x1441, offset: 0x65F5B, size: 0x8, addend: 0x0, symName: '+[NSBundle(MME) mme_setMainBundle:]', symObjAddr: 0x218C, symBinAddr: 0x14D20, symSize: 0x50 }
+  - { offsetInCU: 0x1482, offset: 0x65F9C, size: 0x8, addend: 0x0, symName: '-[NSBundle(MME) mme_bundleVersionString]', symObjAddr: 0x21DC, symBinAddr: 0x14D70, symSize: 0x110 }
+  - { offsetInCU: 0x27, offset: 0x661E1, size: 0x8, addend: 0x0, symName: _mme_linkUIKitCategories, symObjAddr: 0x0, symBinAddr: 0x14E80, symSize: 0x4 }
+  - { offsetInCU: 0x3C, offset: 0x661F6, size: 0x8, addend: 0x0, symName: _mme_linkUIKitCategories, symObjAddr: 0x0, symBinAddr: 0x14E80, symSize: 0x4 }
+  - { offsetInCU: 0x52, offset: 0x6620C, size: 0x8, addend: 0x0, symName: '-[UIDevice(MMEMobileEvents) mme_deviceOrientation]', symObjAddr: 0x4, symBinAddr: 0x14E84, symSize: 0x34 }
+  - { offsetInCU: 0x99, offset: 0x66253, size: 0x8, addend: 0x0, symName: '-[UIApplication(MMEMobileEvents) mme_contentSizeScale]', symObjAddr: 0x38, symBinAddr: 0x14EB8, symSize: 0x1AC }
+  - { offsetInCU: 0xF0, offset: 0x662AA, size: 0x8, addend: 0x0, symName: '+[NSExtensionContext(MMEMobileEvents) mme_contentSizeScale]', symObjAddr: 0x1E4, symBinAddr: 0x15064, symSize: 0x1E0 }
+...

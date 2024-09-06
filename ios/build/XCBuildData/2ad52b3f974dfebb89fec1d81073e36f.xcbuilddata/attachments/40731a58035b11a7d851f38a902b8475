@@ -1,0 +1,23 @@
+{
+  'version': 0,
+  'use-external-names': 'false',
+  'case-sensitive': 'false',
+  'roots': [{
+    'type': 'directory',
+    'name': "/Users/samuelskulsky/Coding/Flutter Projects/scavhuntapp-1/ios/build/Release-iphoneos/mapbox_gl/mapbox_gl.framework/Modules"
+    'contents': [{
+      'type': 'file',
+      'name': "module.modulemap",
+      'external-contents': "/Users/samuelskulsky/Coding/Flutter Projects/scavhuntapp-1/ios/build/Pods.build/Release-iphoneos/mapbox_gl.build/unextended-module.modulemap",
+    }]
+    },
+    {
+    'type': 'directory',
+    'name': "/Users/samuelskulsky/Coding/Flutter Projects/scavhuntapp-1/ios/build/Release-iphoneos/mapbox_gl/mapbox_gl.framework/Headers"
+    'contents': [{
+      'type': 'file',
+      'name': "mapbox_gl-Swift.h",
+      'external-contents': "/Users/samuelskulsky/Coding/Flutter Projects/scavhuntapp-1/ios/build/Pods.build/Release-iphoneos/mapbox_gl.build/unextended-interface-header.h",
+    }]
+    }]
+}

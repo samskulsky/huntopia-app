@@ -1,0 +1,424 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     '/Users/sam/scavhuntapp/Flutter/Profile/iphoneos/Profile-iphoneos/libPhoneNumber-iOS/libPhoneNumber_iOS.framework/libPhoneNumber_iOS'
+relocations:
+  - { offsetInCU: 0x33, offset: 0xBA1, size: 0x8, addend: 0x0, symName: _libPhoneNumber_iOSVersionString, symObjAddr: 0x0, symBinAddr: 0x17108, symSize: 0x0 }
+  - { offsetInCU: 0x67, offset: 0xBD5, size: 0x8, addend: 0x0, symName: _libPhoneNumber_iOSVersionNumber, symObjAddr: 0x30, symBinAddr: 0x17138, symSize: 0x0 }
+  - { offsetInCU: 0x27, offset: 0xC11, size: 0x8, addend: 0x0, symName: '-[NBAsYouTypeFormatter init]', symObjAddr: 0x0, symBinAddr: 0x4000, symSize: 0x2F8 }
+  - { offsetInCU: 0x5EF, offset: 0x11D9, size: 0x8, addend: 0x0, symName: '-[NBAsYouTypeFormatter init]', symObjAddr: 0x0, symBinAddr: 0x4000, symSize: 0x2F8 }
+  - { offsetInCU: 0x64F, offset: 0x1239, size: 0x8, addend: 0x0, symName: '-[NBAsYouTypeFormatter initWithRegionCode:]', symObjAddr: 0x2F8, symBinAddr: 0x42F8, symSize: 0x64 }
+  - { offsetInCU: 0x694, offset: 0x127E, size: 0x8, addend: 0x0, symName: '-[NBAsYouTypeFormatter initWithRegionCode:bundle:]', symObjAddr: 0x35C, symBinAddr: 0x435C, symSize: 0xCC }
+  - { offsetInCU: 0x6E5, offset: 0x12CF, size: 0x8, addend: 0x0, symName: '-[NBAsYouTypeFormatter getMetadataForRegion_:]', symObjAddr: 0x428, symBinAddr: 0x4428, symSize: 0xD8 }
+  - { offsetInCU: 0x76A, offset: 0x1354, size: 0x8, addend: 0x0, symName: '-[NBAsYouTypeFormatter maybeCreateNewTemplate_]', symObjAddr: 0x500, symBinAddr: 0x4500, symSize: 0x1B8 }
+  - { offsetInCU: 0x827, offset: 0x1411, size: 0x8, addend: 0x0, symName: '-[NBAsYouTypeFormatter getAvailableFormats_:]', symObjAddr: 0x6B8, symBinAddr: 0x46B8, symSize: 0x218 }
+  - { offsetInCU: 0x8D8, offset: 0x14C2, size: 0x8, addend: 0x0, symName: '-[NBAsYouTypeFormatter isFormatEligible_:]', symObjAddr: 0x8D0, symBinAddr: 0x48D0, symSize: 0x8C }
+  - { offsetInCU: 0x92D, offset: 0x1517, size: 0x8, addend: 0x0, symName: '-[NBAsYouTypeFormatter narrowDownPossibleFormats_:]', symObjAddr: 0x95C, symBinAddr: 0x495C, symSize: 0x19C }
+  - { offsetInCU: 0xA1E, offset: 0x1608, size: 0x8, addend: 0x0, symName: '-[NBAsYouTypeFormatter createFormattingTemplate_:]', symObjAddr: 0xAF8, symBinAddr: 0x4AF8, symSize: 0x180 }
+  - { offsetInCU: 0xA93, offset: 0x167D, size: 0x8, addend: 0x0, symName: '-[NBAsYouTypeFormatter getFormattingTemplate_:numberFormat:]', symObjAddr: 0xC78, symBinAddr: 0x4C78, symSize: 0x138 }
+  - { offsetInCU: 0xB28, offset: 0x1712, size: 0x8, addend: 0x0, symName: '-[NBAsYouTypeFormatter clear]', symObjAddr: 0xDB0, symBinAddr: 0x4DB0, symSize: 0x1D4 }
+  - { offsetInCU: 0xB59, offset: 0x1743, size: 0x8, addend: 0x0, symName: '-[NBAsYouTypeFormatter removeLastDigitAndRememberPosition]', symObjAddr: 0xF84, symBinAddr: 0x4F84, symSize: 0xE4 }
+  - { offsetInCU: 0xBFA, offset: 0x17E4, size: 0x8, addend: 0x0, symName: '-[NBAsYouTypeFormatter removeLastDigit]', symObjAddr: 0x1068, symBinAddr: 0x5068, symSize: 0xE4 }
+  - { offsetInCU: 0xC9B, offset: 0x1885, size: 0x8, addend: 0x0, symName: '-[NBAsYouTypeFormatter inputStringAndRememberPosition:]', symObjAddr: 0x114C, symBinAddr: 0x514C, symSize: 0xB8 }
+  - { offsetInCU: 0xD3C, offset: 0x1926, size: 0x8, addend: 0x0, symName: '-[NBAsYouTypeFormatter inputString:]', symObjAddr: 0x1204, symBinAddr: 0x5204, symSize: 0xB8 }
+  - { offsetInCU: 0xDDD, offset: 0x19C7, size: 0x8, addend: 0x0, symName: '-[NBAsYouTypeFormatter inputDigit:]', symObjAddr: 0x12BC, symBinAddr: 0x52BC, symSize: 0x7C }
+  - { offsetInCU: 0xE22, offset: 0x1A0C, size: 0x8, addend: 0x0, symName: '-[NBAsYouTypeFormatter inputDigitAndRememberPosition:]', symObjAddr: 0x1338, symBinAddr: 0x5338, symSize: 0x7C }
+  - { offsetInCU: 0xE67, offset: 0x1A51, size: 0x8, addend: 0x0, symName: '-[NBAsYouTypeFormatter inputDigitWithOptionToRememberPosition_:rememberPosition:]', symObjAddr: 0x13B4, symBinAddr: 0x53B4, symSize: 0x3B0 }
+  - { offsetInCU: 0xEE2, offset: 0x1ACC, size: 0x8, addend: 0x0, symName: '-[NBAsYouTypeFormatter attemptToChoosePatternWithPrefixExtracted_]', symObjAddr: 0x1764, symBinAddr: 0x5764, symSize: 0x4C }
+  - { offsetInCU: 0xF17, offset: 0x1B01, size: 0x8, addend: 0x0, symName: '-[NBAsYouTypeFormatter ableToExtractLongerNdd_]', symObjAddr: 0x17B0, symBinAddr: 0x57B0, symSize: 0x170 }
+  - { offsetInCU: 0xF9A, offset: 0x1B84, size: 0x8, addend: 0x0, symName: '-[NBAsYouTypeFormatter isDigitOrLeadingPlusSign_:]', symObjAddr: 0x1920, symBinAddr: 0x5920, symSize: 0x148 }
+  - { offsetInCU: 0x1017, offset: 0x1C01, size: 0x8, addend: 0x0, symName: '-[NBAsYouTypeFormatter attemptToFormatAccruedDigits_]', symObjAddr: 0x1A68, symBinAddr: 0x5A68, symSize: 0x264 }
+  - { offsetInCU: 0x1108, offset: 0x1CF2, size: 0x8, addend: 0x0, symName: '-[NBAsYouTypeFormatter appendNationalNumber_:]', symObjAddr: 0x1CCC, symBinAddr: 0x5CCC, symSize: 0x118 }
+  - { offsetInCU: 0x1169, offset: 0x1D53, size: 0x8, addend: 0x0, symName: '-[NBAsYouTypeFormatter getRememberedPosition]', symObjAddr: 0x1DE4, symBinAddr: 0x5DE4, symSize: 0xDC }
+  - { offsetInCU: 0x11DE, offset: 0x1DC8, size: 0x8, addend: 0x0, symName: '-[NBAsYouTypeFormatter attemptToChooseFormattingPattern_]', symObjAddr: 0x1EC0, symBinAddr: 0x5EC0, symSize: 0xC8 }
+  - { offsetInCU: 0x1239, offset: 0x1E23, size: 0x8, addend: 0x0, symName: '-[NBAsYouTypeFormatter inputAccruedNationalNumber_]', symObjAddr: 0x1F88, symBinAddr: 0x5F88, symSize: 0x12C }
+  - { offsetInCU: 0x12C0, offset: 0x1EAA, size: 0x8, addend: 0x0, symName: '-[NBAsYouTypeFormatter isNanpaNumberWithNationalPrefix_]', symObjAddr: 0x20B4, symBinAddr: 0x60B4, symSize: 0xC8 }
+  - { offsetInCU: 0x1305, offset: 0x1EEF, size: 0x8, addend: 0x0, symName: '-[NBAsYouTypeFormatter removeNationalPrefixFromNationalNumber_]', symObjAddr: 0x217C, symBinAddr: 0x617C, symSize: 0x254 }
+  - { offsetInCU: 0x1398, offset: 0x1F82, size: 0x8, addend: 0x0, symName: '-[NBAsYouTypeFormatter attemptToExtractIdd_]', symObjAddr: 0x23D0, symBinAddr: 0x63D0, symSize: 0x1CC }
+  - { offsetInCU: 0x142B, offset: 0x2015, size: 0x8, addend: 0x0, symName: '-[NBAsYouTypeFormatter attemptToExtractCountryCallingCode_]', symObjAddr: 0x259C, symBinAddr: 0x659C, symSize: 0x1DC }
+  - { offsetInCU: 0x14AE, offset: 0x2098, size: 0x8, addend: 0x0, symName: '-[NBAsYouTypeFormatter normalizeAndAccrueDigitsAndPlusSign_:rememberPosition:]', symObjAddr: 0x2778, symBinAddr: 0x6778, symSize: 0x10C }
+  - { offsetInCU: 0x1513, offset: 0x20FD, size: 0x8, addend: 0x0, symName: '-[NBAsYouTypeFormatter inputDigitHelper_:]', symObjAddr: 0x2884, symBinAddr: 0x6884, symSize: 0x1CC }
+  - { offsetInCU: 0x15B2, offset: 0x219C, size: 0x8, addend: 0x0, symName: '-[NBAsYouTypeFormatter description]', symObjAddr: 0x2A50, symBinAddr: 0x6A50, symSize: 0x4 }
+  - { offsetInCU: 0x15E5, offset: 0x21CF, size: 0x8, addend: 0x0, symName: '-[NBAsYouTypeFormatter isSuccessfulFormatting]', symObjAddr: 0x2A54, symBinAddr: 0x6A54, symSize: 0x8 }
+  - { offsetInCU: 0x1619, offset: 0x2203, size: 0x8, addend: 0x0, symName: '-[NBAsYouTypeFormatter currentOutput_]', symObjAddr: 0x2A5C, symBinAddr: 0x6A5C, symSize: 0x8 }
+  - { offsetInCU: 0x164D, offset: 0x2237, size: 0x8, addend: 0x0, symName: '-[NBAsYouTypeFormatter setCurrentOutput_:]', symObjAddr: 0x2A64, symBinAddr: 0x6A64, symSize: 0xC }
+  - { offsetInCU: 0x168A, offset: 0x2274, size: 0x8, addend: 0x0, symName: '-[NBAsYouTypeFormatter currentFormattingPattern_]', symObjAddr: 0x2A70, symBinAddr: 0x6A70, symSize: 0x8 }
+  - { offsetInCU: 0x16BE, offset: 0x22A8, size: 0x8, addend: 0x0, symName: '-[NBAsYouTypeFormatter setCurrentFormattingPattern_:]', symObjAddr: 0x2A78, symBinAddr: 0x6A78, symSize: 0xC }
+  - { offsetInCU: 0x16FB, offset: 0x22E5, size: 0x8, addend: 0x0, symName: '-[NBAsYouTypeFormatter defaultCountry_]', symObjAddr: 0x2A84, symBinAddr: 0x6A84, symSize: 0x8 }
+  - { offsetInCU: 0x172F, offset: 0x2319, size: 0x8, addend: 0x0, symName: '-[NBAsYouTypeFormatter setDefaultCountry_:]', symObjAddr: 0x2A8C, symBinAddr: 0x6A8C, symSize: 0xC }
+  - { offsetInCU: 0x176C, offset: 0x2356, size: 0x8, addend: 0x0, symName: '-[NBAsYouTypeFormatter nationalPrefixExtracted_]', symObjAddr: 0x2A98, symBinAddr: 0x6A98, symSize: 0x8 }
+  - { offsetInCU: 0x17A0, offset: 0x238A, size: 0x8, addend: 0x0, symName: '-[NBAsYouTypeFormatter setNationalPrefixExtracted_:]', symObjAddr: 0x2AA0, symBinAddr: 0x6AA0, symSize: 0xC }
+  - { offsetInCU: 0x17DD, offset: 0x23C7, size: 0x8, addend: 0x0, symName: '-[NBAsYouTypeFormatter formattingTemplate_]', symObjAddr: 0x2AAC, symBinAddr: 0x6AAC, symSize: 0x8 }
+  - { offsetInCU: 0x1811, offset: 0x23FB, size: 0x8, addend: 0x0, symName: '-[NBAsYouTypeFormatter setFormattingTemplate_:]', symObjAddr: 0x2AB4, symBinAddr: 0x6AB4, symSize: 0xC }
+  - { offsetInCU: 0x184E, offset: 0x2438, size: 0x8, addend: 0x0, symName: '-[NBAsYouTypeFormatter accruedInput_]', symObjAddr: 0x2AC0, symBinAddr: 0x6AC0, symSize: 0x8 }
+  - { offsetInCU: 0x1882, offset: 0x246C, size: 0x8, addend: 0x0, symName: '-[NBAsYouTypeFormatter setAccruedInput_:]', symObjAddr: 0x2AC8, symBinAddr: 0x6AC8, symSize: 0xC }
+  - { offsetInCU: 0x18BF, offset: 0x24A9, size: 0x8, addend: 0x0, symName: '-[NBAsYouTypeFormatter prefixBeforeNationalNumber_]', symObjAddr: 0x2AD4, symBinAddr: 0x6AD4, symSize: 0x8 }
+  - { offsetInCU: 0x18F3, offset: 0x24DD, size: 0x8, addend: 0x0, symName: '-[NBAsYouTypeFormatter setPrefixBeforeNationalNumber_:]', symObjAddr: 0x2ADC, symBinAddr: 0x6ADC, symSize: 0xC }
+  - { offsetInCU: 0x1930, offset: 0x251A, size: 0x8, addend: 0x0, symName: '-[NBAsYouTypeFormatter accruedInputWithoutFormatting_]', symObjAddr: 0x2AE8, symBinAddr: 0x6AE8, symSize: 0x8 }
+  - { offsetInCU: 0x1964, offset: 0x254E, size: 0x8, addend: 0x0, symName: '-[NBAsYouTypeFormatter setAccruedInputWithoutFormatting_:]', symObjAddr: 0x2AF0, symBinAddr: 0x6AF0, symSize: 0xC }
+  - { offsetInCU: 0x19A1, offset: 0x258B, size: 0x8, addend: 0x0, symName: '-[NBAsYouTypeFormatter nationalNumber_]', symObjAddr: 0x2AFC, symBinAddr: 0x6AFC, symSize: 0x8 }
+  - { offsetInCU: 0x19D5, offset: 0x25BF, size: 0x8, addend: 0x0, symName: '-[NBAsYouTypeFormatter setNationalNumber_:]', symObjAddr: 0x2B04, symBinAddr: 0x6B04, symSize: 0xC }
+  - { offsetInCU: 0x1A12, offset: 0x25FC, size: 0x8, addend: 0x0, symName: '-[NBAsYouTypeFormatter DIGIT_PATTERN_]', symObjAddr: 0x2B10, symBinAddr: 0x6B10, symSize: 0x8 }
+  - { offsetInCU: 0x1A46, offset: 0x2630, size: 0x8, addend: 0x0, symName: '-[NBAsYouTypeFormatter setDIGIT_PATTERN_:]', symObjAddr: 0x2B18, symBinAddr: 0x6B18, symSize: 0xC }
+  - { offsetInCU: 0x1A83, offset: 0x266D, size: 0x8, addend: 0x0, symName: '-[NBAsYouTypeFormatter NATIONAL_PREFIX_SEPARATORS_PATTERN_]', symObjAddr: 0x2B24, symBinAddr: 0x6B24, symSize: 0x8 }
+  - { offsetInCU: 0x1AB7, offset: 0x26A1, size: 0x8, addend: 0x0, symName: '-[NBAsYouTypeFormatter setNATIONAL_PREFIX_SEPARATORS_PATTERN_:]', symObjAddr: 0x2B2C, symBinAddr: 0x6B2C, symSize: 0xC }
+  - { offsetInCU: 0x1AF4, offset: 0x26DE, size: 0x8, addend: 0x0, symName: '-[NBAsYouTypeFormatter CHARACTER_CLASS_PATTERN_]', symObjAddr: 0x2B38, symBinAddr: 0x6B38, symSize: 0x8 }
+  - { offsetInCU: 0x1B28, offset: 0x2712, size: 0x8, addend: 0x0, symName: '-[NBAsYouTypeFormatter setCHARACTER_CLASS_PATTERN_:]', symObjAddr: 0x2B40, symBinAddr: 0x6B40, symSize: 0xC }
+  - { offsetInCU: 0x1B65, offset: 0x274F, size: 0x8, addend: 0x0, symName: '-[NBAsYouTypeFormatter STANDALONE_DIGIT_PATTERN_]', symObjAddr: 0x2B4C, symBinAddr: 0x6B4C, symSize: 0x8 }
+  - { offsetInCU: 0x1B99, offset: 0x2783, size: 0x8, addend: 0x0, symName: '-[NBAsYouTypeFormatter setSTANDALONE_DIGIT_PATTERN_:]', symObjAddr: 0x2B54, symBinAddr: 0x6B54, symSize: 0xC }
+  - { offsetInCU: 0x1BD6, offset: 0x27C0, size: 0x8, addend: 0x0, symName: '-[NBAsYouTypeFormatter ELIGIBLE_FORMAT_PATTERN_]', symObjAddr: 0x2B60, symBinAddr: 0x6B60, symSize: 0x8 }
+  - { offsetInCU: 0x1C0A, offset: 0x27F4, size: 0x8, addend: 0x0, symName: '-[NBAsYouTypeFormatter setELIGIBLE_FORMAT_PATTERN_:]', symObjAddr: 0x2B68, symBinAddr: 0x6B68, symSize: 0xC }
+  - { offsetInCU: 0x1C47, offset: 0x2831, size: 0x8, addend: 0x0, symName: '-[NBAsYouTypeFormatter ableToFormat_]', symObjAddr: 0x2B74, symBinAddr: 0x6B74, symSize: 0x8 }
+  - { offsetInCU: 0x1C7B, offset: 0x2865, size: 0x8, addend: 0x0, symName: '-[NBAsYouTypeFormatter setAbleToFormat_:]', symObjAddr: 0x2B7C, symBinAddr: 0x6B7C, symSize: 0x8 }
+  - { offsetInCU: 0x1CB2, offset: 0x289C, size: 0x8, addend: 0x0, symName: '-[NBAsYouTypeFormatter inputHasFormatting_]', symObjAddr: 0x2B84, symBinAddr: 0x6B84, symSize: 0x8 }
+  - { offsetInCU: 0x1CE6, offset: 0x28D0, size: 0x8, addend: 0x0, symName: '-[NBAsYouTypeFormatter setInputHasFormatting_:]', symObjAddr: 0x2B8C, symBinAddr: 0x6B8C, symSize: 0x8 }
+  - { offsetInCU: 0x1D1D, offset: 0x2907, size: 0x8, addend: 0x0, symName: '-[NBAsYouTypeFormatter isCompleteNumber_]', symObjAddr: 0x2B94, symBinAddr: 0x6B94, symSize: 0x8 }
+  - { offsetInCU: 0x1D51, offset: 0x293B, size: 0x8, addend: 0x0, symName: '-[NBAsYouTypeFormatter setIsCompleteNumber_:]', symObjAddr: 0x2B9C, symBinAddr: 0x6B9C, symSize: 0x8 }
+  - { offsetInCU: 0x1D88, offset: 0x2972, size: 0x8, addend: 0x0, symName: '-[NBAsYouTypeFormatter isExpectingCountryCallingCode_]', symObjAddr: 0x2BA4, symBinAddr: 0x6BA4, symSize: 0x8 }
+  - { offsetInCU: 0x1DBC, offset: 0x29A6, size: 0x8, addend: 0x0, symName: '-[NBAsYouTypeFormatter setIsExpectingCountryCallingCode_:]', symObjAddr: 0x2BAC, symBinAddr: 0x6BAC, symSize: 0x8 }
+  - { offsetInCU: 0x1DF3, offset: 0x29DD, size: 0x8, addend: 0x0, symName: '-[NBAsYouTypeFormatter shouldAddSpaceAfterNationalPrefix_]', symObjAddr: 0x2BB4, symBinAddr: 0x6BB4, symSize: 0x8 }
+  - { offsetInCU: 0x1E27, offset: 0x2A11, size: 0x8, addend: 0x0, symName: '-[NBAsYouTypeFormatter setShouldAddSpaceAfterNationalPrefix_:]', symObjAddr: 0x2BBC, symBinAddr: 0x6BBC, symSize: 0x8 }
+  - { offsetInCU: 0x1E5E, offset: 0x2A48, size: 0x8, addend: 0x0, symName: '-[NBAsYouTypeFormatter phoneUtil_]', symObjAddr: 0x2BC4, symBinAddr: 0x6BC4, symSize: 0x8 }
+  - { offsetInCU: 0x1E92, offset: 0x2A7C, size: 0x8, addend: 0x0, symName: '-[NBAsYouTypeFormatter setPhoneUtil_:]', symObjAddr: 0x2BCC, symBinAddr: 0x6BCC, symSize: 0xC }
+  - { offsetInCU: 0x1ECF, offset: 0x2AB9, size: 0x8, addend: 0x0, symName: '-[NBAsYouTypeFormatter lastMatchPosition_]', symObjAddr: 0x2BD8, symBinAddr: 0x6BD8, symSize: 0x8 }
+  - { offsetInCU: 0x1F03, offset: 0x2AED, size: 0x8, addend: 0x0, symName: '-[NBAsYouTypeFormatter setLastMatchPosition_:]', symObjAddr: 0x2BE0, symBinAddr: 0x6BE0, symSize: 0x8 }
+  - { offsetInCU: 0x1F3C, offset: 0x2B26, size: 0x8, addend: 0x0, symName: '-[NBAsYouTypeFormatter originalPosition_]', symObjAddr: 0x2BE8, symBinAddr: 0x6BE8, symSize: 0x8 }
+  - { offsetInCU: 0x1F70, offset: 0x2B5A, size: 0x8, addend: 0x0, symName: '-[NBAsYouTypeFormatter setOriginalPosition_:]', symObjAddr: 0x2BF0, symBinAddr: 0x6BF0, symSize: 0x8 }
+  - { offsetInCU: 0x1FA9, offset: 0x2B93, size: 0x8, addend: 0x0, symName: '-[NBAsYouTypeFormatter positionToRemember_]', symObjAddr: 0x2BF8, symBinAddr: 0x6BF8, symSize: 0x8 }
+  - { offsetInCU: 0x1FDD, offset: 0x2BC7, size: 0x8, addend: 0x0, symName: '-[NBAsYouTypeFormatter setPositionToRemember_:]', symObjAddr: 0x2C00, symBinAddr: 0x6C00, symSize: 0x8 }
+  - { offsetInCU: 0x2016, offset: 0x2C00, size: 0x8, addend: 0x0, symName: '-[NBAsYouTypeFormatter possibleFormats_]', symObjAddr: 0x2C08, symBinAddr: 0x6C08, symSize: 0x8 }
+  - { offsetInCU: 0x204A, offset: 0x2C34, size: 0x8, addend: 0x0, symName: '-[NBAsYouTypeFormatter setPossibleFormats_:]', symObjAddr: 0x2C10, symBinAddr: 0x6C10, symSize: 0xC }
+  - { offsetInCU: 0x2087, offset: 0x2C71, size: 0x8, addend: 0x0, symName: '-[NBAsYouTypeFormatter currentMetaData_]', symObjAddr: 0x2C1C, symBinAddr: 0x6C1C, symSize: 0x8 }
+  - { offsetInCU: 0x20BB, offset: 0x2CA5, size: 0x8, addend: 0x0, symName: '-[NBAsYouTypeFormatter setCurrentMetaData_:]', symObjAddr: 0x2C24, symBinAddr: 0x6C24, symSize: 0xC }
+  - { offsetInCU: 0x20F8, offset: 0x2CE2, size: 0x8, addend: 0x0, symName: '-[NBAsYouTypeFormatter defaultMetaData_]', symObjAddr: 0x2C30, symBinAddr: 0x6C30, symSize: 0x8 }
+  - { offsetInCU: 0x212C, offset: 0x2D16, size: 0x8, addend: 0x0, symName: '-[NBAsYouTypeFormatter setDefaultMetaData_:]', symObjAddr: 0x2C38, symBinAddr: 0x6C38, symSize: 0xC }
+  - { offsetInCU: 0x2169, offset: 0x2D53, size: 0x8, addend: 0x0, symName: '-[NBAsYouTypeFormatter .cxx_destruct]', symObjAddr: 0x2C44, symBinAddr: 0x6C44, symSize: 0xF0 }
+  - { offsetInCU: 0x27, offset: 0x2E5C, size: 0x8, addend: 0x0, symName: '-[NBMetadataHelper init]', symObjAddr: 0x0, symBinAddr: 0x6D34, symSize: 0x60 }
+  - { offsetInCU: 0x41, offset: 0x2E76, size: 0x8, addend: 0x0, symName: _kPhoneNumberMetaData, symObjAddr: 0xAC0, symBinAddr: 0x26A38, symSize: 0x0 }
+  - { offsetInCU: 0x72, offset: 0x2EA7, size: 0x8, addend: 0x0, symName: _kPhoneNumberMetaDataCompressedLength, symObjAddr: 0xC4E8, symBinAddr: 0x32460, symSize: 0x0 }
+  - { offsetInCU: 0x103, offset: 0x2F38, size: 0x8, addend: 0x0, symName: _kPhoneNumberMetaDataExpandedLength, symObjAddr: 0xC4F0, symBinAddr: 0x32468, symSize: 0x0 }
+  - { offsetInCU: 0x10C, offset: 0x2F41, size: 0x8, addend: 0x0, symName: '+[NBMetadataHelper phoneNumberDataMap]', symObjAddr: 0x60, symBinAddr: 0x6D94, symSize: 0x74 }
+  - { offsetInCU: 0x135, offset: 0x2F6A, size: 0x8, addend: 0x0, symName: _phoneNumberDataMap.phoneNumberDataDictionary, symObjAddr: 0x11000, symBinAddr: 0x32530, symSize: 0x0 }
+  - { offsetInCU: 0x14A, offset: 0x2F7F, size: 0x8, addend: 0x0, symName: _phoneNumberDataMap.onceToken, symObjAddr: 0x11008, symBinAddr: 0x32538, symSize: 0x0 }
+  - { offsetInCU: 0x245, offset: 0x307A, size: 0x8, addend: 0x0, symName: '+[NBMetadataHelper CCode2CNMap]', symObjAddr: 0x114, symBinAddr: 0x6E48, symSize: 0x74 }
+  - { offsetInCU: 0x26E, offset: 0x30A3, size: 0x8, addend: 0x0, symName: _CCode2CNMap.mapCCode2CN, symObjAddr: 0x11010, symBinAddr: 0x32540, symSize: 0x0 }
+  - { offsetInCU: 0x283, offset: 0x30B8, size: 0x8, addend: 0x0, symName: _CCode2CNMap.onceToken, symObjAddr: 0x11018, symBinAddr: 0x32548, symSize: 0x0 }
+  - { offsetInCU: 0x2D9, offset: 0x310E, size: 0x8, addend: 0x0, symName: _StringByTrimming, symObjAddr: 0x85C, symBinAddr: 0x7590, symSize: 0x68 }
+  - { offsetInCU: 0x2FE, offset: 0x3133, size: 0x8, addend: 0x0, symName: _StringByTrimming.onceToken, symObjAddr: 0x11020, symBinAddr: 0x32550, symSize: 0x0 }
+  - { offsetInCU: 0x313, offset: 0x3148, size: 0x8, addend: 0x0, symName: _StringByTrimming.whitespaceCharSet, symObjAddr: 0x11028, symBinAddr: 0x32558, symSize: 0x0 }
+  - { offsetInCU: 0x3A2, offset: 0x31D7, size: 0x8, addend: 0x0, symName: '-[NBMetadataHelper init]', symObjAddr: 0x0, symBinAddr: 0x6D34, symSize: 0x60 }
+  - { offsetInCU: 0x46D, offset: 0x32A2, size: 0x8, addend: 0x0, symName: '___38+[NBMetadataHelper phoneNumberDataMap]_block_invoke', symObjAddr: 0xD4, symBinAddr: 0x6E08, symSize: 0x40 }
+  - { offsetInCU: 0x4A9, offset: 0x32DE, size: 0x8, addend: 0x0, symName: '___31+[NBMetadataHelper CCode2CNMap]_block_invoke', symObjAddr: 0x188, symBinAddr: 0x6EBC, symSize: 0x1BC }
+  - { offsetInCU: 0x549, offset: 0x337E, size: 0x8, addend: 0x0, symName: '+[NBMetadataHelper CN2CCodeMap]', symObjAddr: 0x344, symBinAddr: 0x7078, symSize: 0x40 }
+  - { offsetInCU: 0x57D, offset: 0x33B2, size: 0x8, addend: 0x0, symName: '-[NBMetadataHelper getAllMetadata]', symObjAddr: 0x384, symBinAddr: 0x70B8, symSize: 0x2C4 }
+  - { offsetInCU: 0x65A, offset: 0x348F, size: 0x8, addend: 0x0, symName: '+[NBMetadataHelper regionCodeFromCountryCode:]', symObjAddr: 0x648, symBinAddr: 0x737C, symSize: 0xAC }
+  - { offsetInCU: 0x6AC, offset: 0x34E1, size: 0x8, addend: 0x0, symName: '+[NBMetadataHelper countryCodeFromRegionCode:]', symObjAddr: 0x6F4, symBinAddr: 0x7428, symSize: 0x58 }
+  - { offsetInCU: 0x6EF, offset: 0x3524, size: 0x8, addend: 0x0, symName: '-[NBMetadataHelper getMetadataForRegion:]', symObjAddr: 0x74C, symBinAddr: 0x7480, symSize: 0x110 }
+  - { offsetInCU: 0x791, offset: 0x35C6, size: 0x8, addend: 0x0, symName: '-[NBMetadataHelper getMetadataForNonGeographicalRegion:]', symObjAddr: 0x8C4, symBinAddr: 0x75F8, symSize: 0x48 }
+  - { offsetInCU: 0x7E3, offset: 0x3618, size: 0x8, addend: 0x0, symName: '+[NBMetadataHelper hasValue:]', symObjAddr: 0x90C, symBinAddr: 0x7640, symSize: 0x3C }
+  - { offsetInCU: 0x837, offset: 0x366C, size: 0x8, addend: 0x0, symName: '+[NBMetadataHelper jsonObjectFromZippedDataWithBytes:compressedLength:expandedLength:]', symObjAddr: 0x948, symBinAddr: 0x767C, symSize: 0xDC }
+  - { offsetInCU: 0x97C, offset: 0x37B1, size: 0x8, addend: 0x0, symName: '-[NBMetadataHelper metadataCache]', symObjAddr: 0xA24, symBinAddr: 0x7758, symSize: 0x8 }
+  - { offsetInCU: 0x9B0, offset: 0x37E5, size: 0x8, addend: 0x0, symName: '-[NBMetadataHelper setMetadataCache:]', symObjAddr: 0xA2C, symBinAddr: 0x7760, symSize: 0xC }
+  - { offsetInCU: 0x9ED, offset: 0x3822, size: 0x8, addend: 0x0, symName: '-[NBMetadataHelper .cxx_destruct]', symObjAddr: 0xA38, symBinAddr: 0x776C, symSize: 0xC }
+  - { offsetInCU: 0xA1D, offset: 0x3852, size: 0x8, addend: 0x0, symName: ___StringByTrimming_block_invoke, symObjAddr: 0xA44, symBinAddr: 0x7778, symSize: 0x68 }
+  - { offsetInCU: 0x27, offset: 0x3BED, size: 0x8, addend: 0x0, symName: '-[NBNumberFormat initWithPattern:withFormat:withLeadingDigitsPatterns:withNationalPrefixFormattingRule:whenFormatting:withDomesticCarrierCodeFormattingRule:]', symObjAddr: 0x0, symBinAddr: 0x77E0, symSize: 0x108 }
+  - { offsetInCU: 0x131, offset: 0x3CF7, size: 0x8, addend: 0x0, symName: '-[NBNumberFormat initWithPattern:withFormat:withLeadingDigitsPatterns:withNationalPrefixFormattingRule:whenFormatting:withDomesticCarrierCodeFormattingRule:]', symObjAddr: 0x0, symBinAddr: 0x77E0, symSize: 0x108 }
+  - { offsetInCU: 0x1BF, offset: 0x3D85, size: 0x8, addend: 0x0, symName: '-[NBNumberFormat initWithEntry:]', symObjAddr: 0x108, symBinAddr: 0x78E8, symSize: 0x110 }
+  - { offsetInCU: 0x202, offset: 0x3DC8, size: 0x8, addend: 0x0, symName: '-[NBNumberFormat description]', symObjAddr: 0x218, symBinAddr: 0x79F8, symSize: 0xEC }
+  - { offsetInCU: 0x236, offset: 0x3DFC, size: 0x8, addend: 0x0, symName: '-[NBNumberFormat copyWithZone:]', symObjAddr: 0x304, symBinAddr: 0x7AE4, symSize: 0xDC }
+  - { offsetInCU: 0x275, offset: 0x3E3B, size: 0x8, addend: 0x0, symName: '-[NBNumberFormat pattern]', symObjAddr: 0x3E0, symBinAddr: 0x7BC0, symSize: 0x8 }
+  - { offsetInCU: 0x2A9, offset: 0x3E6F, size: 0x8, addend: 0x0, symName: '-[NBNumberFormat setPattern:]', symObjAddr: 0x3E8, symBinAddr: 0x7BC8, symSize: 0xC }
+  - { offsetInCU: 0x2E6, offset: 0x3EAC, size: 0x8, addend: 0x0, symName: '-[NBNumberFormat format]', symObjAddr: 0x3F4, symBinAddr: 0x7BD4, symSize: 0x8 }
+  - { offsetInCU: 0x31A, offset: 0x3EE0, size: 0x8, addend: 0x0, symName: '-[NBNumberFormat setFormat:]', symObjAddr: 0x3FC, symBinAddr: 0x7BDC, symSize: 0xC }
+  - { offsetInCU: 0x357, offset: 0x3F1D, size: 0x8, addend: 0x0, symName: '-[NBNumberFormat leadingDigitsPatterns]', symObjAddr: 0x408, symBinAddr: 0x7BE8, symSize: 0x8 }
+  - { offsetInCU: 0x38B, offset: 0x3F51, size: 0x8, addend: 0x0, symName: '-[NBNumberFormat setLeadingDigitsPatterns:]', symObjAddr: 0x410, symBinAddr: 0x7BF0, symSize: 0xC }
+  - { offsetInCU: 0x3C8, offset: 0x3F8E, size: 0x8, addend: 0x0, symName: '-[NBNumberFormat nationalPrefixFormattingRule]', symObjAddr: 0x41C, symBinAddr: 0x7BFC, symSize: 0x8 }
+  - { offsetInCU: 0x3FC, offset: 0x3FC2, size: 0x8, addend: 0x0, symName: '-[NBNumberFormat setNationalPrefixFormattingRule:]', symObjAddr: 0x424, symBinAddr: 0x7C04, symSize: 0xC }
+  - { offsetInCU: 0x439, offset: 0x3FFF, size: 0x8, addend: 0x0, symName: '-[NBNumberFormat nationalPrefixOptionalWhenFormatting]', symObjAddr: 0x430, symBinAddr: 0x7C10, symSize: 0x8 }
+  - { offsetInCU: 0x46D, offset: 0x4033, size: 0x8, addend: 0x0, symName: '-[NBNumberFormat setNationalPrefixOptionalWhenFormatting:]', symObjAddr: 0x438, symBinAddr: 0x7C18, symSize: 0x8 }
+  - { offsetInCU: 0x4A4, offset: 0x406A, size: 0x8, addend: 0x0, symName: '-[NBNumberFormat domesticCarrierCodeFormattingRule]', symObjAddr: 0x440, symBinAddr: 0x7C20, symSize: 0x8 }
+  - { offsetInCU: 0x4D8, offset: 0x409E, size: 0x8, addend: 0x0, symName: '-[NBNumberFormat setDomesticCarrierCodeFormattingRule:]', symObjAddr: 0x448, symBinAddr: 0x7C28, symSize: 0xC }
+  - { offsetInCU: 0x515, offset: 0x40DB, size: 0x8, addend: 0x0, symName: '-[NBNumberFormat .cxx_destruct]', symObjAddr: 0x454, symBinAddr: 0x7C34, symSize: 0x54 }
+  - { offsetInCU: 0x27, offset: 0x4182, size: 0x8, addend: 0x0, symName: '-[NBPhoneMetaData init]', symObjAddr: 0x0, symBinAddr: 0x7C88, symSize: 0x90 }
+  - { offsetInCU: 0x3CC, offset: 0x4527, size: 0x8, addend: 0x0, symName: '-[NBPhoneMetaData init]', symObjAddr: 0x0, symBinAddr: 0x7C88, symSize: 0x90 }
+  - { offsetInCU: 0x400, offset: 0x455B, size: 0x8, addend: 0x0, symName: '-[NBPhoneMetaData initWithEntry:]', symObjAddr: 0x90, symBinAddr: 0x7D18, symSize: 0x540 }
+  - { offsetInCU: 0x443, offset: 0x459E, size: 0x8, addend: 0x0, symName: '-[NBPhoneMetaData numberFormatsFromEntry:]', symObjAddr: 0x5D0, symBinAddr: 0x8258, symSize: 0x140 }
+  - { offsetInCU: 0x4C3, offset: 0x461E, size: 0x8, addend: 0x0, symName: '-[NBPhoneMetaData description]', symObjAddr: 0x710, symBinAddr: 0x8398, symSize: 0xB8 }
+  - { offsetInCU: 0x4F7, offset: 0x4652, size: 0x8, addend: 0x0, symName: '-[NBPhoneMetaData generalDesc]', symObjAddr: 0x7C8, symBinAddr: 0x8450, symSize: 0x8 }
+  - { offsetInCU: 0x52B, offset: 0x4686, size: 0x8, addend: 0x0, symName: '-[NBPhoneMetaData setGeneralDesc:]', symObjAddr: 0x7D0, symBinAddr: 0x8458, symSize: 0xC }
+  - { offsetInCU: 0x568, offset: 0x46C3, size: 0x8, addend: 0x0, symName: '-[NBPhoneMetaData fixedLine]', symObjAddr: 0x7DC, symBinAddr: 0x8464, symSize: 0x8 }
+  - { offsetInCU: 0x59C, offset: 0x46F7, size: 0x8, addend: 0x0, symName: '-[NBPhoneMetaData setFixedLine:]', symObjAddr: 0x7E4, symBinAddr: 0x846C, symSize: 0xC }
+  - { offsetInCU: 0x5D9, offset: 0x4734, size: 0x8, addend: 0x0, symName: '-[NBPhoneMetaData mobile]', symObjAddr: 0x7F0, symBinAddr: 0x8478, symSize: 0x8 }
+  - { offsetInCU: 0x60D, offset: 0x4768, size: 0x8, addend: 0x0, symName: '-[NBPhoneMetaData setMobile:]', symObjAddr: 0x7F8, symBinAddr: 0x8480, symSize: 0xC }
+  - { offsetInCU: 0x64A, offset: 0x47A5, size: 0x8, addend: 0x0, symName: '-[NBPhoneMetaData tollFree]', symObjAddr: 0x804, symBinAddr: 0x848C, symSize: 0x8 }
+  - { offsetInCU: 0x67E, offset: 0x47D9, size: 0x8, addend: 0x0, symName: '-[NBPhoneMetaData setTollFree:]', symObjAddr: 0x80C, symBinAddr: 0x8494, symSize: 0xC }
+  - { offsetInCU: 0x6BB, offset: 0x4816, size: 0x8, addend: 0x0, symName: '-[NBPhoneMetaData premiumRate]', symObjAddr: 0x818, symBinAddr: 0x84A0, symSize: 0x8 }
+  - { offsetInCU: 0x6EF, offset: 0x484A, size: 0x8, addend: 0x0, symName: '-[NBPhoneMetaData setPremiumRate:]', symObjAddr: 0x820, symBinAddr: 0x84A8, symSize: 0xC }
+  - { offsetInCU: 0x72C, offset: 0x4887, size: 0x8, addend: 0x0, symName: '-[NBPhoneMetaData sharedCost]', symObjAddr: 0x82C, symBinAddr: 0x84B4, symSize: 0x8 }
+  - { offsetInCU: 0x760, offset: 0x48BB, size: 0x8, addend: 0x0, symName: '-[NBPhoneMetaData setSharedCost:]', symObjAddr: 0x834, symBinAddr: 0x84BC, symSize: 0xC }
+  - { offsetInCU: 0x79D, offset: 0x48F8, size: 0x8, addend: 0x0, symName: '-[NBPhoneMetaData personalNumber]', symObjAddr: 0x840, symBinAddr: 0x84C8, symSize: 0x8 }
+  - { offsetInCU: 0x7D1, offset: 0x492C, size: 0x8, addend: 0x0, symName: '-[NBPhoneMetaData setPersonalNumber:]', symObjAddr: 0x848, symBinAddr: 0x84D0, symSize: 0xC }
+  - { offsetInCU: 0x80E, offset: 0x4969, size: 0x8, addend: 0x0, symName: '-[NBPhoneMetaData voip]', symObjAddr: 0x854, symBinAddr: 0x84DC, symSize: 0x8 }
+  - { offsetInCU: 0x842, offset: 0x499D, size: 0x8, addend: 0x0, symName: '-[NBPhoneMetaData setVoip:]', symObjAddr: 0x85C, symBinAddr: 0x84E4, symSize: 0xC }
+  - { offsetInCU: 0x87F, offset: 0x49DA, size: 0x8, addend: 0x0, symName: '-[NBPhoneMetaData pager]', symObjAddr: 0x868, symBinAddr: 0x84F0, symSize: 0x8 }
+  - { offsetInCU: 0x8B3, offset: 0x4A0E, size: 0x8, addend: 0x0, symName: '-[NBPhoneMetaData setPager:]', symObjAddr: 0x870, symBinAddr: 0x84F8, symSize: 0xC }
+  - { offsetInCU: 0x8F0, offset: 0x4A4B, size: 0x8, addend: 0x0, symName: '-[NBPhoneMetaData uan]', symObjAddr: 0x87C, symBinAddr: 0x8504, symSize: 0x8 }
+  - { offsetInCU: 0x924, offset: 0x4A7F, size: 0x8, addend: 0x0, symName: '-[NBPhoneMetaData setUan:]', symObjAddr: 0x884, symBinAddr: 0x850C, symSize: 0xC }
+  - { offsetInCU: 0x961, offset: 0x4ABC, size: 0x8, addend: 0x0, symName: '-[NBPhoneMetaData emergency]', symObjAddr: 0x890, symBinAddr: 0x8518, symSize: 0x8 }
+  - { offsetInCU: 0x995, offset: 0x4AF0, size: 0x8, addend: 0x0, symName: '-[NBPhoneMetaData setEmergency:]', symObjAddr: 0x898, symBinAddr: 0x8520, symSize: 0xC }
+  - { offsetInCU: 0x9D2, offset: 0x4B2D, size: 0x8, addend: 0x0, symName: '-[NBPhoneMetaData voicemail]', symObjAddr: 0x8A4, symBinAddr: 0x852C, symSize: 0x8 }
+  - { offsetInCU: 0xA06, offset: 0x4B61, size: 0x8, addend: 0x0, symName: '-[NBPhoneMetaData setVoicemail:]', symObjAddr: 0x8AC, symBinAddr: 0x8534, symSize: 0xC }
+  - { offsetInCU: 0xA43, offset: 0x4B9E, size: 0x8, addend: 0x0, symName: '-[NBPhoneMetaData noInternationalDialling]', symObjAddr: 0x8B8, symBinAddr: 0x8540, symSize: 0x8 }
+  - { offsetInCU: 0xA77, offset: 0x4BD2, size: 0x8, addend: 0x0, symName: '-[NBPhoneMetaData setNoInternationalDialling:]', symObjAddr: 0x8C0, symBinAddr: 0x8548, symSize: 0xC }
+  - { offsetInCU: 0xAB4, offset: 0x4C0F, size: 0x8, addend: 0x0, symName: '-[NBPhoneMetaData codeID]', symObjAddr: 0x8CC, symBinAddr: 0x8554, symSize: 0x8 }
+  - { offsetInCU: 0xAE8, offset: 0x4C43, size: 0x8, addend: 0x0, symName: '-[NBPhoneMetaData setCodeID:]', symObjAddr: 0x8D4, symBinAddr: 0x855C, symSize: 0xC }
+  - { offsetInCU: 0xB25, offset: 0x4C80, size: 0x8, addend: 0x0, symName: '-[NBPhoneMetaData countryCode]', symObjAddr: 0x8E0, symBinAddr: 0x8568, symSize: 0x8 }
+  - { offsetInCU: 0xB59, offset: 0x4CB4, size: 0x8, addend: 0x0, symName: '-[NBPhoneMetaData setCountryCode:]', symObjAddr: 0x8E8, symBinAddr: 0x8570, symSize: 0xC }
+  - { offsetInCU: 0xB96, offset: 0x4CF1, size: 0x8, addend: 0x0, symName: '-[NBPhoneMetaData internationalPrefix]', symObjAddr: 0x8F4, symBinAddr: 0x857C, symSize: 0x8 }
+  - { offsetInCU: 0xBCA, offset: 0x4D25, size: 0x8, addend: 0x0, symName: '-[NBPhoneMetaData setInternationalPrefix:]', symObjAddr: 0x8FC, symBinAddr: 0x8584, symSize: 0xC }
+  - { offsetInCU: 0xC07, offset: 0x4D62, size: 0x8, addend: 0x0, symName: '-[NBPhoneMetaData preferredInternationalPrefix]', symObjAddr: 0x908, symBinAddr: 0x8590, symSize: 0x8 }
+  - { offsetInCU: 0xC3B, offset: 0x4D96, size: 0x8, addend: 0x0, symName: '-[NBPhoneMetaData setPreferredInternationalPrefix:]', symObjAddr: 0x910, symBinAddr: 0x8598, symSize: 0xC }
+  - { offsetInCU: 0xC78, offset: 0x4DD3, size: 0x8, addend: 0x0, symName: '-[NBPhoneMetaData nationalPrefix]', symObjAddr: 0x91C, symBinAddr: 0x85A4, symSize: 0x8 }
+  - { offsetInCU: 0xCAC, offset: 0x4E07, size: 0x8, addend: 0x0, symName: '-[NBPhoneMetaData setNationalPrefix:]', symObjAddr: 0x924, symBinAddr: 0x85AC, symSize: 0xC }
+  - { offsetInCU: 0xCE9, offset: 0x4E44, size: 0x8, addend: 0x0, symName: '-[NBPhoneMetaData preferredExtnPrefix]', symObjAddr: 0x930, symBinAddr: 0x85B8, symSize: 0x8 }
+  - { offsetInCU: 0xD1D, offset: 0x4E78, size: 0x8, addend: 0x0, symName: '-[NBPhoneMetaData setPreferredExtnPrefix:]', symObjAddr: 0x938, symBinAddr: 0x85C0, symSize: 0xC }
+  - { offsetInCU: 0xD5A, offset: 0x4EB5, size: 0x8, addend: 0x0, symName: '-[NBPhoneMetaData nationalPrefixForParsing]', symObjAddr: 0x944, symBinAddr: 0x85CC, symSize: 0x8 }
+  - { offsetInCU: 0xD8E, offset: 0x4EE9, size: 0x8, addend: 0x0, symName: '-[NBPhoneMetaData setNationalPrefixForParsing:]', symObjAddr: 0x94C, symBinAddr: 0x85D4, symSize: 0xC }
+  - { offsetInCU: 0xDCB, offset: 0x4F26, size: 0x8, addend: 0x0, symName: '-[NBPhoneMetaData nationalPrefixTransformRule]', symObjAddr: 0x958, symBinAddr: 0x85E0, symSize: 0x8 }
+  - { offsetInCU: 0xDFF, offset: 0x4F5A, size: 0x8, addend: 0x0, symName: '-[NBPhoneMetaData setNationalPrefixTransformRule:]', symObjAddr: 0x960, symBinAddr: 0x85E8, symSize: 0xC }
+  - { offsetInCU: 0xE3C, offset: 0x4F97, size: 0x8, addend: 0x0, symName: '-[NBPhoneMetaData sameMobileAndFixedLinePattern]', symObjAddr: 0x96C, symBinAddr: 0x85F4, symSize: 0x8 }
+  - { offsetInCU: 0xE70, offset: 0x4FCB, size: 0x8, addend: 0x0, symName: '-[NBPhoneMetaData setSameMobileAndFixedLinePattern:]', symObjAddr: 0x974, symBinAddr: 0x85FC, symSize: 0x8 }
+  - { offsetInCU: 0xEA7, offset: 0x5002, size: 0x8, addend: 0x0, symName: '-[NBPhoneMetaData numberFormats]', symObjAddr: 0x97C, symBinAddr: 0x8604, symSize: 0x8 }
+  - { offsetInCU: 0xEDB, offset: 0x5036, size: 0x8, addend: 0x0, symName: '-[NBPhoneMetaData setNumberFormats:]', symObjAddr: 0x984, symBinAddr: 0x860C, symSize: 0xC }
+  - { offsetInCU: 0xF18, offset: 0x5073, size: 0x8, addend: 0x0, symName: '-[NBPhoneMetaData intlNumberFormats]', symObjAddr: 0x990, symBinAddr: 0x8618, symSize: 0x8 }
+  - { offsetInCU: 0xF4C, offset: 0x50A7, size: 0x8, addend: 0x0, symName: '-[NBPhoneMetaData setIntlNumberFormats:]', symObjAddr: 0x998, symBinAddr: 0x8620, symSize: 0xC }
+  - { offsetInCU: 0xF89, offset: 0x50E4, size: 0x8, addend: 0x0, symName: '-[NBPhoneMetaData mainCountryForCode]', symObjAddr: 0x9A4, symBinAddr: 0x862C, symSize: 0x8 }
+  - { offsetInCU: 0xFBD, offset: 0x5118, size: 0x8, addend: 0x0, symName: '-[NBPhoneMetaData setMainCountryForCode:]', symObjAddr: 0x9AC, symBinAddr: 0x8634, symSize: 0x8 }
+  - { offsetInCU: 0xFF4, offset: 0x514F, size: 0x8, addend: 0x0, symName: '-[NBPhoneMetaData leadingDigits]', symObjAddr: 0x9B4, symBinAddr: 0x863C, symSize: 0x8 }
+  - { offsetInCU: 0x1028, offset: 0x5183, size: 0x8, addend: 0x0, symName: '-[NBPhoneMetaData setLeadingDigits:]', symObjAddr: 0x9BC, symBinAddr: 0x8644, symSize: 0xC }
+  - { offsetInCU: 0x1065, offset: 0x51C0, size: 0x8, addend: 0x0, symName: '-[NBPhoneMetaData leadingZeroPossible]', symObjAddr: 0x9C8, symBinAddr: 0x8650, symSize: 0x8 }
+  - { offsetInCU: 0x1099, offset: 0x51F4, size: 0x8, addend: 0x0, symName: '-[NBPhoneMetaData setLeadingZeroPossible:]', symObjAddr: 0x9D0, symBinAddr: 0x8658, symSize: 0x8 }
+  - { offsetInCU: 0x10D0, offset: 0x522B, size: 0x8, addend: 0x0, symName: '-[NBPhoneMetaData .cxx_destruct]', symObjAddr: 0x9D8, symBinAddr: 0x8660, symSize: 0x138 }
+  - { offsetInCU: 0x27, offset: 0x530C, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumber init]', symObjAddr: 0x0, symBinAddr: 0x8798, symSize: 0x78 }
+  - { offsetInCU: 0x1A0, offset: 0x5485, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumber init]', symObjAddr: 0x0, symBinAddr: 0x8798, symSize: 0x78 }
+  - { offsetInCU: 0x1D4, offset: 0x54B9, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumber clearCountryCodeSource]', symObjAddr: 0x78, symBinAddr: 0x8810, symSize: 0x8 }
+  - { offsetInCU: 0x202, offset: 0x54E7, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumber getCountryCodeSourceOrDefault]', symObjAddr: 0x80, symBinAddr: 0x8818, symSize: 0x58 }
+  - { offsetInCU: 0x236, offset: 0x551B, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumber hash]', symObjAddr: 0xD8, symBinAddr: 0x8870, symSize: 0xC4 }
+  - { offsetInCU: 0x279, offset: 0x555E, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumber isEqual:]', symObjAddr: 0x19C, symBinAddr: 0x8934, symSize: 0x1E8 }
+  - { offsetInCU: 0x2C7, offset: 0x55AC, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumber copyWithZone:]', symObjAddr: 0x384, symBinAddr: 0x8B1C, symSize: 0x184 }
+  - { offsetInCU: 0x319, offset: 0x55FE, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumber initWithCoder:]', symObjAddr: 0x508, symBinAddr: 0x8CA0, symSize: 0x1A4 }
+  - { offsetInCU: 0x35C, offset: 0x5641, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumber encodeWithCoder:]', symObjAddr: 0x6AC, symBinAddr: 0x8E44, symSize: 0x18C }
+  - { offsetInCU: 0x39B, offset: 0x5680, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumber description]', symObjAddr: 0x838, symBinAddr: 0x8FD0, symSize: 0x120 }
+  - { offsetInCU: 0x3CF, offset: 0x56B4, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumber countryCode]', symObjAddr: 0x958, symBinAddr: 0x90F0, symSize: 0x8 }
+  - { offsetInCU: 0x403, offset: 0x56E8, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumber setCountryCode:]', symObjAddr: 0x960, symBinAddr: 0x90F8, symSize: 0xC }
+  - { offsetInCU: 0x440, offset: 0x5725, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumber nationalNumber]', symObjAddr: 0x96C, symBinAddr: 0x9104, symSize: 0x8 }
+  - { offsetInCU: 0x474, offset: 0x5759, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumber setNationalNumber:]', symObjAddr: 0x974, symBinAddr: 0x910C, symSize: 0xC }
+  - { offsetInCU: 0x4B1, offset: 0x5796, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumber extension]', symObjAddr: 0x980, symBinAddr: 0x9118, symSize: 0x8 }
+  - { offsetInCU: 0x4E5, offset: 0x57CA, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumber setExtension:]', symObjAddr: 0x988, symBinAddr: 0x9120, symSize: 0xC }
+  - { offsetInCU: 0x522, offset: 0x5807, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumber italianLeadingZero]', symObjAddr: 0x994, symBinAddr: 0x912C, symSize: 0x8 }
+  - { offsetInCU: 0x556, offset: 0x583B, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumber setItalianLeadingZero:]', symObjAddr: 0x99C, symBinAddr: 0x9134, symSize: 0x8 }
+  - { offsetInCU: 0x58D, offset: 0x5872, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumber numberOfLeadingZeros]', symObjAddr: 0x9A4, symBinAddr: 0x913C, symSize: 0x8 }
+  - { offsetInCU: 0x5C1, offset: 0x58A6, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumber setNumberOfLeadingZeros:]', symObjAddr: 0x9AC, symBinAddr: 0x9144, symSize: 0xC }
+  - { offsetInCU: 0x5FE, offset: 0x58E3, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumber rawInput]', symObjAddr: 0x9B8, symBinAddr: 0x9150, symSize: 0x8 }
+  - { offsetInCU: 0x632, offset: 0x5917, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumber setRawInput:]', symObjAddr: 0x9C0, symBinAddr: 0x9158, symSize: 0xC }
+  - { offsetInCU: 0x66F, offset: 0x5954, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumber countryCodeSource]', symObjAddr: 0x9CC, symBinAddr: 0x9164, symSize: 0x8 }
+  - { offsetInCU: 0x6A3, offset: 0x5988, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumber setCountryCodeSource:]', symObjAddr: 0x9D4, symBinAddr: 0x916C, symSize: 0xC }
+  - { offsetInCU: 0x6E0, offset: 0x59C5, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumber preferredDomesticCarrierCode]', symObjAddr: 0x9E0, symBinAddr: 0x9178, symSize: 0x8 }
+  - { offsetInCU: 0x714, offset: 0x59F9, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumber setPreferredDomesticCarrierCode:]', symObjAddr: 0x9E8, symBinAddr: 0x9180, symSize: 0xC }
+  - { offsetInCU: 0x751, offset: 0x5A36, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumber .cxx_destruct]', symObjAddr: 0x9F4, symBinAddr: 0x918C, symSize: 0x6C }
+  - { offsetInCU: 0x34, offset: 0x5B0A, size: 0x8, addend: 0x0, symName: _NB_UNKNOWN_REGION, symObjAddr: 0xA8, symBinAddr: 0x20248, symSize: 0x0 }
+  - { offsetInCU: 0x53, offset: 0x5B29, size: 0x8, addend: 0x0, symName: _NB_NON_BREAKING_SPACE, symObjAddr: 0xB0, symBinAddr: 0x20250, symSize: 0x0 }
+  - { offsetInCU: 0x68, offset: 0x5B3E, size: 0x8, addend: 0x0, symName: _NB_PLUS_CHARS, symObjAddr: 0xB8, symBinAddr: 0x20258, symSize: 0x0 }
+  - { offsetInCU: 0x7D, offset: 0x5B53, size: 0x8, addend: 0x0, symName: _NB_VALID_DIGITS_STRING, symObjAddr: 0xC0, symBinAddr: 0x20260, symSize: 0x0 }
+  - { offsetInCU: 0x92, offset: 0x5B68, size: 0x8, addend: 0x0, symName: _NB_REGION_CODE_FOR_NON_GEO_ENTITY, symObjAddr: 0xC8, symBinAddr: 0x20268, symSize: 0x0 }
+  - { offsetInCU: 0x27, offset: 0x5BA6, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumberDesc initWithEntry:]', symObjAddr: 0x0, symBinAddr: 0x91F8, symSize: 0x120 }
+  - { offsetInCU: 0x134, offset: 0x5CB3, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumberDesc initWithEntry:]', symObjAddr: 0x0, symBinAddr: 0x91F8, symSize: 0x120 }
+  - { offsetInCU: 0x177, offset: 0x5CF6, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumberDesc description]', symObjAddr: 0x120, symBinAddr: 0x9318, symSize: 0xC4 }
+  - { offsetInCU: 0x1AB, offset: 0x5D2A, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumberDesc nationalNumberPattern]', symObjAddr: 0x1E4, symBinAddr: 0x93DC, symSize: 0x8 }
+  - { offsetInCU: 0x1DF, offset: 0x5D5E, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumberDesc possibleNumberPattern]', symObjAddr: 0x1EC, symBinAddr: 0x93E4, symSize: 0x8 }
+  - { offsetInCU: 0x213, offset: 0x5D92, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumberDesc possibleLength]', symObjAddr: 0x1F4, symBinAddr: 0x93EC, symSize: 0x8 }
+  - { offsetInCU: 0x247, offset: 0x5DC6, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumberDesc possibleLengthLocalOnly]', symObjAddr: 0x1FC, symBinAddr: 0x93F4, symSize: 0x8 }
+  - { offsetInCU: 0x27B, offset: 0x5DFA, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumberDesc exampleNumber]', symObjAddr: 0x204, symBinAddr: 0x93FC, symSize: 0x8 }
+  - { offsetInCU: 0x2AF, offset: 0x5E2E, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumberDesc nationalNumberMatcherData]', symObjAddr: 0x20C, symBinAddr: 0x9404, symSize: 0x8 }
+  - { offsetInCU: 0x2E3, offset: 0x5E62, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumberDesc possibleNumberMatcherData]', symObjAddr: 0x214, symBinAddr: 0x940C, symSize: 0x8 }
+  - { offsetInCU: 0x317, offset: 0x5E96, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumberDesc .cxx_destruct]', symObjAddr: 0x21C, symBinAddr: 0x9414, symSize: 0x6C }
+  - { offsetInCU: 0x27, offset: 0x5F0A, size: 0x8, addend: 0x0, symName: '+[NBPhoneNumberUtil sharedInstance]', symObjAddr: 0x0, symBinAddr: 0x9480, symSize: 0x74 }
+  - { offsetInCU: 0x15C, offset: 0x603F, size: 0x8, addend: 0x0, symName: '+[NBPhoneNumberUtil sharedInstance]', symObjAddr: 0x0, symBinAddr: 0x9480, symSize: 0x74 }
+  - { offsetInCU: 0x185, offset: 0x6068, size: 0x8, addend: 0x0, symName: _sharedInstance.sharedOnceInstance, symObjAddr: 0x2BC88, symBinAddr: 0x32560, symSize: 0x0 }
+  - { offsetInCU: 0x19A, offset: 0x607D, size: 0x8, addend: 0x0, symName: _sharedInstance.onceToken, symObjAddr: 0x2BC90, symBinAddr: 0x32568, symSize: 0x0 }
+  - { offsetInCU: 0x35A, offset: 0x623D, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumberUtil initRegularExpressionSet]', symObjAddr: 0xED0, symBinAddr: 0xA350, symSize: 0x11C }
+  - { offsetInCU: 0x381, offset: 0x6264, size: 0x8, addend: 0x0, symName: _initRegularExpressionSet.onceToken, symObjAddr: 0x2BCA0, symBinAddr: 0x32578, symSize: 0x0 }
+  - { offsetInCU: 0x3CB, offset: 0x62AE, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumberUtil DIGIT_MAPPINGS]', symObjAddr: 0x113C, symBinAddr: 0xA5BC, symSize: 0x40 }
+  - { offsetInCU: 0x3F6, offset: 0x62D9, size: 0x8, addend: 0x0, symName: _DIGIT_MAPPINGS.onceToken, symObjAddr: 0x2BCE0, symBinAddr: 0x325B8, symSize: 0x0 }
+  - { offsetInCU: 0x42C, offset: 0x630F, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumberUtil initNormalizationMappings]', symObjAddr: 0x14F8, symBinAddr: 0xA978, symSize: 0x28 }
+  - { offsetInCU: 0x453, offset: 0x6336, size: 0x8, addend: 0x0, symName: _initNormalizationMappings.onceToken, symObjAddr: 0x2BCF0, symBinAddr: 0x325C8, symSize: 0x0 }
+  - { offsetInCU: 0x4C5, offset: 0x63A8, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumberUtil telephonyNetworkInfo]', symObjAddr: 0x811C, symBinAddr: 0x1159C, symSize: 0x40 }
+  - { offsetInCU: 0x4F0, offset: 0x63D3, size: 0x8, addend: 0x0, symName: _telephonyNetworkInfo.onceToken, symObjAddr: 0x2BD18, symBinAddr: 0x325F0, symSize: 0x0 }
+  - { offsetInCU: 0x53F, offset: 0x6422, size: 0x8, addend: 0x0, symName: _LEADING_PLUS_CHARS_PATTERN, symObjAddr: 0x2BCA8, symBinAddr: 0x32580, symSize: 0x0 }
+  - { offsetInCU: 0x554, offset: 0x6437, size: 0x8, addend: 0x0, symName: _EXTN_PATTERN, symObjAddr: 0x2BCC8, symBinAddr: 0x325A0, symSize: 0x0 }
+  - { offsetInCU: 0x569, offset: 0x644C, size: 0x8, addend: 0x0, symName: _SEPARATOR_PATTERN, symObjAddr: 0x2BCD0, symBinAddr: 0x325A8, symSize: 0x0 }
+  - { offsetInCU: 0x57E, offset: 0x6461, size: 0x8, addend: 0x0, symName: _VALID_PHONE_NUMBER_PATTERN, symObjAddr: 0x2BCD8, symBinAddr: 0x325B0, symSize: 0x0 }
+  - { offsetInCU: 0x593, offset: 0x6476, size: 0x8, addend: 0x0, symName: _VALID_START_CHAR_PATTERN, symObjAddr: 0x2BCB0, symBinAddr: 0x32588, symSize: 0x0 }
+  - { offsetInCU: 0x5A8, offset: 0x648B, size: 0x8, addend: 0x0, symName: _UNWANTED_END_CHAR_PATTERN, symObjAddr: 0x2BCC0, symBinAddr: 0x32598, symSize: 0x0 }
+  - { offsetInCU: 0x5BD, offset: 0x64A0, size: 0x8, addend: 0x0, symName: _SECOND_NUMBER_START_PATTERN, symObjAddr: 0x2BCB8, symBinAddr: 0x32590, symSize: 0x0 }
+  - { offsetInCU: 0x5D2, offset: 0x64B5, size: 0x8, addend: 0x0, symName: _ALL_NORMALIZATION_MAPPINGS, symObjAddr: 0x2BD00, symBinAddr: 0x325D8, symSize: 0x0 }
+  - { offsetInCU: 0x5E7, offset: 0x64CA, size: 0x8, addend: 0x0, symName: _DIALLABLE_CHAR_MAPPINGS, symObjAddr: 0x2BCF8, symBinAddr: 0x325D0, symSize: 0x0 }
+  - { offsetInCU: 0x5FC, offset: 0x64DF, size: 0x8, addend: 0x0, symName: _ALL_PLUS_NUMBER_GROUPING_SYMBOLS, symObjAddr: 0x2BD08, symBinAddr: 0x325E0, symSize: 0x0 }
+  - { offsetInCU: 0x611, offset: 0x64F4, size: 0x8, addend: 0x0, symName: _MOBILE_TOKEN_MAPPINGS, symObjAddr: 0x2BD10, symBinAddr: 0x325E8, symSize: 0x0 }
+  - { offsetInCU: 0x626, offset: 0x6509, size: 0x8, addend: 0x0, symName: _DIGIT_MAPPINGS, symObjAddr: 0x2BCE8, symBinAddr: 0x325C0, symSize: 0x0 }
+  - { offsetInCU: 0x63B, offset: 0x651E, size: 0x8, addend: 0x0, symName: _GEO_MOBILE_COUNTRIES, symObjAddr: 0x2BC98, symBinAddr: 0x32570, symSize: 0x0 }
+  - { offsetInCU: 0x656, offset: 0x6539, size: 0x8, addend: 0x0, symName: __telephonyNetworkInfo, symObjAddr: 0x2BD20, symBinAddr: 0x325F8, symSize: 0x0 }
+  - { offsetInCU: 0x65F, offset: 0x6542, size: 0x8, addend: 0x0, symName: _isNan, symObjAddr: 0x2A00, symBinAddr: 0xBE80, symSize: 0x6C }
+  - { offsetInCU: 0x684, offset: 0x6567, size: 0x8, addend: 0x0, symName: _isNan.onceToken, symObjAddr: 0x2BD28, symBinAddr: 0x32600, symSize: 0x0 }
+  - { offsetInCU: 0x699, offset: 0x657C, size: 0x8, addend: 0x0, symName: _isNan.nonDecimalCharacterSet, symObjAddr: 0x2BD30, symBinAddr: 0x32608, symSize: 0x0 }
+  - { offsetInCU: 0x8EC, offset: 0x67CF, size: 0x8, addend: 0x0, symName: '___35+[NBPhoneNumberUtil sharedInstance]_block_invoke', symObjAddr: 0x74, symBinAddr: 0x94F4, symSize: 0x24 }
+  - { offsetInCU: 0x928, offset: 0x680B, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumberUtil errorWithObject:withDomain:]', symObjAddr: 0x98, symBinAddr: 0x9518, symSize: 0x84 }
+  - { offsetInCU: 0x994, offset: 0x6877, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumberUtil entireRegularExpressionWithPattern:options:error:]', symObjAddr: 0x11C, symBinAddr: 0x959C, symSize: 0x14C }
+  - { offsetInCU: 0xA1B, offset: 0x68FE, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumberUtil regularExpressionWithPattern:options:error:]', symObjAddr: 0x268, symBinAddr: 0x96E8, symSize: 0xFC }
+  - { offsetInCU: 0xA91, offset: 0x6974, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumberUtil componentsSeparatedByRegex:regex:]', symObjAddr: 0x364, symBinAddr: 0x97E4, symSize: 0x6C }
+  - { offsetInCU: 0xB01, offset: 0x69E4, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumberUtil stringPositionByRegex:regex:]', symObjAddr: 0x3D0, symBinAddr: 0x9850, symSize: 0x100 }
+  - { offsetInCU: 0xBAC, offset: 0x6A8F, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumberUtil indexOfStringByString:target:]', symObjAddr: 0x4D0, symBinAddr: 0x9950, symSize: 0x1C }
+  - { offsetInCU: 0xC09, offset: 0x6AEC, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumberUtil replaceFirstStringByRegex:regex:withTemplate:]', symObjAddr: 0x4EC, symBinAddr: 0x996C, symSize: 0x10C }
+  - { offsetInCU: 0xCA6, offset: 0x6B89, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumberUtil replaceStringByRegex:regex:withTemplate:]', symObjAddr: 0x5F8, symBinAddr: 0x9A78, symSize: 0x170 }
+  - { offsetInCU: 0xD62, offset: 0x6C45, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumberUtil matchFirstByRegex:regex:]', symObjAddr: 0x768, symBinAddr: 0x9BE8, symSize: 0xB8 }
+  - { offsetInCU: 0xDE7, offset: 0x6CCA, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumberUtil matchesByRegex:regex:]', symObjAddr: 0x820, symBinAddr: 0x9CA0, symSize: 0x8C }
+  - { offsetInCU: 0xE6C, offset: 0x6D4F, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumberUtil matchedStringByRegex:regex:]', symObjAddr: 0x8AC, symBinAddr: 0x9D2C, symSize: 0x158 }
+  - { offsetInCU: 0xF15, offset: 0x6DF8, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumberUtil isStartingStringByRegex:regex:]', symObjAddr: 0xA04, symBinAddr: 0x9E84, symSize: 0x16C }
+  - { offsetInCU: 0xFB8, offset: 0x6E9B, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumberUtil stringByReplacingOccurrencesString:withMap:removeNonMatches:]', symObjAddr: 0xB70, symBinAddr: 0x9FF0, symSize: 0xFC }
+  - { offsetInCU: 0x108D, offset: 0x6F70, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumberUtil isAllDigits:]', symObjAddr: 0xC6C, symBinAddr: 0xA0EC, symSize: 0x78 }
+  - { offsetInCU: 0x10EE, offset: 0x6FD1, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumberUtil getNationalSignificantNumber:]', symObjAddr: 0xCE4, symBinAddr: 0xA164, symSize: 0xEC }
+  - { offsetInCU: 0x115D, offset: 0x7040, size: 0x8, addend: 0x0, symName: '+[NBPhoneNumberUtil initialize]', symObjAddr: 0xDD0, symBinAddr: 0xA250, symSize: 0x4C }
+  - { offsetInCU: 0x118E, offset: 0x7071, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumberUtil init]', symObjAddr: 0xE1C, symBinAddr: 0xA29C, symSize: 0xB4 }
+  - { offsetInCU: 0x11C3, offset: 0x70A6, size: 0x8, addend: 0x0, symName: '___45-[NBPhoneNumberUtil initRegularExpressionSet]_block_invoke', symObjAddr: 0xFEC, symBinAddr: 0xA46C, symSize: 0x150 }
+  - { offsetInCU: 0x120A, offset: 0x70ED, size: 0x8, addend: 0x0, symName: '___35-[NBPhoneNumberUtil DIGIT_MAPPINGS]_block_invoke', symObjAddr: 0x117C, symBinAddr: 0xA5FC, symSize: 0x37C }
+  - { offsetInCU: 0x1233, offset: 0x7116, size: 0x8, addend: 0x0, symName: '___46-[NBPhoneNumberUtil initNormalizationMappings]_block_invoke', symObjAddr: 0x1520, symBinAddr: 0xA9A0, symSize: 0x918 }
+  - { offsetInCU: 0x1275, offset: 0x7158, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumberUtil extractPossibleNumber:]', symObjAddr: 0x1E38, symBinAddr: 0xB2B8, symSize: 0xF0 }
+  - { offsetInCU: 0x1318, offset: 0x71FB, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumberUtil isViablePhoneNumber:]', symObjAddr: 0x1F28, symBinAddr: 0xB3A8, symSize: 0x78 }
+  - { offsetInCU: 0x137D, offset: 0x7260, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumberUtil normalize:]', symObjAddr: 0x1FA0, symBinAddr: 0xB420, symSize: 0x78 }
+  - { offsetInCU: 0x13C2, offset: 0x72A5, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumberUtil normalizeSB:]', symObjAddr: 0x2018, symBinAddr: 0xB498, symSize: 0x34 }
+  - { offsetInCU: 0x1403, offset: 0x72E6, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumberUtil normalizeDigitsOnly:]', symObjAddr: 0x204C, symBinAddr: 0xB4CC, symSize: 0x84 }
+  - { offsetInCU: 0x1468, offset: 0x734B, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumberUtil normalizeDiallableCharsOnly:]', symObjAddr: 0x20D0, symBinAddr: 0xB550, symSize: 0x6C }
+  - { offsetInCU: 0x14CD, offset: 0x73B0, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumberUtil convertAlphaCharactersInNumber:]', symObjAddr: 0x213C, symBinAddr: 0xB5BC, symSize: 0x6C }
+  - { offsetInCU: 0x1532, offset: 0x7415, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumberUtil getLengthOfGeographicalAreaCode:error:]', symObjAddr: 0x21A8, symBinAddr: 0xB628, symSize: 0x10C }
+  - { offsetInCU: 0x15C7, offset: 0x74AA, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumberUtil getLengthOfGeographicalAreaCode:]', symObjAddr: 0x22B4, symBinAddr: 0xB734, symSize: 0xCC }
+  - { offsetInCU: 0x162C, offset: 0x750F, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumberUtil getLengthOfNationalDestinationCode:error:]', symObjAddr: 0x2380, symBinAddr: 0xB800, symSize: 0x10C }
+  - { offsetInCU: 0x16C1, offset: 0x75A4, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumberUtil getLengthOfNationalDestinationCode:]', symObjAddr: 0x248C, symBinAddr: 0xB90C, symSize: 0x290 }
+  - { offsetInCU: 0x1774, offset: 0x7657, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumberUtil getCountryMobileTokenFromCountryCode:]', symObjAddr: 0x271C, symBinAddr: 0xBB9C, symSize: 0x6C }
+  - { offsetInCU: 0x17C5, offset: 0x76A8, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumberUtil normalizeHelper:normalizationReplacements:removeNonMatches:]', symObjAddr: 0x2788, symBinAddr: 0xBC08, symSize: 0xF0 }
+  - { offsetInCU: 0x1892, offset: 0x7775, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumberUtil formattingRuleHasFirstGroupOnly:]', symObjAddr: 0x2878, symBinAddr: 0xBCF8, symSize: 0x60 }
+  - { offsetInCU: 0x18E3, offset: 0x77C6, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumberUtil isNumberGeographical:]', symObjAddr: 0x28D8, symBinAddr: 0xBD58, symSize: 0x88 }
+  - { offsetInCU: 0x1960, offset: 0x7843, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumberUtil isValidRegionCode:]', symObjAddr: 0x2960, symBinAddr: 0xBDE0, symSize: 0xA0 }
+  - { offsetInCU: 0x19B9, offset: 0x789C, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumberUtil hasValidCountryCallingCode:]', symObjAddr: 0x2A6C, symBinAddr: 0xBEEC, symSize: 0x38 }
+  - { offsetInCU: 0x1A0A, offset: 0x78ED, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumberUtil format:numberFormat:error:]', symObjAddr: 0x2AA4, symBinAddr: 0xBF24, symSize: 0x118 }
+  - { offsetInCU: 0x1AAF, offset: 0x7992, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumberUtil format:numberFormat:]', symObjAddr: 0x2BBC, symBinAddr: 0xC03C, symSize: 0x1F0 }
+  - { offsetInCU: 0x1B92, offset: 0x7A75, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumberUtil formatByPattern:numberFormat:userDefinedFormats:error:]', symObjAddr: 0x2DAC, symBinAddr: 0xC22C, symSize: 0x134 }
+  - { offsetInCU: 0x1C47, offset: 0x7B2A, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumberUtil formatByPattern:numberFormat:userDefinedFormats:]', symObjAddr: 0x2EE0, symBinAddr: 0xC360, symSize: 0x278 }
+  - { offsetInCU: 0x1D68, offset: 0x7C4B, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumberUtil formatNationalNumberWithCarrierCode:carrierCode:error:]', symObjAddr: 0x3158, symBinAddr: 0xC5D8, symSize: 0x12C }
+  - { offsetInCU: 0x1E0D, offset: 0x7CF0, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumberUtil formatNationalNumberWithCarrierCode:carrierCode:]', symObjAddr: 0x3284, symBinAddr: 0xC704, symSize: 0x13C }
+  - { offsetInCU: 0x1EC2, offset: 0x7DA5, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumberUtil getMetadataForRegionOrCallingCode:regionCode:]', symObjAddr: 0x33C0, symBinAddr: 0xC840, symSize: 0x98 }
+  - { offsetInCU: 0x1F27, offset: 0x7E0A, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumberUtil formatNationalNumberWithPreferredCarrierCode:fallbackCarrierCode:error:]', symObjAddr: 0x3458, symBinAddr: 0xC8D8, symSize: 0x12C }
+  - { offsetInCU: 0x1FCC, offset: 0x7EAF, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumberUtil formatNationalNumberWithPreferredCarrierCode:fallbackCarrierCode:]', symObjAddr: 0x3584, symBinAddr: 0xCA04, symSize: 0x98 }
+  - { offsetInCU: 0x2031, offset: 0x7F14, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumberUtil formatNumberForMobileDialing:regionCallingFrom:withFormatting:error:]', symObjAddr: 0x361C, symBinAddr: 0xCA9C, symSize: 0x134 }
+  - { offsetInCU: 0x20E6, offset: 0x7FC9, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumberUtil formatNumberForMobileDialing:regionCallingFrom:withFormatting:]', symObjAddr: 0x3750, symBinAddr: 0xCBD0, symSize: 0x2C8 }
+  - { offsetInCU: 0x21AD, offset: 0x8090, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumberUtil formatOutOfCountryCallingNumber:regionCallingFrom:error:]', symObjAddr: 0x3A18, symBinAddr: 0xCE98, symSize: 0x12C }
+  - { offsetInCU: 0x2252, offset: 0x8135, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumberUtil formatOutOfCountryCallingNumber:regionCallingFrom:]', symObjAddr: 0x3B44, symBinAddr: 0xCFC4, symSize: 0x334 }
+  - { offsetInCU: 0x2357, offset: 0x823A, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumberUtil prefixNumberWithCountryCallingCode:phoneNumberFormat:formattedNationalNumber:formattedExtension:]', symObjAddr: 0x3E78, symBinAddr: 0xD2F8, symSize: 0xE0 }
+  - { offsetInCU: 0x23C8, offset: 0x82AB, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumberUtil formatInOriginalFormat:regionCallingFrom:error:]', symObjAddr: 0x3F58, symBinAddr: 0xD3D8, symSize: 0x12C }
+  - { offsetInCU: 0x246D, offset: 0x8350, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumberUtil formatInOriginalFormat:regionCallingFrom:]', symObjAddr: 0x4084, symBinAddr: 0xD504, symSize: 0x44C }
+  - { offsetInCU: 0x25A6, offset: 0x8489, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumberUtil rawInputContainsNationalPrefix:nationalPrefix:regionCode:]', symObjAddr: 0x44D0, symBinAddr: 0xD950, symSize: 0xEC }
+  - { offsetInCU: 0x2659, offset: 0x853C, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumberUtil hasUnexpectedItalianLeadingZero:]', symObjAddr: 0x45BC, symBinAddr: 0xDA3C, symSize: 0x68 }
+  - { offsetInCU: 0x269E, offset: 0x8581, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumberUtil hasFormattingPatternForNumber:]', symObjAddr: 0x4624, symBinAddr: 0xDAA4, symSize: 0xE4 }
+  - { offsetInCU: 0x2733, offset: 0x8616, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumberUtil formatOutOfCountryKeepingAlphaChars:regionCallingFrom:error:]', symObjAddr: 0x4708, symBinAddr: 0xDB88, symSize: 0x12C }
+  - { offsetInCU: 0x27D8, offset: 0x86BB, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumberUtil formatOutOfCountryKeepingAlphaChars:regionCallingFrom:]', symObjAddr: 0x4834, symBinAddr: 0xDCB4, symSize: 0x3B0 }
+  - { offsetInCU: 0x290F, offset: 0x87F2, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumberUtil formatNsn:metadata:phoneNumberFormat:carrierCode:]', symObjAddr: 0x4BE4, symBinAddr: 0xE064, symSize: 0xF0 }
+  - { offsetInCU: 0x29B4, offset: 0x8897, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumberUtil chooseFormattingPatternForNumber:nationalNumber:]', symObjAddr: 0x4CD4, symBinAddr: 0xE154, symSize: 0x1AC }
+  - { offsetInCU: 0x2A45, offset: 0x8928, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumberUtil formatNsnUsingPattern:formattingPattern:numberFormat:carrierCode:]', symObjAddr: 0x4E80, symBinAddr: 0xE300, symSize: 0x280 }
+  - { offsetInCU: 0x2B44, offset: 0x8A27, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumberUtil getExampleNumber:error:]', symObjAddr: 0x5100, symBinAddr: 0xE580, symSize: 0xC }
+  - { offsetInCU: 0x2BA2, offset: 0x8A85, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumberUtil getExampleNumberForType:type:error:]', symObjAddr: 0x510C, symBinAddr: 0xE58C, symSize: 0x108 }
+  - { offsetInCU: 0x2C25, offset: 0x8B08, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumberUtil getExampleNumberForNonGeoEntity:error:]', symObjAddr: 0x5214, symBinAddr: 0xE694, symSize: 0x2FC }
+  - { offsetInCU: 0x2CD6, offset: 0x8BB9, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumberUtil maybeGetFormattedExtension:metadata:numberFormat:]', symObjAddr: 0x5510, symBinAddr: 0xE990, symSize: 0x16C }
+  - { offsetInCU: 0x2D37, offset: 0x8C1A, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumberUtil getNumberDescByType:type:]', symObjAddr: 0x567C, symBinAddr: 0xEAFC, symSize: 0x12C }
+  - { offsetInCU: 0x2D88, offset: 0x8C6B, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumberUtil getNumberType:]', symObjAddr: 0x57A8, symBinAddr: 0xEC28, symSize: 0xBC }
+  - { offsetInCU: 0x2DFD, offset: 0x8CE0, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumberUtil getNumberTypeHelper:metadata:]', symObjAddr: 0x5864, symBinAddr: 0xECE4, symSize: 0x2C8 }
+  - { offsetInCU: 0x2E6E, offset: 0x8D51, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumberUtil isNumberMatchingDesc:numberDesc:]', symObjAddr: 0x5B2C, symBinAddr: 0xEFAC, symSize: 0xF8 }
+  - { offsetInCU: 0x2ED3, offset: 0x8DB6, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumberUtil isValidNumber:]', symObjAddr: 0x5C24, symBinAddr: 0xF0A4, symSize: 0x60 }
+  - { offsetInCU: 0x2F28, offset: 0x8E0B, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumberUtil isValidNumberForRegion:regionCode:]', symObjAddr: 0x5C84, symBinAddr: 0xF104, symSize: 0x178 }
+  - { offsetInCU: 0x2FDB, offset: 0x8EBE, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumberUtil getRegionCodeForNumber:]', symObjAddr: 0x5DFC, symBinAddr: 0xF27C, symSize: 0xC8 }
+  - { offsetInCU: 0x3030, offset: 0x8F13, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumberUtil getRegionCodeForNumberFromRegionList:regionCodes:]', symObjAddr: 0x5EC4, symBinAddr: 0xF344, symSize: 0x158 }
+  - { offsetInCU: 0x30F9, offset: 0x8FDC, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumberUtil getRegionCodeForCountryCode:]', symObjAddr: 0x601C, symBinAddr: 0xF49C, symSize: 0x60 }
+  - { offsetInCU: 0x314A, offset: 0x902D, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumberUtil getRegionCodesForCountryCode:]', symObjAddr: 0x607C, symBinAddr: 0xF4FC, symSize: 0xC }
+  - { offsetInCU: 0x3196, offset: 0x9079, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumberUtil getCountryCodeForRegion:]', symObjAddr: 0x6088, symBinAddr: 0xF508, symSize: 0x94 }
+  - { offsetInCU: 0x31FB, offset: 0x90DE, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumberUtil getCountryCodeForValidRegion:error:]', symObjAddr: 0x611C, symBinAddr: 0xF59C, symSize: 0x10C }
+  - { offsetInCU: 0x327E, offset: 0x9161, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumberUtil getNddPrefixForRegion:stripNonDigits:]', symObjAddr: 0x6228, symBinAddr: 0xF6A8, symSize: 0xC8 }
+  - { offsetInCU: 0x32F3, offset: 0x91D6, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumberUtil isNANPACountry:]', symObjAddr: 0x62F0, symBinAddr: 0xF770, symSize: 0x178 }
+  - { offsetInCU: 0x3372, offset: 0x9255, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumberUtil isLeadingZeroPossible:]', symObjAddr: 0x6468, symBinAddr: 0xF8E8, symSize: 0x80 }
+  - { offsetInCU: 0x33C7, offset: 0x92AA, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumberUtil isAlphaNumber:]', symObjAddr: 0x64E8, symBinAddr: 0xF968, symSize: 0xD0 }
+  - { offsetInCU: 0x3432, offset: 0x9315, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumberUtil isPossibleNumber:error:]', symObjAddr: 0x65B8, symBinAddr: 0xFA38, symSize: 0x10C }
+  - { offsetInCU: 0x34C7, offset: 0x93AA, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumberUtil isPossibleNumber:]', symObjAddr: 0x66C4, symBinAddr: 0xFB44, symSize: 0x1C }
+  - { offsetInCU: 0x350C, offset: 0x93EF, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumberUtil validateNumberLength:metadata:]', symObjAddr: 0x66E0, symBinAddr: 0xFB60, symSize: 0x8 }
+  - { offsetInCU: 0x355D, offset: 0x9440, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumberUtil validateNumberLength:metadata:type:]', symObjAddr: 0x66E8, symBinAddr: 0xFB68, symSize: 0x370 }
+  - { offsetInCU: 0x368C, offset: 0x956F, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumberUtil testNumberLength:desc:]', symObjAddr: 0x6A58, symBinAddr: 0xFED8, symSize: 0x184 }
+  - { offsetInCU: 0x371D, offset: 0x9600, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumberUtil isPossibleNumberWithReason:error:]', symObjAddr: 0x6BDC, symBinAddr: 0x1005C, symSize: 0x10C }
+  - { offsetInCU: 0x37B2, offset: 0x9695, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumberUtil isPossibleNumberWithReason:]', symObjAddr: 0x6CE8, symBinAddr: 0x10168, symSize: 0xD8 }
+  - { offsetInCU: 0x3837, offset: 0x971A, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumberUtil isPossibleNumberString:regionDialingFrom:error:]', symObjAddr: 0x6DC0, symBinAddr: 0x10240, symSize: 0xA0 }
+  - { offsetInCU: 0x38C8, offset: 0x97AB, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumberUtil truncateTooLongNumber:]', symObjAddr: 0x6E60, symBinAddr: 0x102E0, symSize: 0x130 }
+  - { offsetInCU: 0x392D, offset: 0x9810, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumberUtil extractCountryCode:nationalNumber:]', symObjAddr: 0x6F90, symBinAddr: 0x10410, symSize: 0x1E0 }
+  - { offsetInCU: 0x3A0A, offset: 0x98ED, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumberUtil getSupportedRegions]', symObjAddr: 0x7170, symBinAddr: 0x105F0, symSize: 0x80 }
+  - { offsetInCU: 0x3A6B, offset: 0x994E, size: 0x8, addend: 0x0, symName: '___40-[NBPhoneNumberUtil getSupportedRegions]_block_invoke', symObjAddr: 0x71F0, symBinAddr: 0x10670, symSize: 0x8 }
+  - { offsetInCU: 0x3ACA, offset: 0x99AD, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumberUtil maybeExtractCountryCode:metadata:nationalNumber:keepRawInput:phoneNumber:error:]', symObjAddr: 0x71F8, symBinAddr: 0x10678, symSize: 0x474 }
+  - { offsetInCU: 0x3C57, offset: 0x9B3A, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumberUtil descHasPossibleNumberData:]', symObjAddr: 0x766C, symBinAddr: 0x10AEC, symSize: 0x90 }
+  - { offsetInCU: 0x3C98, offset: 0x9B7B, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumberUtil parsePrefixAsIdd:sourceString:]', symObjAddr: 0x76FC, symBinAddr: 0x10B7C, symSize: 0x1D8 }
+  - { offsetInCU: 0x3D97, offset: 0x9C7A, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumberUtil maybeStripInternationalPrefixAndNormalize:possibleIddPrefix:]', symObjAddr: 0x78D4, symBinAddr: 0x10D54, symSize: 0xE8 }
+  - { offsetInCU: 0x3DFC, offset: 0x9CDF, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumberUtil maybeStripNationalPrefixAndCarrierCode:metadata:carrierCode:]', symObjAddr: 0x79BC, symBinAddr: 0x10E3C, symSize: 0x3B8 }
+  - { offsetInCU: 0x3F6F, offset: 0x9E52, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumberUtil maybeStripExtension:]', symObjAddr: 0x7D74, symBinAddr: 0x111F4, symSize: 0x194 }
+  - { offsetInCU: 0x4064, offset: 0x9F47, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumberUtil checkRegionForParsing:defaultRegion:]', symObjAddr: 0x7F08, symBinAddr: 0x11388, symSize: 0x80 }
+  - { offsetInCU: 0x40B9, offset: 0x9F9C, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumberUtil parse:defaultRegion:error:]', symObjAddr: 0x7F88, symBinAddr: 0x11408, symSize: 0xB4 }
+  - { offsetInCU: 0x413E, offset: 0xA021, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumberUtil parseWithPhoneCarrierRegion:error:]', symObjAddr: 0x803C, symBinAddr: 0x114BC, symSize: 0xE0 }
+  - { offsetInCU: 0x41E1, offset: 0xA0C4, size: 0x8, addend: 0x0, symName: '___41-[NBPhoneNumberUtil telephonyNetworkInfo]_block_invoke', symObjAddr: 0x815C, symBinAddr: 0x115DC, symSize: 0x28 }
+  - { offsetInCU: 0x420A, offset: 0xA0ED, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumberUtil countryCodeByCarrier]', symObjAddr: 0x8184, symBinAddr: 0x11604, symSize: 0x78 }
+  - { offsetInCU: 0x424F, offset: 0xA132, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumberUtil parseAndKeepRawInput:defaultRegion:error:]', symObjAddr: 0x81FC, symBinAddr: 0x1167C, symSize: 0x128 }
+  - { offsetInCU: 0x42D2, offset: 0xA1B5, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumberUtil setItalianLeadingZerosForPhoneNumber:phoneNumber:]', symObjAddr: 0x8324, symBinAddr: 0x117A4, symSize: 0x114 }
+  - { offsetInCU: 0x433D, offset: 0xA220, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumberUtil parseHelper:defaultRegion:keepRawInput:checkRegion:error:]', symObjAddr: 0x8438, symBinAddr: 0x118B8, symSize: 0x850 }
+  - { offsetInCU: 0x44F9, offset: 0xA3DC, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumberUtil buildNationalNumberForParsing:nationalNumber:]', symObjAddr: 0x8C88, symBinAddr: 0x12108, symSize: 0x1F8 }
+  - { offsetInCU: 0x4606, offset: 0xA4E9, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumberUtil isNumberMatch:second:error:]', symObjAddr: 0x8E80, symBinAddr: 0x12300, symSize: 0x128 }
+  - { offsetInCU: 0x46AB, offset: 0xA58E, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumberUtil isNumberMatch:second:]', symObjAddr: 0x8FA8, symBinAddr: 0x12428, symSize: 0x504 }
+  - { offsetInCU: 0x47CE, offset: 0xA6B1, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumberUtil isNationalNumberSuffixOfTheOther:second:]', symObjAddr: 0x94AC, symBinAddr: 0x1292C, symSize: 0xE0 }
+  - { offsetInCU: 0x483F, offset: 0xA722, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumberUtil canBeInternationallyDialled:error:]', symObjAddr: 0x958C, symBinAddr: 0x12A0C, symSize: 0x10C }
+  - { offsetInCU: 0x48D4, offset: 0xA7B7, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumberUtil canBeInternationallyDialled:]', symObjAddr: 0x9698, symBinAddr: 0x12B18, symSize: 0xCC }
+  - { offsetInCU: 0x4939, offset: 0xA81C, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumberUtil matchesEntirely:string:]', symObjAddr: 0x9764, symBinAddr: 0x12BE4, symSize: 0xE8 }
+  - { offsetInCU: 0x49E4, offset: 0xA8C7, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumberUtil entireStringCacheLock]', symObjAddr: 0x984C, symBinAddr: 0x12CCC, symSize: 0x8 }
+  - { offsetInCU: 0x4A18, offset: 0xA8FB, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumberUtil setEntireStringCacheLock:]', symObjAddr: 0x9854, symBinAddr: 0x12CD4, symSize: 0xC }
+  - { offsetInCU: 0x4A55, offset: 0xA938, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumberUtil entireStringRegexCache]', symObjAddr: 0x9860, symBinAddr: 0x12CE0, symSize: 0x8 }
+  - { offsetInCU: 0x4A89, offset: 0xA96C, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumberUtil setEntireStringRegexCache:]', symObjAddr: 0x9868, symBinAddr: 0x12CE8, symSize: 0xC }
+  - { offsetInCU: 0x4AC6, offset: 0xA9A9, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumberUtil lockPatternCache]', symObjAddr: 0x9874, symBinAddr: 0x12CF4, symSize: 0x8 }
+  - { offsetInCU: 0x4AFA, offset: 0xA9DD, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumberUtil setLockPatternCache:]', symObjAddr: 0x987C, symBinAddr: 0x12CFC, symSize: 0xC }
+  - { offsetInCU: 0x4B37, offset: 0xAA1A, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumberUtil regexPatternCache]', symObjAddr: 0x9888, symBinAddr: 0x12D08, symSize: 0x8 }
+  - { offsetInCU: 0x4B6B, offset: 0xAA4E, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumberUtil setRegexPatternCache:]', symObjAddr: 0x9890, symBinAddr: 0x12D10, symSize: 0xC }
+  - { offsetInCU: 0x4BA8, offset: 0xAA8B, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumberUtil CAPTURING_DIGIT_PATTERN]', symObjAddr: 0x989C, symBinAddr: 0x12D1C, symSize: 0x8 }
+  - { offsetInCU: 0x4BDC, offset: 0xAABF, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumberUtil setCAPTURING_DIGIT_PATTERN:]', symObjAddr: 0x98A4, symBinAddr: 0x12D24, symSize: 0xC }
+  - { offsetInCU: 0x4C19, offset: 0xAAFC, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumberUtil VALID_ALPHA_PHONE_PATTERN]', symObjAddr: 0x98B0, symBinAddr: 0x12D30, symSize: 0x8 }
+  - { offsetInCU: 0x4C4D, offset: 0xAB30, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumberUtil setVALID_ALPHA_PHONE_PATTERN:]', symObjAddr: 0x98B8, symBinAddr: 0x12D38, symSize: 0xC }
+  - { offsetInCU: 0x4C8A, offset: 0xAB6D, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumberUtil helper]', symObjAddr: 0x98C4, symBinAddr: 0x12D44, symSize: 0x8 }
+  - { offsetInCU: 0x4CBE, offset: 0xABA1, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumberUtil setHelper:]', symObjAddr: 0x98CC, symBinAddr: 0x12D4C, symSize: 0xC }
+  - { offsetInCU: 0x4CFB, offset: 0xABDE, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumberUtil matcher]', symObjAddr: 0x98D8, symBinAddr: 0x12D58, symSize: 0x8 }
+  - { offsetInCU: 0x4D2F, offset: 0xAC12, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumberUtil setMatcher:]', symObjAddr: 0x98E0, symBinAddr: 0x12D60, symSize: 0xC }
+  - { offsetInCU: 0x4D6C, offset: 0xAC4F, size: 0x8, addend: 0x0, symName: '-[NBPhoneNumberUtil .cxx_destruct]', symObjAddr: 0x98EC, symBinAddr: 0x12D6C, symSize: 0x78 }
+  - { offsetInCU: 0x4D9C, offset: 0xAC7F, size: 0x8, addend: 0x0, symName: ___isNan_block_invoke, symObjAddr: 0x9964, symBinAddr: 0x12DE4, symSize: 0x48 }
+  - { offsetInCU: 0x27, offset: 0xB28B, size: 0x8, addend: 0x0, symName: '-[NBRegExMatcher matchNationalNumber:phoneNumberDesc:allowsPrefixMatch:]', symObjAddr: 0x0, symBinAddr: 0x12E2C, symSize: 0x168 }
+  - { offsetInCU: 0xE8, offset: 0xB34C, size: 0x8, addend: 0x0, symName: '-[NBRegExMatcher matchNationalNumber:phoneNumberDesc:allowsPrefixMatch:]', symObjAddr: 0x0, symBinAddr: 0x12E2C, symSize: 0x168 }
+  - { offsetInCU: 0x27, offset: 0xB4E1, size: 0x8, addend: 0x0, symName: '+[NBRegularExpressionCache sharedInstance]', symObjAddr: 0x0, symBinAddr: 0x12F94, symSize: 0x40 }
+  - { offsetInCU: 0x34, offset: 0xB4EE, size: 0x8, addend: 0x0, symName: '+[NBRegularExpressionCache sharedInstance]', symObjAddr: 0x0, symBinAddr: 0x12F94, symSize: 0x40 }
+  - { offsetInCU: 0x5D, offset: 0xB517, size: 0x8, addend: 0x0, symName: _sharedInstance.instance, symObjAddr: 0x2430, symBinAddr: 0x32610, symSize: 0x0 }
+  - { offsetInCU: 0x72, offset: 0xB52C, size: 0x8, addend: 0x0, symName: _sharedInstance.token, symObjAddr: 0x2438, symBinAddr: 0x32618, symSize: 0x0 }
+  - { offsetInCU: 0x176, offset: 0xB630, size: 0x8, addend: 0x0, symName: '___42+[NBRegularExpressionCache sharedInstance]_block_invoke', symObjAddr: 0x40, symBinAddr: 0x12FD4, symSize: 0x28 }
+  - { offsetInCU: 0x19B, offset: 0xB655, size: 0x8, addend: 0x0, symName: '-[NBRegularExpressionCache init]', symObjAddr: 0x68, symBinAddr: 0x12FFC, symSize: 0x60 }
+  - { offsetInCU: 0x1CF, offset: 0xB689, size: 0x8, addend: 0x0, symName: '-[NBRegularExpressionCache regularExpressionForPattern:error:]', symObjAddr: 0xC8, symBinAddr: 0x1305C, symSize: 0x134 }
+  - { offsetInCU: 0x254, offset: 0xB70E, size: 0x8, addend: 0x0, symName: '-[NBRegularExpressionCache cache]', symObjAddr: 0x1FC, symBinAddr: 0x13190, symSize: 0x8 }
+  - { offsetInCU: 0x288, offset: 0xB742, size: 0x8, addend: 0x0, symName: '-[NBRegularExpressionCache setCache:]', symObjAddr: 0x204, symBinAddr: 0x13198, symSize: 0xC }
+  - { offsetInCU: 0x2C5, offset: 0xB77F, size: 0x8, addend: 0x0, symName: '-[NBRegularExpressionCache .cxx_destruct]', symObjAddr: 0x210, symBinAddr: 0x131A4, symSize: 0xC }
+  - { offsetInCU: 0x27, offset: 0xB8B5, size: 0x8, addend: 0x0, symName: '-[NSArray(NBAdditions) nb_safeObjectAtIndex:class:]', symObjAddr: 0x0, symBinAddr: 0x131B0, symSize: 0x78 }
+  - { offsetInCU: 0x6E, offset: 0xB8FC, size: 0x8, addend: 0x0, symName: '-[NSArray(NBAdditions) nb_safeObjectAtIndex:class:]', symObjAddr: 0x0, symBinAddr: 0x131B0, symSize: 0x78 }
+  - { offsetInCU: 0xCF, offset: 0xB95D, size: 0x8, addend: 0x0, symName: '-[NSArray(NBAdditions) nb_safeStringAtIndex:]', symObjAddr: 0x78, symBinAddr: 0x13228, symSize: 0x38 }
+  - { offsetInCU: 0x112, offset: 0xB9A0, size: 0x8, addend: 0x0, symName: '-[NSArray(NBAdditions) nb_safeNumberAtIndex:]', symObjAddr: 0xB0, symBinAddr: 0x13260, symSize: 0x38 }
+  - { offsetInCU: 0x155, offset: 0xB9E3, size: 0x8, addend: 0x0, symName: '-[NSArray(NBAdditions) nb_safeArrayAtIndex:]', symObjAddr: 0xE8, symBinAddr: 0x13298, symSize: 0x38 }
+  - { offsetInCU: 0x198, offset: 0xBA26, size: 0x8, addend: 0x0, symName: '-[NSArray(NBAdditions) nb_safeDataAtIndex:]', symObjAddr: 0x120, symBinAddr: 0x132D0, symSize: 0x38 }
+...

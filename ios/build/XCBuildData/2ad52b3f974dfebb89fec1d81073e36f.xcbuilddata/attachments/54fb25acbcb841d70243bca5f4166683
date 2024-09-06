@@ -1,0 +1,95 @@
+{
+  "" : {
+    "const-values" : "/Users/samuelskulsky/Coding/Flutter Projects/scavhuntapp-1/ios/build/Pods.build/Release-iphoneos/mapbox_gl.build/Objects-normal/arm64/mapbox_gl-master.swiftconstvalues",
+    "dependencies" : "/Users/samuelskulsky/Coding/Flutter Projects/scavhuntapp-1/ios/build/Pods.build/Release-iphoneos/mapbox_gl.build/Objects-normal/arm64/mapbox_gl-master.d",
+    "diagnostics" : "/Users/samuelskulsky/Coding/Flutter Projects/scavhuntapp-1/ios/build/Pods.build/Release-iphoneos/mapbox_gl.build/Objects-normal/arm64/mapbox_gl-master.dia",
+    "emit-module-dependencies" : "/Users/samuelskulsky/Coding/Flutter Projects/scavhuntapp-1/ios/build/Pods.build/Release-iphoneos/mapbox_gl.build/Objects-normal/arm64/mapbox_gl-master-emit-module.d",
+    "emit-module-diagnostics" : "/Users/samuelskulsky/Coding/Flutter Projects/scavhuntapp-1/ios/build/Pods.build/Release-iphoneos/mapbox_gl.build/Objects-normal/arm64/mapbox_gl-master-emit-module.dia",
+    "swift-dependencies" : "/Users/samuelskulsky/Coding/Flutter Projects/scavhuntapp-1/ios/build/Pods.build/Release-iphoneos/mapbox_gl.build/Objects-normal/arm64/mapbox_gl-master.swiftdeps"
+  },
+  "/Users/samuelskulsky/Coding/Flutter Projects/scavhuntapp-1/mapbox_gl_maps/ios/Classes/Constants.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphoneos/mapbox_gl.build/Objects-normal/arm64/Constants.o",
+    "llvm-bc" : "/Users/samuelskulsky/Coding/Flutter Projects/scavhuntapp-1/ios/build/Pods.build/Release-iphoneos/mapbox_gl.build/Objects-normal/arm64/Constants.bc",
+    "object" : "/Users/samuelskulsky/Coding/Flutter Projects/scavhuntapp-1/ios/build/Pods.build/Release-iphoneos/mapbox_gl.build/Objects-normal/arm64/Constants.o"
+  },
+  "/Users/samuelskulsky/Coding/Flutter Projects/scavhuntapp-1/mapbox_gl_maps/ios/Classes/Convert.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphoneos/mapbox_gl.build/Objects-normal/arm64/Convert.o",
+    "llvm-bc" : "/Users/samuelskulsky/Coding/Flutter Projects/scavhuntapp-1/ios/build/Pods.build/Release-iphoneos/mapbox_gl.build/Objects-normal/arm64/Convert.bc",
+    "object" : "/Users/samuelskulsky/Coding/Flutter Projects/scavhuntapp-1/ios/build/Pods.build/Release-iphoneos/mapbox_gl.build/Objects-normal/arm64/Convert.o"
+  },
+  "/Users/samuelskulsky/Coding/Flutter Projects/scavhuntapp-1/mapbox_gl_maps/ios/Classes/Enums.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphoneos/mapbox_gl.build/Objects-normal/arm64/Enums.o",
+    "llvm-bc" : "/Users/samuelskulsky/Coding/Flutter Projects/scavhuntapp-1/ios/build/Pods.build/Release-iphoneos/mapbox_gl.build/Objects-normal/arm64/Enums.bc",
+    "object" : "/Users/samuelskulsky/Coding/Flutter Projects/scavhuntapp-1/ios/build/Pods.build/Release-iphoneos/mapbox_gl.build/Objects-normal/arm64/Enums.o"
+  },
+  "/Users/samuelskulsky/Coding/Flutter Projects/scavhuntapp-1/mapbox_gl_maps/ios/Classes/Extensions.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphoneos/mapbox_gl.build/Objects-normal/arm64/Extensions.o",
+    "llvm-bc" : "/Users/samuelskulsky/Coding/Flutter Projects/scavhuntapp-1/ios/build/Pods.build/Release-iphoneos/mapbox_gl.build/Objects-normal/arm64/Extensions.bc",
+    "object" : "/Users/samuelskulsky/Coding/Flutter Projects/scavhuntapp-1/ios/build/Pods.build/Release-iphoneos/mapbox_gl.build/Objects-normal/arm64/Extensions.o"
+  },
+  "/Users/samuelskulsky/Coding/Flutter Projects/scavhuntapp-1/mapbox_gl_maps/ios/Classes/LayerPropertyConverter.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphoneos/mapbox_gl.build/Objects-normal/arm64/LayerPropertyConverter.o",
+    "llvm-bc" : "/Users/samuelskulsky/Coding/Flutter Projects/scavhuntapp-1/ios/build/Pods.build/Release-iphoneos/mapbox_gl.build/Objects-normal/arm64/LayerPropertyConverter.bc",
+    "object" : "/Users/samuelskulsky/Coding/Flutter Projects/scavhuntapp-1/ios/build/Pods.build/Release-iphoneos/mapbox_gl.build/Objects-normal/arm64/LayerPropertyConverter.o"
+  },
+  "/Users/samuelskulsky/Coding/Flutter Projects/scavhuntapp-1/mapbox_gl_maps/ios/Classes/MapboxMapController.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphoneos/mapbox_gl.build/Objects-normal/arm64/MapboxMapController.o",
+    "llvm-bc" : "/Users/samuelskulsky/Coding/Flutter Projects/scavhuntapp-1/ios/build/Pods.build/Release-iphoneos/mapbox_gl.build/Objects-normal/arm64/MapboxMapController.bc",
+    "object" : "/Users/samuelskulsky/Coding/Flutter Projects/scavhuntapp-1/ios/build/Pods.build/Release-iphoneos/mapbox_gl.build/Objects-normal/arm64/MapboxMapController.o"
+  },
+  "/Users/samuelskulsky/Coding/Flutter Projects/scavhuntapp-1/mapbox_gl_maps/ios/Classes/MapboxMapFactory.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphoneos/mapbox_gl.build/Objects-normal/arm64/MapboxMapFactory.o",
+    "llvm-bc" : "/Users/samuelskulsky/Coding/Flutter Projects/scavhuntapp-1/ios/build/Pods.build/Release-iphoneos/mapbox_gl.build/Objects-normal/arm64/MapboxMapFactory.bc",
+    "object" : "/Users/samuelskulsky/Coding/Flutter Projects/scavhuntapp-1/ios/build/Pods.build/Release-iphoneos/mapbox_gl.build/Objects-normal/arm64/MapboxMapFactory.o"
+  },
+  "/Users/samuelskulsky/Coding/Flutter Projects/scavhuntapp-1/mapbox_gl_maps/ios/Classes/MapboxMapOptionsSink.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphoneos/mapbox_gl.build/Objects-normal/arm64/MapboxMapOptionsSink.o",
+    "llvm-bc" : "/Users/samuelskulsky/Coding/Flutter Projects/scavhuntapp-1/ios/build/Pods.build/Release-iphoneos/mapbox_gl.build/Objects-normal/arm64/MapboxMapOptionsSink.bc",
+    "object" : "/Users/samuelskulsky/Coding/Flutter Projects/scavhuntapp-1/ios/build/Pods.build/Release-iphoneos/mapbox_gl.build/Objects-normal/arm64/MapboxMapOptionsSink.o"
+  },
+  "/Users/samuelskulsky/Coding/Flutter Projects/scavhuntapp-1/mapbox_gl_maps/ios/Classes/MethodCallError.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphoneos/mapbox_gl.build/Objects-normal/arm64/MethodCallError.o",
+    "llvm-bc" : "/Users/samuelskulsky/Coding/Flutter Projects/scavhuntapp-1/ios/build/Pods.build/Release-iphoneos/mapbox_gl.build/Objects-normal/arm64/MethodCallError.bc",
+    "object" : "/Users/samuelskulsky/Coding/Flutter Projects/scavhuntapp-1/ios/build/Pods.build/Release-iphoneos/mapbox_gl.build/Objects-normal/arm64/MethodCallError.o"
+  },
+  "/Users/samuelskulsky/Coding/Flutter Projects/scavhuntapp-1/mapbox_gl_maps/ios/Classes/OfflineChannelHandler.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphoneos/mapbox_gl.build/Objects-normal/arm64/OfflineChannelHandler.o",
+    "llvm-bc" : "/Users/samuelskulsky/Coding/Flutter Projects/scavhuntapp-1/ios/build/Pods.build/Release-iphoneos/mapbox_gl.build/Objects-normal/arm64/OfflineChannelHandler.bc",
+    "object" : "/Users/samuelskulsky/Coding/Flutter Projects/scavhuntapp-1/ios/build/Pods.build/Release-iphoneos/mapbox_gl.build/Objects-normal/arm64/OfflineChannelHandler.o"
+  },
+  "/Users/samuelskulsky/Coding/Flutter Projects/scavhuntapp-1/mapbox_gl_maps/ios/Classes/OfflineManagerUtils.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphoneos/mapbox_gl.build/Objects-normal/arm64/OfflineManagerUtils.o",
+    "llvm-bc" : "/Users/samuelskulsky/Coding/Flutter Projects/scavhuntapp-1/ios/build/Pods.build/Release-iphoneos/mapbox_gl.build/Objects-normal/arm64/OfflineManagerUtils.bc",
+    "object" : "/Users/samuelskulsky/Coding/Flutter Projects/scavhuntapp-1/ios/build/Pods.build/Release-iphoneos/mapbox_gl.build/Objects-normal/arm64/OfflineManagerUtils.o"
+  },
+  "/Users/samuelskulsky/Coding/Flutter Projects/scavhuntapp-1/mapbox_gl_maps/ios/Classes/OfflinePackDownloadManager.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphoneos/mapbox_gl.build/Objects-normal/arm64/OfflinePackDownloadManager.o",
+    "llvm-bc" : "/Users/samuelskulsky/Coding/Flutter Projects/scavhuntapp-1/ios/build/Pods.build/Release-iphoneos/mapbox_gl.build/Objects-normal/arm64/OfflinePackDownloadManager.bc",
+    "object" : "/Users/samuelskulsky/Coding/Flutter Projects/scavhuntapp-1/ios/build/Pods.build/Release-iphoneos/mapbox_gl.build/Objects-normal/arm64/OfflinePackDownloadManager.o"
+  },
+  "/Users/samuelskulsky/Coding/Flutter Projects/scavhuntapp-1/mapbox_gl_maps/ios/Classes/OfflineRegion.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphoneos/mapbox_gl.build/Objects-normal/arm64/OfflineRegion.o",
+    "llvm-bc" : "/Users/samuelskulsky/Coding/Flutter Projects/scavhuntapp-1/ios/build/Pods.build/Release-iphoneos/mapbox_gl.build/Objects-normal/arm64/OfflineRegion.bc",
+    "object" : "/Users/samuelskulsky/Coding/Flutter Projects/scavhuntapp-1/ios/build/Pods.build/Release-iphoneos/mapbox_gl.build/Objects-normal/arm64/OfflineRegion.o"
+  },
+  "/Users/samuelskulsky/Coding/Flutter Projects/scavhuntapp-1/mapbox_gl_maps/ios/Classes/OfflineRegionDefinition.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphoneos/mapbox_gl.build/Objects-normal/arm64/OfflineRegionDefinition.o",
+    "llvm-bc" : "/Users/samuelskulsky/Coding/Flutter Projects/scavhuntapp-1/ios/build/Pods.build/Release-iphoneos/mapbox_gl.build/Objects-normal/arm64/OfflineRegionDefinition.bc",
+    "object" : "/Users/samuelskulsky/Coding/Flutter Projects/scavhuntapp-1/ios/build/Pods.build/Release-iphoneos/mapbox_gl.build/Objects-normal/arm64/OfflineRegionDefinition.o"
+  },
+  "/Users/samuelskulsky/Coding/Flutter Projects/scavhuntapp-1/mapbox_gl_maps/ios/Classes/RNMBImageUtils.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphoneos/mapbox_gl.build/Objects-normal/arm64/RNMBImageUtils.o",
+    "llvm-bc" : "/Users/samuelskulsky/Coding/Flutter Projects/scavhuntapp-1/ios/build/Pods.build/Release-iphoneos/mapbox_gl.build/Objects-normal/arm64/RNMBImageUtils.bc",
+    "object" : "/Users/samuelskulsky/Coding/Flutter Projects/scavhuntapp-1/ios/build/Pods.build/Release-iphoneos/mapbox_gl.build/Objects-normal/arm64/RNMBImageUtils.o"
+  },
+  "/Users/samuelskulsky/Coding/Flutter Projects/scavhuntapp-1/mapbox_gl_maps/ios/Classes/SourcePropertyConverter.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphoneos/mapbox_gl.build/Objects-normal/arm64/SourcePropertyConverter.o",
+    "llvm-bc" : "/Users/samuelskulsky/Coding/Flutter Projects/scavhuntapp-1/ios/build/Pods.build/Release-iphoneos/mapbox_gl.build/Objects-normal/arm64/SourcePropertyConverter.bc",
+    "object" : "/Users/samuelskulsky/Coding/Flutter Projects/scavhuntapp-1/ios/build/Pods.build/Release-iphoneos/mapbox_gl.build/Objects-normal/arm64/SourcePropertyConverter.o"
+  },
+  "/Users/samuelskulsky/Coding/Flutter Projects/scavhuntapp-1/mapbox_gl_maps/ios/Classes/SwiftMapboxGlFlutterPlugin.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphoneos/mapbox_gl.build/Objects-normal/arm64/SwiftMapboxGlFlutterPlugin.o",
+    "llvm-bc" : "/Users/samuelskulsky/Coding/Flutter Projects/scavhuntapp-1/ios/build/Pods.build/Release-iphoneos/mapbox_gl.build/Objects-normal/arm64/SwiftMapboxGlFlutterPlugin.bc",
+    "object" : "/Users/samuelskulsky/Coding/Flutter Projects/scavhuntapp-1/ios/build/Pods.build/Release-iphoneos/mapbox_gl.build/Objects-normal/arm64/SwiftMapboxGlFlutterPlugin.o"
+  }
+}

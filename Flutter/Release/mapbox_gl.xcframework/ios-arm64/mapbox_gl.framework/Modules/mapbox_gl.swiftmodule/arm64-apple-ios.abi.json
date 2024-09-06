@@ -1,0 +1,828 @@
+{
+  "ABIRoot": {
+    "kind": "Root",
+    "name": "TopLevel",
+    "printedName": "TopLevel",
+    "children": [
+      {
+        "kind": "Import",
+        "name": "Mapbox",
+        "printedName": "Mapbox",
+        "declKind": "Import",
+        "moduleName": "mapbox_gl"
+      },
+      {
+        "kind": "Import",
+        "name": "MapboxAnnotationExtension",
+        "printedName": "MapboxAnnotationExtension",
+        "declKind": "Import",
+        "moduleName": "mapbox_gl"
+      },
+      {
+        "kind": "Import",
+        "name": "Mapbox",
+        "printedName": "Mapbox",
+        "declKind": "Import",
+        "moduleName": "mapbox_gl"
+      },
+      {
+        "kind": "Import",
+        "name": "MapboxAnnotationExtension",
+        "printedName": "MapboxAnnotationExtension",
+        "declKind": "Import",
+        "moduleName": "mapbox_gl"
+      },
+      {
+        "kind": "Import",
+        "name": "Mapbox",
+        "printedName": "Mapbox",
+        "declKind": "Import",
+        "moduleName": "mapbox_gl"
+      },
+      {
+        "kind": "Import",
+        "name": "Mapbox",
+        "printedName": "Mapbox",
+        "declKind": "Import",
+        "moduleName": "mapbox_gl",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "MapboxAnnotationExtension",
+        "printedName": "MapboxAnnotationExtension",
+        "declKind": "Import",
+        "moduleName": "mapbox_gl"
+      },
+      {
+        "kind": "Import",
+        "name": "Flutter",
+        "printedName": "Flutter",
+        "declKind": "Import",
+        "moduleName": "mapbox_gl"
+      },
+      {
+        "kind": "Import",
+        "name": "Mapbox",
+        "printedName": "Mapbox",
+        "declKind": "Import",
+        "moduleName": "mapbox_gl"
+      },
+      {
+        "kind": "Import",
+        "name": "MapboxAnnotationExtension",
+        "printedName": "MapboxAnnotationExtension",
+        "declKind": "Import",
+        "moduleName": "mapbox_gl"
+      },
+      {
+        "kind": "Import",
+        "name": "UIKit",
+        "printedName": "UIKit",
+        "declKind": "Import",
+        "moduleName": "mapbox_gl"
+      },
+      {
+        "kind": "Import",
+        "name": "Flutter",
+        "printedName": "Flutter",
+        "declKind": "Import",
+        "moduleName": "mapbox_gl"
+      },
+      {
+        "kind": "Import",
+        "name": "Mapbox",
+        "printedName": "Mapbox",
+        "declKind": "Import",
+        "moduleName": "mapbox_gl"
+      },
+      {
+        "kind": "Import",
+        "name": "Flutter",
+        "printedName": "Flutter",
+        "declKind": "Import",
+        "moduleName": "mapbox_gl"
+      },
+      {
+        "kind": "Import",
+        "name": "Flutter",
+        "printedName": "Flutter",
+        "declKind": "Import",
+        "moduleName": "mapbox_gl",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "mapbox_gl"
+      },
+      {
+        "kind": "Import",
+        "name": "Flutter",
+        "printedName": "Flutter",
+        "declKind": "Import",
+        "moduleName": "mapbox_gl",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "mapbox_gl"
+      },
+      {
+        "kind": "Import",
+        "name": "Mapbox",
+        "printedName": "Mapbox",
+        "declKind": "Import",
+        "moduleName": "mapbox_gl"
+      },
+      {
+        "kind": "Import",
+        "name": "Flutter",
+        "printedName": "Flutter",
+        "declKind": "Import",
+        "moduleName": "mapbox_gl",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "mapbox_gl"
+      },
+      {
+        "kind": "Import",
+        "name": "Mapbox",
+        "printedName": "Mapbox",
+        "declKind": "Import",
+        "moduleName": "mapbox_gl"
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "mapbox_gl",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "Mapbox",
+        "printedName": "Mapbox",
+        "declKind": "Import",
+        "moduleName": "mapbox_gl"
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "mapbox_gl"
+      },
+      {
+        "kind": "Import",
+        "name": "Mapbox",
+        "printedName": "Mapbox",
+        "declKind": "Import",
+        "moduleName": "mapbox_gl"
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "mapbox_gl"
+      },
+      {
+        "kind": "Import",
+        "name": "Mapbox",
+        "printedName": "Mapbox",
+        "declKind": "Import",
+        "moduleName": "mapbox_gl"
+      },
+      {
+        "kind": "Import",
+        "name": "Flutter",
+        "printedName": "Flutter",
+        "declKind": "Import",
+        "moduleName": "mapbox_gl"
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "mapbox_gl"
+      },
+      {
+        "kind": "Import",
+        "name": "Mapbox",
+        "printedName": "Mapbox",
+        "declKind": "Import",
+        "moduleName": "mapbox_gl"
+      },
+      {
+        "kind": "Import",
+        "name": "UIKit",
+        "printedName": "UIKit",
+        "declKind": "Import",
+        "moduleName": "mapbox_gl"
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "SwiftMapboxGlFlutterPlugin",
+        "printedName": "SwiftMapboxGlFlutterPlugin",
+        "children": [
+          {
+            "kind": "Function",
+            "name": "register",
+            "printedName": "register(with:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "FlutterPluginRegistrar",
+                "printedName": "any Flutter.FlutterPluginRegistrar",
+                "usr": "c:objc(pl)FlutterPluginRegistrar"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@M@mapbox_gl@objc(cs)SwiftMapboxGlFlutterPlugin(cm)registerWithRegistrar:",
+            "mangledName": "$s9mapbox_gl26SwiftMapboxGlFlutterPluginC8register4withySo0fG9Registrar_p_tFZ",
+            "moduleName": "mapbox_gl",
+            "static": true,
+            "objc_name": "registerWithRegistrar:",
+            "declAttributes": [
+              "Final",
+              "ObjC",
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "SwiftMapboxGlFlutterPlugin",
+                "printedName": "mapbox_gl.SwiftMapboxGlFlutterPlugin",
+                "usr": "c:@M@mapbox_gl@objc(cs)SwiftMapboxGlFlutterPlugin"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "c:@M@mapbox_gl@objc(cs)SwiftMapboxGlFlutterPlugin(im)init",
+            "mangledName": "$s9mapbox_gl26SwiftMapboxGlFlutterPluginCACycfc",
+            "moduleName": "mapbox_gl",
+            "overriding": true,
+            "implicit": true,
+            "objc_name": "init",
+            "declAttributes": [
+              "Dynamic",
+              "ObjC",
+              "Override"
+            ],
+            "init_kind": "Designated"
+          }
+        ],
+        "declKind": "Class",
+        "usr": "c:@M@mapbox_gl@objc(cs)SwiftMapboxGlFlutterPlugin",
+        "mangledName": "$s9mapbox_gl26SwiftMapboxGlFlutterPluginC",
+        "moduleName": "mapbox_gl",
+        "declAttributes": [
+          "AccessControl",
+          "ObjC"
+        ],
+        "superclassUsr": "c:objc(cs)NSObject",
+        "inheritsConvenienceInitializers": true,
+        "superclassNames": [
+          "ObjectiveC.NSObject"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Equatable",
+            "printedName": "Equatable",
+            "usr": "s:SQ",
+            "mangledName": "$sSQ"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CVarArg",
+            "printedName": "CVarArg",
+            "usr": "s:s7CVarArgP",
+            "mangledName": "$ss7CVarArgP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_KeyValueCodingAndObservingPublishing",
+            "printedName": "_KeyValueCodingAndObservingPublishing",
+            "usr": "s:10Foundation37_KeyValueCodingAndObservingPublishingP",
+            "mangledName": "$s10Foundation37_KeyValueCodingAndObservingPublishingP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_KeyValueCodingAndObserving",
+            "printedName": "_KeyValueCodingAndObserving",
+            "usr": "s:10Foundation27_KeyValueCodingAndObservingP",
+            "mangledName": "$s10Foundation27_KeyValueCodingAndObservingP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomStringConvertible",
+            "printedName": "CustomStringConvertible",
+            "usr": "s:s23CustomStringConvertibleP",
+            "mangledName": "$ss23CustomStringConvertibleP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomDebugStringConvertible",
+            "printedName": "CustomDebugStringConvertible",
+            "usr": "s:s28CustomDebugStringConvertibleP",
+            "mangledName": "$ss28CustomDebugStringConvertibleP"
+          }
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "UIColor",
+        "printedName": "UIColor",
+        "children": [
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(hexString:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "UIKit.UIColor?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "UIColor",
+                    "printedName": "UIKit.UIColor",
+                    "usr": "c:objc(cs)UIColor"
+                  }
+                ],
+                "usr": "s:Sq"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:So7UIColorC9mapbox_glE9hexStringABSgSS_tcfc",
+            "mangledName": "$sSo7UIColorC9mapbox_glE9hexStringABSgSS_tcfc",
+            "moduleName": "mapbox_gl",
+            "declAttributes": [
+              "Convenience"
+            ],
+            "isFromExtension": true,
+            "init_kind": "Convenience"
+          }
+        ],
+        "declKind": "Class",
+        "usr": "c:objc(cs)UIColor",
+        "moduleName": "UIKit",
+        "isOpen": true,
+        "intro_iOS": "2.0",
+        "objc_name": "UIColor",
+        "declAttributes": [
+          "Available",
+          "ObjC",
+          "SynthesizedProtocol",
+          "NonSendable",
+          "Sendable",
+          "Dynamic"
+        ],
+        "superclassUsr": "c:objc(cs)NSObject",
+        "isExternal": true,
+        "inheritsConvenienceInitializers": true,
+        "superclassNames": [
+          "ObjectiveC.NSObject"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Sendable",
+            "printedName": "Sendable",
+            "usr": "s:s8SendableP",
+            "mangledName": "$ss8SendableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Equatable",
+            "printedName": "Equatable",
+            "usr": "s:SQ",
+            "mangledName": "$sSQ"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CVarArg",
+            "printedName": "CVarArg",
+            "usr": "s:s7CVarArgP",
+            "mangledName": "$ss7CVarArgP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_KeyValueCodingAndObservingPublishing",
+            "printedName": "_KeyValueCodingAndObservingPublishing",
+            "usr": "s:10Foundation37_KeyValueCodingAndObservingPublishingP",
+            "mangledName": "$s10Foundation37_KeyValueCodingAndObservingPublishingP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_KeyValueCodingAndObserving",
+            "printedName": "_KeyValueCodingAndObserving",
+            "usr": "s:10Foundation27_KeyValueCodingAndObservingP",
+            "mangledName": "$s10Foundation27_KeyValueCodingAndObservingP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomStringConvertible",
+            "printedName": "CustomStringConvertible",
+            "usr": "s:s23CustomStringConvertibleP",
+            "mangledName": "$ss23CustomStringConvertibleP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomDebugStringConvertible",
+            "printedName": "CustomDebugStringConvertible",
+            "usr": "s:s28CustomDebugStringConvertibleP",
+            "mangledName": "$ss28CustomDebugStringConvertibleP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_ExpressibleByColorLiteral",
+            "printedName": "_ExpressibleByColorLiteral",
+            "usr": "s:s26_ExpressibleByColorLiteralP",
+            "mangledName": "$ss26_ExpressibleByColorLiteralP"
+          }
+        ]
+      }
+    ],
+    "json_format_version": 8
+  },
+  "ConstValues": [
+    {
+      "filePath": "\/Users\/sam\/.pub-cache\/hosted\/pub.dev\/mapbox_gl-0.16.0\/ios\/Classes\/Constants.swift",
+      "kind": "StringLiteral",
+      "offset": 252,
+      "length": 8,
+      "value": "\"center\""
+    },
+    {
+      "filePath": "\/Users\/sam\/.pub-cache\/hosted\/pub.dev\/mapbox_gl-0.16.0\/ios\/Classes\/Constants.swift",
+      "kind": "StringLiteral",
+      "offset": 292,
+      "length": 6,
+      "value": "\"left\""
+    },
+    {
+      "filePath": "\/Users\/sam\/.pub-cache\/hosted\/pub.dev\/mapbox_gl-0.16.0\/ios\/Classes\/Constants.swift",
+      "kind": "StringLiteral",
+      "offset": 328,
+      "length": 7,
+      "value": "\"right\""
+    },
+    {
+      "filePath": "\/Users\/sam\/.pub-cache\/hosted\/pub.dev\/mapbox_gl-0.16.0\/ios\/Classes\/Constants.swift",
+      "kind": "StringLiteral",
+      "offset": 366,
+      "length": 5,
+      "value": "\"top\""
+    },
+    {
+      "filePath": "\/Users\/sam\/.pub-cache\/hosted\/pub.dev\/mapbox_gl-0.16.0\/ios\/Classes\/Constants.swift",
+      "kind": "StringLiteral",
+      "offset": 400,
+      "length": 8,
+      "value": "\"bottom\""
+    },
+    {
+      "filePath": "\/Users\/sam\/.pub-cache\/hosted\/pub.dev\/mapbox_gl-0.16.0\/ios\/Classes\/Constants.swift",
+      "kind": "StringLiteral",
+      "offset": 440,
+      "length": 10,
+      "value": "\"top-left\""
+    },
+    {
+      "filePath": "\/Users\/sam\/.pub-cache\/hosted\/pub.dev\/mapbox_gl-0.16.0\/ios\/Classes\/Constants.swift",
+      "kind": "StringLiteral",
+      "offset": 483,
+      "length": 11,
+      "value": "\"top-right\""
+    },
+    {
+      "filePath": "\/Users\/sam\/.pub-cache\/hosted\/pub.dev\/mapbox_gl-0.16.0\/ios\/Classes\/Constants.swift",
+      "kind": "StringLiteral",
+      "offset": 528,
+      "length": 13,
+      "value": "\"bottom-left\""
+    },
+    {
+      "filePath": "\/Users\/sam\/.pub-cache\/hosted\/pub.dev\/mapbox_gl-0.16.0\/ios\/Classes\/Constants.swift",
+      "kind": "StringLiteral",
+      "offset": 577,
+      "length": 14,
+      "value": "\"bottom-right\""
+    },
+    {
+      "filePath": "\/Users\/sam\/.pub-cache\/hosted\/pub.dev\/mapbox_gl-0.16.0\/ios\/Classes\/Constants.swift",
+      "kind": "StringLiteral",
+      "offset": 685,
+      "length": 6,
+      "value": "\"auto\""
+    },
+    {
+      "filePath": "\/Users\/sam\/.pub-cache\/hosted\/pub.dev\/mapbox_gl-0.16.0\/ios\/Classes\/Constants.swift",
+      "kind": "StringLiteral",
+      "offset": 728,
+      "length": 8,
+      "value": "\"center\""
+    },
+    {
+      "filePath": "\/Users\/sam\/.pub-cache\/hosted\/pub.dev\/mapbox_gl-0.16.0\/ios\/Classes\/Constants.swift",
+      "kind": "StringLiteral",
+      "offset": 775,
+      "length": 6,
+      "value": "\"left\""
+    },
+    {
+      "filePath": "\/Users\/sam\/.pub-cache\/hosted\/pub.dev\/mapbox_gl-0.16.0\/ios\/Classes\/Constants.swift",
+      "kind": "StringLiteral",
+      "offset": 818,
+      "length": 7,
+      "value": "\"right\""
+    },
+    {
+      "filePath": "\/Users\/sam\/.pub-cache\/hosted\/pub.dev\/mapbox_gl-0.16.0\/ios\/Classes\/Constants.swift",
+      "kind": "StringLiteral",
+      "offset": 913,
+      "length": 8,
+      "value": "\"center\""
+    },
+    {
+      "filePath": "\/Users\/sam\/.pub-cache\/hosted\/pub.dev\/mapbox_gl-0.16.0\/ios\/Classes\/Constants.swift",
+      "kind": "StringLiteral",
+      "offset": 953,
+      "length": 6,
+      "value": "\"left\""
+    },
+    {
+      "filePath": "\/Users\/sam\/.pub-cache\/hosted\/pub.dev\/mapbox_gl-0.16.0\/ios\/Classes\/Constants.swift",
+      "kind": "StringLiteral",
+      "offset": 989,
+      "length": 7,
+      "value": "\"right\""
+    },
+    {
+      "filePath": "\/Users\/sam\/.pub-cache\/hosted\/pub.dev\/mapbox_gl-0.16.0\/ios\/Classes\/Constants.swift",
+      "kind": "StringLiteral",
+      "offset": 1027,
+      "length": 5,
+      "value": "\"top\""
+    },
+    {
+      "filePath": "\/Users\/sam\/.pub-cache\/hosted\/pub.dev\/mapbox_gl-0.16.0\/ios\/Classes\/Constants.swift",
+      "kind": "StringLiteral",
+      "offset": 1061,
+      "length": 8,
+      "value": "\"bottom\""
+    },
+    {
+      "filePath": "\/Users\/sam\/.pub-cache\/hosted\/pub.dev\/mapbox_gl-0.16.0\/ios\/Classes\/Constants.swift",
+      "kind": "StringLiteral",
+      "offset": 1101,
+      "length": 10,
+      "value": "\"top-left\""
+    },
+    {
+      "filePath": "\/Users\/sam\/.pub-cache\/hosted\/pub.dev\/mapbox_gl-0.16.0\/ios\/Classes\/Constants.swift",
+      "kind": "StringLiteral",
+      "offset": 1144,
+      "length": 11,
+      "value": "\"top-right\""
+    },
+    {
+      "filePath": "\/Users\/sam\/.pub-cache\/hosted\/pub.dev\/mapbox_gl-0.16.0\/ios\/Classes\/Constants.swift",
+      "kind": "StringLiteral",
+      "offset": 1189,
+      "length": 13,
+      "value": "\"bottom-left\""
+    },
+    {
+      "filePath": "\/Users\/sam\/.pub-cache\/hosted\/pub.dev\/mapbox_gl-0.16.0\/ios\/Classes\/Constants.swift",
+      "kind": "StringLiteral",
+      "offset": 1238,
+      "length": 14,
+      "value": "\"bottom-right\""
+    },
+    {
+      "filePath": "\/Users\/sam\/.pub-cache\/hosted\/pub.dev\/mapbox_gl-0.16.0\/ios\/Classes\/Constants.swift",
+      "kind": "StringLiteral",
+      "offset": 1347,
+      "length": 6,
+      "value": "\"none\""
+    },
+    {
+      "filePath": "\/Users\/sam\/.pub-cache\/hosted\/pub.dev\/mapbox_gl-0.16.0\/ios\/Classes\/Constants.swift",
+      "kind": "StringLiteral",
+      "offset": 1386,
+      "length": 11,
+      "value": "\"lowercase\""
+    },
+    {
+      "filePath": "\/Users\/sam\/.pub-cache\/hosted\/pub.dev\/mapbox_gl-0.16.0\/ios\/Classes\/Constants.swift",
+      "kind": "StringLiteral",
+      "offset": 1435,
+      "length": 11,
+      "value": "\"uppercase\""
+    },
+    {
+      "filePath": "\/Users\/sam\/.pub-cache\/hosted\/pub.dev\/mapbox_gl-0.16.0\/ios\/Classes\/Constants.swift",
+      "kind": "StringLiteral",
+      "offset": 1526,
+      "length": 7,
+      "value": "\"bevel\""
+    },
+    {
+      "filePath": "\/Users\/sam\/.pub-cache\/hosted\/pub.dev\/mapbox_gl-0.16.0\/ios\/Classes\/Constants.swift",
+      "kind": "StringLiteral",
+      "offset": 1562,
+      "length": 7,
+      "value": "\"miter\""
+    },
+    {
+      "filePath": "\/Users\/sam\/.pub-cache\/hosted\/pub.dev\/mapbox_gl-0.16.0\/ios\/Classes\/Constants.swift",
+      "kind": "StringLiteral",
+      "offset": 1598,
+      "length": 7,
+      "value": "\"round\""
+    },
+    {
+      "filePath": "\/Users\/sam\/.pub-cache\/hosted\/pub.dev\/mapbox_gl-0.16.0\/ios\/Classes\/Enums.swift",
+      "kind": "IntegerLiteral",
+      "offset": 50,
+      "length": 7,
+      "value": "1"
+    },
+    {
+      "filePath": "\/Users\/sam\/.pub-cache\/hosted\/pub.dev\/mapbox_gl-0.16.0\/ios\/Classes\/Enums.swift",
+      "kind": "IntegerLiteral",
+      "offset": 59,
+      "length": 3,
+      "value": "2"
+    },
+    {
+      "filePath": "\/Users\/sam\/.pub-cache\/hosted\/pub.dev\/mapbox_gl-0.16.0\/ios\/Classes\/Enums.swift",
+      "kind": "IntegerLiteral",
+      "offset": 50,
+      "length": 7,
+      "value": "1"
+    },
+    {
+      "filePath": "\/Users\/sam\/.pub-cache\/hosted\/pub.dev\/mapbox_gl-0.16.0\/ios\/Classes\/Enums.swift",
+      "kind": "IntegerLiteral",
+      "offset": 59,
+      "length": 3,
+      "value": "2"
+    },
+    {
+      "filePath": "\/Users\/sam\/.pub-cache\/hosted\/pub.dev\/mapbox_gl-0.16.0\/ios\/Classes\/Enums.swift",
+      "kind": "IntegerLiteral",
+      "offset": 50,
+      "length": 7,
+      "value": "1"
+    },
+    {
+      "filePath": "\/Users\/sam\/.pub-cache\/hosted\/pub.dev\/mapbox_gl-0.16.0\/ios\/Classes\/Enums.swift",
+      "kind": "IntegerLiteral",
+      "offset": 59,
+      "length": 3,
+      "value": "2"
+    },
+    {
+      "filePath": "\/Users\/sam\/.pub-cache\/hosted\/pub.dev\/mapbox_gl-0.16.0\/ios\/Classes\/MapboxMapController.swift",
+      "kind": "BooleanLiteral",
+      "offset": 373,
+      "length": 5,
+      "value": "false"
+    },
+    {
+      "filePath": "\/Users\/sam\/.pub-cache\/hosted\/pub.dev\/mapbox_gl-0.16.0\/ios\/Classes\/MapboxMapController.swift",
+      "kind": "BooleanLiteral",
+      "offset": 409,
+      "length": 4,
+      "value": "true"
+    },
+    {
+      "filePath": "\/Users\/sam\/.pub-cache\/hosted\/pub.dev\/mapbox_gl-0.16.0\/ios\/Classes\/MapboxMapController.swift",
+      "kind": "BooleanLiteral",
+      "offset": 449,
+      "length": 4,
+      "value": "true"
+    },
+    {
+      "filePath": "\/Users\/sam\/.pub-cache\/hosted\/pub.dev\/mapbox_gl-0.16.0\/ios\/Classes\/MapboxMapController.swift",
+      "kind": "BooleanLiteral",
+      "offset": 492,
+      "length": 5,
+      "value": "false"
+    },
+    {
+      "filePath": "\/Users\/sam\/.pub-cache\/hosted\/pub.dev\/mapbox_gl-0.16.0\/ios\/Classes\/MapboxMapController.swift",
+      "kind": "BooleanLiteral",
+      "offset": 846,
+      "length": 5,
+      "value": "false"
+    },
+    {
+      "filePath": "\/Users\/sam\/.pub-cache\/hosted\/pub.dev\/mapbox_gl-0.16.0\/ios\/Classes\/MapboxMapController.swift",
+      "kind": "BooleanLiteral",
+      "offset": 888,
+      "length": 5,
+      "value": "false"
+    },
+    {
+      "filePath": "\/Users\/sam\/.pub-cache\/hosted\/pub.dev\/mapbox_gl-0.16.0\/ios\/Classes\/MapboxMapController.swift",
+      "kind": "BooleanLiteral",
+      "offset": 929,
+      "length": 4,
+      "value": "true"
+    },
+    {
+      "filePath": "\/Users\/sam\/.pub-cache\/hosted\/pub.dev\/mapbox_gl-0.16.0\/ios\/Classes\/MapboxMapController.swift",
+      "kind": "StringLiteral",
+      "offset": 82,
+      "length": 19,
+      "value": "\"mapbox_gl.MapboxMapController\""
+    },
+    {
+      "filePath": "\/Users\/sam\/.pub-cache\/hosted\/pub.dev\/mapbox_gl-0.16.0\/ios\/Classes\/MapboxMapFactory.swift",
+      "kind": "StringLiteral",
+      "offset": 22,
+      "length": 16,
+      "value": "\"mapbox_gl.MapboxMapFactory\""
+    },
+    {
+      "filePath": "\/Users\/sam\/.pub-cache\/hosted\/pub.dev\/mapbox_gl-0.16.0\/ios\/Classes\/OfflineChannelHandler.swift",
+      "kind": "StringLiteral",
+      "offset": 132,
+      "length": 21,
+      "value": "\"mapbox_gl.OfflineChannelHandler\""
+    },
+    {
+      "filePath": "\/Users\/sam\/.pub-cache\/hosted\/pub.dev\/mapbox_gl-0.16.0\/ios\/Classes\/OfflineManagerUtils.swift",
+      "kind": "Dictionary",
+      "offset": 231,
+      "length": 3,
+      "value": "[]"
+    },
+    {
+      "filePath": "\/Users\/sam\/.pub-cache\/hosted\/pub.dev\/mapbox_gl-0.16.0\/ios\/Classes\/OfflinePackDownloadManager.swift",
+      "kind": "BooleanLiteral",
+      "offset": 680,
+      "length": 5,
+      "value": "false"
+    }
+  ]
+}

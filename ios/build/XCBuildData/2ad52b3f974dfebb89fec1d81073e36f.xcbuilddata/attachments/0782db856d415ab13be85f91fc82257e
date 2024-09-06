@@ -1,0 +1,17 @@
+/Users/samuelskulsky/Coding/Flutter\ Projects/scavhuntapp-1/mapbox_gl_maps/ios/Classes/Constants.swift
+/Users/samuelskulsky/Coding/Flutter\ Projects/scavhuntapp-1/mapbox_gl_maps/ios/Classes/Convert.swift
+/Users/samuelskulsky/Coding/Flutter\ Projects/scavhuntapp-1/mapbox_gl_maps/ios/Classes/Enums.swift
+/Users/samuelskulsky/Coding/Flutter\ Projects/scavhuntapp-1/mapbox_gl_maps/ios/Classes/Extensions.swift
+/Users/samuelskulsky/Coding/Flutter\ Projects/scavhuntapp-1/mapbox_gl_maps/ios/Classes/LayerPropertyConverter.swift
+/Users/samuelskulsky/Coding/Flutter\ Projects/scavhuntapp-1/mapbox_gl_maps/ios/Classes/MapboxMapController.swift
+/Users/samuelskulsky/Coding/Flutter\ Projects/scavhuntapp-1/mapbox_gl_maps/ios/Classes/MapboxMapFactory.swift
+/Users/samuelskulsky/Coding/Flutter\ Projects/scavhuntapp-1/mapbox_gl_maps/ios/Classes/MapboxMapOptionsSink.swift
+/Users/samuelskulsky/Coding/Flutter\ Projects/scavhuntapp-1/mapbox_gl_maps/ios/Classes/MethodCallError.swift
+/Users/samuelskulsky/Coding/Flutter\ Projects/scavhuntapp-1/mapbox_gl_maps/ios/Classes/OfflineChannelHandler.swift
+/Users/samuelskulsky/Coding/Flutter\ Projects/scavhuntapp-1/mapbox_gl_maps/ios/Classes/OfflineManagerUtils.swift
+/Users/samuelskulsky/Coding/Flutter\ Projects/scavhuntapp-1/mapbox_gl_maps/ios/Classes/OfflinePackDownloadManager.swift
+/Users/samuelskulsky/Coding/Flutter\ Projects/scavhuntapp-1/mapbox_gl_maps/ios/Classes/OfflineRegion.swift
+/Users/samuelskulsky/Coding/Flutter\ Projects/scavhuntapp-1/mapbox_gl_maps/ios/Classes/OfflineRegionDefinition.swift
+/Users/samuelskulsky/Coding/Flutter\ Projects/scavhuntapp-1/mapbox_gl_maps/ios/Classes/RNMBImageUtils.swift
+/Users/samuelskulsky/Coding/Flutter\ Projects/scavhuntapp-1/mapbox_gl_maps/ios/Classes/SourcePropertyConverter.swift
+/Users/samuelskulsky/Coding/Flutter\ Projects/scavhuntapp-1/mapbox_gl_maps/ios/Classes/SwiftMapboxGlFlutterPlugin.swift

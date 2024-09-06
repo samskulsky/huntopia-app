@@ -1,0 +1,23 @@
+{
+  'version': 0,
+  'use-external-names': 'false',
+  'case-sensitive': 'false',
+  'roots': [{
+    'type': 'directory',
+    'name': "/Users/samuelskulsky/Coding/Flutter Projects/scavhuntapp-1/ios/build/Release-iphoneos/apple_maps_flutter/apple_maps_flutter.framework/Modules"
+    'contents': [{
+      'type': 'file',
+      'name': "module.modulemap",
+      'external-contents': "/Users/samuelskulsky/Coding/Flutter Projects/scavhuntapp-1/ios/build/Pods.build/Release-iphoneos/apple_maps_flutter.build/unextended-module.modulemap",
+    }]
+    },
+    {
+    'type': 'directory',
+    'name': "/Users/samuelskulsky/Coding/Flutter Projects/scavhuntapp-1/ios/build/Release-iphoneos/apple_maps_flutter/apple_maps_flutter.framework/Headers"
+    'contents': [{
+      'type': 'file',
+      'name': "apple_maps_flutter-Swift.h",
+      'external-contents': "/Users/samuelskulsky/Coding/Flutter Projects/scavhuntapp-1/ios/build/Pods.build/Release-iphoneos/apple_maps_flutter.build/unextended-interface-header.h",
+    }]
+    }]
+}

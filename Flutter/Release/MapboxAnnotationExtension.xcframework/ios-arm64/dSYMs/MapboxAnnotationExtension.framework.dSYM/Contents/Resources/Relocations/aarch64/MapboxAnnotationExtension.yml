@@ -1,0 +1,462 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     '/Users/sam/scavhuntapp/Flutter/Release/iphoneos/Release-iphoneos/MapboxAnnotationExtension/MapboxAnnotationExtension.framework/MapboxAnnotationExtension'
+relocations:
+  - { offsetInCU: 0x33, offset: 0x48C4, size: 0x8, addend: 0x0, symName: _MapboxAnnotationExtensionVersionString, symObjAddr: 0x0, symBinAddr: 0x15EE0, symSize: 0x0 }
+  - { offsetInCU: 0x67, offset: 0x48F8, size: 0x8, addend: 0x0, symName: _MapboxAnnotationExtensionVersionNumber, symObjAddr: 0x38, symBinAddr: 0x15F18, symSize: 0x0 }
+  - { offsetInCU: 0x27, offset: 0x4934, size: 0x8, addend: 0x0, symName: '-[MGLAnnotationController initWithMapView:]', symObjAddr: 0x0, symBinAddr: 0x4000, symSize: 0xC0 }
+  - { offsetInCU: 0x261, offset: 0x4B6E, size: 0x8, addend: 0x0, symName: '-[MGLAnnotationController initWithMapView:]', symObjAddr: 0x0, symBinAddr: 0x4000, symSize: 0xC0 }
+  - { offsetInCU: 0x2A4, offset: 0x4BB1, size: 0x8, addend: 0x0, symName: '-[MGLAnnotationController initWithMapView:belowLayerIdentifier:]', symObjAddr: 0xC0, symBinAddr: 0x40C0, symSize: 0x114 }
+  - { offsetInCU: 0x313, offset: 0x4C20, size: 0x8, addend: 0x0, symName: '-[MGLAnnotationController commonInit:]', symObjAddr: 0x1D4, symBinAddr: 0x41D4, symSize: 0x250 }
+  - { offsetInCU: 0x39D, offset: 0x4CAA, size: 0x8, addend: 0x0, symName: '-[MGLAnnotationController setAnnotationsInteractionEnabled:]', symObjAddr: 0x424, symBinAddr: 0x4424, symSize: 0x3C }
+  - { offsetInCU: 0x3DC, offset: 0x4CE9, size: 0x8, addend: 0x0, symName: '-[MGLAnnotationController annotationsInteractionEnabled]', symObjAddr: 0x460, symBinAddr: 0x4460, symSize: 0x34 }
+  - { offsetInCU: 0x410, offset: 0x4D1D, size: 0x8, addend: 0x0, symName: '-[MGLAnnotationController initializeLayer]', symObjAddr: 0x494, symBinAddr: 0x4494, symSize: 0x4 }
+  - { offsetInCU: 0x43C, offset: 0x4D49, size: 0x8, addend: 0x0, symName: '-[MGLAnnotationController addStyleAnnotation:]', symObjAddr: 0x498, symBinAddr: 0x4498, symSize: 0x98 }
+  - { offsetInCU: 0x47B, offset: 0x4D88, size: 0x8, addend: 0x0, symName: '-[MGLAnnotationController addStyleAnnotations:]', symObjAddr: 0x530, symBinAddr: 0x4530, symSize: 0x134 }
+  - { offsetInCU: 0x4D5, offset: 0x4DE2, size: 0x8, addend: 0x0, symName: '-[MGLAnnotationController removeStyleAnnotation:]', symObjAddr: 0x664, symBinAddr: 0x4664, symSize: 0x98 }
+  - { offsetInCU: 0x514, offset: 0x4E21, size: 0x8, addend: 0x0, symName: '-[MGLAnnotationController removeStyleAnnotations:]', symObjAddr: 0x6FC, symBinAddr: 0x46FC, symSize: 0x128 }
+  - { offsetInCU: 0x570, offset: 0x4E7D, size: 0x8, addend: 0x0, symName: '-[MGLAnnotationController updateStyleAnnotation:]', symObjAddr: 0x824, symBinAddr: 0x4824, symSize: 0x98 }
+  - { offsetInCU: 0x5AF, offset: 0x4EBC, size: 0x8, addend: 0x0, symName: '-[MGLAnnotationController updateStyleAnnotations:]', symObjAddr: 0x8BC, symBinAddr: 0x48BC, symSize: 0x4 }
+  - { offsetInCU: 0x5EA, offset: 0x4EF7, size: 0x8, addend: 0x0, symName: '-[MGLAnnotationController selectStyleAnnotation:]', symObjAddr: 0x8C0, symBinAddr: 0x48C0, symSize: 0x64 }
+  - { offsetInCU: 0x629, offset: 0x4F36, size: 0x8, addend: 0x0, symName: '-[MGLAnnotationController deselectStyleAnnotation:]', symObjAddr: 0x924, symBinAddr: 0x4924, symSize: 0x64 }
+  - { offsetInCU: 0x668, offset: 0x4F75, size: 0x8, addend: 0x0, symName: '-[MGLAnnotationController enablePaintProperties:]', symObjAddr: 0x988, symBinAddr: 0x4988, symSize: 0x4 }
+  - { offsetInCU: 0x69F, offset: 0x4FAC, size: 0x8, addend: 0x0, symName: '-[MGLAnnotationController setPaintProperties]', symObjAddr: 0x98C, symBinAddr: 0x498C, symSize: 0x4 }
+  - { offsetInCU: 0x6CB, offset: 0x4FD8, size: 0x8, addend: 0x0, symName: '-[MGLAnnotationController setNeedsUpdate]', symObjAddr: 0x990, symBinAddr: 0x4990, symSize: 0x194 }
+  - { offsetInCU: 0x72D, offset: 0x503A, size: 0x8, addend: 0x0, symName: ___Block_byref_object_copy_, symObjAddr: 0xB24, symBinAddr: 0x4B24, symSize: 0x10 }
+  - { offsetInCU: 0x74F, offset: 0x505C, size: 0x8, addend: 0x0, symName: ___Block_byref_object_dispose_, symObjAddr: 0xB34, symBinAddr: 0x4B34, symSize: 0x8 }
+  - { offsetInCU: 0x76C, offset: 0x5079, size: 0x8, addend: 0x0, symName: '___41-[MGLAnnotationController setNeedsUpdate]_block_invoke', symObjAddr: 0xB3C, symBinAddr: 0x4B3C, symSize: 0x78 }
+  - { offsetInCU: 0x7D8, offset: 0x50E5, size: 0x8, addend: 0x0, symName: ___copy_helper_block_e8_32r40w, symObjAddr: 0xBB4, symBinAddr: 0x4BB4, symSize: 0x38 }
+  - { offsetInCU: 0x7FE, offset: 0x510B, size: 0x8, addend: 0x0, symName: ___destroy_helper_block_e8_32r40w, symObjAddr: 0xBEC, symBinAddr: 0x4BEC, symSize: 0x2C }
+  - { offsetInCU: 0x81B, offset: 0x5128, size: 0x8, addend: 0x0, symName: '-[MGLAnnotationController styleAnnotations]', symObjAddr: 0xC18, symBinAddr: 0x4C18, symSize: 0x38 }
+  - { offsetInCU: 0x84F, offset: 0x515C, size: 0x8, addend: 0x0, symName: '-[MGLAnnotationController dealloc]', symObjAddr: 0xC50, symBinAddr: 0x4C50, symSize: 0x54 }
+  - { offsetInCU: 0x87F, offset: 0x518C, size: 0x8, addend: 0x0, symName: '-[MGLAnnotationController mapView]', symObjAddr: 0xCA4, symBinAddr: 0x4CA4, symSize: 0x8 }
+  - { offsetInCU: 0x8B3, offset: 0x51C0, size: 0x8, addend: 0x0, symName: '-[MGLAnnotationController setMapView:]', symObjAddr: 0xCAC, symBinAddr: 0x4CAC, symSize: 0xC }
+  - { offsetInCU: 0x8F0, offset: 0x51FD, size: 0x8, addend: 0x0, symName: '-[MGLAnnotationController delegate]', symObjAddr: 0xCB8, symBinAddr: 0x4CB8, symSize: 0x18 }
+  - { offsetInCU: 0x924, offset: 0x5231, size: 0x8, addend: 0x0, symName: '-[MGLAnnotationController setDelegate:]', symObjAddr: 0xCD0, symBinAddr: 0x4CD0, symSize: 0xC }
+  - { offsetInCU: 0x961, offset: 0x526E, size: 0x8, addend: 0x0, symName: '-[MGLAnnotationController annotations]', symObjAddr: 0xCDC, symBinAddr: 0x4CDC, symSize: 0x8 }
+  - { offsetInCU: 0x995, offset: 0x52A2, size: 0x8, addend: 0x0, symName: '-[MGLAnnotationController setAnnotations:]', symObjAddr: 0xCE4, symBinAddr: 0x4CE4, symSize: 0xC }
+  - { offsetInCU: 0x9D2, offset: 0x52DF, size: 0x8, addend: 0x0, symName: '-[MGLAnnotationController enabledPaintProperties]', symObjAddr: 0xCF0, symBinAddr: 0x4CF0, symSize: 0x8 }
+  - { offsetInCU: 0xA06, offset: 0x5313, size: 0x8, addend: 0x0, symName: '-[MGLAnnotationController setEnabledPaintProperties:]', symObjAddr: 0xCF8, symBinAddr: 0x4CF8, symSize: 0xC }
+  - { offsetInCU: 0xA43, offset: 0x5350, size: 0x8, addend: 0x0, symName: '-[MGLAnnotationController source]', symObjAddr: 0xD04, symBinAddr: 0x4D04, symSize: 0x8 }
+  - { offsetInCU: 0xA77, offset: 0x5384, size: 0x8, addend: 0x0, symName: '-[MGLAnnotationController setSource:]', symObjAddr: 0xD0C, symBinAddr: 0x4D0C, symSize: 0xC }
+  - { offsetInCU: 0xAB4, offset: 0x53C1, size: 0x8, addend: 0x0, symName: '-[MGLAnnotationController layer]', symObjAddr: 0xD18, symBinAddr: 0x4D18, symSize: 0x8 }
+  - { offsetInCU: 0xAE8, offset: 0x53F5, size: 0x8, addend: 0x0, symName: '-[MGLAnnotationController setLayer:]', symObjAddr: 0xD20, symBinAddr: 0x4D20, symSize: 0xC }
+  - { offsetInCU: 0xB25, offset: 0x5432, size: 0x8, addend: 0x0, symName: '-[MGLAnnotationController singleTapGestureRecognizer]', symObjAddr: 0xD2C, symBinAddr: 0x4D2C, symSize: 0x8 }
+  - { offsetInCU: 0xB59, offset: 0x5466, size: 0x8, addend: 0x0, symName: '-[MGLAnnotationController setSingleTapGestureRecognizer:]', symObjAddr: 0xD34, symBinAddr: 0x4D34, symSize: 0xC }
+  - { offsetInCU: 0xB96, offset: 0x54A3, size: 0x8, addend: 0x0, symName: '-[MGLAnnotationController selectedFeature]', symObjAddr: 0xD40, symBinAddr: 0x4D40, symSize: 0x8 }
+  - { offsetInCU: 0xBCA, offset: 0x54D7, size: 0x8, addend: 0x0, symName: '-[MGLAnnotationController setSelectedFeature:]', symObjAddr: 0xD48, symBinAddr: 0x4D48, symSize: 0xC }
+  - { offsetInCU: 0xC07, offset: 0x5514, size: 0x8, addend: 0x0, symName: '-[MGLAnnotationController interactionEnabled]', symObjAddr: 0xD54, symBinAddr: 0x4D54, symSize: 0x8 }
+  - { offsetInCU: 0xC3B, offset: 0x5548, size: 0x8, addend: 0x0, symName: '-[MGLAnnotationController setInteractionEnabled:]', symObjAddr: 0xD5C, symBinAddr: 0x4D5C, symSize: 0x8 }
+  - { offsetInCU: 0xC72, offset: 0x557F, size: 0x8, addend: 0x0, symName: '-[MGLAnnotationController annotationLayerView]', symObjAddr: 0xD64, symBinAddr: 0x4D64, symSize: 0x8 }
+  - { offsetInCU: 0xCA6, offset: 0x55B3, size: 0x8, addend: 0x0, symName: '-[MGLAnnotationController setAnnotationLayerView:]', symObjAddr: 0xD6C, symBinAddr: 0x4D6C, symSize: 0xC }
+  - { offsetInCU: 0xCE3, offset: 0x55F0, size: 0x8, addend: 0x0, symName: '-[MGLAnnotationController .cxx_destruct]', symObjAddr: 0xD78, symBinAddr: 0x4D78, symSize: 0x80 }
+  - { offsetInCU: 0x27, offset: 0x5812, size: 0x8, addend: 0x0, symName: '-[MGLAnnotationLayerView initWithFrame:]', symObjAddr: 0x0, symBinAddr: 0x4DF8, symSize: 0x1E4 }
+  - { offsetInCU: 0x298, offset: 0x5A83, size: 0x8, addend: 0x0, symName: '-[MGLAnnotationLayerView initWithFrame:]', symObjAddr: 0x0, symBinAddr: 0x4DF8, symSize: 0x1E4 }
+  - { offsetInCU: 0x2D7, offset: 0x5AC2, size: 0x8, addend: 0x0, symName: '-[MGLAnnotationLayerView pointInside:withEvent:]', symObjAddr: 0x1E4, symBinAddr: 0x4FDC, symSize: 0x1F0 }
+  - { offsetInCU: 0x3AD, offset: 0x5B98, size: 0x8, addend: 0x0, symName: '-[MGLAnnotationLayerView hitTest:withEvent:]', symObjAddr: 0x3D4, symBinAddr: 0x51CC, symSize: 0x38 }
+  - { offsetInCU: 0x40A, offset: 0x5BF5, size: 0x8, addend: 0x0, symName: '-[MGLAnnotationLayerView handleTapGesture:]', symObjAddr: 0x40C, symBinAddr: 0x5204, symSize: 0x100 }
+  - { offsetInCU: 0x467, offset: 0x5C52, size: 0x8, addend: 0x0, symName: '-[MGLAnnotationLayerView handleLongPressGesture:]', symObjAddr: 0x50C, symBinAddr: 0x5304, symSize: 0x1FC }
+  - { offsetInCU: 0x4F7, offset: 0x5CE2, size: 0x8, addend: 0x0, symName: '-[MGLAnnotationLayerView handleDragGesture:]', symObjAddr: 0x708, symBinAddr: 0x5500, symSize: 0x238 }
+  - { offsetInCU: 0x58A, offset: 0x5D75, size: 0x8, addend: 0x0, symName: '-[MGLAnnotationLayerView sortedFeaturesNearCGPoint:]', symObjAddr: 0x940, symBinAddr: 0x5738, symSize: 0xFC }
+  - { offsetInCU: 0x5E7, offset: 0x5DD2, size: 0x8, addend: 0x0, symName: '___52-[MGLAnnotationLayerView sortedFeaturesNearCGPoint:]_block_invoke', symObjAddr: 0xA3C, symBinAddr: 0x5834, symSize: 0x98 }
+  - { offsetInCU: 0x68B, offset: 0x5E76, size: 0x8, addend: 0x0, symName: '-[MGLAnnotationLayerView feature:isEqualToFeature:]', symObjAddr: 0xAD4, symBinAddr: 0x58CC, symSize: 0xA4 }
+  - { offsetInCU: 0x6F7, offset: 0x5EE2, size: 0x8, addend: 0x0, symName: '-[MGLAnnotationLayerView selectAnnotation:]', symObjAddr: 0xB78, symBinAddr: 0x5970, symSize: 0xAC }
+  - { offsetInCU: 0x736, offset: 0x5F21, size: 0x8, addend: 0x0, symName: '-[MGLAnnotationLayerView deselectAnnotation:]', symObjAddr: 0xC24, symBinAddr: 0x5A1C, symSize: 0xC0 }
+  - { offsetInCU: 0x775, offset: 0x5F60, size: 0x8, addend: 0x0, symName: '-[MGLAnnotationLayerView getStyleAnnotationFromFeature:]', symObjAddr: 0xCE4, symBinAddr: 0x5ADC, symSize: 0x8C }
+  - { offsetInCU: 0x7D6, offset: 0x5FC1, size: 0x8, addend: 0x0, symName: '-[MGLAnnotationLayerView notifyDelegateSelectEvent:]', symObjAddr: 0xD70, symBinAddr: 0x5B68, symSize: 0xBC }
+  - { offsetInCU: 0x824, offset: 0x600F, size: 0x8, addend: 0x0, symName: '-[MGLAnnotationLayerView notifyDelegateDeselectEvent:]', symObjAddr: 0xE2C, symBinAddr: 0x5C24, symSize: 0xBC }
+  - { offsetInCU: 0x872, offset: 0x605D, size: 0x8, addend: 0x0, symName: '-[MGLAnnotationLayerView openAnnotationCallout:]', symObjAddr: 0xEE8, symBinAddr: 0x5CE0, symSize: 0x13C }
+  - { offsetInCU: 0x8B1, offset: 0x609C, size: 0x8, addend: 0x0, symName: '-[MGLAnnotationLayerView closeAnnotationCallout:]', symObjAddr: 0x1024, symBinAddr: 0x5E1C, symSize: 0x9C }
+  - { offsetInCU: 0x8F0, offset: 0x60DB, size: 0x8, addend: 0x0, symName: '-[MGLAnnotationLayerView gestureRecognizerShouldBegin:]', symObjAddr: 0x10C0, symBinAddr: 0x5EB8, symSize: 0x60 }
+  - { offsetInCU: 0x93E, offset: 0x6129, size: 0x8, addend: 0x0, symName: '-[MGLAnnotationLayerView gestureRecognizer:shouldRecognizeSimultaneouslyWithGestureRecognizer:]', symObjAddr: 0x1120, symBinAddr: 0x5F18, symSize: 0x80 }
+  - { offsetInCU: 0x993, offset: 0x617E, size: 0x8, addend: 0x0, symName: '-[MGLAnnotationLayerView annotationController]', symObjAddr: 0x11A0, symBinAddr: 0x5F98, symSize: 0x20 }
+  - { offsetInCU: 0x9C7, offset: 0x61B2, size: 0x8, addend: 0x0, symName: '-[MGLAnnotationLayerView setAnnotationController:]', symObjAddr: 0x11C0, symBinAddr: 0x5FB8, symSize: 0x14 }
+  - { offsetInCU: 0xA04, offset: 0x61EF, size: 0x8, addend: 0x0, symName: '-[MGLAnnotationLayerView singleTapGestureRecognizer]', symObjAddr: 0x11D4, symBinAddr: 0x5FCC, symSize: 0x10 }
+  - { offsetInCU: 0xA38, offset: 0x6223, size: 0x8, addend: 0x0, symName: '-[MGLAnnotationLayerView setSingleTapGestureRecognizer:]', symObjAddr: 0x11E4, symBinAddr: 0x5FDC, symSize: 0x14 }
+  - { offsetInCU: 0xA75, offset: 0x6260, size: 0x8, addend: 0x0, symName: '-[MGLAnnotationLayerView longPressGestureRecognizer]', symObjAddr: 0x11F8, symBinAddr: 0x5FF0, symSize: 0x10 }
+  - { offsetInCU: 0xAA9, offset: 0x6294, size: 0x8, addend: 0x0, symName: '-[MGLAnnotationLayerView setLongPressGestureRecognizer:]', symObjAddr: 0x1208, symBinAddr: 0x6000, symSize: 0x14 }
+  - { offsetInCU: 0xAE6, offset: 0x62D1, size: 0x8, addend: 0x0, symName: '-[MGLAnnotationLayerView dragGestureRecognizer]', symObjAddr: 0x121C, symBinAddr: 0x6014, symSize: 0x10 }
+  - { offsetInCU: 0xB1A, offset: 0x6305, size: 0x8, addend: 0x0, symName: '-[MGLAnnotationLayerView setDragGestureRecognizer:]', symObjAddr: 0x122C, symBinAddr: 0x6024, symSize: 0x14 }
+  - { offsetInCU: 0xB57, offset: 0x6342, size: 0x8, addend: 0x0, symName: '-[MGLAnnotationLayerView dragState]', symObjAddr: 0x1240, symBinAddr: 0x6038, symSize: 0x10 }
+  - { offsetInCU: 0xB8B, offset: 0x6376, size: 0x8, addend: 0x0, symName: '-[MGLAnnotationLayerView setDragState:]', symObjAddr: 0x1250, symBinAddr: 0x6048, symSize: 0x10 }
+  - { offsetInCU: 0xBC4, offset: 0x63AF, size: 0x8, addend: 0x0, symName: '-[MGLAnnotationLayerView lastCoordinate]', symObjAddr: 0x1260, symBinAddr: 0x6058, symSize: 0x14 }
+  - { offsetInCU: 0xBF6, offset: 0x63E1, size: 0x8, addend: 0x0, symName: '-[MGLAnnotationLayerView setLastCoordinate:]', symObjAddr: 0x1274, symBinAddr: 0x606C, symSize: 0x14 }
+  - { offsetInCU: 0xC31, offset: 0x641C, size: 0x8, addend: 0x0, symName: '-[MGLAnnotationLayerView selectedFeature]', symObjAddr: 0x1288, symBinAddr: 0x6080, symSize: 0x10 }
+  - { offsetInCU: 0xC65, offset: 0x6450, size: 0x8, addend: 0x0, symName: '-[MGLAnnotationLayerView setSelectedFeature:]', symObjAddr: 0x1298, symBinAddr: 0x6090, symSize: 0x14 }
+  - { offsetInCU: 0xCA2, offset: 0x648D, size: 0x8, addend: 0x0, symName: '-[MGLAnnotationLayerView draggedFeature]', symObjAddr: 0x12AC, symBinAddr: 0x60A4, symSize: 0x10 }
+  - { offsetInCU: 0xCD6, offset: 0x64C1, size: 0x8, addend: 0x0, symName: '-[MGLAnnotationLayerView setDraggedFeature:]', symObjAddr: 0x12BC, symBinAddr: 0x60B4, symSize: 0x14 }
+  - { offsetInCU: 0xD13, offset: 0x64FE, size: 0x8, addend: 0x0, symName: '-[MGLAnnotationLayerView features]', symObjAddr: 0x12D0, symBinAddr: 0x60C8, symSize: 0x10 }
+  - { offsetInCU: 0xD47, offset: 0x6532, size: 0x8, addend: 0x0, symName: '-[MGLAnnotationLayerView setFeatures:]', symObjAddr: 0x12E0, symBinAddr: 0x60D8, symSize: 0x14 }
+  - { offsetInCU: 0xD84, offset: 0x656F, size: 0x8, addend: 0x0, symName: '-[MGLAnnotationLayerView .cxx_destruct]', symObjAddr: 0x12F4, symBinAddr: 0x60EC, symSize: 0xA0 }
+  - { offsetInCU: 0x27, offset: 0x670E, size: 0x8, addend: 0x0, symName: '-[MGLCircleAnnotationController initializeLayer]', symObjAddr: 0x0, symBinAddr: 0x618C, symSize: 0xC4 }
+  - { offsetInCU: 0x1C7, offset: 0x68AE, size: 0x8, addend: 0x0, symName: '-[MGLCircleAnnotationController initializeLayer]', symObjAddr: 0x0, symBinAddr: 0x618C, symSize: 0xC4 }
+  - { offsetInCU: 0x224, offset: 0x690B, size: 0x8, addend: 0x0, symName: '-[MGLCircleAnnotationController circleStyleLayer]', symObjAddr: 0xC4, symBinAddr: 0x6250, symSize: 0x4 }
+  - { offsetInCU: 0x256, offset: 0x693D, size: 0x8, addend: 0x0, symName: '-[MGLCircleAnnotationController setCircleTranslation:]', symObjAddr: 0xC8, symBinAddr: 0x6254, symSize: 0x90 }
+  - { offsetInCU: 0x2A4, offset: 0x698B, size: 0x8, addend: 0x0, symName: '-[MGLCircleAnnotationController circleTranslation]', symObjAddr: 0x158, symBinAddr: 0x62E4, symSize: 0x70 }
+  - { offsetInCU: 0x2F6, offset: 0x69DD, size: 0x8, addend: 0x0, symName: '-[MGLCircleAnnotationController setCircleTranslationAnchor:]', symObjAddr: 0x1C8, symBinAddr: 0x6354, symSize: 0x80 }
+  - { offsetInCU: 0x344, offset: 0x6A2B, size: 0x8, addend: 0x0, symName: '-[MGLCircleAnnotationController circleTranslationAnchor]', symObjAddr: 0x248, symBinAddr: 0x63D4, symSize: 0x74 }
+  - { offsetInCU: 0x396, offset: 0x6A7D, size: 0x8, addend: 0x0, symName: '-[MGLCircleAnnotationController setCirclePitchAlignment:]', symObjAddr: 0x2BC, symBinAddr: 0x6448, symSize: 0x80 }
+  - { offsetInCU: 0x3E4, offset: 0x6ACB, size: 0x8, addend: 0x0, symName: '-[MGLCircleAnnotationController circlePitchAlignment]', symObjAddr: 0x33C, symBinAddr: 0x64C8, symSize: 0x74 }
+  - { offsetInCU: 0x436, offset: 0x6B1D, size: 0x8, addend: 0x0, symName: '-[MGLCircleAnnotationController setCircleScaleAlignment:]', symObjAddr: 0x3B0, symBinAddr: 0x653C, symSize: 0x80 }
+  - { offsetInCU: 0x484, offset: 0x6B6B, size: 0x8, addend: 0x0, symName: '-[MGLCircleAnnotationController circleScaleAlignment]', symObjAddr: 0x430, symBinAddr: 0x65BC, symSize: 0x74 }
+  - { offsetInCU: 0x4D6, offset: 0x6BBD, size: 0x8, addend: 0x0, symName: '-[MGLCircleAnnotationController enablePaintProperties:]', symObjAddr: 0x4A4, symBinAddr: 0x6630, symSize: 0x2B8 }
+  - { offsetInCU: 0x515, offset: 0x6BFC, size: 0x8, addend: 0x0, symName: '-[MGLCircleAnnotationController setPaintProperties]', symObjAddr: 0x75C, symBinAddr: 0x68E8, symSize: 0x340 }
+  - { offsetInCU: 0x545, offset: 0x6C2C, size: 0x8, addend: 0x0, symName: '-[MGLCircleAnnotationController source]', symObjAddr: 0xA9C, symBinAddr: 0x6C28, symSize: 0x10 }
+  - { offsetInCU: 0x579, offset: 0x6C60, size: 0x8, addend: 0x0, symName: '-[MGLCircleAnnotationController setSource:]', symObjAddr: 0xAAC, symBinAddr: 0x6C38, symSize: 0x14 }
+  - { offsetInCU: 0x5B6, offset: 0x6C9D, size: 0x8, addend: 0x0, symName: '-[MGLCircleAnnotationController layer]', symObjAddr: 0xAC0, symBinAddr: 0x6C4C, symSize: 0x10 }
+  - { offsetInCU: 0x5EA, offset: 0x6CD1, size: 0x8, addend: 0x0, symName: '-[MGLCircleAnnotationController setLayer:]', symObjAddr: 0xAD0, symBinAddr: 0x6C5C, symSize: 0x14 }
+  - { offsetInCU: 0x627, offset: 0x6D0E, size: 0x8, addend: 0x0, symName: '-[MGLCircleAnnotationController enabledPaintProperties]', symObjAddr: 0xAE4, symBinAddr: 0x6C70, symSize: 0x10 }
+  - { offsetInCU: 0x65B, offset: 0x6D42, size: 0x8, addend: 0x0, symName: '-[MGLCircleAnnotationController setEnabledPaintProperties:]', symObjAddr: 0xAF4, symBinAddr: 0x6C80, symSize: 0x14 }
+  - { offsetInCU: 0x698, offset: 0x6D7F, size: 0x8, addend: 0x0, symName: '-[MGLCircleAnnotationController .cxx_destruct]', symObjAddr: 0xB08, symBinAddr: 0x6C94, symSize: 0x54 }
+  - { offsetInCU: 0x27, offset: 0x6EF5, size: 0x8, addend: 0x0, symName: '-[MGLCircleStyleAnnotation initWithCenter:]', symObjAddr: 0x0, symBinAddr: 0x6CE8, symSize: 0x98 }
+  - { offsetInCU: 0x40, offset: 0x6F0E, size: 0x8, addend: 0x0, symName: _MGLPropertyCircleRadius, symObjAddr: 0xB50, symBinAddr: 0x1C1E0, symSize: 0x0 }
+  - { offsetInCU: 0x7C, offset: 0x6F4A, size: 0x8, addend: 0x0, symName: _MGLPropertyCircleColor, symObjAddr: 0xB58, symBinAddr: 0x1C1E8, symSize: 0x0 }
+  - { offsetInCU: 0x91, offset: 0x6F5F, size: 0x8, addend: 0x0, symName: _MGLPropertyCircleBlur, symObjAddr: 0xB60, symBinAddr: 0x1C1F0, symSize: 0x0 }
+  - { offsetInCU: 0xA6, offset: 0x6F74, size: 0x8, addend: 0x0, symName: _MGLPropertyCircleOpacity, symObjAddr: 0xB68, symBinAddr: 0x1C1F8, symSize: 0x0 }
+  - { offsetInCU: 0xBB, offset: 0x6F89, size: 0x8, addend: 0x0, symName: _MGLPropertyCircleStrokeWidth, symObjAddr: 0xB70, symBinAddr: 0x1C200, symSize: 0x0 }
+  - { offsetInCU: 0xD0, offset: 0x6F9E, size: 0x8, addend: 0x0, symName: _MGLPropertyCircleStrokeColor, symObjAddr: 0xB78, symBinAddr: 0x1C208, symSize: 0x0 }
+  - { offsetInCU: 0xE5, offset: 0x6FB3, size: 0x8, addend: 0x0, symName: _MGLPropertyCircleStrokeOpacity, symObjAddr: 0xB80, symBinAddr: 0x1C210, symSize: 0x0 }
+  - { offsetInCU: 0x278, offset: 0x7146, size: 0x8, addend: 0x0, symName: '-[MGLCircleStyleAnnotation initWithCenter:]', symObjAddr: 0x0, symBinAddr: 0x6CE8, symSize: 0x98 }
+  - { offsetInCU: 0x2B7, offset: 0x7185, size: 0x8, addend: 0x0, symName: '-[MGLCircleStyleAnnotation initWithCenter:radius:]', symObjAddr: 0x98, symBinAddr: 0x6D80, symSize: 0x40 }
+  - { offsetInCU: 0x305, offset: 0x71D3, size: 0x8, addend: 0x0, symName: '-[MGLCircleStyleAnnotation initWithCenter:radius:color:]', symObjAddr: 0xD8, symBinAddr: 0x6DC0, symSize: 0x70 }
+  - { offsetInCU: 0x362, offset: 0x7230, size: 0x8, addend: 0x0, symName: '-[MGLCircleStyleAnnotation setCenter:]', symObjAddr: 0x148, symBinAddr: 0x6E30, symSize: 0x44 }
+  - { offsetInCU: 0x39D, offset: 0x726B, size: 0x8, addend: 0x0, symName: '-[MGLCircleStyleAnnotation center]', symObjAddr: 0x18C, symBinAddr: 0x6E74, symSize: 0x44 }
+  - { offsetInCU: 0x3D1, offset: 0x729F, size: 0x8, addend: 0x0, symName: '-[MGLCircleStyleAnnotation setCircleRadius:]', symObjAddr: 0x1D0, symBinAddr: 0x6EB8, symSize: 0x60 }
+  - { offsetInCU: 0x410, offset: 0x72DE, size: 0x8, addend: 0x0, symName: '-[MGLCircleStyleAnnotation circleRadius]', symObjAddr: 0x230, symBinAddr: 0x6F18, symSize: 0x9C }
+  - { offsetInCU: 0x461, offset: 0x732F, size: 0x8, addend: 0x0, symName: '-[MGLCircleStyleAnnotation setCircleColor:]', symObjAddr: 0x2CC, symBinAddr: 0x6FB4, symSize: 0x5C }
+  - { offsetInCU: 0x4AF, offset: 0x737D, size: 0x8, addend: 0x0, symName: '-[MGLCircleStyleAnnotation circleColor]', symObjAddr: 0x328, symBinAddr: 0x7010, symSize: 0xB0 }
+  - { offsetInCU: 0x500, offset: 0x73CE, size: 0x8, addend: 0x0, symName: '-[MGLCircleStyleAnnotation setCircleBlur:]', symObjAddr: 0x3D8, symBinAddr: 0x70C0, symSize: 0x60 }
+  - { offsetInCU: 0x53F, offset: 0x740D, size: 0x8, addend: 0x0, symName: '-[MGLCircleStyleAnnotation circleBlur]', symObjAddr: 0x438, symBinAddr: 0x7120, symSize: 0x9C }
+  - { offsetInCU: 0x590, offset: 0x745E, size: 0x8, addend: 0x0, symName: '-[MGLCircleStyleAnnotation setCircleOpacity:]', symObjAddr: 0x4D4, symBinAddr: 0x71BC, symSize: 0x60 }
+  - { offsetInCU: 0x5CF, offset: 0x749D, size: 0x8, addend: 0x0, symName: '-[MGLCircleStyleAnnotation circleOpacity]', symObjAddr: 0x534, symBinAddr: 0x721C, symSize: 0x9C }
+  - { offsetInCU: 0x620, offset: 0x74EE, size: 0x8, addend: 0x0, symName: '-[MGLCircleStyleAnnotation setCircleStrokeColor:]', symObjAddr: 0x5D0, symBinAddr: 0x72B8, symSize: 0x5C }
+  - { offsetInCU: 0x66E, offset: 0x753C, size: 0x8, addend: 0x0, symName: '-[MGLCircleStyleAnnotation circleStrokeColor]', symObjAddr: 0x62C, symBinAddr: 0x7314, symSize: 0xB0 }
+  - { offsetInCU: 0x6BF, offset: 0x758D, size: 0x8, addend: 0x0, symName: '-[MGLCircleStyleAnnotation setCircleStrokeOpacity:]', symObjAddr: 0x6DC, symBinAddr: 0x73C4, symSize: 0x60 }
+  - { offsetInCU: 0x6FE, offset: 0x75CC, size: 0x8, addend: 0x0, symName: '-[MGLCircleStyleAnnotation circleStrokeOpacity]', symObjAddr: 0x73C, symBinAddr: 0x7424, symSize: 0x9C }
+  - { offsetInCU: 0x74F, offset: 0x761D, size: 0x8, addend: 0x0, symName: '-[MGLCircleStyleAnnotation setCircleStrokeWidth:]', symObjAddr: 0x7D8, symBinAddr: 0x74C0, symSize: 0x60 }
+  - { offsetInCU: 0x78E, offset: 0x765C, size: 0x8, addend: 0x0, symName: '-[MGLCircleStyleAnnotation circleStrokeWidth]', symObjAddr: 0x838, symBinAddr: 0x7520, symSize: 0x9C }
+  - { offsetInCU: 0x7DF, offset: 0x76AD, size: 0x8, addend: 0x0, symName: '-[MGLCircleStyleAnnotation feature]', symObjAddr: 0x8D4, symBinAddr: 0x75BC, symSize: 0x54 }
+  - { offsetInCU: 0x813, offset: 0x76E1, size: 0x8, addend: 0x0, symName: '-[MGLCircleStyleAnnotation updateGeometryCoordinatesWithDelta:]', symObjAddr: 0x928, symBinAddr: 0x7610, symSize: 0x48 }
+  - { offsetInCU: 0x888, offset: 0x7756, size: 0x8, addend: 0x0, symName: '-[MGLCircleStyleAnnotation attributes]', symObjAddr: 0x970, symBinAddr: 0x7658, symSize: 0x10 }
+  - { offsetInCU: 0x8BC, offset: 0x778A, size: 0x8, addend: 0x0, symName: '-[MGLCircleStyleAnnotation setAttributes:]', symObjAddr: 0x980, symBinAddr: 0x7668, symSize: 0x14 }
+  - { offsetInCU: 0x8F9, offset: 0x77C7, size: 0x8, addend: 0x0, symName: '-[MGLCircleStyleAnnotation pointFeature]', symObjAddr: 0x994, symBinAddr: 0x767C, symSize: 0x10 }
+  - { offsetInCU: 0x92D, offset: 0x77FB, size: 0x8, addend: 0x0, symName: '-[MGLCircleStyleAnnotation setPointFeature:]', symObjAddr: 0x9A4, symBinAddr: 0x768C, symSize: 0x14 }
+  - { offsetInCU: 0x96A, offset: 0x7838, size: 0x8, addend: 0x0, symName: '-[MGLCircleStyleAnnotation .cxx_destruct]', symObjAddr: 0x9B8, symBinAddr: 0x76A0, symSize: 0x40 }
+  - { offsetInCU: 0x27, offset: 0x78BA, size: 0x8, addend: 0x0, symName: '+[MGLEnums stringFromMGLLineJoin:]', symObjAddr: 0x0, symBinAddr: 0x76E0, symSize: 0x130 }
+  - { offsetInCU: 0x49, offset: 0x78DC, size: 0x8, addend: 0x0, symName: '+[MGLEnums stringFromMGLLineJoin:]', symObjAddr: 0x0, symBinAddr: 0x76E0, symSize: 0x130 }
+  - { offsetInCU: 0x97, offset: 0x792A, size: 0x8, addend: 0x0, symName: '+[MGLEnums lineJoinFromNSString:]', symObjAddr: 0x130, symBinAddr: 0x7810, symSize: 0x150 }
+  - { offsetInCU: 0xF4, offset: 0x7987, size: 0x8, addend: 0x0, symName: '+[MGLEnums stringFromMGLCircleTranslationAnchor:]', symObjAddr: 0x280, symBinAddr: 0x7960, symSize: 0x108 }
+  - { offsetInCU: 0x142, offset: 0x79D5, size: 0x8, addend: 0x0, symName: '+[MGLEnums circleTranslationAnchorFromNSString:]', symObjAddr: 0x388, symBinAddr: 0x7A68, symSize: 0x100 }
+  - { offsetInCU: 0x190, offset: 0x7A23, size: 0x8, addend: 0x0, symName: '+[MGLEnums stringFromMGLCirclePitchAlignment:]', symObjAddr: 0x488, symBinAddr: 0x7B68, symSize: 0x108 }
+  - { offsetInCU: 0x1DE, offset: 0x7A71, size: 0x8, addend: 0x0, symName: '+[MGLEnums circlePitchAlignmentFromNSString:]', symObjAddr: 0x590, symBinAddr: 0x7C70, symSize: 0x100 }
+  - { offsetInCU: 0x22C, offset: 0x7ABF, size: 0x8, addend: 0x0, symName: '+[MGLEnums stringFromMGLCircleScaleAlignment:]', symObjAddr: 0x690, symBinAddr: 0x7D70, symSize: 0x108 }
+  - { offsetInCU: 0x27A, offset: 0x7B0D, size: 0x8, addend: 0x0, symName: '+[MGLEnums circleScaleAlignmentFromNSString:]', symObjAddr: 0x798, symBinAddr: 0x7E78, symSize: 0x100 }
+  - { offsetInCU: 0x2C8, offset: 0x7B5B, size: 0x8, addend: 0x0, symName: '+[MGLEnums stringFromMGLLineCap:]', symObjAddr: 0x898, symBinAddr: 0x7F78, symSize: 0x130 }
+  - { offsetInCU: 0x316, offset: 0x7BA9, size: 0x8, addend: 0x0, symName: '+[MGLEnums lineCapFromNSString:]', symObjAddr: 0x9C8, symBinAddr: 0x80A8, symSize: 0x134 }
+  - { offsetInCU: 0x364, offset: 0x7BF7, size: 0x8, addend: 0x0, symName: '+[MGLEnums stringFromMGLLineTranslationAnchor:]', symObjAddr: 0xAFC, symBinAddr: 0x81DC, symSize: 0x108 }
+  - { offsetInCU: 0x3B2, offset: 0x7C45, size: 0x8, addend: 0x0, symName: '+[MGLEnums lineTranslationAnchorFromNSString:]', symObjAddr: 0xC04, symBinAddr: 0x82E4, symSize: 0x100 }
+  - { offsetInCU: 0x400, offset: 0x7C93, size: 0x8, addend: 0x0, symName: '+[MGLEnums iconPitchAlignmentFromNSString:]', symObjAddr: 0xD04, symBinAddr: 0x83E4, symSize: 0x134 }
+  - { offsetInCU: 0x44E, offset: 0x7CE1, size: 0x8, addend: 0x0, symName: '+[MGLEnums stringFromMGLIconRotationAlignment:]', symObjAddr: 0xE38, symBinAddr: 0x8518, symSize: 0x130 }
+  - { offsetInCU: 0x49C, offset: 0x7D2F, size: 0x8, addend: 0x0, symName: '+[MGLEnums iconRotationAlignmentFromNSString:]', symObjAddr: 0xF68, symBinAddr: 0x8648, symSize: 0x134 }
+  - { offsetInCU: 0x4EA, offset: 0x7D7D, size: 0x8, addend: 0x0, symName: '+[MGLEnums iconTextFitFromNSString:]', symObjAddr: 0x109C, symBinAddr: 0x877C, symSize: 0x15C }
+  - { offsetInCU: 0x538, offset: 0x7DCB, size: 0x8, addend: 0x0, symName: '+[MGLEnums symbolPlacementFromNSString:]', symObjAddr: 0x11F8, symBinAddr: 0x88D8, symSize: 0x134 }
+  - { offsetInCU: 0x586, offset: 0x7E19, size: 0x8, addend: 0x0, symName: '+[MGLEnums symbolZOrderFromNSString:]', symObjAddr: 0x132C, symBinAddr: 0x8A0C, symSize: 0x134 }
+  - { offsetInCU: 0x5D4, offset: 0x7E67, size: 0x8, addend: 0x0, symName: '+[MGLEnums textPitchAlignmentFromNSString:]', symObjAddr: 0x1460, symBinAddr: 0x8B40, symSize: 0x134 }
+  - { offsetInCU: 0x622, offset: 0x7EB5, size: 0x8, addend: 0x0, symName: '+[MGLEnums textRotationAlignmentFromNSString:]', symObjAddr: 0x1594, symBinAddr: 0x8C74, symSize: 0x134 }
+  - { offsetInCU: 0x670, offset: 0x7F03, size: 0x8, addend: 0x0, symName: '+[MGLEnums stringFromMGLTextAnchor:]', symObjAddr: 0x16C8, symBinAddr: 0x8DA8, symSize: 0x234 }
+  - { offsetInCU: 0x6BE, offset: 0x7F51, size: 0x8, addend: 0x0, symName: '+[MGLEnums textAnchorFromNSString:]', symObjAddr: 0x18FC, symBinAddr: 0x8FDC, symSize: 0x238 }
+  - { offsetInCU: 0x70C, offset: 0x7F9F, size: 0x8, addend: 0x0, symName: '+[MGLEnums iconTranslationAnchorFromNSString:]', symObjAddr: 0x1B34, symBinAddr: 0x9214, symSize: 0x100 }
+  - { offsetInCU: 0x75A, offset: 0x7FED, size: 0x8, addend: 0x0, symName: '+[MGLEnums textTranslationAnchorFromNSString:]', symObjAddr: 0x1C34, symBinAddr: 0x9314, symSize: 0x100 }
+  - { offsetInCU: 0x7A8, offset: 0x803B, size: 0x8, addend: 0x0, symName: '+[MGLEnums stringFromMGLIconAnchor:]', symObjAddr: 0x1D34, symBinAddr: 0x9414, symSize: 0x234 }
+  - { offsetInCU: 0x7F6, offset: 0x8089, size: 0x8, addend: 0x0, symName: '+[MGLEnums iconAnchorFromNSString:]', symObjAddr: 0x1F68, symBinAddr: 0x9648, symSize: 0x238 }
+  - { offsetInCU: 0x844, offset: 0x80D7, size: 0x8, addend: 0x0, symName: '+[MGLEnums stringFromMGLTextJustification:]', symObjAddr: 0x21A0, symBinAddr: 0x9880, symSize: 0x160 }
+  - { offsetInCU: 0x895, offset: 0x8128, size: 0x8, addend: 0x0, symName: '+[MGLEnums textJustificationFromNSString:]', symObjAddr: 0x2300, symBinAddr: 0x99E0, symSize: 0x15C }
+  - { offsetInCU: 0x8E6, offset: 0x8179, size: 0x8, addend: 0x0, symName: '+[MGLEnums stringFromMGLTextTransform:]', symObjAddr: 0x245C, symBinAddr: 0x9B3C, symSize: 0x130 }
+  - { offsetInCU: 0x937, offset: 0x81CA, size: 0x8, addend: 0x0, symName: '+[MGLEnums textTransformFromNSString:]', symObjAddr: 0x258C, symBinAddr: 0x9C6C, symSize: 0x134 }
+  - { offsetInCU: 0x988, offset: 0x821B, size: 0x8, addend: 0x0, symName: '+[MGLEnums stringFromMGLFillTranslationAnchor:]', symObjAddr: 0x26C0, symBinAddr: 0x9DA0, symSize: 0x108 }
+  - { offsetInCU: 0x9D9, offset: 0x826C, size: 0x8, addend: 0x0, symName: '+[MGLEnums fillTranslationAnchorFromNSString:]', symObjAddr: 0x27C8, symBinAddr: 0x9EA8, symSize: 0x100 }
+  - { offsetInCU: 0x27, offset: 0x8319, size: 0x8, addend: 0x0, symName: '-[MGLLineAnnotationController initializeLayer]', symObjAddr: 0x0, symBinAddr: 0x9FA8, symSize: 0xC4 }
+  - { offsetInCU: 0x1FD, offset: 0x84EF, size: 0x8, addend: 0x0, symName: '-[MGLLineAnnotationController initializeLayer]', symObjAddr: 0x0, symBinAddr: 0x9FA8, symSize: 0xC4 }
+  - { offsetInCU: 0x25A, offset: 0x854C, size: 0x8, addend: 0x0, symName: '-[MGLLineAnnotationController lineStyleLayer]', symObjAddr: 0xC4, symBinAddr: 0xA06C, symSize: 0x4 }
+  - { offsetInCU: 0x28C, offset: 0x857E, size: 0x8, addend: 0x0, symName: '-[MGLLineAnnotationController setLineCap:]', symObjAddr: 0xC8, symBinAddr: 0xA070, symSize: 0x80 }
+  - { offsetInCU: 0x2DA, offset: 0x85CC, size: 0x8, addend: 0x0, symName: '-[MGLLineAnnotationController lineCap]', symObjAddr: 0x148, symBinAddr: 0xA0F0, symSize: 0x74 }
+  - { offsetInCU: 0x32C, offset: 0x861E, size: 0x8, addend: 0x0, symName: '-[MGLLineAnnotationController setLineMiterLimit:]', symObjAddr: 0x1BC, symBinAddr: 0xA164, symSize: 0x80 }
+  - { offsetInCU: 0x37A, offset: 0x866C, size: 0x8, addend: 0x0, symName: '-[MGLLineAnnotationController lineMiterLimit]', symObjAddr: 0x23C, symBinAddr: 0xA1E4, symSize: 0x68 }
+  - { offsetInCU: 0x3CC, offset: 0x86BE, size: 0x8, addend: 0x0, symName: '-[MGLLineAnnotationController setLineRoundLimit:]', symObjAddr: 0x2A4, symBinAddr: 0xA24C, symSize: 0x80 }
+  - { offsetInCU: 0x41A, offset: 0x870C, size: 0x8, addend: 0x0, symName: '-[MGLLineAnnotationController lineRoundLimit]', symObjAddr: 0x324, symBinAddr: 0xA2CC, symSize: 0x68 }
+  - { offsetInCU: 0x46C, offset: 0x875E, size: 0x8, addend: 0x0, symName: '-[MGLLineAnnotationController setLineDashPattern:]', symObjAddr: 0x38C, symBinAddr: 0xA334, symSize: 0x58 }
+  - { offsetInCU: 0x4BA, offset: 0x87AC, size: 0x8, addend: 0x0, symName: '-[MGLLineAnnotationController lineDashPattern]', symObjAddr: 0x3E4, symBinAddr: 0xA38C, symSize: 0x54 }
+  - { offsetInCU: 0x50C, offset: 0x87FE, size: 0x8, addend: 0x0, symName: '-[MGLLineAnnotationController setLineGradient:]', symObjAddr: 0x438, symBinAddr: 0xA3E0, symSize: 0x58 }
+  - { offsetInCU: 0x55A, offset: 0x884C, size: 0x8, addend: 0x0, symName: '-[MGLLineAnnotationController lineGradient]', symObjAddr: 0x490, symBinAddr: 0xA438, symSize: 0x54 }
+  - { offsetInCU: 0x5AC, offset: 0x889E, size: 0x8, addend: 0x0, symName: '-[MGLLineAnnotationController setLineTranslation:]', symObjAddr: 0x4E4, symBinAddr: 0xA48C, symSize: 0x90 }
+  - { offsetInCU: 0x5FA, offset: 0x88EC, size: 0x8, addend: 0x0, symName: '-[MGLLineAnnotationController lineTranslation]', symObjAddr: 0x574, symBinAddr: 0xA51C, symSize: 0x70 }
+  - { offsetInCU: 0x64C, offset: 0x893E, size: 0x8, addend: 0x0, symName: '-[MGLLineAnnotationController setLineTranslationAnchor:]', symObjAddr: 0x5E4, symBinAddr: 0xA58C, symSize: 0x80 }
+  - { offsetInCU: 0x69A, offset: 0x898C, size: 0x8, addend: 0x0, symName: '-[MGLLineAnnotationController lineTranslationAnchor]', symObjAddr: 0x664, symBinAddr: 0xA60C, symSize: 0x74 }
+  - { offsetInCU: 0x6EC, offset: 0x89DE, size: 0x8, addend: 0x0, symName: '-[MGLLineAnnotationController enablePaintProperties:]', symObjAddr: 0x6D8, symBinAddr: 0xA680, symSize: 0x314 }
+  - { offsetInCU: 0x72B, offset: 0x8A1D, size: 0x8, addend: 0x0, symName: '-[MGLLineAnnotationController setPaintProperties]', symObjAddr: 0x9EC, symBinAddr: 0xA994, symSize: 0x3AC }
+  - { offsetInCU: 0x75B, offset: 0x8A4D, size: 0x8, addend: 0x0, symName: '-[MGLLineAnnotationController source]', symObjAddr: 0xD98, symBinAddr: 0xAD40, symSize: 0x10 }
+  - { offsetInCU: 0x78F, offset: 0x8A81, size: 0x8, addend: 0x0, symName: '-[MGLLineAnnotationController setSource:]', symObjAddr: 0xDA8, symBinAddr: 0xAD50, symSize: 0x14 }
+  - { offsetInCU: 0x7CC, offset: 0x8ABE, size: 0x8, addend: 0x0, symName: '-[MGLLineAnnotationController layer]', symObjAddr: 0xDBC, symBinAddr: 0xAD64, symSize: 0x10 }
+  - { offsetInCU: 0x800, offset: 0x8AF2, size: 0x8, addend: 0x0, symName: '-[MGLLineAnnotationController setLayer:]', symObjAddr: 0xDCC, symBinAddr: 0xAD74, symSize: 0x14 }
+  - { offsetInCU: 0x83D, offset: 0x8B2F, size: 0x8, addend: 0x0, symName: '-[MGLLineAnnotationController enabledPaintProperties]', symObjAddr: 0xDE0, symBinAddr: 0xAD88, symSize: 0x10 }
+  - { offsetInCU: 0x871, offset: 0x8B63, size: 0x8, addend: 0x0, symName: '-[MGLLineAnnotationController setEnabledPaintProperties:]', symObjAddr: 0xDF0, symBinAddr: 0xAD98, symSize: 0x14 }
+  - { offsetInCU: 0x8AE, offset: 0x8BA0, size: 0x8, addend: 0x0, symName: '-[MGLLineAnnotationController .cxx_destruct]', symObjAddr: 0xE04, symBinAddr: 0xADAC, symSize: 0x54 }
+  - { offsetInCU: 0x27, offset: 0x8D0F, size: 0x8, addend: 0x0, symName: '-[MGLLineStyleAnnotation initWithCoordinates:count:]', symObjAddr: 0x0, symBinAddr: 0xAE00, symSize: 0x84 }
+  - { offsetInCU: 0x40, offset: 0x8D28, size: 0x8, addend: 0x0, symName: _MGLPropertyLineJoin, symObjAddr: 0xBD8, symBinAddr: 0x1C218, symSize: 0x0 }
+  - { offsetInCU: 0x7C, offset: 0x8D64, size: 0x8, addend: 0x0, symName: _MGLPropertyLineBlur, symObjAddr: 0xBE0, symBinAddr: 0x1C220, symSize: 0x0 }
+  - { offsetInCU: 0x91, offset: 0x8D79, size: 0x8, addend: 0x0, symName: _MGLPropertyLineColor, symObjAddr: 0xBE8, symBinAddr: 0x1C228, symSize: 0x0 }
+  - { offsetInCU: 0xA6, offset: 0x8D8E, size: 0x8, addend: 0x0, symName: _MGLPropertyLineGapWidth, symObjAddr: 0xBF0, symBinAddr: 0x1C230, symSize: 0x0 }
+  - { offsetInCU: 0xBB, offset: 0x8DA3, size: 0x8, addend: 0x0, symName: _MGLPropertyLineOffset, symObjAddr: 0xBF8, symBinAddr: 0x1C238, symSize: 0x0 }
+  - { offsetInCU: 0xD0, offset: 0x8DB8, size: 0x8, addend: 0x0, symName: _MGLPropertyLineOpacity, symObjAddr: 0xC00, symBinAddr: 0x1C240, symSize: 0x0 }
+  - { offsetInCU: 0xE5, offset: 0x8DCD, size: 0x8, addend: 0x0, symName: _MGLPropertyLinePattern, symObjAddr: 0xC08, symBinAddr: 0x1C248, symSize: 0x0 }
+  - { offsetInCU: 0xFA, offset: 0x8DE2, size: 0x8, addend: 0x0, symName: _MGLPropertyLineWidth, symObjAddr: 0xC10, symBinAddr: 0x1C250, symSize: 0x0 }
+  - { offsetInCU: 0x27D, offset: 0x8F65, size: 0x8, addend: 0x0, symName: '-[MGLLineStyleAnnotation initWithCoordinates:count:]', symObjAddr: 0x0, symBinAddr: 0xAE00, symSize: 0x84 }
+  - { offsetInCU: 0x2CF, offset: 0x8FB7, size: 0x8, addend: 0x0, symName: '-[MGLLineStyleAnnotation initWithCoordinates:count:color:]', symObjAddr: 0x84, symBinAddr: 0xAE84, symSize: 0x60 }
+  - { offsetInCU: 0x330, offset: 0x9018, size: 0x8, addend: 0x0, symName: '-[MGLLineStyleAnnotation lineJoin]', symObjAddr: 0xE4, symBinAddr: 0xAEE4, symSize: 0xA0 }
+  - { offsetInCU: 0x364, offset: 0x904C, size: 0x8, addend: 0x0, symName: '-[MGLLineStyleAnnotation setLineJoin:]', symObjAddr: 0x184, symBinAddr: 0xAF84, symSize: 0x60 }
+  - { offsetInCU: 0x3A3, offset: 0x908B, size: 0x8, addend: 0x0, symName: '-[MGLLineStyleAnnotation lineBlur]', symObjAddr: 0x1E4, symBinAddr: 0xAFE4, symSize: 0x9C }
+  - { offsetInCU: 0x3F4, offset: 0x90DC, size: 0x8, addend: 0x0, symName: '-[MGLLineStyleAnnotation setLineBlur:]', symObjAddr: 0x280, symBinAddr: 0xB080, symSize: 0x60 }
+  - { offsetInCU: 0x433, offset: 0x911B, size: 0x8, addend: 0x0, symName: '-[MGLLineStyleAnnotation lineColor]', symObjAddr: 0x2E0, symBinAddr: 0xB0E0, symSize: 0xB0 }
+  - { offsetInCU: 0x484, offset: 0x916C, size: 0x8, addend: 0x0, symName: '-[MGLLineStyleAnnotation setLineColor:]', symObjAddr: 0x390, symBinAddr: 0xB190, symSize: 0x5C }
+  - { offsetInCU: 0x4D2, offset: 0x91BA, size: 0x8, addend: 0x0, symName: '-[MGLLineStyleAnnotation lineGapWidth]', symObjAddr: 0x3EC, symBinAddr: 0xB1EC, symSize: 0x9C }
+  - { offsetInCU: 0x523, offset: 0x920B, size: 0x8, addend: 0x0, symName: '-[MGLLineStyleAnnotation setLineGapWidth:]', symObjAddr: 0x488, symBinAddr: 0xB288, symSize: 0x60 }
+  - { offsetInCU: 0x562, offset: 0x924A, size: 0x8, addend: 0x0, symName: '-[MGLLineStyleAnnotation lineOffset]', symObjAddr: 0x4E8, symBinAddr: 0xB2E8, symSize: 0x9C }
+  - { offsetInCU: 0x5B3, offset: 0x929B, size: 0x8, addend: 0x0, symName: '-[MGLLineStyleAnnotation setLineOffset:]', symObjAddr: 0x584, symBinAddr: 0xB384, symSize: 0x60 }
+  - { offsetInCU: 0x5F2, offset: 0x92DA, size: 0x8, addend: 0x0, symName: '-[MGLLineStyleAnnotation lineOpacity]', symObjAddr: 0x5E4, symBinAddr: 0xB3E4, symSize: 0x9C }
+  - { offsetInCU: 0x643, offset: 0x932B, size: 0x8, addend: 0x0, symName: '-[MGLLineStyleAnnotation setLineOpacity:]', symObjAddr: 0x680, symBinAddr: 0xB480, symSize: 0x60 }
+  - { offsetInCU: 0x682, offset: 0x936A, size: 0x8, addend: 0x0, symName: '-[MGLLineStyleAnnotation linePattern]', symObjAddr: 0x6E0, symBinAddr: 0xB4E0, symSize: 0x84 }
+  - { offsetInCU: 0x6B6, offset: 0x939E, size: 0x8, addend: 0x0, symName: '-[MGLLineStyleAnnotation setLinePattern:]', symObjAddr: 0x764, symBinAddr: 0xB564, symSize: 0x54 }
+  - { offsetInCU: 0x6F5, offset: 0x93DD, size: 0x8, addend: 0x0, symName: '-[MGLLineStyleAnnotation lineWidth]', symObjAddr: 0x7B8, symBinAddr: 0xB5B8, symSize: 0x9C }
+  - { offsetInCU: 0x746, offset: 0x942E, size: 0x8, addend: 0x0, symName: '-[MGLLineStyleAnnotation setLineWidth:]', symObjAddr: 0x854, symBinAddr: 0xB654, symSize: 0x60 }
+  - { offsetInCU: 0x785, offset: 0x946D, size: 0x8, addend: 0x0, symName: '-[MGLLineStyleAnnotation feature]', symObjAddr: 0x8B4, symBinAddr: 0xB6B4, symSize: 0x54 }
+  - { offsetInCU: 0x7B9, offset: 0x94A1, size: 0x8, addend: 0x0, symName: '-[MGLLineStyleAnnotation updateGeometryCoordinatesWithDelta:]', symObjAddr: 0x908, symBinAddr: 0xB708, symSize: 0xE4 }
+  - { offsetInCU: 0x886, offset: 0x956E, size: 0x8, addend: 0x0, symName: '-[MGLLineStyleAnnotation attributes]', symObjAddr: 0x9EC, symBinAddr: 0xB7EC, symSize: 0x10 }
+  - { offsetInCU: 0x8BA, offset: 0x95A2, size: 0x8, addend: 0x0, symName: '-[MGLLineStyleAnnotation setAttributes:]', symObjAddr: 0x9FC, symBinAddr: 0xB7FC, symSize: 0x14 }
+  - { offsetInCU: 0x8F7, offset: 0x95DF, size: 0x8, addend: 0x0, symName: '-[MGLLineStyleAnnotation polylineFeature]', symObjAddr: 0xA10, symBinAddr: 0xB810, symSize: 0x10 }
+  - { offsetInCU: 0x92B, offset: 0x9613, size: 0x8, addend: 0x0, symName: '-[MGLLineStyleAnnotation setPolylineFeature:]', symObjAddr: 0xA20, symBinAddr: 0xB820, symSize: 0x14 }
+  - { offsetInCU: 0x968, offset: 0x9650, size: 0x8, addend: 0x0, symName: '-[MGLLineStyleAnnotation .cxx_destruct]', symObjAddr: 0xA34, symBinAddr: 0xB834, symSize: 0x40 }
+  - { offsetInCU: 0x27, offset: 0x96E8, size: 0x8, addend: 0x0, symName: '-[MGLPolygonAnnotationController initializeLayer]', symObjAddr: 0x0, symBinAddr: 0xB874, symSize: 0xC4 }
+  - { offsetInCU: 0x1B1, offset: 0x9872, size: 0x8, addend: 0x0, symName: '-[MGLPolygonAnnotationController initializeLayer]', symObjAddr: 0x0, symBinAddr: 0xB874, symSize: 0xC4 }
+  - { offsetInCU: 0x20E, offset: 0x98CF, size: 0x8, addend: 0x0, symName: '-[MGLPolygonAnnotationController fillStyleLayer]', symObjAddr: 0xC4, symBinAddr: 0xB938, symSize: 0x4 }
+  - { offsetInCU: 0x240, offset: 0x9901, size: 0x8, addend: 0x0, symName: '-[MGLPolygonAnnotationController setFillAntialiased:]', symObjAddr: 0xC8, symBinAddr: 0xB93C, symSize: 0x80 }
+  - { offsetInCU: 0x28E, offset: 0x994F, size: 0x8, addend: 0x0, symName: '-[MGLPolygonAnnotationController fillAntialiased]', symObjAddr: 0x148, symBinAddr: 0xB9BC, symSize: 0x68 }
+  - { offsetInCU: 0x2E0, offset: 0x99A1, size: 0x8, addend: 0x0, symName: '-[MGLPolygonAnnotationController setFillTranslation:]', symObjAddr: 0x1B0, symBinAddr: 0xBA24, symSize: 0x90 }
+  - { offsetInCU: 0x32E, offset: 0x99EF, size: 0x8, addend: 0x0, symName: '-[MGLPolygonAnnotationController fillTranslation]', symObjAddr: 0x240, symBinAddr: 0xBAB4, symSize: 0x70 }
+  - { offsetInCU: 0x380, offset: 0x9A41, size: 0x8, addend: 0x0, symName: '-[MGLPolygonAnnotationController setFillTranslationAnchor:]', symObjAddr: 0x2B0, symBinAddr: 0xBB24, symSize: 0x80 }
+  - { offsetInCU: 0x3CE, offset: 0x9A8F, size: 0x8, addend: 0x0, symName: '-[MGLPolygonAnnotationController fillTranslationAnchor]', symObjAddr: 0x330, symBinAddr: 0xBBA4, symSize: 0x74 }
+  - { offsetInCU: 0x420, offset: 0x9AE1, size: 0x8, addend: 0x0, symName: '-[MGLPolygonAnnotationController enablePaintProperties:]', symObjAddr: 0x3A4, symBinAddr: 0xBC18, symSize: 0x1A4 }
+  - { offsetInCU: 0x45F, offset: 0x9B20, size: 0x8, addend: 0x0, symName: '-[MGLPolygonAnnotationController setPaintProperties]', symObjAddr: 0x548, symBinAddr: 0xBDBC, symSize: 0x1FC }
+  - { offsetInCU: 0x48F, offset: 0x9B50, size: 0x8, addend: 0x0, symName: '-[MGLPolygonAnnotationController source]', symObjAddr: 0x744, symBinAddr: 0xBFB8, symSize: 0x10 }
+  - { offsetInCU: 0x4C3, offset: 0x9B84, size: 0x8, addend: 0x0, symName: '-[MGLPolygonAnnotationController setSource:]', symObjAddr: 0x754, symBinAddr: 0xBFC8, symSize: 0x14 }
+  - { offsetInCU: 0x500, offset: 0x9BC1, size: 0x8, addend: 0x0, symName: '-[MGLPolygonAnnotationController layer]', symObjAddr: 0x768, symBinAddr: 0xBFDC, symSize: 0x10 }
+  - { offsetInCU: 0x534, offset: 0x9BF5, size: 0x8, addend: 0x0, symName: '-[MGLPolygonAnnotationController setLayer:]', symObjAddr: 0x778, symBinAddr: 0xBFEC, symSize: 0x14 }
+  - { offsetInCU: 0x571, offset: 0x9C32, size: 0x8, addend: 0x0, symName: '-[MGLPolygonAnnotationController enabledPaintProperties]', symObjAddr: 0x78C, symBinAddr: 0xC000, symSize: 0x10 }
+  - { offsetInCU: 0x5A5, offset: 0x9C66, size: 0x8, addend: 0x0, symName: '-[MGLPolygonAnnotationController setEnabledPaintProperties:]', symObjAddr: 0x79C, symBinAddr: 0xC010, symSize: 0x14 }
+  - { offsetInCU: 0x5E2, offset: 0x9CA3, size: 0x8, addend: 0x0, symName: '-[MGLPolygonAnnotationController .cxx_destruct]', symObjAddr: 0x7B0, symBinAddr: 0xC024, symSize: 0x54 }
+  - { offsetInCU: 0x27, offset: 0x9DEA, size: 0x8, addend: 0x0, symName: '-[MGLPolygonStyleAnnotation initWithCoordinates:count:]', symObjAddr: 0x0, symBinAddr: 0xC078, symSize: 0x84 }
+  - { offsetInCU: 0x40, offset: 0x9E03, size: 0x8, addend: 0x0, symName: _MGLPropertyPolygonOpacity, symObjAddr: 0x950, symBinAddr: 0x1C258, symSize: 0x0 }
+  - { offsetInCU: 0x7C, offset: 0x9E3F, size: 0x8, addend: 0x0, symName: _MGLPropertyPolygonColor, symObjAddr: 0x958, symBinAddr: 0x1C260, symSize: 0x0 }
+  - { offsetInCU: 0x91, offset: 0x9E54, size: 0x8, addend: 0x0, symName: _MGLPropertyPolygonOutlineColor, symObjAddr: 0x960, symBinAddr: 0x1C268, symSize: 0x0 }
+  - { offsetInCU: 0xA6, offset: 0x9E69, size: 0x8, addend: 0x0, symName: _MGLPropertyPolygonPattern, symObjAddr: 0x968, symBinAddr: 0x1C270, symSize: 0x0 }
+  - { offsetInCU: 0x1EE, offset: 0x9FB1, size: 0x8, addend: 0x0, symName: '-[MGLPolygonStyleAnnotation initWithCoordinates:count:]', symObjAddr: 0x0, symBinAddr: 0xC078, symSize: 0x84 }
+  - { offsetInCU: 0x240, offset: 0xA003, size: 0x8, addend: 0x0, symName: '-[MGLPolygonStyleAnnotation initWithCoordinates:count:fillColor:]', symObjAddr: 0x84, symBinAddr: 0xC0FC, symSize: 0x60 }
+  - { offsetInCU: 0x2A1, offset: 0xA064, size: 0x8, addend: 0x0, symName: '-[MGLPolygonStyleAnnotation initWithCoordinates:count:interiorPolygons:]', symObjAddr: 0xE4, symBinAddr: 0xC15C, symSize: 0x98 }
+  - { offsetInCU: 0x302, offset: 0xA0C5, size: 0x8, addend: 0x0, symName: '-[MGLPolygonStyleAnnotation fillColor]', symObjAddr: 0x17C, symBinAddr: 0xC1F4, symSize: 0xB0 }
+  - { offsetInCU: 0x353, offset: 0xA116, size: 0x8, addend: 0x0, symName: '-[MGLPolygonStyleAnnotation setFillColor:]', symObjAddr: 0x22C, symBinAddr: 0xC2A4, symSize: 0x5C }
+  - { offsetInCU: 0x3A1, offset: 0xA164, size: 0x8, addend: 0x0, symName: '-[MGLPolygonStyleAnnotation fillOpacity]', symObjAddr: 0x288, symBinAddr: 0xC300, symSize: 0x9C }
+  - { offsetInCU: 0x3F2, offset: 0xA1B5, size: 0x8, addend: 0x0, symName: '-[MGLPolygonStyleAnnotation setFillOpacity:]', symObjAddr: 0x324, symBinAddr: 0xC39C, symSize: 0x60 }
+  - { offsetInCU: 0x431, offset: 0xA1F4, size: 0x8, addend: 0x0, symName: '-[MGLPolygonStyleAnnotation fillOutlineColor]', symObjAddr: 0x384, symBinAddr: 0xC3FC, symSize: 0xB0 }
+  - { offsetInCU: 0x482, offset: 0xA245, size: 0x8, addend: 0x0, symName: '-[MGLPolygonStyleAnnotation setFillOutlineColor:]', symObjAddr: 0x434, symBinAddr: 0xC4AC, symSize: 0x5C }
+  - { offsetInCU: 0x4D0, offset: 0xA293, size: 0x8, addend: 0x0, symName: '-[MGLPolygonStyleAnnotation fillPattern]', symObjAddr: 0x490, symBinAddr: 0xC508, symSize: 0x84 }
+  - { offsetInCU: 0x504, offset: 0xA2C7, size: 0x8, addend: 0x0, symName: '-[MGLPolygonStyleAnnotation setFillPattern:]', symObjAddr: 0x514, symBinAddr: 0xC58C, symSize: 0x54 }
+  - { offsetInCU: 0x543, offset: 0xA306, size: 0x8, addend: 0x0, symName: '-[MGLPolygonStyleAnnotation feature]', symObjAddr: 0x568, symBinAddr: 0xC5E0, symSize: 0x54 }
+  - { offsetInCU: 0x577, offset: 0xA33A, size: 0x8, addend: 0x0, symName: '-[MGLPolygonStyleAnnotation updateGeometryCoordinatesWithDelta:]', symObjAddr: 0x5BC, symBinAddr: 0xC634, symSize: 0x254 }
+  - { offsetInCU: 0x6DB, offset: 0xA49E, size: 0x8, addend: 0x0, symName: '-[MGLPolygonStyleAnnotation attributes]', symObjAddr: 0x810, symBinAddr: 0xC888, symSize: 0x10 }
+  - { offsetInCU: 0x70F, offset: 0xA4D2, size: 0x8, addend: 0x0, symName: '-[MGLPolygonStyleAnnotation setAttributes:]', symObjAddr: 0x820, symBinAddr: 0xC898, symSize: 0x14 }
+  - { offsetInCU: 0x74C, offset: 0xA50F, size: 0x8, addend: 0x0, symName: '-[MGLPolygonStyleAnnotation polygonFeature]', symObjAddr: 0x834, symBinAddr: 0xC8AC, symSize: 0x10 }
+  - { offsetInCU: 0x780, offset: 0xA543, size: 0x8, addend: 0x0, symName: '-[MGLPolygonStyleAnnotation setPolygonFeature:]', symObjAddr: 0x844, symBinAddr: 0xC8BC, symSize: 0x14 }
+  - { offsetInCU: 0x7BD, offset: 0xA580, size: 0x8, addend: 0x0, symName: '-[MGLPolygonStyleAnnotation .cxx_destruct]', symObjAddr: 0x858, symBinAddr: 0xC8D0, symSize: 0x40 }
+  - { offsetInCU: 0x27, offset: 0xA627, size: 0x8, addend: 0x0, symName: '-[MGLStyleAnnotation init]', symObjAddr: 0x0, symBinAddr: 0xC910, symSize: 0xA8 }
+  - { offsetInCU: 0x40, offset: 0xA640, size: 0x8, addend: 0x0, symName: _MGLPropertyAnnotationIdentifier, symObjAddr: 0x4C0, symBinAddr: 0x1C278, symSize: 0x0 }
+  - { offsetInCU: 0x7C, offset: 0xA67C, size: 0x8, addend: 0x0, symName: _MGLPropertyAnnotationTitle, symObjAddr: 0x4C8, symBinAddr: 0x1C280, symSize: 0x0 }
+  - { offsetInCU: 0x91, offset: 0xA691, size: 0x8, addend: 0x0, symName: _MGLPropertyAnnotationSubtitle, symObjAddr: 0x4D0, symBinAddr: 0x1C288, symSize: 0x0 }
+  - { offsetInCU: 0xA6, offset: 0xA6A6, size: 0x8, addend: 0x0, symName: _MGLPropertyAnnotationTooltip, symObjAddr: 0x4D8, symBinAddr: 0x1C290, symSize: 0x0 }
+  - { offsetInCU: 0x192, offset: 0xA792, size: 0x8, addend: 0x0, symName: '-[MGLStyleAnnotation init]', symObjAddr: 0x0, symBinAddr: 0xC910, symSize: 0xA8 }
+  - { offsetInCU: 0x1C6, offset: 0xA7C6, size: 0x8, addend: 0x0, symName: '-[MGLStyleAnnotation initWithFeature:]', symObjAddr: 0xA8, symBinAddr: 0xC9B8, symSize: 0x54 }
+  - { offsetInCU: 0x209, offset: 0xA809, size: 0x8, addend: 0x0, symName: '-[MGLStyleAnnotation initWithGeoJSON:]', symObjAddr: 0xFC, symBinAddr: 0xCA0C, symSize: 0x4 }
+  - { offsetInCU: 0x246, offset: 0xA846, size: 0x8, addend: 0x0, symName: '-[MGLStyleAnnotation setIdentifier:]', symObjAddr: 0x100, symBinAddr: 0xCA10, symSize: 0x54 }
+  - { offsetInCU: 0x285, offset: 0xA885, size: 0x8, addend: 0x0, symName: '-[MGLStyleAnnotation identifier]', symObjAddr: 0x154, symBinAddr: 0xCA64, symSize: 0x40 }
+  - { offsetInCU: 0x2B9, offset: 0xA8B9, size: 0x8, addend: 0x0, symName: '-[MGLStyleAnnotation setTitle:]', symObjAddr: 0x194, symBinAddr: 0xCAA4, symSize: 0x5C }
+  - { offsetInCU: 0x2F8, offset: 0xA8F8, size: 0x8, addend: 0x0, symName: '-[MGLStyleAnnotation title]', symObjAddr: 0x1F0, symBinAddr: 0xCB00, symSize: 0x40 }
+  - { offsetInCU: 0x32C, offset: 0xA92C, size: 0x8, addend: 0x0, symName: '-[MGLStyleAnnotation setSubtitle:]', symObjAddr: 0x230, symBinAddr: 0xCB40, symSize: 0x5C }
+  - { offsetInCU: 0x36B, offset: 0xA96B, size: 0x8, addend: 0x0, symName: '-[MGLStyleAnnotation subtitle]', symObjAddr: 0x28C, symBinAddr: 0xCB9C, symSize: 0x40 }
+  - { offsetInCU: 0x39F, offset: 0xA99F, size: 0x8, addend: 0x0, symName: '-[MGLStyleAnnotation geoJSONDictionary]', symObjAddr: 0x2CC, symBinAddr: 0xCBDC, symSize: 0x8C }
+  - { offsetInCU: 0x3E2, offset: 0xA9E2, size: 0x8, addend: 0x0, symName: '-[MGLStyleAnnotation feature]', symObjAddr: 0x358, symBinAddr: 0xCC68, symSize: 0x8 }
+  - { offsetInCU: 0x416, offset: 0xAA16, size: 0x8, addend: 0x0, symName: '-[MGLStyleAnnotation setFeature:]', symObjAddr: 0x360, symBinAddr: 0xCC70, symSize: 0xC }
+  - { offsetInCU: 0x453, offset: 0xAA53, size: 0x8, addend: 0x0, symName: '-[MGLStyleAnnotation isDraggable]', symObjAddr: 0x36C, symBinAddr: 0xCC7C, symSize: 0x8 }
+  - { offsetInCU: 0x487, offset: 0xAA87, size: 0x8, addend: 0x0, symName: '-[MGLStyleAnnotation setDraggable:]', symObjAddr: 0x374, symBinAddr: 0xCC84, symSize: 0x8 }
+  - { offsetInCU: 0x4BE, offset: 0xAABE, size: 0x8, addend: 0x0, symName: '-[MGLStyleAnnotation attributes]', symObjAddr: 0x37C, symBinAddr: 0xCC8C, symSize: 0x8 }
+  - { offsetInCU: 0x4F2, offset: 0xAAF2, size: 0x8, addend: 0x0, symName: '-[MGLStyleAnnotation setAttributes:]', symObjAddr: 0x384, symBinAddr: 0xCC94, symSize: 0xC }
+  - { offsetInCU: 0x52F, offset: 0xAB2F, size: 0x8, addend: 0x0, symName: '-[MGLStyleAnnotation .cxx_destruct]', symObjAddr: 0x390, symBinAddr: 0xCCA0, symSize: 0x30 }
+  - { offsetInCU: 0x27, offset: 0xABA8, size: 0x8, addend: 0x0, symName: '-[MGLSymbolAnnotationController initializeLayer]', symObjAddr: 0x0, symBinAddr: 0xCCD0, symSize: 0xC4 }
+  - { offsetInCU: 0x2E9, offset: 0xAE6A, size: 0x8, addend: 0x0, symName: '-[MGLSymbolAnnotationController initializeLayer]', symObjAddr: 0x0, symBinAddr: 0xCCD0, symSize: 0xC4 }
+  - { offsetInCU: 0x346, offset: 0xAEC7, size: 0x8, addend: 0x0, symName: '-[MGLSymbolAnnotationController symbolStyleLayer]', symObjAddr: 0xC4, symBinAddr: 0xCD94, symSize: 0x4 }
+  - { offsetInCU: 0x378, offset: 0xAEF9, size: 0x8, addend: 0x0, symName: '-[MGLSymbolAnnotationController setIconAllowsOverlap:]', symObjAddr: 0xC8, symBinAddr: 0xCD98, symSize: 0x80 }
+  - { offsetInCU: 0x3C6, offset: 0xAF47, size: 0x8, addend: 0x0, symName: '-[MGLSymbolAnnotationController iconAllowsOverlap]', symObjAddr: 0x148, symBinAddr: 0xCE18, symSize: 0x68 }
+  - { offsetInCU: 0x418, offset: 0xAF99, size: 0x8, addend: 0x0, symName: '-[MGLSymbolAnnotationController setIconIgnoresPlacement:]', symObjAddr: 0x1B0, symBinAddr: 0xCE80, symSize: 0x80 }
+  - { offsetInCU: 0x466, offset: 0xAFE7, size: 0x8, addend: 0x0, symName: '-[MGLSymbolAnnotationController iconIgnoresPlacement]', symObjAddr: 0x230, symBinAddr: 0xCF00, symSize: 0x68 }
+  - { offsetInCU: 0x4B8, offset: 0xB039, size: 0x8, addend: 0x0, symName: '-[MGLSymbolAnnotationController setIconOptional:]', symObjAddr: 0x298, symBinAddr: 0xCF68, symSize: 0x80 }
+  - { offsetInCU: 0x506, offset: 0xB087, size: 0x8, addend: 0x0, symName: '-[MGLSymbolAnnotationController iconOptional]', symObjAddr: 0x318, symBinAddr: 0xCFE8, symSize: 0x68 }
+  - { offsetInCU: 0x558, offset: 0xB0D9, size: 0x8, addend: 0x0, symName: '-[MGLSymbolAnnotationController setIconPadding:]', symObjAddr: 0x380, symBinAddr: 0xD050, symSize: 0x80 }
+  - { offsetInCU: 0x5A6, offset: 0xB127, size: 0x8, addend: 0x0, symName: '-[MGLSymbolAnnotationController iconPadding]', symObjAddr: 0x400, symBinAddr: 0xD0D0, symSize: 0x68 }
+  - { offsetInCU: 0x5F8, offset: 0xB179, size: 0x8, addend: 0x0, symName: '-[MGLSymbolAnnotationController setIconPitchAlignment:]', symObjAddr: 0x468, symBinAddr: 0xD138, symSize: 0x80 }
+  - { offsetInCU: 0x646, offset: 0xB1C7, size: 0x8, addend: 0x0, symName: '-[MGLSymbolAnnotationController iconPitchAlignment]', symObjAddr: 0x4E8, symBinAddr: 0xD1B8, symSize: 0x74 }
+  - { offsetInCU: 0x698, offset: 0xB219, size: 0x8, addend: 0x0, symName: '-[MGLSymbolAnnotationController setIconRotationAlignment:]', symObjAddr: 0x55C, symBinAddr: 0xD22C, symSize: 0x80 }
+  - { offsetInCU: 0x6E6, offset: 0xB267, size: 0x8, addend: 0x0, symName: '-[MGLSymbolAnnotationController iconRotationAlignment]', symObjAddr: 0x5DC, symBinAddr: 0xD2AC, symSize: 0x74 }
+  - { offsetInCU: 0x738, offset: 0xB2B9, size: 0x8, addend: 0x0, symName: '-[MGLSymbolAnnotationController setIconTextFit:]', symObjAddr: 0x650, symBinAddr: 0xD320, symSize: 0x80 }
+  - { offsetInCU: 0x786, offset: 0xB307, size: 0x8, addend: 0x0, symName: '-[MGLSymbolAnnotationController iconTextFit]', symObjAddr: 0x6D0, symBinAddr: 0xD3A0, symSize: 0x74 }
+  - { offsetInCU: 0x7D8, offset: 0xB359, size: 0x8, addend: 0x0, symName: '-[MGLSymbolAnnotationController setIconTextFitPadding:]', symObjAddr: 0x744, symBinAddr: 0xD414, symSize: 0x80 }
+  - { offsetInCU: 0x822, offset: 0xB3A3, size: 0x8, addend: 0x0, symName: '-[MGLSymbolAnnotationController iconTextFitPadding]', symObjAddr: 0x7C4, symBinAddr: 0xD494, symSize: 0x88 }
+  - { offsetInCU: 0x874, offset: 0xB3F5, size: 0x8, addend: 0x0, symName: '-[MGLSymbolAnnotationController setKeepsIconUpright:]', symObjAddr: 0x84C, symBinAddr: 0xD51C, symSize: 0x80 }
+  - { offsetInCU: 0x8C2, offset: 0xB443, size: 0x8, addend: 0x0, symName: '-[MGLSymbolAnnotationController keepsIconUpright]', symObjAddr: 0x8CC, symBinAddr: 0xD59C, symSize: 0x68 }
+  - { offsetInCU: 0x914, offset: 0xB495, size: 0x8, addend: 0x0, symName: '-[MGLSymbolAnnotationController setKeepsTextUpright:]', symObjAddr: 0x934, symBinAddr: 0xD604, symSize: 0x80 }
+  - { offsetInCU: 0x962, offset: 0xB4E3, size: 0x8, addend: 0x0, symName: '-[MGLSymbolAnnotationController keepsTextUpright]', symObjAddr: 0x9B4, symBinAddr: 0xD684, symSize: 0x68 }
+  - { offsetInCU: 0x9B4, offset: 0xB535, size: 0x8, addend: 0x0, symName: '-[MGLSymbolAnnotationController setMaximumTextAngle:]', symObjAddr: 0xA1C, symBinAddr: 0xD6EC, symSize: 0x80 }
+  - { offsetInCU: 0xA02, offset: 0xB583, size: 0x8, addend: 0x0, symName: '-[MGLSymbolAnnotationController maximumTextAngle]', symObjAddr: 0xA9C, symBinAddr: 0xD76C, symSize: 0x68 }
+  - { offsetInCU: 0xA54, offset: 0xB5D5, size: 0x8, addend: 0x0, symName: '-[MGLSymbolAnnotationController setSymbolAvoidsEdges:]', symObjAddr: 0xB04, symBinAddr: 0xD7D4, symSize: 0x80 }
+  - { offsetInCU: 0xAA2, offset: 0xB623, size: 0x8, addend: 0x0, symName: '-[MGLSymbolAnnotationController symbolAvoidsEdges]', symObjAddr: 0xB84, symBinAddr: 0xD854, symSize: 0x68 }
+  - { offsetInCU: 0xAF4, offset: 0xB675, size: 0x8, addend: 0x0, symName: '-[MGLSymbolAnnotationController setSymbolPlacement:]', symObjAddr: 0xBEC, symBinAddr: 0xD8BC, symSize: 0x80 }
+  - { offsetInCU: 0xB42, offset: 0xB6C3, size: 0x8, addend: 0x0, symName: '-[MGLSymbolAnnotationController symbolPlacement]', symObjAddr: 0xC6C, symBinAddr: 0xD93C, symSize: 0x74 }
+  - { offsetInCU: 0xB94, offset: 0xB715, size: 0x8, addend: 0x0, symName: '-[MGLSymbolAnnotationController setSymbolSpacing:]', symObjAddr: 0xCE0, symBinAddr: 0xD9B0, symSize: 0x80 }
+  - { offsetInCU: 0xBE2, offset: 0xB763, size: 0x8, addend: 0x0, symName: '-[MGLSymbolAnnotationController symbolSpacing]', symObjAddr: 0xD60, symBinAddr: 0xDA30, symSize: 0x68 }
+  - { offsetInCU: 0xC34, offset: 0xB7B5, size: 0x8, addend: 0x0, symName: '-[MGLSymbolAnnotationController setSymbolZOrder:]', symObjAddr: 0xDC8, symBinAddr: 0xDA98, symSize: 0x80 }
+  - { offsetInCU: 0xC82, offset: 0xB803, size: 0x8, addend: 0x0, symName: '-[MGLSymbolAnnotationController symbolZOrder]', symObjAddr: 0xE48, symBinAddr: 0xDB18, symSize: 0x74 }
+  - { offsetInCU: 0xCD4, offset: 0xB855, size: 0x8, addend: 0x0, symName: '-[MGLSymbolAnnotationController setTextAllowsOverlap:]', symObjAddr: 0xEBC, symBinAddr: 0xDB8C, symSize: 0x80 }
+  - { offsetInCU: 0xD22, offset: 0xB8A3, size: 0x8, addend: 0x0, symName: '-[MGLSymbolAnnotationController textAllowsOverlap]', symObjAddr: 0xF3C, symBinAddr: 0xDC0C, symSize: 0x68 }
+  - { offsetInCU: 0xD74, offset: 0xB8F5, size: 0x8, addend: 0x0, symName: '-[MGLSymbolAnnotationController setTextLineHeight:]', symObjAddr: 0xFA4, symBinAddr: 0xDC74, symSize: 0x80 }
+  - { offsetInCU: 0xDC2, offset: 0xB943, size: 0x8, addend: 0x0, symName: '-[MGLSymbolAnnotationController textLineHeight]', symObjAddr: 0x1024, symBinAddr: 0xDCF4, symSize: 0x68 }
+  - { offsetInCU: 0xE14, offset: 0xB995, size: 0x8, addend: 0x0, symName: '-[MGLSymbolAnnotationController setTextOptional:]', symObjAddr: 0x108C, symBinAddr: 0xDD5C, symSize: 0x80 }
+  - { offsetInCU: 0xE62, offset: 0xB9E3, size: 0x8, addend: 0x0, symName: '-[MGLSymbolAnnotationController textOptional]', symObjAddr: 0x110C, symBinAddr: 0xDDDC, symSize: 0x68 }
+  - { offsetInCU: 0xEB4, offset: 0xBA35, size: 0x8, addend: 0x0, symName: '-[MGLSymbolAnnotationController setTextPadding:]', symObjAddr: 0x1174, symBinAddr: 0xDE44, symSize: 0x80 }
+  - { offsetInCU: 0xF02, offset: 0xBA83, size: 0x8, addend: 0x0, symName: '-[MGLSymbolAnnotationController textPadding]', symObjAddr: 0x11F4, symBinAddr: 0xDEC4, symSize: 0x68 }
+  - { offsetInCU: 0xF54, offset: 0xBAD5, size: 0x8, addend: 0x0, symName: '-[MGLSymbolAnnotationController setTextPitchAlignment:]', symObjAddr: 0x125C, symBinAddr: 0xDF2C, symSize: 0x80 }
+  - { offsetInCU: 0xFA2, offset: 0xBB23, size: 0x8, addend: 0x0, symName: '-[MGLSymbolAnnotationController textPitchAlignment]', symObjAddr: 0x12DC, symBinAddr: 0xDFAC, symSize: 0x74 }
+  - { offsetInCU: 0xFF4, offset: 0xBB75, size: 0x8, addend: 0x0, symName: '-[MGLSymbolAnnotationController setTextRotationAlignment:]', symObjAddr: 0x1350, symBinAddr: 0xE020, symSize: 0x80 }
+  - { offsetInCU: 0x1042, offset: 0xBBC3, size: 0x8, addend: 0x0, symName: '-[MGLSymbolAnnotationController textRotationAlignment]', symObjAddr: 0x13D0, symBinAddr: 0xE0A0, symSize: 0x74 }
+  - { offsetInCU: 0x1097, offset: 0xBC18, size: 0x8, addend: 0x0, symName: '-[MGLSymbolAnnotationController setTextVariableAnchor:]', symObjAddr: 0x1444, symBinAddr: 0xE114, symSize: 0x58 }
+  - { offsetInCU: 0x10E8, offset: 0xBC69, size: 0x8, addend: 0x0, symName: '-[MGLSymbolAnnotationController textVariableAnchor]', symObjAddr: 0x149C, symBinAddr: 0xE16C, symSize: 0x54 }
+  - { offsetInCU: 0x113D, offset: 0xBCBE, size: 0x8, addend: 0x0, symName: '-[MGLSymbolAnnotationController setIconTranslation:]', symObjAddr: 0x14F0, symBinAddr: 0xE1C0, symSize: 0x80 }
+  - { offsetInCU: 0x118A, offset: 0xBD0B, size: 0x8, addend: 0x0, symName: '-[MGLSymbolAnnotationController iconTranslation]', symObjAddr: 0x1570, symBinAddr: 0xE240, symSize: 0x70 }
+  - { offsetInCU: 0x11DF, offset: 0xBD60, size: 0x8, addend: 0x0, symName: '-[MGLSymbolAnnotationController setIconTranslationAnchor:]', symObjAddr: 0x15E0, symBinAddr: 0xE2B0, symSize: 0x80 }
+  - { offsetInCU: 0x1230, offset: 0xBDB1, size: 0x8, addend: 0x0, symName: '-[MGLSymbolAnnotationController iconTranslationAnchor]', symObjAddr: 0x1660, symBinAddr: 0xE330, symSize: 0x74 }
+  - { offsetInCU: 0x1285, offset: 0xBE06, size: 0x8, addend: 0x0, symName: '-[MGLSymbolAnnotationController setTextTranslation:]', symObjAddr: 0x16D4, symBinAddr: 0xE3A4, symSize: 0x80 }
+  - { offsetInCU: 0x12D2, offset: 0xBE53, size: 0x8, addend: 0x0, symName: '-[MGLSymbolAnnotationController textTranslation]', symObjAddr: 0x1754, symBinAddr: 0xE424, symSize: 0x70 }
+  - { offsetInCU: 0x1327, offset: 0xBEA8, size: 0x8, addend: 0x0, symName: '-[MGLSymbolAnnotationController setTextTranslationAnchor:]', symObjAddr: 0x17C4, symBinAddr: 0xE494, symSize: 0x80 }
+  - { offsetInCU: 0x1378, offset: 0xBEF9, size: 0x8, addend: 0x0, symName: '-[MGLSymbolAnnotationController textTranslationAnchor]', symObjAddr: 0x1844, symBinAddr: 0xE514, symSize: 0x74 }
+  - { offsetInCU: 0x13CD, offset: 0xBF4E, size: 0x8, addend: 0x0, symName: '-[MGLSymbolAnnotationController enablePaintProperties:]', symObjAddr: 0x18B8, symBinAddr: 0xE588, symSize: 0xA40 }
+  - { offsetInCU: 0x140E, offset: 0xBF8F, size: 0x8, addend: 0x0, symName: '-[MGLSymbolAnnotationController setPaintProperties]', symObjAddr: 0x22F8, symBinAddr: 0xEFC8, symSize: 0xBB0 }
+  - { offsetInCU: 0x143F, offset: 0xBFC0, size: 0x8, addend: 0x0, symName: '-[MGLSymbolAnnotationController source]', symObjAddr: 0x2EA8, symBinAddr: 0xFB78, symSize: 0x10 }
+  - { offsetInCU: 0x1473, offset: 0xBFF4, size: 0x8, addend: 0x0, symName: '-[MGLSymbolAnnotationController setSource:]', symObjAddr: 0x2EB8, symBinAddr: 0xFB88, symSize: 0x14 }
+  - { offsetInCU: 0x14B0, offset: 0xC031, size: 0x8, addend: 0x0, symName: '-[MGLSymbolAnnotationController layer]', symObjAddr: 0x2ECC, symBinAddr: 0xFB9C, symSize: 0x10 }
+  - { offsetInCU: 0x14E4, offset: 0xC065, size: 0x8, addend: 0x0, symName: '-[MGLSymbolAnnotationController setLayer:]', symObjAddr: 0x2EDC, symBinAddr: 0xFBAC, symSize: 0x14 }
+  - { offsetInCU: 0x1521, offset: 0xC0A2, size: 0x8, addend: 0x0, symName: '-[MGLSymbolAnnotationController enabledPaintProperties]', symObjAddr: 0x2EF0, symBinAddr: 0xFBC0, symSize: 0x10 }
+  - { offsetInCU: 0x1555, offset: 0xC0D6, size: 0x8, addend: 0x0, symName: '-[MGLSymbolAnnotationController setEnabledPaintProperties:]', symObjAddr: 0x2F00, symBinAddr: 0xFBD0, symSize: 0x14 }
+  - { offsetInCU: 0x1592, offset: 0xC113, size: 0x8, addend: 0x0, symName: '-[MGLSymbolAnnotationController .cxx_destruct]', symObjAddr: 0x2F14, symBinAddr: 0xFBE4, symSize: 0x54 }
+  - { offsetInCU: 0x27, offset: 0xC39A, size: 0x8, addend: 0x0, symName: '-[MGLSymbolStyleAnnotation initWithCoordinate:]', symObjAddr: 0x0, symBinAddr: 0xFC38, symSize: 0x98 }
+  - { offsetInCU: 0x40, offset: 0xC3B3, size: 0x8, addend: 0x0, symName: _MGLPropertyIconScale, symObjAddr: 0x23B0, symBinAddr: 0x1C298, symSize: 0x0 }
+  - { offsetInCU: 0x7C, offset: 0xC3EF, size: 0x8, addend: 0x0, symName: _MGLPropertyIconImageName, symObjAddr: 0x23B8, symBinAddr: 0x1C2A0, symSize: 0x0 }
+  - { offsetInCU: 0x91, offset: 0xC404, size: 0x8, addend: 0x0, symName: _MGLPropertyIconRotation, symObjAddr: 0x23C0, symBinAddr: 0x1C2A8, symSize: 0x0 }
+  - { offsetInCU: 0xA6, offset: 0xC419, size: 0x8, addend: 0x0, symName: _MGLPropertyIconOffset, symObjAddr: 0x23C8, symBinAddr: 0x1C2B0, symSize: 0x0 }
+  - { offsetInCU: 0xBB, offset: 0xC42E, size: 0x8, addend: 0x0, symName: _MGLPropertyIconAnchor, symObjAddr: 0x23D0, symBinAddr: 0x1C2B8, symSize: 0x0 }
+  - { offsetInCU: 0xD0, offset: 0xC443, size: 0x8, addend: 0x0, symName: _MGLPropertyIconOpacity, symObjAddr: 0x23D8, symBinAddr: 0x1C2C0, symSize: 0x0 }
+  - { offsetInCU: 0xE5, offset: 0xC458, size: 0x8, addend: 0x0, symName: _MGLPropertyIconColor, symObjAddr: 0x23E0, symBinAddr: 0x1C2C8, symSize: 0x0 }
+  - { offsetInCU: 0xFA, offset: 0xC46D, size: 0x8, addend: 0x0, symName: _MGLPropertyIconHaloColor, symObjAddr: 0x23E8, symBinAddr: 0x1C2D0, symSize: 0x0 }
+  - { offsetInCU: 0x10F, offset: 0xC482, size: 0x8, addend: 0x0, symName: _MGLPropertyIconHaloWidth, symObjAddr: 0x23F0, symBinAddr: 0x1C2D8, symSize: 0x0 }
+  - { offsetInCU: 0x124, offset: 0xC497, size: 0x8, addend: 0x0, symName: _MGLPropertyIconHaloBlur, symObjAddr: 0x23F8, symBinAddr: 0x1C2E0, symSize: 0x0 }
+  - { offsetInCU: 0x139, offset: 0xC4AC, size: 0x8, addend: 0x0, symName: _MGLPropertyText, symObjAddr: 0x2400, symBinAddr: 0x1C2E8, symSize: 0x0 }
+  - { offsetInCU: 0x14E, offset: 0xC4C1, size: 0x8, addend: 0x0, symName: _MGLPropertyTextFontNames, symObjAddr: 0x2408, symBinAddr: 0x1C2F0, symSize: 0x0 }
+  - { offsetInCU: 0x163, offset: 0xC4D6, size: 0x8, addend: 0x0, symName: _MGLPropertyTextFontSize, symObjAddr: 0x2410, symBinAddr: 0x1C2F8, symSize: 0x0 }
+  - { offsetInCU: 0x178, offset: 0xC4EB, size: 0x8, addend: 0x0, symName: _MGLPropertyMaximumTextWidth, symObjAddr: 0x2418, symBinAddr: 0x1C300, symSize: 0x0 }
+  - { offsetInCU: 0x18D, offset: 0xC500, size: 0x8, addend: 0x0, symName: _MGLPropertyTextLetterSpacing, symObjAddr: 0x2420, symBinAddr: 0x1C308, symSize: 0x0 }
+  - { offsetInCU: 0x1A2, offset: 0xC515, size: 0x8, addend: 0x0, symName: _MGLPropertyTextJustification, symObjAddr: 0x2428, symBinAddr: 0x1C310, symSize: 0x0 }
+  - { offsetInCU: 0x1B7, offset: 0xC52A, size: 0x8, addend: 0x0, symName: _MGLPropertyTextRadialOffset, symObjAddr: 0x2430, symBinAddr: 0x1C318, symSize: 0x0 }
+  - { offsetInCU: 0x1CC, offset: 0xC53F, size: 0x8, addend: 0x0, symName: _MGLPropertyTextAnchor, symObjAddr: 0x2438, symBinAddr: 0x1C320, symSize: 0x0 }
+  - { offsetInCU: 0x1E1, offset: 0xC554, size: 0x8, addend: 0x0, symName: _MGLPropertyTextRotation, symObjAddr: 0x2440, symBinAddr: 0x1C328, symSize: 0x0 }
+  - { offsetInCU: 0x1F6, offset: 0xC569, size: 0x8, addend: 0x0, symName: _MGLPropertyTextTransform, symObjAddr: 0x2448, symBinAddr: 0x1C330, symSize: 0x0 }
+  - { offsetInCU: 0x20B, offset: 0xC57E, size: 0x8, addend: 0x0, symName: _MGLPropertyTextOffset, symObjAddr: 0x2450, symBinAddr: 0x1C338, symSize: 0x0 }
+  - { offsetInCU: 0x220, offset: 0xC593, size: 0x8, addend: 0x0, symName: _MGLPropertyTextOpacity, symObjAddr: 0x2458, symBinAddr: 0x1C340, symSize: 0x0 }
+  - { offsetInCU: 0x235, offset: 0xC5A8, size: 0x8, addend: 0x0, symName: _MGLPropertyTextColor, symObjAddr: 0x2460, symBinAddr: 0x1C348, symSize: 0x0 }
+  - { offsetInCU: 0x24A, offset: 0xC5BD, size: 0x8, addend: 0x0, symName: _MGLPropertyTextHaloColor, symObjAddr: 0x2468, symBinAddr: 0x1C350, symSize: 0x0 }
+  - { offsetInCU: 0x25F, offset: 0xC5D2, size: 0x8, addend: 0x0, symName: _MGLPropertyTextHaloWidth, symObjAddr: 0x2470, symBinAddr: 0x1C358, symSize: 0x0 }
+  - { offsetInCU: 0x274, offset: 0xC5E7, size: 0x8, addend: 0x0, symName: _MGLPropertyTextHaloBlur, symObjAddr: 0x2478, symBinAddr: 0x1C360, symSize: 0x0 }
+  - { offsetInCU: 0x289, offset: 0xC5FC, size: 0x8, addend: 0x0, symName: _MGLPropertySymbolSortKey, symObjAddr: 0x2480, symBinAddr: 0x1C368, symSize: 0x0 }
+  - { offsetInCU: 0x532, offset: 0xC8A5, size: 0x8, addend: 0x0, symName: '-[MGLSymbolStyleAnnotation initWithCoordinate:]', symObjAddr: 0x0, symBinAddr: 0xFC38, symSize: 0x98 }
+  - { offsetInCU: 0x571, offset: 0xC8E4, size: 0x8, addend: 0x0, symName: '-[MGLSymbolStyleAnnotation initWithCoordinate:text:color:]', symObjAddr: 0x98, symBinAddr: 0xFCD0, symSize: 0x84 }
+  - { offsetInCU: 0x5CE, offset: 0xC941, size: 0x8, addend: 0x0, symName: '-[MGLSymbolStyleAnnotation initWithCoordinate:iconImageName:]', symObjAddr: 0x11C, symBinAddr: 0xFD54, symSize: 0x60 }
+  - { offsetInCU: 0x61C, offset: 0xC98F, size: 0x8, addend: 0x0, symName: '-[MGLSymbolStyleAnnotation setIconAnchor:]', symObjAddr: 0x17C, symBinAddr: 0xFDB4, symSize: 0x60 }
+  - { offsetInCU: 0x65B, offset: 0xC9CE, size: 0x8, addend: 0x0, symName: '-[MGLSymbolStyleAnnotation iconAnchor]', symObjAddr: 0x1DC, symBinAddr: 0xFE14, symSize: 0x9C }
+  - { offsetInCU: 0x6AC, offset: 0xCA1F, size: 0x8, addend: 0x0, symName: '-[MGLSymbolStyleAnnotation setIconImageName:]', symObjAddr: 0x278, symBinAddr: 0xFEB0, symSize: 0x5C }
+  - { offsetInCU: 0x6EB, offset: 0xCA5E, size: 0x8, addend: 0x0, symName: '-[MGLSymbolStyleAnnotation iconImageName]', symObjAddr: 0x2D4, symBinAddr: 0xFF0C, symSize: 0x40 }
+  - { offsetInCU: 0x71F, offset: 0xCA92, size: 0x8, addend: 0x0, symName: '-[MGLSymbolStyleAnnotation setIconOffset:]', symObjAddr: 0x314, symBinAddr: 0xFF4C, symSize: 0xE0 }
+  - { offsetInCU: 0x75E, offset: 0xCAD1, size: 0x8, addend: 0x0, symName: '-[MGLSymbolStyleAnnotation iconOffset]', symObjAddr: 0x3F4, symBinAddr: 0x1002C, symSize: 0xD8 }
+  - { offsetInCU: 0x7AF, offset: 0xCB22, size: 0x8, addend: 0x0, symName: '-[MGLSymbolStyleAnnotation setIconRotation:]', symObjAddr: 0x4CC, symBinAddr: 0x10104, symSize: 0x60 }
+  - { offsetInCU: 0x7EE, offset: 0xCB61, size: 0x8, addend: 0x0, symName: '-[MGLSymbolStyleAnnotation iconRotation]', symObjAddr: 0x52C, symBinAddr: 0x10164, symSize: 0x9C }
+  - { offsetInCU: 0x83F, offset: 0xCBB2, size: 0x8, addend: 0x0, symName: '-[MGLSymbolStyleAnnotation setIconScale:]', symObjAddr: 0x5C8, symBinAddr: 0x10200, symSize: 0x60 }
+  - { offsetInCU: 0x87E, offset: 0xCBF1, size: 0x8, addend: 0x0, symName: '-[MGLSymbolStyleAnnotation iconScale]', symObjAddr: 0x628, symBinAddr: 0x10260, symSize: 0x9C }
+  - { offsetInCU: 0x8CF, offset: 0xCC42, size: 0x8, addend: 0x0, symName: '-[MGLSymbolStyleAnnotation setIconColor:]', symObjAddr: 0x6C4, symBinAddr: 0x102FC, symSize: 0x5C }
+  - { offsetInCU: 0x90E, offset: 0xCC81, size: 0x8, addend: 0x0, symName: '-[MGLSymbolStyleAnnotation iconColor]', symObjAddr: 0x720, symBinAddr: 0x10358, symSize: 0xB0 }
+  - { offsetInCU: 0x95F, offset: 0xCCD2, size: 0x8, addend: 0x0, symName: '-[MGLSymbolStyleAnnotation setIconHaloBlur:]', symObjAddr: 0x7D0, symBinAddr: 0x10408, symSize: 0x60 }
+  - { offsetInCU: 0x99E, offset: 0xCD11, size: 0x8, addend: 0x0, symName: '-[MGLSymbolStyleAnnotation iconHaloBlur]', symObjAddr: 0x830, symBinAddr: 0x10468, symSize: 0x9C }
+  - { offsetInCU: 0x9EF, offset: 0xCD62, size: 0x8, addend: 0x0, symName: '-[MGLSymbolStyleAnnotation setIconHaloColor:]', symObjAddr: 0x8CC, symBinAddr: 0x10504, symSize: 0x5C }
+  - { offsetInCU: 0xA2E, offset: 0xCDA1, size: 0x8, addend: 0x0, symName: '-[MGLSymbolStyleAnnotation iconHaloColor]', symObjAddr: 0x928, symBinAddr: 0x10560, symSize: 0xB0 }
+  - { offsetInCU: 0xA7F, offset: 0xCDF2, size: 0x8, addend: 0x0, symName: '-[MGLSymbolStyleAnnotation setIconHaloWidth:]', symObjAddr: 0x9D8, symBinAddr: 0x10610, symSize: 0x60 }
+  - { offsetInCU: 0xABE, offset: 0xCE31, size: 0x8, addend: 0x0, symName: '-[MGLSymbolStyleAnnotation iconHaloWidth]', symObjAddr: 0xA38, symBinAddr: 0x10670, symSize: 0x9C }
+  - { offsetInCU: 0xB0F, offset: 0xCE82, size: 0x8, addend: 0x0, symName: '-[MGLSymbolStyleAnnotation setIconOpacity:]', symObjAddr: 0xAD4, symBinAddr: 0x1070C, symSize: 0x60 }
+  - { offsetInCU: 0xB4E, offset: 0xCEC1, size: 0x8, addend: 0x0, symName: '-[MGLSymbolStyleAnnotation iconOpacity]', symObjAddr: 0xB34, symBinAddr: 0x1076C, symSize: 0x9C }
+  - { offsetInCU: 0xB9F, offset: 0xCF12, size: 0x8, addend: 0x0, symName: '-[MGLSymbolStyleAnnotation setText:]', symObjAddr: 0xBD0, symBinAddr: 0x10808, symSize: 0x5C }
+  - { offsetInCU: 0xBDE, offset: 0xCF51, size: 0x8, addend: 0x0, symName: '-[MGLSymbolStyleAnnotation text]', symObjAddr: 0xC2C, symBinAddr: 0x10864, symSize: 0x40 }
+  - { offsetInCU: 0xC12, offset: 0xCF85, size: 0x8, addend: 0x0, symName: '-[MGLSymbolStyleAnnotation setTextAnchor:]', symObjAddr: 0xC6C, symBinAddr: 0x108A4, symSize: 0x60 }
+  - { offsetInCU: 0xC51, offset: 0xCFC4, size: 0x8, addend: 0x0, symName: '-[MGLSymbolStyleAnnotation textAnchor]', symObjAddr: 0xCCC, symBinAddr: 0x10904, symSize: 0x9C }
+  - { offsetInCU: 0xCA2, offset: 0xD015, size: 0x8, addend: 0x0, symName: '-[MGLSymbolStyleAnnotation setFontNames:]', symObjAddr: 0xD68, symBinAddr: 0x109A0, symSize: 0x5C }
+  - { offsetInCU: 0xCE1, offset: 0xD054, size: 0x8, addend: 0x0, symName: '-[MGLSymbolStyleAnnotation fontNames]', symObjAddr: 0xDC4, symBinAddr: 0x109FC, symSize: 0x88 }
+  - { offsetInCU: 0xD32, offset: 0xD0A5, size: 0x8, addend: 0x0, symName: '-[MGLSymbolStyleAnnotation setTextFontSize:]', symObjAddr: 0xE4C, symBinAddr: 0x10A84, symSize: 0x60 }
+  - { offsetInCU: 0xD71, offset: 0xD0E4, size: 0x8, addend: 0x0, symName: '-[MGLSymbolStyleAnnotation textFontSize]', symObjAddr: 0xEAC, symBinAddr: 0x10AE4, symSize: 0x9C }
+  - { offsetInCU: 0xDC2, offset: 0xD135, size: 0x8, addend: 0x0, symName: '-[MGLSymbolStyleAnnotation setTextJustification:]', symObjAddr: 0xF48, symBinAddr: 0x10B80, symSize: 0x60 }
+  - { offsetInCU: 0xE01, offset: 0xD174, size: 0x8, addend: 0x0, symName: '-[MGLSymbolStyleAnnotation textJustification]', symObjAddr: 0xFA8, symBinAddr: 0x10BE0, symSize: 0x9C }
+  - { offsetInCU: 0xE52, offset: 0xD1C5, size: 0x8, addend: 0x0, symName: '-[MGLSymbolStyleAnnotation setTextLetterSpacing:]', symObjAddr: 0x1044, symBinAddr: 0x10C7C, symSize: 0x60 }
+  - { offsetInCU: 0xE91, offset: 0xD204, size: 0x8, addend: 0x0, symName: '-[MGLSymbolStyleAnnotation textLetterSpacing]', symObjAddr: 0x10A4, symBinAddr: 0x10CDC, symSize: 0x9C }
+  - { offsetInCU: 0xEE2, offset: 0xD255, size: 0x8, addend: 0x0, symName: '-[MGLSymbolStyleAnnotation setTextOffset:]', symObjAddr: 0x1140, symBinAddr: 0x10D78, symSize: 0xE0 }
+  - { offsetInCU: 0xF23, offset: 0xD296, size: 0x8, addend: 0x0, symName: '-[MGLSymbolStyleAnnotation textOffset]', symObjAddr: 0x1220, symBinAddr: 0x10E58, symSize: 0xD8 }
+  - { offsetInCU: 0xF76, offset: 0xD2E9, size: 0x8, addend: 0x0, symName: '-[MGLSymbolStyleAnnotation setTextRadialOffset:]', symObjAddr: 0x12F8, symBinAddr: 0x10F30, symSize: 0x60 }
+  - { offsetInCU: 0xFB7, offset: 0xD32A, size: 0x8, addend: 0x0, symName: '-[MGLSymbolStyleAnnotation textRadialOffset]', symObjAddr: 0x1358, symBinAddr: 0x10F90, symSize: 0x9C }
+  - { offsetInCU: 0x100A, offset: 0xD37D, size: 0x8, addend: 0x0, symName: '-[MGLSymbolStyleAnnotation setTextRotation:]', symObjAddr: 0x13F4, symBinAddr: 0x1102C, symSize: 0x60 }
+  - { offsetInCU: 0x104B, offset: 0xD3BE, size: 0x8, addend: 0x0, symName: '-[MGLSymbolStyleAnnotation textRotation]', symObjAddr: 0x1454, symBinAddr: 0x1108C, symSize: 0x9C }
+  - { offsetInCU: 0x109E, offset: 0xD411, size: 0x8, addend: 0x0, symName: '-[MGLSymbolStyleAnnotation setTextTransform:]', symObjAddr: 0x14F0, symBinAddr: 0x11128, symSize: 0x60 }
+  - { offsetInCU: 0x10DF, offset: 0xD452, size: 0x8, addend: 0x0, symName: '-[MGLSymbolStyleAnnotation textTransform]', symObjAddr: 0x1550, symBinAddr: 0x11188, symSize: 0x9C }
+  - { offsetInCU: 0x1132, offset: 0xD4A5, size: 0x8, addend: 0x0, symName: '-[MGLSymbolStyleAnnotation setTextColor:]', symObjAddr: 0x15EC, symBinAddr: 0x11224, symSize: 0x5C }
+  - { offsetInCU: 0x1173, offset: 0xD4E6, size: 0x8, addend: 0x0, symName: '-[MGLSymbolStyleAnnotation textColor]', symObjAddr: 0x1648, symBinAddr: 0x11280, symSize: 0xB0 }
+  - { offsetInCU: 0x11C6, offset: 0xD539, size: 0x8, addend: 0x0, symName: '-[MGLSymbolStyleAnnotation setTextHaloBlur:]', symObjAddr: 0x16F8, symBinAddr: 0x11330, symSize: 0x60 }
+  - { offsetInCU: 0x1207, offset: 0xD57A, size: 0x8, addend: 0x0, symName: '-[MGLSymbolStyleAnnotation textHaloBlur]', symObjAddr: 0x1758, symBinAddr: 0x11390, symSize: 0x9C }
+  - { offsetInCU: 0x125A, offset: 0xD5CD, size: 0x8, addend: 0x0, symName: '-[MGLSymbolStyleAnnotation setTextHaloColor:]', symObjAddr: 0x17F4, symBinAddr: 0x1142C, symSize: 0x5C }
+  - { offsetInCU: 0x129B, offset: 0xD60E, size: 0x8, addend: 0x0, symName: '-[MGLSymbolStyleAnnotation textHaloColor]', symObjAddr: 0x1850, symBinAddr: 0x11488, symSize: 0xB0 }
+  - { offsetInCU: 0x12EE, offset: 0xD661, size: 0x8, addend: 0x0, symName: '-[MGLSymbolStyleAnnotation setTextHaloWidth:]', symObjAddr: 0x1900, symBinAddr: 0x11538, symSize: 0x60 }
+  - { offsetInCU: 0x132F, offset: 0xD6A2, size: 0x8, addend: 0x0, symName: '-[MGLSymbolStyleAnnotation textHaloWidth]', symObjAddr: 0x1960, symBinAddr: 0x11598, symSize: 0x9C }
+  - { offsetInCU: 0x1382, offset: 0xD6F5, size: 0x8, addend: 0x0, symName: '-[MGLSymbolStyleAnnotation setTextOpacity:]', symObjAddr: 0x19FC, symBinAddr: 0x11634, symSize: 0x60 }
+  - { offsetInCU: 0x13C3, offset: 0xD736, size: 0x8, addend: 0x0, symName: '-[MGLSymbolStyleAnnotation textOpacity]', symObjAddr: 0x1A5C, symBinAddr: 0x11694, symSize: 0x9C }
+  - { offsetInCU: 0x1416, offset: 0xD789, size: 0x8, addend: 0x0, symName: '-[MGLSymbolStyleAnnotation setMaximumTextWidth:]', symObjAddr: 0x1AF8, symBinAddr: 0x11730, symSize: 0x60 }
+  - { offsetInCU: 0x1457, offset: 0xD7CA, size: 0x8, addend: 0x0, symName: '-[MGLSymbolStyleAnnotation maximumTextWidth]', symObjAddr: 0x1B58, symBinAddr: 0x11790, symSize: 0x9C }
+  - { offsetInCU: 0x14AA, offset: 0xD81D, size: 0x8, addend: 0x0, symName: '-[MGLSymbolStyleAnnotation setSymbolSortKey:]', symObjAddr: 0x1BF4, symBinAddr: 0x1182C, symSize: 0x60 }
+  - { offsetInCU: 0x14EB, offset: 0xD85E, size: 0x8, addend: 0x0, symName: '-[MGLSymbolStyleAnnotation symbolSortKey]', symObjAddr: 0x1C54, symBinAddr: 0x1188C, symSize: 0x94 }
+  - { offsetInCU: 0x153E, offset: 0xD8B1, size: 0x8, addend: 0x0, symName: '-[MGLSymbolStyleAnnotation feature]', symObjAddr: 0x1CE8, symBinAddr: 0x11920, symSize: 0x54 }
+  - { offsetInCU: 0x1573, offset: 0xD8E6, size: 0x8, addend: 0x0, symName: '-[MGLSymbolStyleAnnotation updateGeometryCoordinatesWithDelta:]', symObjAddr: 0x1D3C, symBinAddr: 0x11974, symSize: 0x88 }
+  - { offsetInCU: 0x15EB, offset: 0xD95E, size: 0x8, addend: 0x0, symName: '-[MGLSymbolStyleAnnotation textTranslation]', symObjAddr: 0x1DC4, symBinAddr: 0x119FC, symSize: 0x14 }
+  - { offsetInCU: 0x161E, offset: 0xD991, size: 0x8, addend: 0x0, symName: '-[MGLSymbolStyleAnnotation setTextTranslation:]', symObjAddr: 0x1DD8, symBinAddr: 0x11A10, symSize: 0x14 }
+  - { offsetInCU: 0x165A, offset: 0xD9CD, size: 0x8, addend: 0x0, symName: '-[MGLSymbolStyleAnnotation attributes]', symObjAddr: 0x1DEC, symBinAddr: 0x11A24, symSize: 0x10 }
+  - { offsetInCU: 0x168E, offset: 0xDA01, size: 0x8, addend: 0x0, symName: '-[MGLSymbolStyleAnnotation setAttributes:]', symObjAddr: 0x1DFC, symBinAddr: 0x11A34, symSize: 0x14 }
+  - { offsetInCU: 0x16CB, offset: 0xDA3E, size: 0x8, addend: 0x0, symName: '-[MGLSymbolStyleAnnotation pointFeature]', symObjAddr: 0x1E10, symBinAddr: 0x11A48, symSize: 0x10 }
+  - { offsetInCU: 0x16FF, offset: 0xDA72, size: 0x8, addend: 0x0, symName: '-[MGLSymbolStyleAnnotation setPointFeature:]', symObjAddr: 0x1E20, symBinAddr: 0x11A58, symSize: 0x14 }
+  - { offsetInCU: 0x173C, offset: 0xDAAF, size: 0x8, addend: 0x0, symName: '-[MGLSymbolStyleAnnotation .cxx_destruct]', symObjAddr: 0x1E34, symBinAddr: 0x11A6C, symSize: 0x40 }
+  - { offsetInCU: 0x27, offset: 0xDB31, size: 0x8, addend: 0x0, symName: '-[UIColor(MGLAnnotationExtension) mgl_rgbaColorString]', symObjAddr: 0x0, symBinAddr: 0x11AAC, symSize: 0x80 }
+  - { offsetInCU: 0x42, offset: 0xDB4C, size: 0x8, addend: 0x0, symName: '-[UIColor(MGLAnnotationExtension) mgl_rgbaColorString]', symObjAddr: 0x0, symBinAddr: 0x11AAC, symSize: 0x80 }
+  - { offsetInCU: 0xC1, offset: 0xDBCB, size: 0x8, addend: 0x0, symName: '+[UIColor(MGLAnnotationExtension) mgl_colorWithRgbaColorString:]', symObjAddr: 0x80, symBinAddr: 0x11B2C, symSize: 0x204 }
+...

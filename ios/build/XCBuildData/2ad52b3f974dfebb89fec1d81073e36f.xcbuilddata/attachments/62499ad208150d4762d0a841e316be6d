@@ -1,0 +1,5 @@
+ extern const unsigned char Pods_ImageNotificationVersionString[];
+ extern const double Pods_ImageNotificationVersionNumber;
+
+ const unsigned char Pods_ImageNotificationVersionString[] __attribute__ ((used)) = "@(#)PROGRAM:Pods_ImageNotification  PROJECT:Pods-1" "\n";
+ const double Pods_ImageNotificationVersionNumber __attribute__ ((used)) = (double)1.;

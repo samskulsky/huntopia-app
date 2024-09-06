@@ -1,0 +1,15 @@
+{
+  "" : {
+    "const-values" : "/Users/samuelskulsky/Coding/Flutter Projects/scavhuntapp-1/ios/build/Pods.build/Release-iphoneos/maps_launcher.build/Objects-normal/arm64/maps_launcher-master.swiftconstvalues",
+    "dependencies" : "/Users/samuelskulsky/Coding/Flutter Projects/scavhuntapp-1/ios/build/Pods.build/Release-iphoneos/maps_launcher.build/Objects-normal/arm64/maps_launcher-master.d",
+    "diagnostics" : "/Users/samuelskulsky/Coding/Flutter Projects/scavhuntapp-1/ios/build/Pods.build/Release-iphoneos/maps_launcher.build/Objects-normal/arm64/maps_launcher-master.dia",
+    "emit-module-dependencies" : "/Users/samuelskulsky/Coding/Flutter Projects/scavhuntapp-1/ios/build/Pods.build/Release-iphoneos/maps_launcher.build/Objects-normal/arm64/maps_launcher-master-emit-module.d",
+    "emit-module-diagnostics" : "/Users/samuelskulsky/Coding/Flutter Projects/scavhuntapp-1/ios/build/Pods.build/Release-iphoneos/maps_launcher.build/Objects-normal/arm64/maps_launcher-master-emit-module.dia",
+    "swift-dependencies" : "/Users/samuelskulsky/Coding/Flutter Projects/scavhuntapp-1/ios/build/Pods.build/Release-iphoneos/maps_launcher.build/Objects-normal/arm64/maps_launcher-master.swiftdeps"
+  },
+  "/Users/samuelskulsky/.pub-cache/hosted/pub.dev/maps_launcher-2.2.1/ios/Classes/SwiftMapsLauncherPlugin.swift" : {
+    "index-unit-output-path" : "/Pods.build/Release-iphoneos/maps_launcher.build/Objects-normal/arm64/SwiftMapsLauncherPlugin.o",
+    "llvm-bc" : "/Users/samuelskulsky/Coding/Flutter Projects/scavhuntapp-1/ios/build/Pods.build/Release-iphoneos/maps_launcher.build/Objects-normal/arm64/SwiftMapsLauncherPlugin.bc",
+    "object" : "/Users/samuelskulsky/Coding/Flutter Projects/scavhuntapp-1/ios/build/Pods.build/Release-iphoneos/maps_launcher.build/Objects-normal/arm64/SwiftMapsLauncherPlugin.o"
+  }
+}

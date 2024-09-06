@@ -1,0 +1,13 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     '/Users/sam/scavhuntapp/Flutter/Profile/iphoneos/Profile-iphoneos/libphonenumber/libphonenumber.framework/libphonenumber'
+relocations:
+  - { offsetInCU: 0x33, offset: 0x42B7, size: 0x8, addend: 0x0, symName: _libphonenumberVersionString, symObjAddr: 0x0, symBinAddr: 0x4A40, symSize: 0x0 }
+  - { offsetInCU: 0x67, offset: 0x42EB, size: 0x8, addend: 0x0, symName: _libphonenumberVersionNumber, symObjAddr: 0x30, symBinAddr: 0x4A70, symSize: 0x0 }
+  - { offsetInCU: 0x27, offset: 0x4327, size: 0x8, addend: 0x0, symName: '+[LibphonenumberPlugin registerWithRegistrar:]', symObjAddr: 0x0, symBinAddr: 0x4000, symSize: 0xB0 }
+  - { offsetInCU: 0x7E, offset: 0x437E, size: 0x8, addend: 0x0, symName: '+[LibphonenumberPlugin registerWithRegistrar:]', symObjAddr: 0x0, symBinAddr: 0x4000, symSize: 0xB0 }
+  - { offsetInCU: 0xD7, offset: 0x43D7, size: 0x8, addend: 0x0, symName: '-[LibphonenumberPlugin handleMethodCall:result:]', symObjAddr: 0xB0, symBinAddr: 0x40B0, symSize: 0x57C }
+  - { offsetInCU: 0x2CF, offset: 0x45CF, size: 0x8, addend: 0x0, symName: '-[LibphonenumberPlugin phoneUtil]', symObjAddr: 0x62C, symBinAddr: 0x462C, symSize: 0x8 }
+  - { offsetInCU: 0x303, offset: 0x4603, size: 0x8, addend: 0x0, symName: '-[LibphonenumberPlugin setPhoneUtil:]', symObjAddr: 0x634, symBinAddr: 0x4634, symSize: 0xC }
+  - { offsetInCU: 0x340, offset: 0x4640, size: 0x8, addend: 0x0, symName: '-[LibphonenumberPlugin .cxx_destruct]', symObjAddr: 0x640, symBinAddr: 0x4640, symSize: 0xC }
+...

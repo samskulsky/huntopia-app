@@ -1,0 +1,21 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 5.10 effective-4.2 (swiftlang-5.10.0.13 clang-1500.3.9.4)
+// swift-module-flags: -target x86_64-apple-ios16.2-simulator -enable-objc-interop -enable-library-evolution -swift-version 4.2 -enforce-exclusivity=checked -Onone -enable-bare-slash-regex -module-name mapbox_gl
+import Flutter
+import Foundation
+import Mapbox
+import MapboxAnnotationExtension
+import Swift
+import UIKit
+import _Concurrency
+import _StringProcessing
+import _SwiftConcurrencyShims
+@_exported import mapbox_gl
+extension UIKit.UIColor {
+  convenience public init?(hexString: Swift.String)
+}
+@objc @_inheritsConvenienceInitializers public class SwiftMapboxGlFlutterPlugin : ObjectiveC.NSObject, Flutter.FlutterPlugin {
+  @objc public static func register(with registrar: any Flutter.FlutterPluginRegistrar)
+  @objc override dynamic public init()
+  @objc deinit
+}
