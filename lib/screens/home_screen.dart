@@ -75,6 +75,35 @@ class _HomeScreenState extends State<HomeScreen> {
           usernameController.text = currentUser!.displayName ?? '';
           phoneController.text = currentUser!.phoneNumber ?? '';
 
+          if (currentUser!.role == 'ban') {
+            return Scaffold(
+              body: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Your account has been disabled.',
+                      style: baseTextStyle.copyWith(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                    const SizedBox(height: 8),
+                    Text(
+                      'This could be due to a violation of our terms of service. If you believe this is a mistake, please contact support.\n\nWe apologize for any inconvenience this may have caused.',
+                      style: baseTextStyle.copyWith(
+                        fontSize: 16,
+                        color: Colors.white54,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            );
+          }
+
           return PersistentTabView(
             tabs: _buildTabs(context, currentUser!),
             navBarBuilder: (navBarConfig) => Style5BottomNavBar(
@@ -136,7 +165,11 @@ class _HomeScreenState extends State<HomeScreen> {
         leading: Container(
           margin: const EdgeInsets.all(8),
           child: AvatarBrick(
+            backgroundColor: Colors.green,
+            nameTextColor: Colors.white,
             name: '${user.firstName} ${user.lastName}',
+            nameTextStyle:
+                const TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
           ),
         ),
         title: const Text('Home'),
@@ -550,8 +583,8 @@ class _HomeScreenState extends State<HomeScreen> {
       leading: AvatarBrick(
         radius: 20,
         name: '${user.firstName} ${user.lastName}',
-        nameTextStyle: baseTextStyle.copyWith(
-            fontSize: 44, fontWeight: FontWeight.w700, color: Colors.white),
+        backgroundColor: Colors.green,
+        nameTextColor: Colors.white,
       ),
     );
   }

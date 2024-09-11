@@ -1276,7 +1276,7 @@ class _MainGameScreenState extends State<MainGameScreen> {
                                   .logMessages[index].timestamp
                                   .toLocal()),
                               style: GoogleFonts.spaceMono(
-                                  fontSize: 17, color: Colors.green)),
+                                  fontSize: 14, color: Colors.green)),
                         ),
                         title: Text(currentGame.logMessages[index].displayName,
                             style: baseTextStyle.copyWith(
