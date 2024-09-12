@@ -19,6 +19,7 @@ class AppUser {
   List<String> friendRequests;
   List<String> sentFriendRequests;
   String role;
+  int tokens;
 
   AppUser({
     required this.uid,
@@ -36,6 +37,7 @@ class AppUser {
     required this.friendRequests,
     required this.sentFriendRequests,
     required this.role,
+    required this.tokens,
   });
 
   AppUser.fromMap(Map<String, dynamic> data)
@@ -53,7 +55,8 @@ class AppUser {
         friends = List<String>.from(data['friends']),
         friendRequests = List<String>.from(data['friendRequests']),
         sentFriendRequests = List<String>.from(data['sentFriendRequests']),
-        role = data['role'];
+        role = data['role'],
+        tokens = data['tokens'];
 
   Map<String, dynamic> toMap() {
     return {
@@ -72,6 +75,7 @@ class AppUser {
       'friendRequests': friendRequests,
       'sentFriendRequests': sentFriendRequests,
       'role': role,
+      'tokens': tokens,
     };
   }
 }

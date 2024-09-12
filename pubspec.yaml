@@ -77,6 +77,7 @@ dependencies:
   widget_marker_google_map: ^0.0.2
   map_launcher: ^3.5.0
   flutter_markdown: ^0.7.3+1
+  flutter_google_maps_webservices: ^1.1.1
 
 dev_dependencies:
   flutter_test:

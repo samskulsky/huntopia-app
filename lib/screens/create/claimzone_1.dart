@@ -129,6 +129,8 @@ class _ClaimZone1State extends State<ClaimZone1> {
       controller: controller,
       decoration: InputDecoration(
         hintText: hintText,
+        hintStyle:
+            const TextStyle(color: Colors.white70, fontStyle: FontStyle.italic),
       ),
       textCapitalization: capitalization,
       maxLines: maxLines,

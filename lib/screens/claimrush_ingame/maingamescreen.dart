@@ -1481,7 +1481,7 @@ class _MainGameScreenState extends State<MainGameScreen> {
     return WidgetMarkerGoogleMap(
       myLocationButtonEnabled: false,
       cameraTargetBounds: calculateBounds(currentGameTemplate),
-      minMaxZoomPreference: const MinMaxZoomPreference(14, 20),
+      minMaxZoomPreference: const MinMaxZoomPreference(12, 20),
       onMapCreated: _onMapCreated,
       initialCameraPosition: CameraPosition(
         target: LatLng(currentGameTemplate.center!.latitude,

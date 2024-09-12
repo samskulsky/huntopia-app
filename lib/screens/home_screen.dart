@@ -10,6 +10,7 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent_bottom_nav_bar_v2.dart';
 import 'package:pinput/pinput.dart';
+import 'package:scavhuntapp/screens/create/ai_generate.dart';
 
 import '../info/game_info.dart';
 import '../main.dart';
@@ -135,7 +136,7 @@ class _HomeScreenState extends State<HomeScreen> {
       PersistentTabConfig(
         screen: _buildHomeScreen(context, user),
         item: ItemConfig(
-          icon: FaIcon(FontAwesomeIcons.house),
+          icon: const FaIcon(FontAwesomeIcons.house),
           activeForegroundColor: Colors.green,
           title: "Home",
         ),
@@ -143,7 +144,7 @@ class _HomeScreenState extends State<HomeScreen> {
       PersistentTabConfig(
         screen: _buildGamesScreen(context, user),
         item: ItemConfig(
-          icon: FaIcon(FontAwesomeIcons.gamepad),
+          icon: const FaIcon(FontAwesomeIcons.gamepad),
           activeForegroundColor: Colors.green,
           title: "Games",
         ),
@@ -151,7 +152,7 @@ class _HomeScreenState extends State<HomeScreen> {
       PersistentTabConfig(
         screen: _buildProfileScreen(context, user),
         item: ItemConfig(
-          icon: FaIcon(FontAwesomeIcons.solidUser),
+          icon: const FaIcon(FontAwesomeIcons.solidUser),
           activeForegroundColor: Colors.green,
           title: "Profile",
         ),
@@ -397,6 +398,8 @@ class _HomeScreenState extends State<HomeScreen> {
               children: [
                 _buildCreateGameCard(),
                 const SizedBox(height: 16),
+                _aiGameCard(),
+                const SizedBox(height: 16),
                 _buildGamesList(snapshot.data!),
               ],
             );
@@ -408,8 +411,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget _buildCreateGameCard() {
     return Container(
-      decoration: const BoxDecoration(
-        gradient: LinearGradient(
+      decoration: BoxDecoration(
+        gradient: const LinearGradient(
           colors: [
             Color.fromARGB(121, 10, 83, 229),
             Color.fromARGB(122, 3, 47, 223)
@@ -417,11 +420,12 @@ class _HomeScreenState extends State<HomeScreen> {
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
         ),
+        borderRadius: BorderRadius.circular(8),
       ),
       child: Card(
         color: Colors.transparent,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(0),
+          borderRadius: BorderRadius.circular(8),
           side: BorderSide.none,
         ),
         child: ListTile(
@@ -440,6 +444,47 @@ class _HomeScreenState extends State<HomeScreen> {
               size: 20, color: Colors.white),
           onTap: () {
             Get.to(() => const CreateGamePage());
+          },
+        ),
+      ),
+    );
+  }
+
+  Widget _aiGameCard() {
+    return Container(
+      decoration: BoxDecoration(
+        gradient: const LinearGradient(
+          colors: [
+            Color.fromARGB(121, 167, 229, 10),
+            Color.fromARGB(121, 3, 223, 84)
+          ],
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+        ),
+        borderRadius: BorderRadius.circular(8),
+      ),
+      child: Card(
+        color: Colors.transparent,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(8),
+          side: BorderSide.none,
+        ),
+        child: ListTile(
+          leading: const FaIcon(FontAwesomeIcons.rocket, color: Colors.white),
+          title: Text(
+            'AI-Generated Game',
+            style: baseTextStyle.copyWith(
+                fontSize: 20, fontWeight: FontWeight.w700, color: Colors.white),
+          ),
+          subtitle: Text(
+            'Let our AI create a game for you!',
+            style: baseTextStyle.copyWith(
+                fontSize: 16, fontWeight: FontWeight.w500, color: Colors.white),
+          ),
+          trailing: const Icon(FontAwesomeIcons.angleRight,
+              size: 20, color: Colors.white),
+          onTap: () {
+            Get.to(() => const AIGenerate());
           },
         ),
       ),

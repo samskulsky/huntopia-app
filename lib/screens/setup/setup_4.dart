@@ -162,6 +162,7 @@ class _SetupPage4State extends State<SetupPage4> {
   }
 
   void _createUserAndContinue() {
+    appUser.tokens = 0;
     createAppUser(appUser).then((value) {
       Get.offAll(() => const SetupPage5());
     }).catchError((e) {

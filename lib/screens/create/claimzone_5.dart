@@ -135,7 +135,7 @@ class _ClaimZone5State extends State<ClaimZone5> {
         mapController = controller;
       },
       cameraTargetBounds: calculateBounds(gameTemplate),
-      minMaxZoomPreference: const MinMaxZoomPreference(14, 20),
+      minMaxZoomPreference: const MinMaxZoomPreference(12, 20),
       initialCameraPosition: CameraPosition(
         target: LatLng(
           gameTemplate.center!.latitude,
