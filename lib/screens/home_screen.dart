@@ -7,6 +7,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent_bottom_nav_bar_v2.dart';
 import 'package:pinput/pinput.dart';
@@ -179,8 +180,8 @@ class _HomeScreenState extends State<HomeScreen> {
         padding: const EdgeInsets.all(16),
         children: [
           Text(
-            'Welcome back, ${user.firstName}!',
-            style: baseTextStyle.copyWith(
+            'Hello, ${user.firstName}!',
+            style: GoogleFonts.spaceGrotesk(
               fontSize: 30,
               fontWeight: FontWeight.w700,
             ),
@@ -297,7 +298,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
                 decoration: BoxDecoration(
                   border:
-                      Border.all(color: const Color.fromARGB(255, 39, 98, 42)),
+                      Border.all(color: const Color.fromARGB(255, 37, 187, 44)),
                   borderRadius: BorderRadius.circular(0),
                 ),
                 textStyle: baseTextStyle.copyWith(
@@ -487,7 +488,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     color: Colors.white),
               ),
               Text(
-                'You have ${currentUser!.tokens} AI tokens',
+                'You have ${currentUser!.tokens} AI token${currentUser!.tokens == 1 ? '' : 's'} remaining.',
                 style: baseTextStyle.copyWith(
                   fontSize: 13,
                   fontWeight: FontWeight.w500,

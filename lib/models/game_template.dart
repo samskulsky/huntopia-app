@@ -273,6 +273,19 @@ class CoinShopItem {
     };
   }
 
+  factory CoinShopItem.fromJson(Map<String, dynamic> map) {
+    return CoinShopItem(
+      itemId: map['itemId'],
+      itemName: map['itemName'],
+      itemDescription: map['itemDescription'],
+      itemPrice: map['itemPrice'],
+      pointsPerCoin: map['pointsPerCoin'],
+      itemType: map['itemType'],
+      multiplier: map['multiplier'],
+      duration: map['duration'],
+    );
+  }
+
   factory CoinShopItem.fromMap(Map<String, dynamic> map) {
     return CoinShopItem(
       itemId: map['itemId'],

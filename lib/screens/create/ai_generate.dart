@@ -149,12 +149,8 @@ class _AIGenerateState extends State<AIGenerate> {
             throw Exception('Failed to generate any responses from GPT');
           }
 
-          List<Zone> zones = await _combineZones(responses);
-
-          if (zones.isEmpty) {
-            throw Exception(
-                'Failed to create zones from the generated responses');
-          }
+          var gameData =
+              await _combineZones(responses); // Get zones and coinShopItems
 
           var gameTemplate = GameTemplate(
             templateId: const Uuid().v4(),
@@ -163,11 +159,14 @@ class _AIGenerateState extends State<AIGenerate> {
             gameType: 'claimthezone',
             createdAt: DateTime.now(),
             lastUpdated: DateTime.now(),
-            zones: zones,
+            zones: gameData['zones'] as List<Zone>, // Pass the zones
             gameName: 'AI Generated Game',
             gameDescription: gameDescriptionController.text,
             center: GeoPoint(
-                zones.first.location.latitude, zones.first.location.longitude),
+                (gameData['zones'] as List<Zone>).first.location.latitude,
+                (gameData['zones'] as List<Zone>).first.location.longitude),
+            coinShopItems: gameData['coinShopItems']
+                as List<CoinShopItem>, // Append the coinShopItems
           );
 
           await saveGameTemplate(gameTemplate);
@@ -301,7 +300,7 @@ Zones that are harder to get to or have more challenging tasks should have highe
     return allResponses;
   }
 
-  Future<List<Zone>> _combineZones(
+  Future<Map<String, Object>> _combineZones(
       List<OpenAIChatCompletionModel> allResponses) async {
     List<Zone> combinedZones = [];
     Set<String> zoneNames = {}; // Track zone names to avoid duplicate names
@@ -324,13 +323,11 @@ Zones that are harder to get to or have more challenging tasks should have highe
             String geoPointKey =
                 '${zone.location.latitude}:${zone.location.longitude}';
 
-            // Check if the zone name or geo point already exists in our set
             if (!zoneNames.contains(zone.zoneName) &&
                 !geoPoints.contains(geoPointKey)) {
-              // Add to the combined zones if it's not a duplicate
               combinedZones.add(zone);
-              zoneNames.add(zone.zoneName); // Track this zone name
-              geoPoints.add(geoPointKey); // Track this geo point (lat:long)
+              zoneNames.add(zone.zoneName);
+              geoPoints.add(geoPointKey);
             } else {
               print('Duplicate zone found: ${zone.zoneName} or $geoPointKey');
             }
@@ -343,7 +340,77 @@ Zones that are harder to get to or have more challenging tasks should have highe
       }
     }
 
-    return combinedZones;
+    // Append the predefined coinShopItems JSON
+    final coinShopItemsJson = [
+      {
+        "itemId": "008ede97-7eee-4f10-ad21-d18e6368a722",
+        "itemName": "Point Boost 1.5x",
+        "itemDescription": "Boosts points earned by 1.5x for 15 minutes.",
+        "itemPrice": 20,
+        "pointsPerCoin": 1,
+        "itemType": "booster",
+        "multiplier": 1.5,
+        "duration": 15
+      },
+      {
+        "itemId": "008ede97-7eee-4f10-ad21-d18e6368a722",
+        "itemName": "Point Boost 2x",
+        "itemDescription": "Boosts points earned by 2x for 15 minutes.",
+        "itemPrice": 30,
+        "pointsPerCoin": 1,
+        "itemType": "booster",
+        "multiplier": 2,
+        "duration": 15
+      },
+      {
+        "itemId": "161cb90e-fb6c-4174-8723-76b18797f128",
+        "itemName": "Sabotage 15m",
+        "itemDescription": "Disables opponents for 15 minutes.",
+        "itemPrice": 25,
+        "pointsPerCoin": 1,
+        "itemType": "disabler",
+        "multiplier": 1,
+        "duration": 15
+      },
+      {
+        "itemId": "161cb90e-fb6c-4174-8723-76b18797f128",
+        "itemName": "Sabotage 30m",
+        "itemDescription": "Disables opponents for 30 minutes.",
+        "itemPrice": 45,
+        "pointsPerCoin": 1,
+        "itemType": "disabler",
+        "multiplier": 1,
+        "duration": 30
+      },
+      {
+        "itemId": "72209ce5-10ef-4402-8433-9e6af173e7ec",
+        "itemName": "Coin ATM",
+        "itemDescription": "Earns 2 points for each coin spent.",
+        "itemPrice": 5,
+        "pointsPerCoin": 2,
+        "itemType": "coin",
+        "multiplier": 1,
+        "duration": 0
+      },
+      {
+        "itemId": "694c1bd3-e9ae-47dc-acdd-ed229f0421ca",
+        "itemName": "Task Skip",
+        "itemDescription": "Skips a task.",
+        "itemPrice": 10,
+        "pointsPerCoin": 1,
+        "itemType": "skip",
+        "multiplier": 1,
+        "duration": 0
+      }
+    ];
+
+    // Convert JSON to List<CoinShopItem>
+    List<CoinShopItem> coinShopItems = coinShopItemsJson
+        .map((item) => CoinShopItem.fromJson(item as Map<String, Object>))
+        .toList();
+
+    // Return the combined zones and coinShopItems
+    return {"zones": combinedZones, "coinShopItems": coinShopItems};
   }
 
   Future<List<Zone>> _createZonesFromMap(
