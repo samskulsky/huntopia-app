@@ -506,7 +506,7 @@ class _HomeScreenState extends State<HomeScreen> {
           trailing: const Icon(FontAwesomeIcons.angleRight,
               size: 20, color: Colors.white),
           onTap: () {
-            Get.to(() => const AIGenerate());
+            Get.offAll(() => const AIGenerate());
           },
         ),
       ),

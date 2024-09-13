@@ -16,8 +16,6 @@ import 'package:scavhuntapp/screens/create/claimzone_addzone.dart';
 import 'package:scavhuntapp/screens/create/claimzone_play.dart';
 import 'package:scavhuntapp/screens/home_screen.dart';
 
-// TODO: GPT
-
 class ClaimZoneView extends StatefulWidget {
   const ClaimZoneView({super.key});
 

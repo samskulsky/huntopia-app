@@ -29,6 +29,10 @@ class _AIGenerateState extends State<AIGenerate> {
   TextEditingController gameDescriptionController = TextEditingController();
   bool isLoading = false;
 
+  String loadingMessage = "Initializing..."; // Initial progress message
+  int totalZones = 50;
+  int zonesGenerated = 0;
+
   // Initialize Google Maps Places API
   final GoogleMapsPlaces places = GoogleMapsPlaces(
       apiKey: dotenv.env['GOOGLE_KEY'].toString(), httpClient: Client());
@@ -39,8 +43,9 @@ class _AIGenerateState extends State<AIGenerate> {
       appBar: AppBar(
         title: const Text('Generate Game Using AI'),
         leading: IconButton(
-          icon: const FaIcon(FontAwesomeIcons.arrowLeft),
-          onPressed: isLoading ? null : () => Navigator.pop(context),
+          icon: const FaIcon(FontAwesomeIcons.xmark),
+          onPressed:
+              isLoading ? null : () => Get.offAll(() => const HomeScreen()),
         ),
       ),
       body: Stack(
@@ -53,21 +58,56 @@ class _AIGenerateState extends State<AIGenerate> {
               _buildGameDescriptionInfoText(),
               const SizedBox(height: 16),
               _buildDescriptionTextField(),
-              const SizedBox(height: 16),
+              const SizedBox(height: 8),
+              Text(
+                'You currently have ${currentUser!.tokens} token${currentUser!.tokens == 1 ? '' : 's'} remaining.',
+                style: GoogleFonts.spaceGrotesk(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w500,
+                  color: Colors.white70,
+                  decoration: TextDecoration.underline,
+                ),
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 8),
+              Text(
+                'We recommend using the basic model for most games. If you need a larger game, use the advanced model.',
+                style: GoogleFonts.spaceGrotesk(
+                  fontSize: 11,
+                  fontWeight: FontWeight.w500,
+                  color: Colors.white70,
+                ),
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 8),
               isLoading || currentUser!.tokens < 1
                   ? const SizedBox()
                   : _buildGenerateButton(),
+              isLoading || currentUser!.tokens < 15
+                  ? const SizedBox()
+                  : const SizedBox(height: 8),
+              isLoading || currentUser!.tokens < 15
+                  ? const SizedBox()
+                  : _buildGenerateButton2(),
               if (currentUser!.tokens < 1) _buildBuyButton(),
             ],
           ),
           if (isLoading)
             Container(
-              color: Colors.black.withOpacity(0.8), // Semi-transparent overlay
-              child: const Center(
-                child: SpinKitFadingCube(
-                  color: Colors.white,
-                  size: 50.0,
-                ),
+              color: Colors.black.withOpacity(0.9), // Semi-transparent overlay
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const SpinKitFadingCube(
+                    color: Colors.white,
+                    size: 50.0,
+                  ),
+                  const SizedBox(height: 24),
+                  Text(
+                    loadingMessage, // Dynamic progress message
+                    style: const TextStyle(color: Colors.white),
+                  ),
+                ],
               ),
             ),
         ],
@@ -108,6 +148,7 @@ class _AIGenerateState extends State<AIGenerate> {
             TextStyle(color: Colors.white70, fontStyle: FontStyle.italic),
       ),
       maxLines: 4,
+      maxLength: 200,
       keyboardType: TextInputType.text,
     );
   }
@@ -126,6 +167,7 @@ class _AIGenerateState extends State<AIGenerate> {
     return FilledButton(
       onPressed: () async {
         FocusScope.of(context).unfocus(); // Close keyboard
+        model = "gpt-4o-mini"; // Set the model to the basic one
         if (gameDescriptionController.text.isEmpty) {
           _showErrorToast('Please enter a game description.');
           return;
@@ -133,6 +175,7 @@ class _AIGenerateState extends State<AIGenerate> {
 
         setState(() {
           isLoading = true;
+          loadingMessage = "Making request...";
         });
 
         currentUser!.tokens -= 1;
@@ -180,10 +223,90 @@ class _AIGenerateState extends State<AIGenerate> {
           setState(() {
             isLoading = false;
           });
-          Navigator.of(context).pop();
+          Get.offAll(() => const HomeScreen());
         }
       },
-      child: const Text('Generate Game'),
+      child: const Column(
+        children: [
+          Text('Generate Basic Game'),
+          Text('Basic Model • Smaller Game • 1 Token',
+              style: TextStyle(fontSize: 12)),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildGenerateButton2() {
+    return FilledButton(
+      onPressed: () async {
+        FocusScope.of(context).unfocus(); // Close keyboard
+        if (gameDescriptionController.text.isEmpty) {
+          _showErrorToast('Please enter a game description.');
+          return;
+        }
+
+        setState(() {
+          isLoading = true;
+          loadingMessage = "Making request...";
+        });
+
+        currentUser!.tokens -= 15;
+        await FirebaseFirestore.instance
+            .collection('users')
+            .doc(currentUser!.uid)
+            .update({'tokens': currentUser!.tokens});
+
+        model = "gpt-4o"; // Set the model to the advanced one
+
+        try {
+          List<OpenAIChatCompletionModel> responses =
+              await _generateMultipleZoneMessages(
+                  gameDescriptionController.text, 50, [], []);
+          if (responses.isEmpty) {
+            throw Exception('Failed to generate any responses from GPT');
+          }
+
+          var gameData =
+              await _combineZones(responses); // Get zones and coinShopItems
+
+          var gameTemplate = GameTemplate(
+            templateId: const Uuid().v4(),
+            creatorUid: FirebaseAuth.instance.currentUser!.uid,
+            creatorName: 'AI Game Creator',
+            gameType: 'claimthezone',
+            createdAt: DateTime.now(),
+            lastUpdated: DateTime.now(),
+            zones: gameData['zones'] as List<Zone>, // Pass the zones
+            gameName: 'AI Generated Game',
+            gameDescription: gameDescriptionController.text,
+            center: GeoPoint(
+                (gameData['zones'] as List<Zone>).first.location.latitude,
+                (gameData['zones'] as List<Zone>).first.location.longitude),
+            coinShopItems: gameData['coinShopItems']
+                as List<CoinShopItem>, // Append the coinShopItems
+          );
+
+          await saveGameTemplate(gameTemplate);
+
+          _showSuccessToast(
+              'Game Generated Successfully! You can view it in the "My Games" section.');
+        } catch (e) {
+          print('Error: $e');
+          _showErrorToast('Error: Failed to generate game. $e');
+        } finally {
+          setState(() {
+            isLoading = false;
+          });
+          Get.offAll(() => const HomeScreen());
+        }
+      },
+      child: const Column(
+        children: [
+          Text('Generate Advanced Game'),
+          Text('Advanced Model • Larger Game • 15 Tokens',
+              style: TextStyle(fontSize: 12)),
+        ],
+      ),
     );
   }
 
@@ -198,12 +321,14 @@ class _AIGenerateState extends State<AIGenerate> {
     ];
 
     return OpenAI.instance.chat.create(
-      model: "gpt-4o",
+      model: model,
       responseFormat: {"type": "json_object"},
       messages: requestMessages,
       temperature: 0.7,
     );
   }
+
+  String model = "gpt-4o-mini";
 
   String getPrompt(String description, int numZones,
       List<String> existingZoneNames, List<String> existingGeoPoints) {
@@ -245,7 +370,10 @@ The game is played via a Flutter/Firebase app, using the following JSON structur
     }
   ]
 }
-Please ensure the generated zones do not overlap. The game already has the following zone names: [$existingZonesStr] and the following geo locations: [$existingGeoPointsStr]. Ensure that no zones with these names or locations are repeated. 
+Please ensure the generated zones do not overlap.
+The game ALREADY has the following zone names: [$existingZonesStr] and the following geo locations: [$existingGeoPointsStr].
+DO NOT create ANY zones with the same name or location as the existing zones.
+Always use SPECIFIC LOCATIONS, like "Space Mountain" instead of "Roller Coaster". The locations are looked up using Google Places API, so ensure the names are accurate.
 Zones that are harder to get to, have more challenging tasks, or have fewer nearby zones should have higher points (25-50). Zones that are in a cluster, are easier to get to, and have easy tasks should have lower points (5 - 25). Based on this structure, generate a JSON object for a game template with $numZones zones. Ensure zones have accurate lat/long coordinates, and the description is: $description. Only return the JSON object, nothing else. If you cannot generate it, respond with "error".
 """;
   }
@@ -295,7 +423,18 @@ Zones that are harder to get to, have more challenging tasks, or have fewer near
       existingGeoPoints.addAll(newGeoPoints);
 
       zonesRemaining -= numZonesToGenerate;
+
+      setState(() {
+        double progress = (totalZones - zonesRemaining) / totalZones * 100;
+        loadingMessage =
+            "Generating zones (${progress.toStringAsFixed(0)}%)...";
+      });
     }
+
+    // After generating zones, update the message
+    setState(() {
+      loadingMessage = "Adding boosters...";
+    });
 
     return allResponses;
   }
@@ -408,6 +547,11 @@ Zones that are harder to get to, have more challenging tasks, or have fewer near
     List<CoinShopItem> coinShopItems = coinShopItemsJson
         .map((item) => CoinShopItem.fromJson(item as Map<String, Object>))
         .toList();
+
+    // Update the progress after zones are combined
+    setState(() {
+      loadingMessage = "Finishing up...";
+    });
 
     // Return the combined zones and coinShopItems
     return {"zones": combinedZones, "coinShopItems": coinShopItems};
