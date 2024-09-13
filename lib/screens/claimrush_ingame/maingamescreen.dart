@@ -22,6 +22,7 @@ import 'package:scavhuntapp/screens/claimrush_ingame/cant_claim.dart';
 import 'package:scavhuntapp/screens/claimrush_ingame/claim_zone.dart';
 import 'package:scavhuntapp/screens/claimrush_ingame/edit_team.dart';
 import 'package:scavhuntapp/screens/claimrush_ingame/full_image_view.dart';
+import 'package:scavhuntapp/screens/create/claimzone_1.dart';
 import 'package:scavhuntapp/screens/home_screen.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
 import 'package:slide_countdown/slide_countdown.dart';
@@ -93,6 +94,19 @@ class _MainGameScreenState extends State<MainGameScreen> {
           GameTemplate currentGameTemplate = currentGame.game;
 
           currentGame.players.sort((a, b) => b.points.compareTo(a.points));
+
+          // sort zones by points, then by name
+          currentGameTemplate.zones!.sort((a, b) {
+            if (a.points == b.points) {
+              return a.zoneName.compareTo(b.zoneName);
+            }
+            return b.points.compareTo(a.points);
+          });
+
+          // sort coin shop items by price
+          currentGameTemplate.coinShopItems!
+              .sort((a, b) => a.itemPrice.compareTo(b.itemPrice));
+
           Player currentPlayer = currentGame.players.firstWhere((element) =>
               element.playerId == FirebaseAuth.instance.currentUser!.uid);
 
@@ -545,6 +559,7 @@ class _MainGameScreenState extends State<MainGameScreen> {
                               currentGame,
                               currentGameTemplate,
                               currentPlayer,
+                              gameTemplate.zones!,
                               interaction: false,
                             ),
                           );
@@ -768,7 +783,17 @@ class _MainGameScreenState extends State<MainGameScreen> {
                   extendBody: false,
                   body: Stack(
                     children: [
-                      buildMap(currentGame, currentGameTemplate, currentPlayer),
+                      buildMap(
+                          currentGame,
+                          currentGameTemplate,
+                          currentPlayer,
+                          currentGameTemplate.zones!
+                              .where((element) =>
+                                  !currentGame.players.any((player) => player
+                                      .zonesClaimed
+                                      .contains(element.zoneId)) &&
+                                  element.points > 0)
+                              .toList()),
                       _buildGameCodeChip(context, currentGame),
                       _buildPlayerScoreChip(
                           context, currentGame, currentPlayer),
@@ -1468,16 +1493,9 @@ class _MainGameScreenState extends State<MainGameScreen> {
         });
   }
 
-  Widget buildMap(
-      Game currentGame, GameTemplate currentGameTemplate, Player currentPlayer,
+  Widget buildMap(Game currentGame, GameTemplate currentGameTemplate,
+      Player currentPlayer, List<Zone> unclaimedZones,
       {bool interaction = true}) {
-    List<Zone>? unclaimedZones = currentGameTemplate.zones!
-        .where((element) =>
-            !currentGame.players.any(
-                (player) => player.zonesClaimed.contains(element.zoneId)) &&
-            element.points > 0)
-        .toList();
-
     return WidgetMarkerGoogleMap(
       myLocationButtonEnabled: false,
       cameraTargetBounds: calculateBounds(currentGameTemplate),
@@ -1489,7 +1507,7 @@ class _MainGameScreenState extends State<MainGameScreen> {
         zoom: 15,
       ),
       widgetMarkers: [
-        for (var zone in unclaimedZones)
+        for (var zone in unclaimedZones!)
           WidgetMarker(
             markerId: zone.zoneId,
             position: LatLng(zone.location.latitude, zone.location.longitude),

@@ -246,7 +246,7 @@ The game is played via a Flutter/Firebase app, using the following JSON structur
   ]
 }
 Please ensure the generated zones do not overlap. The game already has the following zone names: [$existingZonesStr] and the following geo locations: [$existingGeoPointsStr]. Ensure that no zones with these names or locations are repeated. 
-Zones that are harder to get to or have more challenging tasks should have higher points. Based on this structure, generate a JSON object for a game template with $numZones zones. Ensure zones have accurate lat/long coordinates, and the description is: $description. Only return the JSON object, nothing else. If you cannot generate it, respond with "error".
+Zones that are harder to get to, have more challenging tasks, or have fewer nearby zones should have higher points (25-50). Zones that are in a cluster, are easier to get to, and have easy tasks should have lower points (5 - 25). Based on this structure, generate a JSON object for a game template with $numZones zones. Ensure zones have accurate lat/long coordinates, and the description is: $description. Only return the JSON object, nothing else. If you cannot generate it, respond with "error".
 """;
   }
 

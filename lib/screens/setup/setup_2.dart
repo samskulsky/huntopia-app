@@ -31,7 +31,7 @@ AppUser appUser = AppUser(
   friendRequests: [],
   sentFriendRequests: [],
   role: 'user',
-  tokens: 3,
+  tokens: 1,
 );
 
 class _SetupPage2State extends State<SetupPage2> {
