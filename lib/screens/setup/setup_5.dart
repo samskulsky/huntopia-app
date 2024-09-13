@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:scavhuntapp/screens/create/ai_generate.dart';
+import 'package:scavhuntapp/screens/create/claimzone_1.dart';
+import 'package:scavhuntapp/screens/create/create_game.dart';
 import 'package:scavhuntapp/screens/home_screen.dart';
 
 import '../../utils/theme_data.dart';
@@ -42,6 +46,38 @@ class _SetupPage5State extends State<SetupPage5> {
                 color: Colors.white54,
               ),
             ),
+            if (appUser.tokens > 0) const SizedBox(height: 16),
+            if (appUser.tokens > 0)
+              Container(
+                decoration: const BoxDecoration(
+                  gradient: LinearGradient(
+                    colors: [
+                      Color.fromARGB(121, 167, 229, 10),
+                      Color.fromARGB(121, 3, 223, 84)
+                    ],
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                  ),
+                  borderRadius: BorderRadius.all(Radius.circular(8)),
+                ),
+                child: ListTile(
+                  title: Text(
+                    'Create a Game with AI',
+                    style: GoogleFonts.roboto(
+                      fontSize: 18,
+                      color: Colors.white,
+                    ),
+                  ),
+                  subtitle: Text(
+                    'We added ${appUser.tokens} AI token${appUser.tokens != 1 ? 's' : ''} to your account for free! Each token can be used to generate a full scavenger hunt with AI.',
+                    style: GoogleFonts.roboto(
+                      fontSize: 14,
+                      color: Colors.white,
+                    ),
+                  ),
+                  leading: const FaIcon(FontAwesomeIcons.robot),
+                ),
+              ),
             _buildInfoTile(
               icon: FontAwesomeIcons.phone,
               title: 'Phone',
@@ -53,11 +89,14 @@ class _SetupPage5State extends State<SetupPage5> {
               subtitle: appUser.displayName,
             ),
             const SizedBox(height: 16),
-            FilledButton(
-              onPressed: () async {
-                Get.offAll(() => const HomeScreen());
-              },
-              child: const Text('Let\'s go!'),
+            SizedBox(
+              width: double.infinity,
+              child: FilledButton(
+                onPressed: () async {
+                  Get.offAll(() => const HomeScreen());
+                },
+                child: const Text('Get Started'),
+              ),
             ),
           ],
         ),

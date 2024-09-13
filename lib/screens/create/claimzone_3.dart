@@ -66,11 +66,14 @@ class _ClaimZone3State extends State<ClaimZone3> {
                   'Players will need to scan a QR code to claim the zone.',
             ),
             const SizedBox(height: 16),
-            FilledButton(
-              onPressed: () {
-                Get.to(() => const ClaimZone4());
-              },
-              child: const Text('Got it!'),
+            SizedBox(
+              width: double.infinity,
+              child: FilledButton(
+                onPressed: () {
+                  Get.to(() => const ClaimZone4());
+                },
+                child: const Text('Got it!'),
+              ),
             ),
           ],
         ),

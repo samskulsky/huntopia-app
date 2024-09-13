@@ -184,7 +184,6 @@ class _ClaimZoneLocPickerState extends State<ClaimZoneLocPicker> {
       builder: (context) {
         return AlertDialog(
           surfaceTintColor: Colors.transparent,
-          backgroundColor: Colors.white,
           title: const Text('Edit Location'),
           content: Column(
             mainAxisSize: MainAxisSize.min,

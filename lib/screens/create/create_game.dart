@@ -50,9 +50,12 @@ class _CreateGamePageState extends State<CreateGamePage> {
               duration: '1hour - 4hours',
             ),
             const SizedBox(height: 16),
-            FilledButton(
-              onPressed: () => _navigateToNextScreen(),
-              child: const Text('Continue'),
+            SizedBox(
+              width: double.infinity,
+              child: FilledButton(
+                onPressed: () => _navigateToNextScreen(),
+                child: const Text('Continue'),
+              ),
             ),
           ],
         ),
