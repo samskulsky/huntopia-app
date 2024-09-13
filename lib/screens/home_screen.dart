@@ -470,16 +470,32 @@ class _HomeScreenState extends State<HomeScreen> {
           side: BorderSide.none,
         ),
         child: ListTile(
-          leading: const FaIcon(FontAwesomeIcons.rocket, color: Colors.white),
+          leading: const FaIcon(FontAwesomeIcons.robot, color: Colors.white),
           title: Text(
             'AI-Generated Game',
             style: baseTextStyle.copyWith(
                 fontSize: 20, fontWeight: FontWeight.w700, color: Colors.white),
           ),
-          subtitle: Text(
-            'Let our AI create a game for you!',
-            style: baseTextStyle.copyWith(
-                fontSize: 16, fontWeight: FontWeight.w500, color: Colors.white),
+          subtitle: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'Let our AI create a game for you!',
+                style: baseTextStyle.copyWith(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w500,
+                    color: Colors.white),
+              ),
+              Text(
+                'You have ${currentUser!.tokens} AI tokens',
+                style: baseTextStyle.copyWith(
+                  fontSize: 13,
+                  fontWeight: FontWeight.w500,
+                  color: Colors.white,
+                  fontStyle: FontStyle.italic,
+                ),
+              )
+            ],
           ),
           trailing: const Icon(FontAwesomeIcons.angleRight,
               size: 20, color: Colors.white),

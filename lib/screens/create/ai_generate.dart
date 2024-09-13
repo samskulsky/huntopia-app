@@ -12,6 +12,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart';
+import 'package:scavhuntapp/screens/home_screen.dart';
 import 'package:toastification/toastification.dart';
 import 'package:uuid/uuid.dart';
 
@@ -53,7 +54,10 @@ class _AIGenerateState extends State<AIGenerate> {
               const SizedBox(height: 16),
               _buildDescriptionTextField(),
               const SizedBox(height: 16),
-              isLoading ? const SizedBox() : _buildGenerateButton(),
+              isLoading || currentUser!.tokens < 1
+                  ? const SizedBox()
+                  : _buildGenerateButton(),
+              if (currentUser!.tokens < 1) _buildBuyButton(),
             ],
           ),
           if (isLoading)
@@ -105,6 +109,16 @@ class _AIGenerateState extends State<AIGenerate> {
       ),
       maxLines: 4,
       keyboardType: TextInputType.text,
+    );
+  }
+
+  Widget _buildBuyButton() {
+    return FilledButton(
+      style: ButtonStyle(
+        backgroundColor: MaterialStateProperty.all(Colors.red),
+      ),
+      onPressed: () async {},
+      child: const Text('No Tokens Left'),
     );
   }
 
@@ -169,6 +183,11 @@ class _AIGenerateState extends State<AIGenerate> {
   }
 
   Future<OpenAIChatCompletionModel> _generateGameWithAI(String prompt) async {
+    currentUser!.tokens -= 1;
+    await FirebaseFirestore.instance
+        .collection('users')
+        .doc(currentUser!.uid)
+        .update({'tokens': currentUser!.tokens});
     final requestMessages = [
       OpenAIChatCompletionChoiceMessageModel(
         content: [
