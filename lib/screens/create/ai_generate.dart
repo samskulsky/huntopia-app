@@ -135,6 +135,12 @@ class _AIGenerateState extends State<AIGenerate> {
           isLoading = true;
         });
 
+        currentUser!.tokens -= 1;
+        await FirebaseFirestore.instance
+            .collection('users')
+            .doc(currentUser!.uid)
+            .update({'tokens': currentUser!.tokens});
+
         try {
           List<OpenAIChatCompletionModel> responses =
               await _generateMultipleZoneMessages(
@@ -183,11 +189,6 @@ class _AIGenerateState extends State<AIGenerate> {
   }
 
   Future<OpenAIChatCompletionModel> _generateGameWithAI(String prompt) async {
-    currentUser!.tokens -= 1;
-    await FirebaseFirestore.instance
-        .collection('users')
-        .doc(currentUser!.uid)
-        .update({'tokens': currentUser!.tokens});
     final requestMessages = [
       OpenAIChatCompletionChoiceMessageModel(
         content: [
