@@ -7,6 +7,7 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:firebase_phone_auth_handler/firebase_phone_auth_handler.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:get/get.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -56,6 +57,8 @@ class MyApp extends StatelessWidget {
       child: GetMaterialApp(
         title: 'Huntopia',
         themeMode: ThemeMode.dark,
+        defaultTransition: Transition.topLevel,
+        transitionDuration: const Duration(milliseconds: 500),
         theme: ThemeData(
           colorScheme: ColorScheme.fromSwatch(
             primarySwatch: primaryColor,

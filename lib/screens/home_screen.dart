@@ -185,7 +185,12 @@ class _HomeScreenState extends State<HomeScreen> {
               fontSize: 30,
               fontWeight: FontWeight.w700,
             ),
-          ).animate().scaleXY(),
+          )
+              .animate()
+              .fade(duration: 500.ms)
+              .then()
+              .slideY(begin: -0.1)
+              .scaleXY(begin: 0.9),
           const SizedBox(height: 16),
           _buildGameTypesCard(context),
           const SizedBox(height: 16),
@@ -213,7 +218,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           const Divider(),
           ListTile(
-            title: _buildGameTypeInfo(),
+            title: _buildGameTypeInfo().animate().fadeIn(duration: 400.ms),
             leading: const FaIcon(FontAwesomeIcons.mapLocationDot),
             trailing: const Icon(
               FontAwesomeIcons.angleRight,
