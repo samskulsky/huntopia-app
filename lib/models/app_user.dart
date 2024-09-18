@@ -5,7 +5,7 @@ import 'package:scavhuntapp/screens/setup/setup.dart';
 
 class AppUser {
   String uid;
-  String phoneNumber;
+  String? phoneNumber;
   String displayName;
   String firstName;
   String lastName;

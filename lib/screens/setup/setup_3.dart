@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:toastification/toastification.dart';
 import 'package:username_generator/username_generator.dart';
 
+import '../../utils/theme_data.dart';
 import 'setup_2.dart';
 import 'setup_4.dart';
 
@@ -65,17 +66,24 @@ class _SetupPage3State extends State<SetupPage3> {
             const SizedBox(height: 16),
             TextField(
               controller: usernameController,
-              decoration: const InputDecoration(
+              decoration: InputDecoration(
                 labelText: 'Username',
-                prefixIcon: Icon(FontAwesomeIcons.at),
+                labelStyle: baseTextStyle.copyWith(color: Colors.white70),
+                filled: true,
+                fillColor: Colors.grey[800],
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(12),
+                  borderSide: BorderSide.none,
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(12),
+                  borderSide: BorderSide.none,
+                ),
               ),
+              style: baseTextStyle.copyWith(color: Colors.white),
               maxLength: 20,
               keyboardType: TextInputType.text,
               autocorrect: false,
-              style: GoogleFonts.spaceGrotesk(
-                fontSize: 22,
-                fontWeight: FontWeight.w700,
-              ),
               onChanged: (value) {
                 if (value.isEmpty) {
                   return;
@@ -89,24 +97,37 @@ class _SetupPage3State extends State<SetupPage3> {
               },
             ),
             const SizedBox(height: 16),
-            FilledButton(
-              onPressed: () {
-                if (usernameController.text.isEmpty ||
-                    usernameController.text.length < 5) {
-                  toastification.show(
-                    style: ToastificationStyle.fillColored,
-                    applyBlurEffect: true,
-                    context: context,
-                    type: ToastificationType.error,
-                    title: const Text('Username must be at least 5 characters'),
-                    autoCloseDuration: const Duration(seconds: 5),
-                  );
-                  return;
-                }
-                appUser.displayName = usernameController.text;
-                Get.to(() => const SetupPage4());
-              },
-              child: const Text('Continue'),
+            SizedBox(
+              width: double.infinity,
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  padding: const EdgeInsets.symmetric(vertical: 16),
+                  backgroundColor: Colors.green,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                ),
+                onPressed: () {
+                  if (usernameController.text.isEmpty ||
+                      usernameController.text.length < 5) {
+                    toastification.show(
+                      style: ToastificationStyle.fillColored,
+                      applyBlurEffect: true,
+                      context: context,
+                      type: ToastificationType.error,
+                      title:
+                          const Text('Username must be at least 5 characters'),
+                      autoCloseDuration: const Duration(seconds: 5),
+                    );
+                    return;
+                  }
+                  appUser.displayName = usernameController.text;
+                  Get.to(() => const SetupPage4());
+                },
+                child: Text('Continue',
+                    style: baseTextStyle.copyWith(
+                        color: Colors.white, fontSize: 18)),
+              ),
             ),
           ],
         ),

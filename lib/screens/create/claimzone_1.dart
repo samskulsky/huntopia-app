@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -58,42 +60,66 @@ class _ClaimZone1State extends State<ClaimZone1> {
             Navigator.pop(context);
           },
         ),
+        backgroundColor: Colors.black,
       ),
-      body: Padding(
+      backgroundColor: Colors.black,
+      body: ListView(
         padding: const EdgeInsets.all(16),
-        child: ListView(
-          children: [
-            _buildHeaderText('Great choice! 🎉'),
-            const SizedBox(height: 8),
-            _buildDescriptionText(
-              'ClaimRush is a game where players must physically visit a location to claim it.',
+        children: [
+          _buildGlassCard(
+            title: '',
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                _buildHeaderText('Great choice! 🎉'),
+                const SizedBox(height: 8),
+                _buildDescriptionText(
+                  'ClaimRush is a game where players must physically visit a location to claim it.',
+                ),
+                const SizedBox(height: 16),
+                const Divider(color: Colors.white54),
+                const SizedBox(height: 16),
+                _buildHeaderText('Game Name'),
+                const SizedBox(height: 8),
+                _buildTextField(
+                  controller: gameNameController,
+                  hintText: 'The Great Tokyo Scavenger Hunt',
+                  capitalization: TextCapitalization.words,
+                ),
+                const SizedBox(height: 16),
+                _buildHeaderText('Game Description'),
+                const SizedBox(height: 8),
+                _buildTextField(
+                  controller: gameDescriptionController,
+                  hintText:
+                      'This game will take you on a journey through the streets of Tokyo, where you will visit famous landmarks and hidden gems.',
+                  maxLines: 4,
+                ),
+                const SizedBox(height: 16),
+                SizedBox(
+                  width: double.infinity,
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.green,
+                      padding: const EdgeInsets.symmetric(vertical: 16),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12)),
+                    ),
+                    onPressed: _onNextPressed,
+                    child: Text(
+                      'Next',
+                      style: baseTextStyle.copyWith(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
             ),
-            const SizedBox(height: 16),
-            const Divider(),
-            const SizedBox(height: 16),
-            _buildHeaderText('Game Name'),
-            const SizedBox(height: 8),
-            _buildTextField(
-              controller: gameNameController,
-              hintText: 'The Great Tokyo Scavenger Hunt',
-              capitalization: TextCapitalization.words,
-            ),
-            const SizedBox(height: 16),
-            _buildHeaderText('Game Description'),
-            const SizedBox(height: 8),
-            _buildTextField(
-              controller: gameDescriptionController,
-              hintText:
-                  'This game will take you on a journey through the streets of Tokyo, where you will visit famous landmarks and hidden gems.',
-              maxLines: 4,
-            ),
-            const SizedBox(height: 16),
-            FilledButton(
-              onPressed: _onNextPressed,
-              child: const Text('Next'),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
@@ -104,6 +130,7 @@ class _ClaimZone1State extends State<ClaimZone1> {
       style: baseTextStyle.copyWith(
         fontSize: 30,
         fontWeight: FontWeight.w700,
+        color: Colors.white,
       ),
     );
   }
@@ -114,7 +141,7 @@ class _ClaimZone1State extends State<ClaimZone1> {
       style: baseTextStyle.copyWith(
         fontSize: 20,
         fontWeight: FontWeight.w500,
-        color: Get.isDarkMode ? Colors.white54 : Colors.black54,
+        color: Colors.white70,
       ),
     );
   }
@@ -131,9 +158,20 @@ class _ClaimZone1State extends State<ClaimZone1> {
         hintText: hintText,
         hintStyle:
             const TextStyle(color: Colors.white70, fontStyle: FontStyle.italic),
+        filled: true,
+        fillColor: Colors.grey[800],
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12),
+          borderSide: BorderSide.none,
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12),
+          borderSide: BorderSide.none,
+        ),
       ),
       textCapitalization: capitalization,
       maxLines: maxLines,
+      style: baseTextStyle.copyWith(color: Colors.white),
     );
   }
 
@@ -147,4 +185,48 @@ class _ClaimZone1State extends State<ClaimZone1> {
       ..gameDescription = gameDescriptionController.text;
     Get.to(() => const ClaimZoneLocPicker());
   }
+}
+
+Widget _buildGlassCard({required String title, required Widget child}) {
+  return Container(
+    margin: const EdgeInsets.only(bottom: 16),
+    decoration: BoxDecoration(
+      gradient: LinearGradient(
+        colors: [Colors.white.withOpacity(0.1), Colors.white.withOpacity(0.05)],
+        begin: Alignment.topLeft,
+        end: Alignment.bottomRight,
+      ),
+      border: Border.all(color: Colors.white.withOpacity(0.2), width: 1),
+      borderRadius: BorderRadius.circular(20),
+    ),
+    child: ClipRRect(
+      borderRadius: BorderRadius.circular(20),
+      child: BackdropFilter(
+        filter: ImageFilter.blur(sigmaX: 12.0, sigmaY: 12.0),
+        child: Container(
+          padding: const EdgeInsets.all(16),
+          decoration: BoxDecoration(
+            color: Colors.white.withOpacity(0.05),
+            borderRadius: BorderRadius.circular(20),
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              if (title.isNotEmpty)
+                Text(
+                  title,
+                  style: baseTextStyle.copyWith(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
+                ),
+              if (title.isNotEmpty) const SizedBox(height: 12),
+              child,
+            ],
+          ),
+        ),
+      ),
+    ),
+  );
 }

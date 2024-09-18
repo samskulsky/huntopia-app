@@ -1,17 +1,15 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:intl_phone_field/country_picker_dialog.dart';
-import 'package:intl_phone_field/intl_phone_field.dart';
-import 'package:scavhuntapp/screens/auth/auth_2.dart';
-import 'package:scavhuntapp/screens/auth/pp.dart';
-import 'package:toastification/toastification.dart';
+import 'package:scavhuntapp/utils/toastification_helper.dart';
 
+import '../../utils/home_loading.dart';
 import '../../utils/theme_data.dart';
+import 'create_account_page.dart';
+import 'pp.dart';
+import 'sign_in_page.dart';
 
 class AuthPage extends StatefulWidget {
   const AuthPage({super.key});
@@ -20,27 +18,38 @@ class AuthPage extends StatefulWidget {
   State<AuthPage> createState() => _AuthPageState();
 }
 
-bool valid = false;
-
 class _AuthPageState extends State<AuthPage> {
-  @override
-  void initState() {
-    super.initState();
-    // Do not show keyboard on page load
-    Future.delayed(Duration.zero, () {
-      FocusScope.of(context).requestFocus(FocusNode());
-    });
+  void _signInAnonymously() async {
+    try {
+      await FirebaseAuth.instance.signInAnonymously();
+      Get.offAll(() => const HomeLoading());
+    } catch (e) {
+      ToastificationHelper.showErrorToast(
+        context,
+        'An error occurred. Please try again. ($e)',
+      );
+    }
+  }
+
+  void _goToCreateAccount() {
+    Get.to(() => const CreateAccountPage());
+  }
+
+  void _goToSignIn() {
+    Get.to(() => const SignInPage());
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black,
       body: Padding(
         padding: const EdgeInsets.symmetric(vertical: 32, horizontal: 16),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween, // Top and bottom
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            // Welcome message at the top
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -50,6 +59,7 @@ class _AuthPageState extends State<AuthPage> {
                   style: baseTextStyle.copyWith(
                     fontSize: 30,
                     fontWeight: FontWeight.w700,
+                    color: Colors.white,
                   ),
                 ),
                 Text(
@@ -61,60 +71,11 @@ class _AuthPageState extends State<AuthPage> {
                 ),
               ],
             ),
+            // Options at the bottom
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const SizedBox(height: 16),
-                Text(
-                  'To continue, please enter your phone number.',
-                  style: baseTextStyle.copyWith(
-                    fontSize: 14,
-                    color: Colors.white54,
-                  ),
-                ),
-                const SizedBox(height: 16),
-                IntlPhoneField(
-                  decoration: const InputDecoration(
-                    labelText: 'Phone Number',
-                    prefixIcon: Icon(FontAwesomeIcons.phone),
-                  ),
-                  keyboardType: TextInputType.phone,
-                  style: baseTextStyle.copyWith(
-                    fontSize: 22,
-                    fontWeight: FontWeight.w400,
-                  ),
-                  pickerDialogStyle: PickerDialogStyle(
-                    searchFieldPadding: const EdgeInsets.symmetric(
-                      vertical: 8,
-                      horizontal: 8,
-                    ),
-                    backgroundColor: const Color.fromARGB(255, 15, 20, 15),
-                    searchFieldInputDecoration: InputDecoration(
-                      border: const UnderlineInputBorder(),
-                      hintText: 'Search...',
-                      contentPadding: const EdgeInsets.symmetric(
-                        vertical: 8,
-                        horizontal: 8,
-                      ),
-                      hintStyle: baseTextStyle.copyWith(
-                        fontSize: 16,
-                      ),
-                    ),
-                    listTileDivider: const SizedBox(height: 0),
-                    countryNameStyle: baseTextStyle.copyWith(
-                      fontSize: 16,
-                    ),
-                    countryCodeStyle: GoogleFonts.spaceMono(
-                      fontSize: 18,
-                    ),
-                  ),
-                  onChanged: (phone) {
-                    valid = phone.number.length >= 10 && phone.isValidNumber();
-                    phoneNumber = phone.completeNumber;
-                  },
-                ),
-                // Rich text for privacy policy and terms of service
-                const SizedBox(height: 8),
                 RichText(
                   text: TextSpan(
                     text: 'By continuing, you agree to our ',
@@ -131,6 +92,7 @@ class _AuthPageState extends State<AuthPage> {
                         ),
                         recognizer: TapGestureRecognizer()
                           ..onTap = () {
+                            // Open Privacy Policy page
                             Navigator.of(context).push(MaterialPageRoute<void>(
                               fullscreenDialog: true,
                               builder: (BuildContext context) {
@@ -172,6 +134,7 @@ class _AuthPageState extends State<AuthPage> {
                         ),
                         recognizer: TapGestureRecognizer()
                           ..onTap = () {
+                            // Open Terms of Service page
                             Navigator.of(context).push(MaterialPageRoute<void>(
                               fullscreenDialog: true,
                               builder: (BuildContext context) {
@@ -206,30 +169,65 @@ class _AuthPageState extends State<AuthPage> {
                   ),
                 ),
                 const SizedBox(height: 16),
-                Container(
-                  padding: const EdgeInsets.only(bottom: 32),
+                // "Create an Account" button
+                SizedBox(
                   width: double.infinity,
-                  child: FilledButton(
-                    onPressed: () {
-                      if (!valid) {
-                        toastification.show(
-                          style: ToastificationStyle.fillColored,
-                          applyBlurEffect: true,
-                          context: context,
-                          type: ToastificationType.error,
-                          title:
-                              const Text('Please enter a valid phone number'),
-                          autoCloseDuration: const Duration(seconds: 5),
-                        );
-                        return;
-                      }
-                      FocusScope.of(context).requestFocus(FocusNode());
-                      Get.to(() => const AuthPage2());
-                    },
-                    child: const Text('Continue'),
+                  child: ElevatedButton(
+                    onPressed: _goToCreateAccount,
+                    style: ElevatedButton.styleFrom(
+                      padding: const EdgeInsets.symmetric(vertical: 16),
+                      backgroundColor: Colors.blue,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                    ),
+                    child: Text(
+                      'Create an Account',
+                      style: baseTextStyle.copyWith(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
+                    ),
                   ),
                 ),
-              ].animate(interval: 800.ms).fade(duration: 500.ms),
+                const SizedBox(height: 16),
+                // "Continue as Guest" button
+                SizedBox(
+                  width: double.infinity,
+                  child: ElevatedButton(
+                    onPressed: _signInAnonymously,
+                    style: ElevatedButton.styleFrom(
+                      padding: const EdgeInsets.symmetric(vertical: 16),
+                      backgroundColor: Colors.green,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                    ),
+                    child: Text(
+                      'Continue as Guest',
+                      style: baseTextStyle.copyWith(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 16),
+                // "Sign In" link
+                Center(
+                  child: TextButton(
+                    onPressed: _goToSignIn,
+                    child: Text(
+                      'Already have an account? Sign In',
+                      style: baseTextStyle.copyWith(
+                        color: Colors.white70,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
             ),
           ],
         ),

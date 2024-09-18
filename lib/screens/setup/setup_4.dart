@@ -91,11 +91,27 @@ class _SetupPage4State extends State<SetupPage4> {
                   _requestPermission(Permission.notification),
             ),
             const SizedBox(height: 16),
-            FilledButton(
-              onPressed: !_allPermissionsGranted()
-                  ? null
-                  : () => _createUserAndContinue(),
-              child: const Text('Continue'),
+            SizedBox(
+              width: double.infinity,
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  padding: const EdgeInsets.symmetric(vertical: 16),
+                  backgroundColor: Colors.green,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                ),
+                onPressed: !_allPermissionsGranted()
+                    ? null
+                    : () => _createUserAndContinue(),
+                child: Text(
+                  'Continue',
+                  style: baseTextStyle.copyWith(
+                    color: Colors.white,
+                    fontSize: 18,
+                  ),
+                ),
+              ),
             ),
             if (!_allPermissionsGranted())
               TextButton(

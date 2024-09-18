@@ -1,7 +1,4 @@
 // ignore_for_file: depend_on_referenced_packages, use_build_context_synchronously
-
-import 'dart:io';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

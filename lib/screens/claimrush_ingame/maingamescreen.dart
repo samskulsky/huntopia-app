@@ -1,10 +1,8 @@
 import 'dart:async';
-import 'dart:developer';
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'dart:ui';
 import 'package:data_table_2/data_table_2.dart';
 import 'package:flutter_podium/flutter_podium.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
@@ -13,7 +11,6 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:location/location.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent_bottom_nav_bar_v2.dart';
 import 'package:scavhuntapp/main.dart';
 import 'package:scavhuntapp/models/game.dart';
@@ -27,13 +24,12 @@ import 'package:scavhuntapp/screens/home_screen.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
 import 'package:slide_countdown/slide_countdown.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:widget_marker_google_map/widget_marker_google_map.dart';
+import 'package:flutter_map/flutter_map.dart';
+import 'package:latlong2/latlong.dart';
 
 import '../../utils/live_activities.dart';
 import '../../utils/theme_data.dart';
 import 'purchase_screen.dart';
-
-// TODO: GPT THIS FILE
 
 class MainGameScreen extends StatefulWidget {
   const MainGameScreen({super.key});
@@ -52,11 +48,8 @@ class _MainGameScreenState extends State<MainGameScreen> {
       PersistentTabController(initialIndex: 0);
   late String currentGameId;
   final DynamicIslandManager diManager = DynamicIslandManager(channelKey: 'DI');
-  late GoogleMapController gMapController;
 
-  void _onMapCreated(GoogleMapController controller) {
-    gMapController = controller;
-  }
+  MapController mapController = MapController();
 
   @override
   void initState() {
@@ -70,6 +63,7 @@ class _MainGameScreenState extends State<MainGameScreen> {
     super.dispose();
     liveActivityStarted = false;
     diManager.stopLiveActivity();
+    mapController.dispose();
   }
 
   @override
@@ -468,15 +462,8 @@ class _MainGameScreenState extends State<MainGameScreen> {
                                         item.itemType == 'booster') {
                                       return const SizedBox();
                                     }
-                                    return Card(
-                                      color: Colors.grey.withOpacity(0.1),
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(8),
-                                        side: BorderSide(
-                                          color: Colors.grey.withOpacity(0.1),
-                                          width: 2,
-                                        ),
-                                      ),
+                                    return _buildGlassCard(
+                                      title: '',
                                       child: ListTile(
                                         dense: true,
                                         leading: item.itemType == 'booster'
@@ -541,6 +528,7 @@ class _MainGameScreenState extends State<MainGameScreen> {
                   FilledButton(
                     child: const Text('View the Map'),
                     onPressed: () {
+                      mapController = MapController();
                       // full screen dialog with game map, but no interaction
                       Navigator.of(context).push(MaterialPageRoute<void>(
                         fullscreenDialog: true,
@@ -559,7 +547,7 @@ class _MainGameScreenState extends State<MainGameScreen> {
                               currentGame,
                               currentGameTemplate,
                               currentPlayer,
-                              gameTemplate.zones!,
+                              currentGameTemplate.zones!,
                               interaction: false,
                             ),
                           );
@@ -872,14 +860,10 @@ class _MainGameScreenState extends State<MainGameScreen> {
                             icon: const FaIcon(FontAwesomeIcons.locationArrow),
                             onPressed: () {
                               _controller.jumpToTab(0);
-                              gMapController.animateCamera(
-                                CameraUpdate.newLatLngZoom(
-                                  LatLng(
-                                    currentZone.location.latitude,
-                                    currentZone.location.longitude,
-                                  ),
-                                  17,
-                                ),
+                              mapController.move(
+                                LatLng(currentZone.location.latitude,
+                                    currentZone.location.longitude),
+                                18,
                               );
                             },
                           ),
@@ -1493,98 +1477,143 @@ class _MainGameScreenState extends State<MainGameScreen> {
         });
   }
 
-  Widget buildMap(Game currentGame, GameTemplate currentGameTemplate,
-      Player currentPlayer, List<Zone> unclaimedZones,
-      {bool interaction = true}) {
-    return WidgetMarkerGoogleMap(
-      myLocationButtonEnabled: false,
-      cameraTargetBounds: calculateBounds(currentGameTemplate),
-      minMaxZoomPreference: const MinMaxZoomPreference(12, 20),
-      onMapCreated: _onMapCreated,
-      initialCameraPosition: CameraPosition(
-        target: LatLng(currentGameTemplate.center!.latitude,
-            currentGameTemplate.center!.longitude),
-        zoom: 15,
-      ),
-      widgetMarkers: [
-        for (var zone in unclaimedZones!)
-          WidgetMarker(
-            markerId: zone.zoneId,
-            position: LatLng(zone.location.latitude, zone.location.longitude),
-            widget: Container(
-              padding: const EdgeInsets.all(4),
-              decoration: const BoxDecoration(
-                color: Colors.black,
-                shape: BoxShape.circle,
-              ),
-              child: Text(
-                zone.points.toStringAsFixed(0),
-                style: GoogleFonts.spaceGrotesk(
-                  fontSize: 15 + (zone.points / 7 * 2),
-                  fontWeight: FontWeight.w900,
-                  color: zone.points <= 5
-                      ? Colors.red
-                      : zone.points <= 10
-                          ? Colors.deepOrange
-                          : zone.points <= 15
-                              ? Colors.orange
-                              : zone.points <= 20
-                                  ? Colors.amber
-                                  : zone.points <= 25
-                                      ? Colors.yellow
-                                      : zone.points <= 30
-                                          ? Colors.lime
-                                          : zone.points <= 40
-                                              ? Colors.lightGreen
-                                              : Colors.green,
-                ),
-              ),
+  Widget buildMap(
+    Game currentGame,
+    GameTemplate currentGameTemplate,
+    Player currentPlayer,
+    List<Zone> unclaimedZones, {
+    bool interaction = true,
+    List<Widget> children = const [], // Optional with default empty list
+  }) {
+    return Stack(
+      children: [
+        FlutterMap(
+          mapController: mapController,
+          options: MapOptions(
+            initialCenter: LatLng(
+              currentGameTemplate.center!.latitude,
+              currentGameTemplate.center!.longitude,
             ),
+            cameraConstraint: CameraConstraint.containCenter(
+                bounds: calculateBounds(currentGameTemplate)),
+            initialZoom: 15.0,
+            minZoom: 12,
+            maxZoom: 20,
           ),
+          children: [
+            TileLayer(
+              urlTemplate: "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+              userAgentPackageName: 'com.samdev.scavhuntapp',
+            ),
+            CircleLayer(
+              circles: currentGameTemplate.zones!.map((zone) {
+                Player? claimedBy = currentGame.players.firstWhereOrNull(
+                    (element) => element.zonesClaimed.contains(zone.zoneId));
+                return CircleMarker(
+                  point:
+                      LatLng(zone.location.latitude, zone.location.longitude),
+                  radius: zone.radius.toDouble(),
+                  useRadiusInMeter: true,
+                  color: claimedBy != null
+                      ? getColor(claimedBy.teamColor).withOpacity(0.75)
+                      : Colors.grey.withOpacity(0.5),
+                  borderStrokeWidth: 2,
+                  borderColor: claimedBy != null
+                      ? getColor(claimedBy.teamColor)
+                      : Colors.grey,
+                );
+              }).toList(),
+            ),
+            MarkerLayer(
+              rotate: true,
+              markers: unclaimedZones.map((zone) {
+                return Marker(
+                  width: 18 + (zone.points / 7 * 2) > 35
+                      ? 35
+                      : 18 + (zone.points / 7 * 2),
+                  height: 18 + (zone.points / 7 * 2) > 35
+                      ? 35
+                      : 18 + (zone.points / 7 * 2),
+                  point:
+                      LatLng(zone.location.latitude, zone.location.longitude),
+                  child: GestureDetector(
+                    onTap: interaction
+                        ? () {
+                            Future.delayed(const Duration(milliseconds: 100),
+                                () {
+                              Zone tappedZone = currentGameTemplate.zones!
+                                  .firstWhere((element) =>
+                                      element.zoneId == zone.zoneId);
+
+                              if (currentGame.players.any((player) =>
+                                  player.zonesClaimed.contains(zone.zoneId))) {
+                                disabled = false;
+                                Get.to(() => const CantClaim());
+                                return;
+                              }
+
+                              Player currentPlayer = currentGame.players
+                                  .firstWhere((element) =>
+                                      element.playerId ==
+                                      FirebaseAuth.instance.currentUser!.uid);
+
+                              if (currentPlayer.sabotagedUntil
+                                  .isAfter(DateTime.now())) {
+                                disabled = true;
+                                Get.to(() => const CantClaim());
+                                return;
+                              }
+
+                              currentZone = tappedZone;
+                              cGame = currentGame;
+                              curGame = currentGame;
+                              curPlayer = currentPlayer;
+                              Get.to(() => const ClaimZoneScreen());
+                            });
+                          }
+                        : null,
+                    child: Container(
+                      alignment: Alignment.center,
+                      decoration: const BoxDecoration(
+                        color: Colors.black,
+                        shape: BoxShape.circle,
+                      ),
+                      child: Text(
+                        zone.points.toStringAsFixed(0),
+                        style: GoogleFonts.spaceGrotesk(
+                          fontSize: zone.points >= 100
+                              ? 20
+                              : 10 + (zone.points / 8 * 2) > 27
+                                  ? 27
+                                  : 10 + (zone.points / 8 * 2),
+                          fontWeight: FontWeight.w900,
+                          color: zone.points <= 5
+                              ? Colors.red
+                              : zone.points <= 10
+                                  ? Colors.deepOrange
+                                  : zone.points <= 15
+                                      ? Colors.orange
+                                      : zone.points <= 20
+                                          ? Colors.amber
+                                          : zone.points <= 25
+                                              ? Colors.yellow
+                                              : zone.points <= 30
+                                                  ? Colors.lime
+                                                  : zone.points <= 40
+                                                      ? Colors.lightGreen
+                                                      : Colors.green,
+                        ),
+                      ),
+                    ),
+                  ),
+                );
+              }).toList(),
+            ),
+          ],
+        ).animate().fadeIn(duration: 500.ms),
+        // Overlay any additional children widgets
+        ...children,
       ],
-      trafficEnabled: false,
-      mapType: MapType.normal,
-      myLocationEnabled: true,
-      circles: currentGameTemplate.zones!.map((zone) {
-        Player? claimedBy = currentGame.players.firstWhereOrNull(
-            (element) => element.zonesClaimed.contains(zone.zoneId));
-        return Circle(
-          circleId: CircleId(zone.zoneId),
-          center: LatLng(zone.location.latitude, zone.location.longitude),
-          radius: zone.radius.toDouble(),
-          fillColor: claimedBy != null
-              ? getColor(claimedBy.teamColor).withOpacity(0.75)
-              : Colors.grey.withOpacity(0.5),
-          strokeColor:
-              claimedBy != null ? getColor(claimedBy.teamColor) : Colors.grey,
-          strokeWidth: 2,
-          consumeTapEvents: interaction,
-          onTap: () {
-            Future.delayed(const Duration(milliseconds: 100), () {
-              Zone tappedZone = currentGameTemplate.zones!
-                  .firstWhere((element) => element.zoneId == zone.zoneId);
-
-              if (claimedBy != null) {
-                disabled = false;
-                Get.to(() => const CantClaim());
-                return;
-              }
-
-              if (currentPlayer.sabotagedUntil.isAfter(DateTime.now())) {
-                disabled = true;
-                Get.to(() => const CantClaim());
-                return;
-              }
-
-              currentZone = tappedZone;
-              cGame = currentGame;
-              curGame = currentGame;
-              curPlayer = currentPlayer;
-              Get.to(() => const ClaimZoneScreen());
-            });
-          },
-        );
-      }).toSet(),
     );
   }
 
@@ -1612,7 +1641,7 @@ class _MainGameScreenState extends State<MainGameScreen> {
     );
   }
 
-  CameraTargetBounds calculateBounds(GameTemplate currentGameTemplate) {
+  LatLngBounds calculateBounds(GameTemplate currentGameTemplate) {
     double minLat = currentGameTemplate.zones!.first.location.latitude;
     double maxLat = currentGameTemplate.zones!.first.location.latitude;
     double minLng = currentGameTemplate.zones!.first.location.longitude;
@@ -1637,11 +1666,9 @@ class _MainGameScreenState extends State<MainGameScreen> {
     double latBuffer = (maxLat - minLat) * 0.2;
     double lngBuffer = (maxLng - minLng) * 0.2;
 
-    return CameraTargetBounds(
-      LatLngBounds(
-        southwest: LatLng(minLat - latBuffer, minLng - lngBuffer),
-        northeast: LatLng(maxLat + latBuffer, maxLng + lngBuffer),
-      ),
+    return LatLngBounds(
+      LatLng(minLat - latBuffer, minLng - lngBuffer),
+      LatLng(maxLat + latBuffer, maxLng + lngBuffer),
     );
   }
 
@@ -2008,4 +2035,48 @@ Color getColor(String color) {
     default:
       return Colors.blue;
   }
+}
+
+Widget _buildGlassCard({required String title, required Widget child}) {
+  return Container(
+    margin: const EdgeInsets.only(bottom: 16),
+    decoration: BoxDecoration(
+      gradient: LinearGradient(
+        colors: [Colors.white.withOpacity(0.1), Colors.white.withOpacity(0.05)],
+        begin: Alignment.topLeft,
+        end: Alignment.bottomRight,
+      ),
+      border: Border.all(color: Colors.white.withOpacity(0.2), width: 1),
+      borderRadius: BorderRadius.circular(20),
+    ),
+    child: ClipRRect(
+      borderRadius: BorderRadius.circular(20),
+      child: BackdropFilter(
+        filter: ImageFilter.blur(sigmaX: 12.0, sigmaY: 12.0),
+        child: Container(
+          padding: const EdgeInsets.all(16),
+          decoration: BoxDecoration(
+            color: Colors.white.withOpacity(0.05),
+            borderRadius: BorderRadius.circular(20),
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              if (title.isNotEmpty)
+                Text(
+                  title,
+                  style: baseTextStyle.copyWith(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
+                ),
+              if (title.isNotEmpty) const SizedBox(height: 12),
+              child,
+            ],
+          ),
+        ),
+      ),
+    ),
+  );
 }

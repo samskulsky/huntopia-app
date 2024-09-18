@@ -21,7 +21,7 @@ AppUser appUser = AppUser(
   firstName: '',
   lastName: '',
   displayName: '',
-  email: '',
+  email: FirebaseAuth.instance.currentUser!.email ?? '',
   photoURL: '',
   apnsToken: '',
   fcmToken: '',
@@ -37,6 +37,29 @@ AppUser appUser = AppUser(
 class _SetupPage2State extends State<SetupPage2> {
   final TextEditingController firstNameController = TextEditingController();
   final TextEditingController lastNameController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    appUser = AppUser(
+      uid: FirebaseAuth.instance.currentUser!.uid,
+      phoneNumber: FirebaseAuth.instance.currentUser!.phoneNumber ?? '',
+      firstName: '',
+      lastName: '',
+      displayName: '',
+      email: FirebaseAuth.instance.currentUser!.email ?? '',
+      photoURL: '',
+      apnsToken: '',
+      fcmToken: '',
+      createdAt: DateTime.now(),
+      updatedAt: DateTime.now(),
+      friends: [],
+      friendRequests: [],
+      sentFriendRequests: [],
+      role: 'user',
+      tokens: 3,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -74,21 +97,35 @@ class _SetupPage2State extends State<SetupPage2> {
               onChanged: (value) => _capitalizeAndTrimText(lastNameController),
             ),
             const SizedBox(height: 16),
-            FilledButton(
-              onPressed: () {
-                if (firstNameController.text.isEmpty ||
-                    lastNameController.text.isEmpty) {
-                  ToastificationHelper.showErrorToast(
-                    context,
-                    'Please enter your first and last name',
-                  );
-                  return;
-                }
-                appUser.firstName = firstNameController.text;
-                appUser.lastName = lastNameController.text;
-                Get.to(() => const SetupPage3());
-              },
-              child: const Text('Continue'),
+            SizedBox(
+              width: double.infinity,
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  padding: const EdgeInsets.symmetric(vertical: 16),
+                  backgroundColor: Colors.green,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                ),
+                onPressed: () {
+                  if (firstNameController.text.isEmpty ||
+                      lastNameController.text.isEmpty) {
+                    ToastificationHelper.showErrorToast(
+                      context,
+                      'Please enter your first and last name',
+                    );
+                    return;
+                  }
+                  appUser.firstName = firstNameController.text;
+                  appUser.lastName = lastNameController.text;
+                  Get.to(() => const SetupPage3());
+                },
+                child: Text(
+                  'Continue',
+                  style:
+                      baseTextStyle.copyWith(color: Colors.white, fontSize: 18),
+                ),
+              ),
             ),
           ],
         ),
@@ -103,13 +140,23 @@ class _SetupPage2State extends State<SetupPage2> {
   }) {
     return TextField(
       controller: controller,
-      decoration: InputDecoration(labelText: labelText),
+      decoration: InputDecoration(
+        labelText: labelText,
+        labelStyle: baseTextStyle.copyWith(color: Colors.white70),
+        filled: true,
+        fillColor: Colors.grey[800],
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12),
+          borderSide: BorderSide.none,
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12),
+          borderSide: BorderSide.none,
+        ),
+      ),
+      style: baseTextStyle.copyWith(color: Colors.white),
       keyboardType: TextInputType.text,
       autocorrect: false,
-      style: baseTextStyle.copyWith(
-        fontSize: 22,
-        fontWeight: FontWeight.w700,
-      ),
       onChanged: onChanged,
     );
   }

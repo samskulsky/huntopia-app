@@ -63,14 +63,14 @@ class _SetupPage5State extends State<SetupPage5> {
                 child: ListTile(
                   title: Text(
                     'Create a Game with AI',
-                    style: GoogleFonts.roboto(
+                    style: GoogleFonts.spaceGrotesk(
                       fontSize: 18,
                       color: Colors.white,
                     ),
                   ),
                   subtitle: Text(
                     'We added ${appUser.tokens} AI token${appUser.tokens != 1 ? 's' : ''} to your account for free! Each token can be used to generate a full scavenger hunt with AI.',
-                    style: GoogleFonts.roboto(
+                    style: GoogleFonts.spaceGrotesk(
                       fontSize: 14,
                       color: Colors.white,
                     ),
@@ -79,11 +79,6 @@ class _SetupPage5State extends State<SetupPage5> {
                 ),
               ),
             _buildInfoTile(
-              icon: FontAwesomeIcons.phone,
-              title: 'Phone',
-              subtitle: appUser.phoneNumber,
-            ),
-            _buildInfoTile(
               icon: FontAwesomeIcons.solidUser,
               title: 'Username',
               subtitle: appUser.displayName,
@@ -91,11 +86,20 @@ class _SetupPage5State extends State<SetupPage5> {
             const SizedBox(height: 16),
             SizedBox(
               width: double.infinity,
-              child: FilledButton(
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  padding: const EdgeInsets.symmetric(vertical: 16),
+                  backgroundColor: Colors.green,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                ),
                 onPressed: () async {
                   Get.offAll(() => const HomeScreen());
                 },
-                child: const Text('Get Started'),
+                child: Text('Get Started',
+                    style: baseTextStyle.copyWith(
+                        color: Colors.white, fontSize: 18)),
               ),
             ),
           ],

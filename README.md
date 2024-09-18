@@ -6,7 +6,7 @@ Huntopia is a real-life scavenger hunt game that allows players to claim zones, 
 
 - **Live Scavenger Hunts**: Real-time gameplay with zone claiming and scoring.
 - **Power-ups**: Players can buy power-ups like 2x score multipliers and the ability to disable other teams.
-- **Google Maps Integration**: View the game zones in real-time.
+- **OpenStreetMaps Integration**: View the game zones in real-time.
 - **Location Tracking**: Ensures that players are in the right place when claiming zones.
 - **Firebase Integration**: User authentication, push notifications, and data management.
 - **Google Analytics**: Track user activity and game analytics.
@@ -14,7 +14,7 @@ Huntopia is a real-life scavenger hunt game that allows players to claim zones, 
 ## Tech Stack
 
 - **Framework**: Flutter
-- **Backend**: Firebase, Google Maps API, Google Analytics
+- **Backend**: Firebase, OpenStreetMaps API, Geoapify API, Google Analytics
 - **Push Notifications**: Firebase Cloud Messaging
 - **Location Services**: GPS-based location tracking for real-time gameplay
 - **Camera Access**: Device's camera for in-game challenges

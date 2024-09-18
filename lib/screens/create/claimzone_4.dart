@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
@@ -19,31 +21,53 @@ class _ClaimZone4State extends State<ClaimZone4> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          edit = false;
-          Get.to(() => const AddZone());
-        },
-        child: const FaIcon(FontAwesomeIcons.plus),
-      ),
       appBar: AppBar(
-        title: const Text('My Zones'),
+        title: const Text('My Zones', style: TextStyle(color: Colors.white)),
         leading: IconButton(
-          icon: const FaIcon(FontAwesomeIcons.arrowLeft),
+          icon: const FaIcon(FontAwesomeIcons.arrowLeft, color: Colors.white),
           onPressed: () {
             Navigator.pop(context);
           },
         ),
+        backgroundColor: Colors.black,
       ),
+      backgroundColor: Colors.black,
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            _buildHeader(),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'My Zones (${gameTemplate.zones?.length ?? '0'})',
+                  style: baseTextStyle.copyWith(
+                    fontSize: 24,
+                    fontWeight: FontWeight.w700,
+                    color: Colors.white,
+                  ),
+                ),
+                const SizedBox(height: 8),
+                Text(
+                  'Add the zones you want players to visit to claim them. You can change and add more zones later.',
+                  style: baseTextStyle.copyWith(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w500,
+                    color: Colors.white54,
+                  ),
+                ),
+              ],
+            ),
             const SizedBox(height: 16),
             Expanded(child: _buildZoneList()),
-            _buildContinueButton(),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Expanded(child: _buildContinueButton()),
+                _buildPlusButton(),
+              ],
+            ),
             const SizedBox(height: 34),
           ],
         ),
@@ -51,41 +75,23 @@ class _ClaimZone4State extends State<ClaimZone4> {
     );
   }
 
-  Widget _buildHeader() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          'My Zones (${gameTemplate.zones?.length ?? '0'})',
-          style: baseTextStyle.copyWith(
-            fontSize: 24,
-            fontWeight: FontWeight.w700,
-          ),
-        ),
-        const SizedBox(height: 8),
-        Text(
-          'Add the zones you want players to visit to claim them. You can change and add more zones later.',
-          style: baseTextStyle.copyWith(
-            fontSize: 18,
-            fontWeight: FontWeight.w500,
-            color: Get.isDarkMode ? Colors.white54 : Colors.black54,
-          ),
-        ),
-      ],
-    );
-  }
-
   Widget _buildZoneList() {
     if (gameTemplate.zones == null || gameTemplate.zones!.isEmpty) {
       return Center(
-        child: Text(
-          'No zones added yet. Please add at least 3 zones to continue.',
-          style: baseTextStyle.copyWith(
-            fontSize: 16,
-            color: Colors.grey.shade700,
-            fontWeight: FontWeight.w700,
+        child: _buildGlassCard(
+          title: '',
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Text(
+              'No zones added yet. Please add at least 3 zones to continue.',
+              style: baseTextStyle.copyWith(
+                fontSize: 16,
+                color: Colors.grey.shade700,
+                fontWeight: FontWeight.w700,
+              ),
+              textAlign: TextAlign.center,
+            ),
           ),
-          textAlign: TextAlign.center,
         ),
       );
     }
@@ -94,33 +100,31 @@ class _ClaimZone4State extends State<ClaimZone4> {
       itemCount: gameTemplate.zones!.length,
       itemBuilder: (context, index) {
         final zone = gameTemplate.zones![index];
-        return Padding(
-          padding: const EdgeInsets.only(bottom: 8.0),
-          child: Card(
-            child: ListTile(
-              onTap: () {
-                edit = true;
-                fromInfoPage = true;
-                currentZoneId = zone.zoneId;
-                Get.to(() => const AddZone());
-              },
-              leading: const FaIcon(FontAwesomeIcons.locationDot),
-              title: Text(
-                zone.zoneName,
-                style: baseTextStyle.copyWith(
-                  fontSize: 18,
-                  fontWeight: FontWeight.w700,
-                ),
-              ),
-              subtitle: Text(
-                _getTaskDescription(zone.taskType),
-                style: baseTextStyle.copyWith(
-                  fontSize: 16,
-                ),
-              ),
-              trailing: _buildZoneInfoChip(zone),
+        return ListTile(
+          onTap: () {
+            edit = true;
+            fromInfoPage = true;
+            currentZoneId = zone.zoneId;
+            Get.to(() => const AddZone());
+          },
+          leading:
+              const FaIcon(FontAwesomeIcons.locationDot, color: Colors.white),
+          title: Text(
+            zone.zoneName,
+            style: baseTextStyle.copyWith(
+              fontSize: 18,
+              fontWeight: FontWeight.w700,
+              color: Colors.white,
             ),
           ),
+          subtitle: Text(
+            _getTaskDescription(zone.taskType),
+            style: baseTextStyle.copyWith(
+              fontSize: 16,
+              color: Colors.white70,
+            ),
+          ),
+          trailing: _buildZoneInfoChip(zone),
         );
       },
     );
@@ -182,14 +186,74 @@ class _ClaimZone4State extends State<ClaimZone4> {
     final canContinue =
         gameTemplate.zones != null && gameTemplate.zones!.length > 2;
 
-    return FilledButton(
+    return ElevatedButton(
+      style: ElevatedButton.styleFrom(
+        backgroundColor: canContinue ? Colors.green : Colors.grey,
+        padding: const EdgeInsets.symmetric(vertical: 16),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12),
+        ),
+      ),
       onPressed: canContinue
           ? () {
               fromInfoPage = false;
               Get.to(() => const ClaimZone5());
             }
           : null,
-      child: const Text('Continue'),
+      child: Text(
+        'Continue',
+        style: baseTextStyle.copyWith(
+          fontSize: 16,
+          fontWeight: FontWeight.bold,
+          color: Colors.white,
+        ),
+      ),
+    );
+  }
+
+  Widget _buildPlusButton() {
+    return IconButton(
+      style: ElevatedButton.styleFrom(
+        backgroundColor: Colors.green,
+        padding: const EdgeInsets.symmetric(vertical: 16),
+      ),
+      onPressed: () {
+        edit = false;
+        Get.to(() => const AddZone());
+      },
+      icon: const FaIcon(FontAwesomeIcons.plus, color: Colors.white),
+    );
+  }
+
+  Widget _buildGlassCard({required String title, required Widget child}) {
+    return Container(
+      width: double.infinity,
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          colors: [
+            Colors.white.withOpacity(0.1),
+            Colors.white.withOpacity(0.05)
+          ],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+        ),
+        border: Border.all(color: Colors.white.withOpacity(0.2), width: 1),
+        borderRadius: BorderRadius.circular(20),
+      ),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(20),
+        child: BackdropFilter(
+          filter: ImageFilter.blur(sigmaX: 12.0, sigmaY: 12.0),
+          child: Container(
+            padding: const EdgeInsets.all(16),
+            decoration: BoxDecoration(
+              color: Colors.white.withOpacity(0.05),
+              borderRadius: BorderRadius.circular(20),
+            ),
+            child: child,
+          ),
+        ),
+      ),
     );
   }
 }

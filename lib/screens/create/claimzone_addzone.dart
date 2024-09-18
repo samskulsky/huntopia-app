@@ -1,19 +1,19 @@
+import 'dart:ui';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_map/flutter_map.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:get/get.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:scavhuntapp/screens/create/claimzone_1.dart';
-import 'package:scavhuntapp/screens/create/claimzone_4.dart';
-import 'package:scavhuntapp/screens/create/claimzone_loc_picker.dart' as loc;
-import 'package:toastification/toastification.dart';
+import 'package:latlong2/latlong.dart';
 import 'package:uuid/uuid.dart';
 
 import '../../models/game_template.dart';
 import '../../utils/theme_data.dart';
+import '../../utils/toastification_helper.dart';
 import 'claimzone_view.dart';
+import 'claimzone_1.dart';
+import 'claimzone_4.dart';
+import 'claimzone_loc_picker.dart' as loc;
 
 class AddZone extends StatefulWidget {
   const AddZone({super.key});
@@ -32,7 +32,7 @@ class _AddZoneState extends State<AddZone> {
   TextEditingController answerController = TextEditingController();
   TextEditingController qrCodeController = TextEditingController();
 
-  late GoogleMapController mapController;
+  final MapController mapController = MapController();
   String dropdownValue = 'question';
 
   int sliderValue = 30;
@@ -42,7 +42,7 @@ class _AddZoneState extends State<AddZone> {
       loc.currentLat != 0 ? loc.currentLat : gameTemplate.center!.latitude;
   double currentLong =
       loc.currentLong != 0 ? loc.currentLong : gameTemplate.center!.longitude;
-  Circle? selectedZoneCircle;
+  CircleMarker? selectedZoneCircle;
 
   @override
   void initState() {
@@ -69,20 +69,18 @@ class _AddZoneState extends State<AddZone> {
       selectedZoneCircle =
           createCircle(LatLng(currentLat, currentLong), sliderValue.toDouble());
     } catch (e) {
-      if (kDebugMode) {
-        print(e);
-      }
+      print(e);
     }
   }
 
-  Circle createCircle(LatLng latLng, double radius) {
-    return Circle(
-      circleId: const CircleId("selectedZone"),
-      center: latLng,
+  CircleMarker createCircle(LatLng latLng, double radius) {
+    return CircleMarker(
+      point: latLng,
+      color: Colors.redAccent.withOpacity(0.3),
+      borderStrokeWidth: 1,
+      borderColor: Colors.redAccent,
+      useRadiusInMeter: true,
       radius: radius,
-      fillColor: Colors.redAccent.withOpacity(0.3),
-      strokeColor: Colors.redAccent,
-      strokeWidth: 1,
     );
   }
 
@@ -168,14 +166,7 @@ class _AddZoneState extends State<AddZone> {
   }
 
   void showErrorToast(String message) {
-    toastification.show(
-      style: ToastificationStyle.fillColored,
-      applyBlurEffect: true,
-      context: context,
-      type: ToastificationType.error,
-      title: Text(message),
-      autoCloseDuration: const Duration(seconds: 10),
-    );
+    ToastificationHelper.showErrorToast(context, message);
   }
 
   @override
@@ -192,7 +183,7 @@ class _AddZoneState extends State<AddZone> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Add Zone'),
+        title: Text('Add Zone', style: baseTextStyle),
         leading: IconButton(
           icon: const FaIcon(FontAwesomeIcons.arrowLeft),
           onPressed: () => Navigator.pop(context),
@@ -210,332 +201,440 @@ class _AddZoneState extends State<AddZone> {
             ),
         ],
       ),
-      body: ListView(
+      backgroundColor: Colors.black,
+      body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
-        children: [
-          buildTitleSection('Zone Editor',
-              'Complete the following fields to add a zone to your game.'),
-          buildTextField('1', 'Zone Name', zoneNameController,
-              'Write the name of the zone you want to add.'),
-          buildMapSection(),
-          buildSliderSection('Zone Radius',
-              'Select the radius (in meters) of the zone. This is the area that players must enter to claim the zone.'),
-          buildDropdownSection(),
-          buildAwardsSection(),
-          buildSaveButton(),
-        ],
-      ),
-    );
-  }
-
-  Widget buildTitleSection(String title, String subtitle) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(title,
-            style: baseTextStyle.copyWith(
-                fontSize: 24, fontWeight: FontWeight.w700)),
-        const SizedBox(height: 8),
-        Text(subtitle,
-            style: baseTextStyle.copyWith(
-                fontSize: 18, fontWeight: FontWeight.w500)),
-        const SizedBox(height: 16),
-        const Divider(),
-        const SizedBox(height: 16),
-      ],
-    );
-  }
-
-  Widget buildTextField(String num, String label,
-      TextEditingController controller, String subtitle) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        ListTile(
-          contentPadding: EdgeInsets.zero,
-          leading: buildCircleAvatar(num),
-          title: Text(label,
-              style: baseTextStyle.copyWith(
-                  fontSize: 20, fontWeight: FontWeight.w700)),
-          subtitle: subtitle.isNotEmpty
-              ? Text(subtitle,
-                  style: baseTextStyle.copyWith(
-                      fontSize: 16, fontWeight: FontWeight.w500))
-              : null,
-        ),
-        const SizedBox(height: 12),
-        TextField(
-          controller: controller,
-          decoration: InputDecoration(labelText: label),
-          style:
-              baseTextStyle.copyWith(fontSize: 22, fontWeight: FontWeight.w700),
-        ),
-        const SizedBox(height: 16),
-      ],
-    );
-  }
-
-  Widget buildMapSection() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        ListTile(
-          contentPadding: EdgeInsets.zero,
-          leading: buildCircleAvatar('2'),
-          title: Text('Zone Location',
-              style: baseTextStyle.copyWith(
-                  fontSize: 20, fontWeight: FontWeight.w700)),
-          subtitle: Text('Select the location of the zone on the map.',
-              style: baseTextStyle.copyWith(
-                  fontSize: 16, fontWeight: FontWeight.w500)),
-        ),
-        const SizedBox(height: 8),
-        Container(
-          height: 300,
-          decoration: BoxDecoration(
-            border: Border.all(color: Colors.black26, width: 2),
-          ),
-          child: GoogleMap(
-            onMapCreated: (controller) => mapController = controller,
-            initialCameraPosition: CameraPosition(
-                target: LatLng(currentLat, currentLong), zoom: 15.0),
-            circles: selectedZoneCircle != null ? {selectedZoneCircle!} : {},
-            onTap: (latLng) => updateZoneCircle(latLng, sliderValue.toDouble()),
-            gestureRecognizers: Set()
-              ..add(Factory<EagerGestureRecognizer>(
-                  () => EagerGestureRecognizer())),
-            myLocationButtonEnabled: false,
-            indoorViewEnabled: true,
-          ),
-        ),
-        const SizedBox(height: 8),
-        Text('The selected location is at $currentLat, $currentLong',
-            style: baseTextStyle.copyWith(
-                fontSize: 16, fontWeight: FontWeight.w500)),
-        const SizedBox(height: 16),
-      ],
-    );
-  }
-
-  Widget buildSliderSection(String title, String subtitle) {
-    return Container(
-      padding: const EdgeInsets.all(16),
-      child: Column(
-        children: [
-          ListTile(
-            contentPadding: EdgeInsets.zero,
-            leading: buildCircleAvatar('3'),
-            title: Text(title,
-                style: baseTextStyle.copyWith(
-                    fontSize: 20, fontWeight: FontWeight.w700)),
-            subtitle: Text(subtitle,
-                style: baseTextStyle.copyWith(
-                    fontSize: 16, fontWeight: FontWeight.w500)),
-          ),
-          Text('$sliderValue meters',
-              style: baseTextStyle.copyWith(
-                  fontSize: 18,
-                  fontWeight: FontWeight.w700,
-                  color: Colors.green)),
-          Slider(
-            value: sliderValue.toDouble(),
-            min: 10,
-            max: 500,
-            label: '$sliderValue meters',
-            onChanged: (value) {
-              updateZoneCircle(LatLng(currentLat, currentLong), value);
-              sliderValue = value.toInt();
-            },
-          ),
-          const SizedBox(height: 16),
-        ],
-      ),
-    );
-  }
-
-  Widget buildDropdownSection() {
-    return Container(
-      padding: const EdgeInsets.all(16),
-      child: Column(
-        children: [
-          ListTile(
-            contentPadding: EdgeInsets.zero,
-            leading: buildCircleAvatar('4'),
-            title: Text('Zone Task',
-                style: baseTextStyle.copyWith(
-                    fontSize: 20, fontWeight: FontWeight.w700)),
-            subtitle: Text(
-                'Select the task that players must complete to claim the zone.',
-                style: baseTextStyle.copyWith(
-                    fontSize: 16, fontWeight: FontWeight.w500)),
-          ),
-          const SizedBox(height: 8),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: DropdownButton<String>(
-              style: baseTextStyle.copyWith(
-                  fontSize: 18,
-                  fontWeight: FontWeight.w700,
-                  color: Colors.green),
-              dropdownColor: Colors.black,
-              icon: const Icon(FontAwesomeIcons.caretDown,
-                  color: Colors.green, size: 16),
-              underline: Container(height: 2, color: Colors.green),
-              value: dropdownValue,
-              items: const [
-                DropdownMenuItem(
-                    value: 'question', child: Text('Answer a question ')),
-                DropdownMenuItem(
-                    value: 'selfie', child: Text('Take a selfie ')),
-                DropdownMenuItem(
-                    value: 'qrcode', child: Text('Scan a QR code ')),
-              ],
-              onChanged: (value) => setState(() => dropdownValue = value!),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            _buildGlassCard(
+              title: 'Zone Editor',
+              child: Text(
+                'Complete the following fields to add a zone to your game.',
+                style: baseTextStyle.copyWith(color: Colors.white70),
+              ),
             ),
-          ),
-          buildTaskFields(),
-        ],
+            _buildGlassCard(
+              title: 'Zone Name',
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Write the name of the zone you want to add.',
+                    style: baseTextStyle.copyWith(color: Colors.white70),
+                  ),
+                  const SizedBox(height: 8),
+                  TextField(
+                    controller: zoneNameController,
+                    decoration: InputDecoration(
+                      labelText: 'Zone Name',
+                      labelStyle: baseTextStyle.copyWith(color: Colors.white70),
+                      filled: true,
+                      fillColor: Colors.grey[800],
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(12),
+                        borderSide: BorderSide.none,
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(12),
+                        borderSide: BorderSide.none,
+                      ),
+                    ),
+                    style: baseTextStyle.copyWith(color: Colors.white),
+                  ),
+                ],
+              ),
+            ),
+            _buildGlassCard(
+              title: 'Zone Location',
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Select the location of the zone on the map.',
+                    style: baseTextStyle.copyWith(color: Colors.white70),
+                  ),
+                  const SizedBox(height: 8),
+                  Container(
+                    height: 300,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: FlutterMap(
+                      mapController: mapController,
+                      options: MapOptions(
+                        initialCenter: LatLng(currentLat, currentLong),
+                        initialZoom: 15.0,
+                        onTap: (tapPosition, latLng) {
+                          updateZoneCircle(latLng, sliderValue.toDouble());
+                        },
+                      ),
+                      children: [
+                        TileLayer(
+                          urlTemplate:
+                              "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                          userAgentPackageName: 'com.samdev.scavhuntapp',
+                        ),
+                        if (selectedZoneCircle != null)
+                          CircleLayer(
+                            circles: [selectedZoneCircle!],
+                          ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  Text(
+                    'The selected location is at $currentLat, $currentLong',
+                    style: baseTextStyle.copyWith(color: Colors.white70),
+                  ),
+                ],
+              ),
+            ),
+            _buildGlassCard(
+              title: 'Zone Radius',
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Select the radius (in meters) of the zone. This is the area that players must enter to claim the zone.',
+                    style: baseTextStyle.copyWith(color: Colors.white70),
+                  ),
+                  const SizedBox(height: 8),
+                  Text(
+                    '$sliderValue meters',
+                    style: baseTextStyle.copyWith(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.green,
+                    ),
+                  ),
+                  Slider(
+                    value: sliderValue.toDouble(),
+                    min: 10,
+                    max: 500,
+                    label: '$sliderValue meters',
+                    activeColor: Colors.green,
+                    inactiveColor: Colors.white70,
+                    onChanged: (value) {
+                      updateZoneCircle(LatLng(currentLat, currentLong), value);
+                      setState(() {
+                        sliderValue = value.toInt();
+                      });
+                    },
+                  ),
+                ],
+              ),
+            ),
+            _buildGlassCard(
+              title: 'Zone Task',
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Select the task that players must complete to claim the zone.',
+                    style: baseTextStyle.copyWith(color: Colors.white70),
+                  ),
+                  const SizedBox(height: 8),
+                  DropdownButton<String>(
+                    isExpanded: true,
+                    style: baseTextStyle.copyWith(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.green,
+                    ),
+                    dropdownColor: Colors.black,
+                    icon: const Icon(FontAwesomeIcons.caretDown,
+                        color: Colors.green, size: 16),
+                    underline: Container(height: 2, color: Colors.green),
+                    value: dropdownValue,
+                    items: const [
+                      DropdownMenuItem(
+                          value: 'question', child: Text('Answer a question')),
+                      DropdownMenuItem(
+                          value: 'selfie', child: Text('Take a selfie')),
+                      DropdownMenuItem(
+                          value: 'qrcode', child: Text('Scan a QR code')),
+                    ],
+                    onChanged: (value) {
+                      setState(() {
+                        dropdownValue = value!;
+                      });
+                    },
+                  ),
+                  const SizedBox(height: 8),
+                  buildTaskFields(),
+                ],
+              ),
+            ),
+            _buildGlassCard(
+              title: 'Awards',
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Select the number of points and coins that players will receive when they claim the zone. More points should be awarded for more difficult tasks.',
+                    style: baseTextStyle.copyWith(color: Colors.white70),
+                  ),
+                  const SizedBox(height: 8),
+                  Text(
+                    '$pointsSliderValue Points',
+                    style: baseTextStyle.copyWith(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.green,
+                    ),
+                  ),
+                  Slider(
+                    value: pointsSliderValue.toDouble(),
+                    min: 5,
+                    max: 100,
+                    label: '$pointsSliderValue Points',
+                    activeColor: Colors.green,
+                    inactiveColor: Colors.white70,
+                    onChanged: (value) {
+                      setState(() {
+                        pointsSliderValue = value.toInt();
+                      });
+                    },
+                  ),
+                  const SizedBox(height: 8),
+                  Text(
+                    '$coinsSliderValue Coins',
+                    style: baseTextStyle.copyWith(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.green,
+                    ),
+                  ),
+                  Slider(
+                    value: coinsSliderValue.toDouble(),
+                    min: 0,
+                    max: 100,
+                    label: '$coinsSliderValue Coins',
+                    activeColor: Colors.green,
+                    inactiveColor: Colors.white70,
+                    onChanged: (value) {
+                      setState(() {
+                        coinsSliderValue = value.toInt();
+                      });
+                    },
+                  ),
+                ],
+              ),
+            ),
+            _buildGlassCard(
+              title: '',
+              child: SizedBox(
+                width: double.infinity,
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    padding: const EdgeInsets.symmetric(vertical: 12),
+                    backgroundColor: Colors.green,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                  ),
+                  onPressed: saveZone,
+                  child: Text(
+                    'Save Zone',
+                    style: baseTextStyle.copyWith(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            const SizedBox(height: 32),
+          ],
+        ),
       ),
     );
   }
 
   Widget buildTaskFields() {
     if (dropdownValue == 'question') {
-      return buildQuestionFields();
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          _buildGlassCard(
+            title: '',
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                buildTaskTile(
+                    'Answer a question',
+                    'Players will need to answer a question correctly to claim the zone.',
+                    FontAwesomeIcons.question),
+                const SizedBox(height: 8),
+                TextField(
+                  controller: questionController,
+                  decoration: InputDecoration(
+                    labelText: 'Question',
+                    labelStyle: baseTextStyle.copyWith(color: Colors.white70),
+                    filled: true,
+                    fillColor: Colors.grey[800],
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                      borderSide: BorderSide.none,
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                      borderSide: BorderSide.none,
+                    ),
+                  ),
+                  style: baseTextStyle.copyWith(color: Colors.white),
+                ),
+                const SizedBox(height: 8),
+                TextField(
+                  controller: answerController,
+                  decoration: InputDecoration(
+                    labelText: 'Correct Answer',
+                    labelStyle: baseTextStyle.copyWith(color: Colors.white70),
+                    filled: true,
+                    fillColor: Colors.grey[800],
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                      borderSide: BorderSide.none,
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                      borderSide: BorderSide.none,
+                    ),
+                  ),
+                  style: baseTextStyle.copyWith(color: Colors.white),
+                ),
+              ],
+            ),
+          ),
+        ],
+      );
     } else if (dropdownValue == 'selfie') {
-      return buildSelfieField();
+      return _buildGlassCard(
+        title: '',
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            buildTaskTile(
+                'Take a selfie',
+                'Players will need to take a photo of themselves to claim the zone.',
+                FontAwesomeIcons.camera),
+            const SizedBox(height: 8),
+            TextField(
+              controller: questionController,
+              decoration: InputDecoration(
+                labelText: 'Challenge (Optional)',
+                labelStyle: baseTextStyle.copyWith(color: Colors.white70),
+                filled: true,
+                fillColor: Colors.grey[800],
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(12),
+                  borderSide: BorderSide.none,
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(12),
+                  borderSide: BorderSide.none,
+                ),
+              ),
+              style: baseTextStyle.copyWith(color: Colors.white),
+            ),
+          ],
+        ),
+      );
     } else if (dropdownValue == 'qrcode') {
-      return buildQRCodeField();
+      return _buildGlassCard(
+        title: '',
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            buildTaskTile(
+                'Scan a QR code',
+                'Players will need to scan a QR code to claim the zone.',
+                FontAwesomeIcons.qrcode),
+            const SizedBox(height: 8),
+            TextField(
+              controller: qrCodeController,
+              decoration: InputDecoration(
+                labelText: 'QR Code Value',
+                labelStyle: baseTextStyle.copyWith(color: Colors.white70),
+                filled: true,
+                fillColor: Colors.grey[800],
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(12),
+                  borderSide: BorderSide.none,
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(12),
+                  borderSide: BorderSide.none,
+                ),
+              ),
+              style: baseTextStyle.copyWith(color: Colors.white),
+            ),
+          ],
+        ),
+      );
     }
     return const SizedBox();
   }
 
-  Widget buildQuestionFields() {
-    return Card(
-      child: Column(
-        children: [
-          buildTaskTile(
-              'Answer a question',
-              'Players will need to answer a question correctly to claim the zone.',
-              FontAwesomeIcons.question),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: buildTextField('A', 'Question', questionController, ''),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: buildTextField('B', 'Correct Answer', answerController, ''),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget buildSelfieField() {
-    return Card(
-      child: Column(
-        children: [
-          buildTaskTile(
-              'Take a selfie',
-              'Players will need to take a photo of themselves to claim the zone.',
-              FontAwesomeIcons.camera),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: buildTextField('A', 'Challenge', questionController, ''),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget buildQRCodeField() {
-    return Card(
-      child: Column(
-        children: [
-          buildTaskTile(
-              'Scan a QR code',
-              'Players will need to scan a QR code to claim the zone.',
-              FontAwesomeIcons.qrcode),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: buildTextField('A', 'QR Code Value', qrCodeController, ''),
-          ),
-        ],
-      ),
-    );
-  }
-
   Widget buildTaskTile(String title, String subtitle, IconData icon) {
     return ListTile(
-      leading: Icon(icon),
+      contentPadding: const EdgeInsets.all(0),
+      leading: Icon(icon, color: Colors.white),
       title: Text(title,
           style: baseTextStyle.copyWith(
               fontSize: 18, fontWeight: FontWeight.w700)),
-      subtitle: Text(subtitle),
+      subtitle: Text(subtitle,
+          style: baseTextStyle.copyWith(
+              fontSize: 16, fontWeight: FontWeight.w500)),
     );
   }
 
-  Widget buildAwardsSection() {
-    return Column(
-      children: [
-        ListTile(
-          contentPadding: EdgeInsets.zero,
-          leading: buildCircleAvatar('5'),
-          title: Text('Awards',
-              style: baseTextStyle.copyWith(
-                  fontSize: 20, fontWeight: FontWeight.w700)),
-          subtitle: Text(
-            'Select the number of points and coins that players will receive when they claim the zone. More points should be awarded for more difficult tasks.',
-            style: baseTextStyle.copyWith(
-                fontSize: 16, fontWeight: FontWeight.w500),
+  Widget _buildGlassCard({required String title, required Widget child}) {
+    return Container(
+      margin: const EdgeInsets.only(bottom: 16),
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          colors: [
+            Colors.white.withOpacity(0.1),
+            Colors.white.withOpacity(0.05)
+          ],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+        ),
+        border: Border.all(color: Colors.white.withOpacity(0.2), width: 1),
+        borderRadius: BorderRadius.circular(20),
+      ),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(20),
+        child: BackdropFilter(
+          filter: ImageFilter.blur(sigmaX: 12.0, sigmaY: 12.0),
+          child: Container(
+            padding: const EdgeInsets.all(16),
+            decoration: BoxDecoration(
+              color: Colors.white.withOpacity(0.05),
+              borderRadius: BorderRadius.circular(20),
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                if (title.isNotEmpty)
+                  Text(
+                    title,
+                    style: baseTextStyle.copyWith(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
+                  ),
+                if (title.isNotEmpty) const SizedBox(height: 12),
+                child,
+              ],
+            ),
           ),
         ),
-        buildAwardSlider('Points', pointsSliderValue,
-            (value) => setState(() => pointsSliderValue = value)),
-        buildAwardSlider('Coins', coinsSliderValue,
-            (value) => setState(() => coinsSliderValue = value)),
-      ],
-    );
-  }
-
-  Widget buildAwardSlider(
-      String label, int value, ValueChanged<int> onChanged) {
-    return Column(
-      children: [
-        Text('$value $label',
-            style: baseTextStyle.copyWith(
-                fontSize: 18,
-                fontWeight: FontWeight.w700,
-                color: Colors.green)),
-        Slider(
-          value: value.toDouble(),
-          min: 5,
-          max: 100,
-          label: '$value $label',
-          onChanged: (newValue) => onChanged(newValue.toInt()),
-        ),
-        const SizedBox(height: 16),
-      ],
-    );
-  }
-
-  Widget buildSaveButton() {
-    return Padding(
-      padding: const EdgeInsets.all(16),
-      child: FilledButton(
-        onPressed: saveZone,
-        child: const Text('Save Zone'),
       ),
-    );
-  }
-
-  CircleAvatar buildCircleAvatar(String number) {
-    return CircleAvatar(
-      radius: 15,
-      backgroundColor: Colors.green,
-      child: Text(number,
-          style: baseTextStyle.copyWith(
-              fontSize: 20, fontWeight: FontWeight.w700)),
     );
   }
 }

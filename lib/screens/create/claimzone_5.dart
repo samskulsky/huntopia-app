@@ -1,15 +1,18 @@
+import 'dart:math';
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_map/flutter_map.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:interactive_bottom_sheet/interactive_bottom_sheet.dart';
-import 'package:widget_marker_google_map/widget_marker_google_map.dart';
+import 'package:latlong2/latlong.dart';
 
+import '../../models/game_template.dart';
 import '../../utils/theme_data.dart';
 import 'claimzone_1.dart';
 import 'claimzone_6.dart';
-import '../../models/game_template.dart';
 import 'claimzone_addzone.dart';
 
 class ClaimZone5 extends StatefulWidget {
@@ -20,7 +23,7 @@ class ClaimZone5 extends StatefulWidget {
 }
 
 class _ClaimZone5State extends State<ClaimZone5> {
-  GoogleMapController? mapController;
+  MapController mapController = MapController();
 
   @override
   void dispose() {
@@ -33,15 +36,18 @@ class _ClaimZone5State extends State<ClaimZone5> {
     return Scaffold(
       bottomSheet: _buildBottomSheet(),
       appBar: AppBar(
-        title: const Text('Preview Zones'),
+        title:
+            const Text('Preview Zones', style: TextStyle(color: Colors.white)),
         leading: IconButton(
-          icon: const FaIcon(FontAwesomeIcons.arrowLeft),
+          icon: const FaIcon(FontAwesomeIcons.arrowLeft, color: Colors.white),
           onPressed: () {
             Navigator.pop(context);
           },
         ),
+        backgroundColor: Colors.black,
       ),
-      body: _buildGoogleMap(),
+      backgroundColor: Colors.black,
+      body: _buildFlutterMap(),
     );
   }
 
@@ -49,16 +55,15 @@ class _ClaimZone5State extends State<ClaimZone5> {
     return InteractiveBottomSheet(
       options: InteractiveBottomSheetOptions(
         initialSize: 0.35,
-        backgroundColor: Get.context!.theme.scaffoldBackgroundColor,
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       ),
       draggableAreaOptions: DraggableAreaOptions(
-        backgroundColor: Get.context!.theme.scaffoldBackgroundColor,
-        indicatorColor: Get.context!.theme.colorScheme.onBackground,
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+        indicatorColor: Theme.of(context).colorScheme.onBackground,
       ),
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             ListTile(
@@ -67,15 +72,18 @@ class _ClaimZone5State extends State<ClaimZone5> {
                 style: baseTextStyle.copyWith(
                   fontSize: 18,
                   fontWeight: FontWeight.w700,
+                  color: Colors.white,
                 ),
               ),
               subtitle: Text(
                 !fromInfoPage
                     ? 'This is a preview of your zones. If you need to make changes, you can do so later.'
                     : 'If your map was AI-generated and you are unable to look around, the AI may have incorrectly added a zone outside of the main area. If you delete it, you should be able to look around.',
-                style: baseTextStyle.copyWith(fontSize: 12),
+                style:
+                    baseTextStyle.copyWith(fontSize: 12, color: Colors.white70),
               ),
-              trailing: const FaIcon(FontAwesomeIcons.mapPin),
+              trailing:
+                  const FaIcon(FontAwesomeIcons.mapPin, color: Colors.white),
             ),
             if (!fromInfoPage) const SizedBox(height: 16),
             if (!fromInfoPage) _buildFinishButton(),
@@ -85,7 +93,7 @@ class _ClaimZone5State extends State<ClaimZone5> {
     );
   }
 
-  CameraTargetBounds calculateBounds(GameTemplate currentGameTemplate) {
+  LatLngBounds calculateBounds(GameTemplate currentGameTemplate) {
     double minLat = currentGameTemplate.zones!.first.location.latitude;
     double maxLat = currentGameTemplate.zones!.first.location.latitude;
     double minLng = currentGameTemplate.zones!.first.location.longitude;
@@ -106,91 +114,149 @@ class _ClaimZone5State extends State<ClaimZone5> {
       }
     }
 
-    // add a 20% buffer to the bounds
     double latBuffer = (maxLat - minLat) * 0.2;
     double lngBuffer = (maxLng - minLng) * 0.2;
 
-    return CameraTargetBounds(
-      LatLngBounds(
-        southwest: LatLng(minLat - latBuffer, minLng - lngBuffer),
-        northeast: LatLng(maxLat + latBuffer, maxLng + lngBuffer),
-      ),
+    return LatLngBounds(
+      LatLng(minLat - latBuffer, minLng - lngBuffer),
+      LatLng(maxLat + latBuffer, maxLng + lngBuffer),
     );
   }
 
   Widget _buildFinishButton() {
     return Container(
       padding: const EdgeInsets.only(left: 16.0),
-      child: FilledButton(
+      width: double.infinity,
+      child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+          backgroundColor: Colors.green,
+          padding: const EdgeInsets.symmetric(vertical: 16),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
+          ),
+        ),
         onPressed: () {
           saveGameTemplate(gameTemplate);
           Get.offAll(() => const ClaimZone6());
         },
-        child: const Text('Finish'),
+        child: Text(
+          'Finish',
+          style: baseTextStyle.copyWith(
+            fontSize: 16,
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+          ),
+        ),
       ),
     );
   }
 
-  Widget _buildGoogleMap() {
-    return WidgetMarkerGoogleMap(
-      myLocationButtonEnabled: false,
-      cameraTargetBounds: calculateBounds(gameTemplate),
-      minMaxZoomPreference: const MinMaxZoomPreference(12, 20),
-      initialCameraPosition: CameraPosition(
-        target: LatLng(
+  Widget _buildFlutterMap() {
+    return FlutterMap(
+      mapController: mapController,
+      options: MapOptions(
+        initialCenter: LatLng(
             gameTemplate.center!.latitude, gameTemplate.center!.longitude),
-        zoom: 15,
+        initialZoom: 15.0,
+        cameraConstraint: CameraConstraint.containCenter(
+            bounds: calculateBounds(gameTemplate)),
+        minZoom: 12.0,
+        maxZoom: 20.0,
       ),
-      widgetMarkers: [
-        for (var zone in gameTemplate.zones!)
-          WidgetMarker(
-            markerId: zone.zoneId,
-            position: LatLng(zone.location.latitude, zone.location.longitude),
-            widget: Container(
-              padding: const EdgeInsets.all(4),
-              decoration: const BoxDecoration(
-                color: Colors.black,
-                shape: BoxShape.circle,
-              ),
-              child: Text(
-                zone.points.toStringAsFixed(0),
-                style: GoogleFonts.spaceGrotesk(
-                  fontSize: 15 + (zone.points / 7 * 2),
-                  fontWeight: FontWeight.w900,
-                  color: zone.points <= 5
-                      ? Colors.red
-                      : zone.points <= 10
-                          ? Colors.deepOrange
-                          : zone.points <= 15
-                              ? Colors.orange
-                              : zone.points <= 20
-                                  ? Colors.amber
-                                  : zone.points <= 25
-                                      ? Colors.yellow
-                                      : zone.points <= 30
-                                          ? Colors.lime
-                                          : zone.points <= 40
-                                              ? Colors.lightGreen
-                                              : Colors.green,
+      children: [
+        TileLayer(
+          urlTemplate: "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+          userAgentPackageName: 'com.samdev.scavhuntapp',
+        ),
+        CircleLayer(
+          circles: gameTemplate.zones!.map((zone) {
+            return CircleMarker(
+              point: LatLng(zone.location.latitude, zone.location.longitude),
+              radius: zone.radius.toDouble(),
+              useRadiusInMeter: true,
+              color: Colors.grey.withOpacity(0.5),
+              borderStrokeWidth: 2,
+              borderColor: Colors.grey,
+            );
+          }).toList(),
+        ),
+        MarkerLayer(
+          rotate: true,
+          markers: gameTemplate.zones!.map((zone) {
+            return Marker(
+              width: 18 + (zone.points / 7 * 2) > 35
+                  ? 35
+                  : 18 + (zone.points / 7 * 2),
+              height: 18 + (zone.points / 7 * 2) > 35
+                  ? 35
+                  : 18 + (zone.points / 7 * 2),
+              point: LatLng(zone.location.latitude, zone.location.longitude),
+              child: Container(
+                alignment: Alignment.center,
+                decoration: const BoxDecoration(
+                  color: Colors.black,
+                  shape: BoxShape.circle,
+                ),
+                child: Text(
+                  zone.points.toStringAsFixed(0),
+                  style: GoogleFonts.spaceGrotesk(
+                    fontSize: zone.points >= 100
+                        ? 20
+                        : 10 + (zone.points / 8 * 2) > 27
+                            ? 27
+                            : 10 + (zone.points / 8 * 2),
+                    fontWeight: FontWeight.w900,
+                    color: zone.points <= 5
+                        ? Colors.red
+                        : zone.points <= 10
+                            ? Colors.deepOrange
+                            : zone.points <= 15
+                                ? Colors.orange
+                                : zone.points <= 20
+                                    ? Colors.amber
+                                    : zone.points <= 25
+                                        ? Colors.yellow
+                                        : zone.points <= 30
+                                            ? Colors.lime
+                                            : zone.points <= 40
+                                                ? Colors.lightGreen
+                                                : Colors.green,
+                  ),
                 ),
               ),
-            ),
-          ),
+            );
+          }).toList(),
+        ),
       ],
-      trafficEnabled: false,
-      mapType: MapType.normal,
-      myLocationEnabled: true,
-      circles: gameTemplate.zones!.map((zone) {
-        return Circle(
-          circleId: CircleId(zone.zoneId),
-          center: LatLng(zone.location.latitude, zone.location.longitude),
-          radius: zone.radius.toDouble(),
-          fillColor: Colors.grey.withOpacity(0.5),
-          strokeColor: Colors.grey,
-          strokeWidth: 2,
-          consumeTapEvents: false,
-        );
-      }).toSet(),
     );
   }
+}
+
+Widget _buildGlassCard({required String title, required Widget child}) {
+  return Container(
+    width: double.infinity,
+    decoration: BoxDecoration(
+      gradient: LinearGradient(
+        colors: [Colors.white.withOpacity(0.1), Colors.white.withOpacity(0.05)],
+        begin: Alignment.topLeft,
+        end: Alignment.bottomRight,
+      ),
+      border: Border.all(color: Colors.white.withOpacity(0.2), width: 1),
+      borderRadius: BorderRadius.circular(20),
+    ),
+    child: ClipRRect(
+      borderRadius: BorderRadius.circular(20),
+      child: BackdropFilter(
+        filter: ImageFilter.blur(sigmaX: 12.0, sigmaY: 12.0),
+        child: Container(
+          padding: const EdgeInsets.all(16),
+          decoration: BoxDecoration(
+            color: Colors.white.withOpacity(0.05),
+            borderRadius: BorderRadius.circular(20),
+          ),
+          child: child,
+        ),
+      ),
+    ),
+  );
 }

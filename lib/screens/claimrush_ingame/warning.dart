@@ -1,9 +1,14 @@
+import 'dart:ui';
 import 'dart:developer';
 
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:scavhuntapp/screens/claimrush_ingame/maingamescreen.dart';
+import 'package:scavhuntapp/screens/create/claimzone_1.dart';
 import 'package:scavhuntapp/screens/home_screen.dart';
 
 import '../../main.dart';
@@ -45,34 +50,31 @@ class _WarningPageState extends State<WarningPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Safety Notice'),
+        title:
+            const Text('Safety Notice', style: TextStyle(color: Colors.white)),
+        backgroundColor: Colors.black,
       ),
-      body: Padding(
+      backgroundColor: Colors.black,
+      body: ListView(
         padding: const EdgeInsets.all(16),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            _buildHeaderText(),
-            const SizedBox(height: 8),
-            _buildBodyText(),
-            const SizedBox(height: 16),
-            _buildWarningTile(
-                'DO NOT play ClaimRush while driving or operating a vehicle.'),
-            const SizedBox(height: 8),
-            _buildWarningTile(
-                'DO NOT play ClaimRush in dangerous or hazardous areas.'),
-            const SizedBox(height: 8),
-            _buildWarningTile(
-                'DO NOT play ClaimRush in areas where it is illegal to do so.'),
-            const SizedBox(height: 16),
-            _buildFooterText(),
-            const SizedBox(height: 16),
-            _buildAgreeButton(),
-            const SizedBox(height: 8),
-            _buildCancelButton(),
-          ],
-        ),
+        children: [
+          _buildHeaderText(),
+          const SizedBox(height: 8),
+          _buildBodyText(),
+          const SizedBox(height: 16),
+          _buildWarningTile(
+              'DO NOT play ClaimRush while driving or operating a vehicle.'),
+          const SizedBox(height: 8),
+          _buildWarningTile(
+              'DO NOT play ClaimRush in dangerous or hazardous areas.'),
+          const SizedBox(height: 8),
+          _buildWarningTile(
+              'DO NOT play ClaimRush in areas where it is illegal to do so.'),
+          const SizedBox(height: 16),
+          _buildFooterText(),
+          const SizedBox(height: 16),
+          _buildButtonsCard(),
+        ],
       ),
     );
   }
@@ -83,8 +85,9 @@ class _WarningPageState extends State<WarningPage> {
       style: baseTextStyle.copyWith(
         fontSize: 30,
         fontWeight: FontWeight.w700,
+        color: Colors.white,
       ),
-    );
+    ).animate().fadeIn(duration: 500.ms).slideY(begin: 0.1);
   }
 
   Widget _buildBodyText() {
@@ -93,16 +96,24 @@ class _WarningPageState extends State<WarningPage> {
       style: baseTextStyle.copyWith(
         fontSize: 20,
         fontWeight: FontWeight.w500,
+        color: Colors.white70,
       ),
-    );
+    ).animate().fadeIn(duration: 500.ms).slideY(begin: 0.1);
   }
 
   Widget _buildWarningTile(String message) {
     return ListTile(
       tileColor: Colors.red,
-      leading: const Icon(Icons.warning),
-      title: Text(message),
-    );
+      leading: const Icon(Icons.warning, color: Colors.white),
+      title: Text(
+        message,
+        style: baseTextStyle.copyWith(
+          color: Colors.white,
+          fontSize: 16,
+          fontWeight: FontWeight.w600,
+        ),
+      ),
+    ).animate().fadeIn(duration: 500.ms).slideY(begin: 0.1);
   }
 
   Widget _buildFooterText() {
@@ -111,30 +122,93 @@ class _WarningPageState extends State<WarningPage> {
       style: baseTextStyle.copyWith(
         fontSize: 12,
         fontWeight: FontWeight.w500,
-        color: Get.isDarkMode ? Colors.white54 : Colors.black54,
+        color: Colors.white54,
       ),
-    );
+    ).animate().fadeIn(duration: 500.ms).slideY(begin: 0.1);
   }
 
-  Widget _buildAgreeButton() {
-    return SizedBox(
-      width: double.infinity,
-      child: FilledButton(
-        onPressed: _agreeAndContinue,
-        child: const Text('Agree & Continue'),
+  Widget _buildButtonsCard() {
+    return _buildGlassCard(
+      title: '',
+      child: Column(
+        children: [
+          SizedBox(
+            width: double.infinity,
+            child: ElevatedButton(
+              onPressed: _agreeAndContinue,
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.green,
+                padding: const EdgeInsets.symmetric(vertical: 16),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
+                ),
+              ),
+              child: Text(
+                'Agree & Continue',
+                style: GoogleFonts.spaceGrotesk(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
+              ),
+            ).animate().fadeIn(duration: 500.ms).slideY(begin: 0.1),
+          ),
+          const SizedBox(height: 8),
+          SizedBox(
+            width: double.infinity,
+            child: ElevatedButton(
+              onPressed: _cancel,
+              style: ElevatedButton.styleFrom(
+                backgroundColor: const Color.fromARGB(255, 106, 23, 23),
+                padding: const EdgeInsets.symmetric(vertical: 16),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
+                ),
+              ),
+              child: Text(
+                'Cancel',
+                style: GoogleFonts.spaceGrotesk(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
+              ),
+            ).animate().fadeIn(duration: 500.ms).slideY(begin: 0.1),
+          ),
+        ],
       ),
-    );
+    ).animate().fadeIn(duration: 500.ms).slideY(begin: 0.1);
   }
 
-  Widget _buildCancelButton() {
-    return SizedBox(
+  /// Builds a glassmorphism card with optional title and child widgets.
+  Widget _buildGlassCard({required String title, required Widget child}) {
+    return Container(
       width: double.infinity,
-      child: FilledButton(
-        onPressed: _cancel,
-        style: ElevatedButton.styleFrom(
-          backgroundColor: const Color.fromARGB(255, 106, 23, 23),
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          colors: [
+            Colors.white.withOpacity(0.1),
+            Colors.white.withOpacity(0.05)
+          ],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
         ),
-        child: const Text('Cancel'),
+        border: Border.all(color: Colors.white.withOpacity(0.2), width: 1),
+        borderRadius: BorderRadius.circular(20),
+      ),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(20),
+        child: BackdropFilter(
+          filter: ImageFilter.blur(sigmaX: 12.0, sigmaY: 12.0),
+          child: Container(
+            padding: const EdgeInsets.all(16),
+            decoration: BoxDecoration(
+              color: Colors.white.withOpacity(0.05),
+              borderRadius: BorderRadius.circular(20),
+            ),
+            child: child,
+          ),
+        ),
       ),
     );
   }

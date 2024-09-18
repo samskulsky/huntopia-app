@@ -134,6 +134,15 @@ Stream<List<GameTemplate>> getUserGameTemplates(String uid) {
           .toList());
 }
 
+Future<List<GameTemplate>> getGameTemplates(String uid) async {
+  FirebaseFirestore firestore = FirebaseFirestore.instance;
+  CollectionReference gameTemplates = firestore.collection('gameTemplates');
+  QuerySnapshot querySnapshot = await gameTemplates.get();
+  return querySnapshot.docs
+      .map((doc) => GameTemplate.fromMap(doc.data() as Map<String, dynamic>))
+      .toList();
+}
+
 Future<bool> saveGameTemplate(GameTemplate gameTemplate) async {
   gameTemplate.lastUpdated = DateTime.now();
   FirebaseFirestore firestore = FirebaseFirestore.instance;
