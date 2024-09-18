@@ -13,6 +13,7 @@ analyzer:
     curly_braces_in_flow_control_structures: ignore
     prefer_collection_literals: ignore
     avoid_print: ignore
+    deprecated_member_use: ignore
 include: package:flutter_lints/flutter.yaml
 
 linter:

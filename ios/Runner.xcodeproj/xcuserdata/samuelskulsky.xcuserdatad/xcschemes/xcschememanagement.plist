@@ -7,12 +7,12 @@
 		<key>ImageNotification.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>75</integer>
+			<integer>78</integer>
 		</dict>
 		<key>InGameWidgetExtension.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>74</integer>
+			<integer>77</integer>
 		</dict>
 		<key>Runner.xcscheme_^#shared#^_</key>
 		<dict>

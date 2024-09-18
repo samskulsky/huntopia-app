@@ -2,9 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:scavhuntapp/screens/create/ai_generate.dart';
-import 'package:scavhuntapp/screens/create/claimzone_1.dart';
-import 'package:scavhuntapp/screens/create/create_game.dart';
 import 'package:scavhuntapp/screens/home_screen.dart';
 
 import '../../utils/theme_data.dart';

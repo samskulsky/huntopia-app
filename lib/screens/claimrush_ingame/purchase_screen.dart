@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../../models/game.dart';
 import '../../models/game_template.dart';
@@ -213,13 +214,26 @@ class _PurchaseScreenState extends State<PurchaseScreen> {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 16),
       width: double.infinity,
-      child: FilledButton(
+      child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+          padding: const EdgeInsets.symmetric(vertical: 16),
+          backgroundColor: Colors.green,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
+          ),
+        ),
         onPressed: item.itemType == 'disabler' && value.isEmpty
             ? null
             : () {
                 _handlePurchase(item, player);
               },
-        child: const Text('Purchase'),
+        child: Text(
+          'Purchase',
+          style: GoogleFonts.spaceGrotesk(
+            fontSize: 18,
+            color: Colors.white,
+          ),
+        ),
       ),
     );
   }
@@ -254,7 +268,7 @@ class _PurchaseScreenState extends State<PurchaseScreen> {
     player.coinBalance -= item.itemPrice;
     player.points += item.pointsPerCoin! * item.itemPrice;
     _logPurchase(player,
-        'purchased ${item.itemPrice} coins for ${item.pointsPerCoin! * item.itemPrice} points.');
+        'purchased ${item.pointsPerCoin! * item.itemPrice} points for ${item.itemPrice} coins.');
     updateGame(cGame!);
   }
 

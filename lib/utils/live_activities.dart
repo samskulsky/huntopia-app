@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/services.dart';
 
 class DynamicIslandManager {
@@ -14,7 +12,7 @@ class DynamicIslandManager {
       {required Map<String, dynamic> jsonData}) async {
     try {
       await _methodChannel.invokeListMethod('startLiveActivity', jsonData);
-    } catch (e, st) {
+    } catch (e) {
       // log(e.toString(), stackTrace: st);
     }
   }
@@ -23,7 +21,7 @@ class DynamicIslandManager {
       {required Map<String, dynamic> jsonData}) async {
     try {
       await _methodChannel.invokeListMethod('updateLiveActivity', jsonData);
-    } catch (e, st) {
+    } catch (e) {
       // log(e.toString(), stackTrace: st);
     }
   }
@@ -31,7 +29,7 @@ class DynamicIslandManager {
   Future<void> stopLiveActivity() async {
     try {
       await _methodChannel.invokeListMethod('stopLiveActivity');
-    } catch (e, st) {
+    } catch (e) {
       // log(e.toString(), stackTrace: st);
     }
   }

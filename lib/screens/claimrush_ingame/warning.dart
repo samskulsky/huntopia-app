@@ -4,11 +4,9 @@ import 'dart:developer';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:scavhuntapp/screens/claimrush_ingame/maingamescreen.dart';
-import 'package:scavhuntapp/screens/create/claimzone_1.dart';
 import 'package:scavhuntapp/screens/home_screen.dart';
 
 import '../../main.dart';
@@ -25,6 +23,8 @@ class _WarningPageState extends State<WarningPage> {
   Future<void> _agreeAndContinue() async {
     prefs.setBool('safetyWarning', true);
 
+    Get.offAll(() => const MainGameScreen());
+
     try {
       FirebaseMessaging messaging = FirebaseMessaging.instance;
       await messaging
@@ -37,8 +37,6 @@ class _WarningPageState extends State<WarningPage> {
     } catch (e) {
       log(e.toString());
     }
-
-    Get.offAll(() => const MainGameScreen());
   }
 
   void _cancel() {
@@ -73,7 +71,7 @@ class _WarningPageState extends State<WarningPage> {
           const SizedBox(height: 16),
           _buildFooterText(),
           const SizedBox(height: 16),
-          _buildButtonsCard(),
+          _buildButtonsCard().animate(delay: 1000.ms).flip()
         ],
       ),
     );
@@ -87,7 +85,7 @@ class _WarningPageState extends State<WarningPage> {
         fontWeight: FontWeight.w700,
         color: Colors.white,
       ),
-    ).animate().fadeIn(duration: 500.ms).slideY(begin: 0.1);
+    );
   }
 
   Widget _buildBodyText() {
@@ -98,7 +96,7 @@ class _WarningPageState extends State<WarningPage> {
         fontWeight: FontWeight.w500,
         color: Colors.white70,
       ),
-    ).animate().fadeIn(duration: 500.ms).slideY(begin: 0.1);
+    );
   }
 
   Widget _buildWarningTile(String message) {
@@ -113,7 +111,7 @@ class _WarningPageState extends State<WarningPage> {
           fontWeight: FontWeight.w600,
         ),
       ),
-    ).animate().fadeIn(duration: 500.ms).slideY(begin: 0.1);
+    );
   }
 
   Widget _buildFooterText() {
@@ -124,7 +122,7 @@ class _WarningPageState extends State<WarningPage> {
         fontWeight: FontWeight.w500,
         color: Colors.white54,
       ),
-    ).animate().fadeIn(duration: 500.ms).slideY(begin: 0.1);
+    );
   }
 
   Widget _buildButtonsCard() {
@@ -151,7 +149,7 @@ class _WarningPageState extends State<WarningPage> {
                   color: Colors.white,
                 ),
               ),
-            ).animate().fadeIn(duration: 500.ms).slideY(begin: 0.1),
+            ),
           ),
           const SizedBox(height: 8),
           SizedBox(
@@ -173,11 +171,11 @@ class _WarningPageState extends State<WarningPage> {
                   color: Colors.white,
                 ),
               ),
-            ).animate().fadeIn(duration: 500.ms).slideY(begin: 0.1),
+            ),
           ),
         ],
       ),
-    ).animate().fadeIn(duration: 500.ms).slideY(begin: 0.1);
+    );
   }
 
   /// Builds a glassmorphism card with optional title and child widgets.

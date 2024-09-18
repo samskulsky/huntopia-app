@@ -34,6 +34,7 @@ class _AIGenerateState extends State<AIGenerate> {
   int zonesGenerated = 0;
 
   // Make sure to set your Geoapify API key here
+  // ignore: non_constant_identifier_names
   static String GEOAPIFY_API_KEY = dotenv.env['GEOAPIFY_KEY'].toString();
 
   @override
@@ -752,14 +753,6 @@ Based on this structure, generate a JSON object for a game template with $numZon
     }
 
     return zones;
-  }
-
-  void _handleGenerationError() {
-    setState(() {
-      isLoading = false;
-    });
-    ToastificationHelper.showErrorToast(
-        context, 'Error. Failed to generate game. Please try again.');
   }
 
   void _showSuccessToast(String message) {

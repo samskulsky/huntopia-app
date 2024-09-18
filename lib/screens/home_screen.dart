@@ -78,7 +78,10 @@ class _HomeScreenState extends State<HomeScreen> {
           emailController.text = currentUser?.email ?? '';
 
           // Update FCM token after fetching user data
-          if (currentUser!.fcmToken == null || currentUser!.apnsToken == null) {
+          if (currentUser!.fcmToken == null ||
+              currentUser!.apnsToken == null ||
+              currentUser!.fcmToken!.isEmpty ||
+              currentUser!.apnsToken!.isEmpty) {
             updateFCMToken();
           }
 
@@ -288,6 +291,12 @@ class _HomeScreenState extends State<HomeScreen> {
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton.icon(
+                  style: ElevatedButton.styleFrom(
+                    padding: const EdgeInsets.symmetric(vertical: 4),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                  ),
                   icon: const FaIcon(
                     FontAwesomeIcons.penToSquare,
                     color: Colors.white,
@@ -305,6 +314,13 @@ class _HomeScreenState extends State<HomeScreen> {
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton.icon(
+                  style: ElevatedButton.styleFrom(
+                    padding: const EdgeInsets.symmetric(vertical: 4),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    backgroundColor: Colors.green,
+                  ),
                   icon: const FaIcon(
                     FontAwesomeIcons.robot,
                     color: Colors.white,
@@ -437,7 +453,7 @@ class _HomeScreenState extends State<HomeScreen> {
     } else if (gameType == 'photohunt') {
       iconData = FontAwesomeIcons.camera;
     } else {
-      iconData = FontAwesomeIcons.running;
+      iconData = FontAwesomeIcons.personRunning;
     }
     return Container(
       padding: const EdgeInsets.all(8),

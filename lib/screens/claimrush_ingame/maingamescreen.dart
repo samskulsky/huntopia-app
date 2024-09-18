@@ -1,6 +1,8 @@
 import 'dart:async';
 import 'dart:ui';
 import 'package:data_table_2/data_table_2.dart';
+import 'package:flutter_map_location_marker/flutter_map_location_marker.dart';
+import 'package:flutter_map_marker_cluster_2/flutter_map_marker_cluster.dart';
 import 'package:flutter_podium/flutter_podium.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -221,14 +223,29 @@ class _MainGameScreenState extends State<MainGameScreen> {
                       color: Colors.white54,
                     ),
                   ),
-                  FilledButton(
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.green,
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 32, vertical: 16),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                    ),
                     onPressed: () {
                       launchUrl(
                           Uri.parse(
                               'https://scavhuntapp.web.app/#/${currentGame.gameId}'),
                           mode: LaunchMode.externalApplication);
                     },
-                    child: const Text('View Game Recap'),
+                    child: Text(
+                      'View Game Recap',
+                      style: GoogleFonts.spaceGrotesk(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
+                    ),
                   ),
                   const SizedBox(height: 16),
                   Text(
@@ -333,7 +350,7 @@ class _MainGameScreenState extends State<MainGameScreen> {
                     },
                   ),
                   const SizedBox(height: 16),
-                  FilledButton(
+                  ElevatedButton(
                     onPressed: () {
                       prefs.remove('currentGameId');
                       FirebaseMessaging messaging = FirebaseMessaging.instance;
@@ -343,8 +360,20 @@ class _MainGameScreenState extends State<MainGameScreen> {
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.red,
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 32, vertical: 16),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
                     ),
-                    child: const Text('Leave Game'),
+                    child: Text(
+                      'Leave Game',
+                      style: GoogleFonts.spaceGrotesk(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
+                    ),
                   ).animate().fadeIn(
                       duration: const Duration(seconds: 1),
                       delay: Duration(seconds: 6 + currentGame.players.length)),
@@ -525,8 +554,15 @@ class _MainGameScreenState extends State<MainGameScreen> {
                       ));
                     },
                   ),
-                  FilledButton(
-                    child: const Text('View the Map'),
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.green,
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 32, vertical: 16),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                    ),
                     onPressed: () {
                       mapController = MapController();
                       // full screen dialog with game map, but no interaction
@@ -554,6 +590,14 @@ class _MainGameScreenState extends State<MainGameScreen> {
                         },
                       ));
                     },
+                    child: Text(
+                      'View the Map',
+                      style: GoogleFonts.spaceGrotesk(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
+                    ),
                   ),
                   const SizedBox(height: 32),
                   TextField(
@@ -621,7 +665,15 @@ class _MainGameScreenState extends State<MainGameScreen> {
                   ),
                   const SizedBox(height: 16),
                   if (host)
-                    FilledButton(
+                    ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.green,
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 32, vertical: 16),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                      ),
                       onPressed: currentGame.players.length < 2
                           ? null
                           : () {
@@ -645,15 +697,27 @@ class _MainGameScreenState extends State<MainGameScreen> {
                               );
                               updateGame(currentGame);
                             },
-                      child: const Text('Start Game'),
+                      child: Text(
+                        'Start Game',
+                        style: GoogleFonts.spaceGrotesk(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        ),
+                      ),
                     ),
-                  FilledButton(
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.transparent,
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 32, vertical: 16),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                    ),
                     onPressed: () {
                       _leaveGameDialog(currentGame, host);
                     },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.transparent,
-                    ),
                     child: Text('Leave Game',
                         style: baseTextStyle.copyWith(color: Colors.red)),
                   ),
@@ -684,7 +748,7 @@ class _MainGameScreenState extends State<MainGameScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text('Game Map'),
-                        Text('Tap a zone\'s circle to claim it!',
+                        Text('Tap a zone\'s point value to claim it!',
                             style:
                                 TextStyle(fontSize: 12, color: Colors.white54)),
                       ],
@@ -734,6 +798,7 @@ class _MainGameScreenState extends State<MainGameScreen> {
                         ),
                       IconButton(
                         onPressed: () {
+                          mapController = MapController();
                           setState(() {});
                         },
                         icon: const FaIcon(FontAwesomeIcons.rotate),
@@ -1420,7 +1485,15 @@ class _MainGameScreenState extends State<MainGameScreen> {
                           },
                         ),
                         const SizedBox(height: 16),
-                        FilledButton(
+                        ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.red,
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 32, vertical: 16),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                          ),
                           onPressed: () {
                             showDialog(
                                 context: context,
@@ -1466,7 +1539,14 @@ class _MainGameScreenState extends State<MainGameScreen> {
                                   );
                                 });
                           },
-                          child: const Text('End Game'),
+                          child: Text(
+                            'End Game',
+                            style: GoogleFonts.spaceGrotesk(
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                            ),
+                          ),
                         ),
                       ],
                     ),
@@ -1524,94 +1604,125 @@ class _MainGameScreenState extends State<MainGameScreen> {
                 );
               }).toList(),
             ),
-            MarkerLayer(
-              rotate: true,
-              markers: unclaimedZones.map((zone) {
-                return Marker(
-                  width: 18 + (zone.points / 7 * 2) > 35
-                      ? 35
-                      : 18 + (zone.points / 7 * 2),
-                  height: 18 + (zone.points / 7 * 2) > 35
-                      ? 35
-                      : 18 + (zone.points / 7 * 2),
-                  point:
-                      LatLng(zone.location.latitude, zone.location.longitude),
-                  child: GestureDetector(
-                    onTap: interaction
-                        ? () {
-                            Future.delayed(const Duration(milliseconds: 100),
-                                () {
-                              Zone tappedZone = currentGameTemplate.zones!
-                                  .firstWhere((element) =>
-                                      element.zoneId == zone.zoneId);
+            MarkerClusterLayerWidget(
+              options: MarkerClusterLayerOptions(
+                disableClusteringAtZoom: 18,
+                maxClusterRadius: 45,
+                size: const Size(40, 40),
+                alignment: Alignment.center,
+                padding: const EdgeInsets.all(50),
+                maxZoom: 15,
+                onMarkerTap: (marker) {
+                  if (!interaction) return;
+                  Zone tappedZone = currentGameTemplate.zones!.firstWhere(
+                      (element) => ValueKey(element.zoneId) == marker.key);
+                  if (currentGame.players.any((player) =>
+                      player.zonesClaimed.contains(tappedZone.zoneId))) {
+                    disabled = false;
+                    Get.to(() => const CantClaim());
+                    return;
+                  }
 
-                              if (currentGame.players.any((player) =>
-                                  player.zonesClaimed.contains(zone.zoneId))) {
-                                disabled = false;
-                                Get.to(() => const CantClaim());
-                                return;
-                              }
+                  Player currentPlayer = currentGame.players.firstWhere(
+                      (element) =>
+                          element.playerId ==
+                          FirebaseAuth.instance.currentUser!.uid);
 
-                              Player currentPlayer = currentGame.players
-                                  .firstWhere((element) =>
-                                      element.playerId ==
-                                      FirebaseAuth.instance.currentUser!.uid);
+                  if (currentPlayer.sabotagedUntil.isAfter(DateTime.now())) {
+                    disabled = true;
+                    Get.to(() => const CantClaim());
+                    return;
+                  }
 
-                              if (currentPlayer.sabotagedUntil
-                                  .isAfter(DateTime.now())) {
-                                disabled = true;
-                                Get.to(() => const CantClaim());
-                                return;
-                              }
+                  cGame = currentGame;
+                  curGame = currentGame;
+                  curPlayer = currentPlayer;
+                  currentZone = tappedZone;
 
-                              currentZone = tappedZone;
-                              cGame = currentGame;
-                              curGame = currentGame;
-                              curPlayer = currentPlayer;
-                              Get.to(() => const ClaimZoneScreen());
-                            });
-                          }
-                        : null,
-                    child: Container(
-                      alignment: Alignment.center,
-                      decoration: const BoxDecoration(
-                        color: Colors.black,
-                        shape: BoxShape.circle,
+                  Get.to(() => const ClaimZoneScreen());
+                },
+                markers: List<Marker>.generate(
+                  currentGameTemplate.zones!.length,
+                  (index) {
+                    Zone currentZone = currentGameTemplate.zones![index];
+                    return Marker(
+                      key: ValueKey(currentZone.zoneId),
+                      width: 18 + (currentZone.points / 7 * 2) > 35
+                          ? 35
+                          : 18 + (currentZone.points / 7 * 2),
+                      height: 18 + (currentZone.points / 7 * 2) > 35
+                          ? 35
+                          : 18 + (currentZone.points / 7 * 2),
+                      point: LatLng(
+                          currentZone.location.latitude,
+                          currentZone
+                              .location.longitude), // Location of the marker
+                      child: Container(
+                        alignment: Alignment.center,
+                        decoration: const BoxDecoration(
+                          color: Colors.black,
+                          shape: BoxShape.circle,
+                        ),
+                        child: Text(
+                          currentZone.points.toStringAsFixed(0),
+                          style: GoogleFonts.spaceGrotesk(
+                            fontSize: currentZone.points >= 100
+                                ? 20
+                                : 10 + (currentZone.points / 8 * 2) > 27
+                                    ? 27
+                                    : 10 + (currentZone.points / 8 * 2),
+                            fontWeight: FontWeight.w900,
+                            color: currentZone.points <= 5
+                                ? Colors.red
+                                : currentZone.points <= 10
+                                    ? Colors.deepOrange
+                                    : currentZone.points <= 15
+                                        ? Colors.orange
+                                        : currentZone.points <= 20
+                                            ? Colors.amber
+                                            : currentZone.points <= 25
+                                                ? Colors.yellow
+                                                : currentZone.points <= 30
+                                                    ? Colors.lime
+                                                    : currentZone.points <= 40
+                                                        ? Colors.lightGreen
+                                                        : Colors.green,
+                          ),
+                        ),
                       ),
+                    );
+                  },
+                ),
+                builder: (context, markers) {
+                  int points = 0;
+                  List<Zone> zones = currentGameTemplate.zones!
+                      .where((element) => markers.any(
+                          (marker) => ValueKey(element.zoneId) == marker.key))
+                      .toList();
+                  for (var zone in zones) {
+                    points += zone.points;
+                  }
+                  return Container(
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        color: Colors.black),
+                    child: Center(
                       child: Text(
-                        zone.points.toStringAsFixed(0),
+                        points.toString(),
                         style: GoogleFonts.spaceGrotesk(
-                          fontSize: zone.points >= 100
-                              ? 20
-                              : 10 + (zone.points / 8 * 2) > 27
-                                  ? 27
-                                  : 10 + (zone.points / 8 * 2),
-                          fontWeight: FontWeight.w900,
-                          color: zone.points <= 5
-                              ? Colors.red
-                              : zone.points <= 10
-                                  ? Colors.deepOrange
-                                  : zone.points <= 15
-                                      ? Colors.orange
-                                      : zone.points <= 20
-                                          ? Colors.amber
-                                          : zone.points <= 25
-                                              ? Colors.yellow
-                                              : zone.points <= 30
-                                                  ? Colors.lime
-                                                  : zone.points <= 40
-                                                      ? Colors.lightGreen
-                                                      : Colors.green,
+                          fontSize: 20,
+                          fontWeight: FontWeight.w700,
+                          color: Colors.green,
                         ),
                       ),
                     ),
-                  ),
-                );
-              }).toList(),
+                  );
+                },
+              ),
             ),
+            CurrentLocationLayer(),
           ],
-        ).animate().fadeIn(duration: 500.ms),
-        // Overlay any additional children widgets
+        ),
         ...children,
       ],
     );

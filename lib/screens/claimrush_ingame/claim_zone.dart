@@ -480,12 +480,26 @@ class _ClaimZoneScreenState extends State<ClaimZoneScreen> {
                 const SizedBox(height: 16),
                 SizedBox(
                   width: double.infinity,
-                  child: FilledButton(
+                  child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        padding: const EdgeInsets.symmetric(vertical: 16),
+                        backgroundColor: Colors.green,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                      ),
                       onPressed: () {
                         perm.Permission.camera.request();
                         _takePhotoAndUpload();
                       },
-                      child: const Text('Take a selfie')),
+                      child: Text(
+                        'Take a selfie',
+                        style: GoogleFonts.spaceGrotesk(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        ),
+                      )),
                 ),
               ],
             ),
@@ -523,8 +537,19 @@ class _ClaimZoneScreenState extends State<ClaimZoneScreen> {
                 ),
                 const SizedBox(height: 8),
                 TextField(
-                  decoration: const InputDecoration(
+                  decoration: InputDecoration(
                     labelText: 'Answer',
+                    labelStyle: baseTextStyle.copyWith(color: Colors.white70),
+                    filled: true,
+                    fillColor: Colors.grey[800],
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                      borderSide: BorderSide.none,
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                      borderSide: BorderSide.none,
+                    ),
                   ),
                   onChanged: (value) {
                     answer = value;
@@ -588,7 +613,14 @@ class _ClaimZoneScreenState extends State<ClaimZoneScreen> {
                 const SizedBox(height: 16),
                 SizedBox(
                   width: double.infinity,
-                  child: FilledButton(
+                  child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        padding: const EdgeInsets.symmetric(vertical: 16),
+                        backgroundColor: Colors.green,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                      ),
                       onPressed: () {
                         Navigator.push(
                           context,
@@ -597,7 +629,14 @@ class _ClaimZoneScreenState extends State<ClaimZoneScreen> {
                           ),
                         );
                       },
-                      child: const Text('Scan QR code')),
+                      child: Text(
+                        'Scan QR code',
+                        style: GoogleFonts.spaceGrotesk(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        ),
+                      )),
                 ),
               ],
             ),
