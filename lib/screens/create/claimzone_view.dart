@@ -545,20 +545,6 @@ class _ClaimZoneViewState extends State<ClaimZoneView> {
             size: 14,
             color: Colors.yellow,
           ),
-          const SizedBox(width: 4),
-          Text(
-            '${item.pointsPerCoin! * item.itemPrice} ',
-            style: baseTextStyle.copyWith(
-              fontSize: 16,
-              color: Colors.orange,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          const FaIcon(
-            FontAwesomeIcons.trophy,
-            size: 14,
-            color: Colors.orange,
-          ),
         ],
       ),
     );

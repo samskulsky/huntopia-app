@@ -30,10 +30,9 @@ class _AIGenerateState extends State<AIGenerate> {
   bool isLoading = false;
 
   String loadingMessage = "Initializing...";
-  int totalZones = 50;
+  int totalZones = 0;
   int zonesGenerated = 0;
 
-  // Make sure to set your Geoapify API key here
   // ignore: non_constant_identifier_names
   static String GEOAPIFY_API_KEY = dotenv.env['GEOAPIFY_KEY'].toString();
 
@@ -101,6 +100,10 @@ class _AIGenerateState extends State<AIGenerate> {
                       const SizedBox(height: 8),
                     if (!isLoading && currentUser!.tokens >= 15)
                       _buildGenerateButton2(),
+                    if (!isLoading && currentUser!.tokens >= 50)
+                      const SizedBox(height: 8),
+                    if (!isLoading && currentUser!.tokens >= 50)
+                      _buildGenerateButton3(),
                     if (currentUser!.tokens < 1) _buildBuyButton(),
                   ],
                 ),
@@ -174,6 +177,7 @@ class _AIGenerateState extends State<AIGenerate> {
   }
 
   Widget _buildGenerateButton() {
+    totalZones = 40;
     return SizedBox(
       width: double.infinity,
       child: ElevatedButton(
@@ -259,6 +263,7 @@ class _AIGenerateState extends State<AIGenerate> {
   }
 
   Widget _buildGenerateButton2() {
+    totalZones = 50;
     return SizedBox(
       width: double.infinity,
       child: ElevatedButton(
@@ -344,6 +349,93 @@ class _AIGenerateState extends State<AIGenerate> {
     );
   }
 
+  Widget _buildGenerateButton3() {
+    totalZones = 165;
+    return SizedBox(
+      width: double.infinity,
+      child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+          backgroundColor: Colors.green,
+          padding: const EdgeInsets.symmetric(vertical: 16),
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+        ),
+        onPressed: () async {
+          FocusScope.of(context).unfocus();
+          if (gameDescriptionController.text.isEmpty) {
+            ToastificationHelper.showErrorToast(
+                context, 'Please enter a game description.');
+            return;
+          }
+
+          setState(() {
+            isLoading = true;
+            loadingMessage = "Making request...";
+          });
+
+          currentUser!.tokens -= 15;
+          await FirebaseFirestore.instance
+              .collection('users')
+              .doc(currentUser!.uid)
+              .update({'tokens': currentUser!.tokens});
+
+          model = "gpt-4o";
+
+          try {
+            List<OpenAIChatCompletionModel> responses =
+                await _generateMultipleZoneMessages(
+                    gameDescriptionController.text, totalZones, [], []);
+            if (responses.isEmpty) {
+              throw Exception('Failed to generate any responses from GPT');
+            }
+
+            var gameData = await _combineZones(responses);
+
+            var gameTemplate = GameTemplate(
+              templateId: const Uuid().v4(),
+              creatorUid: FirebaseAuth.instance.currentUser!.uid,
+              creatorName: 'AI Game Creator',
+              gameType: 'claimthezone',
+              createdAt: DateTime.now(),
+              lastUpdated: DateTime.now(),
+              zones: gameData['zones'] as List<Zone>,
+              gameName: 'AI Generated Game',
+              gameDescription: gameDescriptionController.text,
+              center: GeoPoint(
+                  (gameData['zones'] as List<Zone>).first.location.latitude,
+                  (gameData['zones'] as List<Zone>).first.location.longitude),
+              coinShopItems: gameData['coinShopItems'] as List<CoinShopItem>,
+            );
+
+            await saveGameTemplate(gameTemplate);
+
+            _showSuccessToast(
+                'Game Generated Successfully! You can view it in the "My Games" section.');
+          } catch (e) {
+            print('Error: $e');
+            ToastificationHelper.showErrorToast(
+                context, 'Error: Failed to generate game. $e');
+          } finally {
+            setState(() {
+              isLoading = false;
+            });
+            Get.offAll(() => const HomeScreen());
+          }
+        },
+        child: Column(
+          children: [
+            Text('Generate Expert Game',
+                style:
+                    baseTextStyle.copyWith(color: Colors.white, fontSize: 18)),
+            Text('Advanced Model • Very Large Game • 50 Tokens',
+                style: baseTextStyle.copyWith(
+                    fontSize: 12, color: Colors.white70)),
+          ],
+        ),
+      ),
+    );
+  }
+
   Future<OpenAIChatCompletionModel> _generateGameWithAI(String prompt) async {
     final requestMessages = [
       OpenAIChatCompletionChoiceMessageModel(
@@ -413,13 +505,23 @@ The game is played via a Flutter/Firebase app, using the following JSON structur
     }
   ]
 }
-Please ensure the generated zones do not overlap.
-The game ALREADY has the following zone names: [$existingZonesStr] and the following geo locations: [$existingGeoPointsStr].
-DO NOT create ANY zones with the same name or location as the existing zones.
+The game ALREADY has the following zone names: [$existingZonesStr]. 
+DO NOT make ANY zones with the same name or location as the existing zones -- NO OVERLAPS.
 Always use SPECIFIC LOCATIONS, like "Space Mountain" instead of "Roller Coaster". Ensure the names are accurate.
-Try to spread the zones out across the area, as it makes the game take longer and be more fun.
+The names are used in a GEOCODING API to get the exact coordinates.
+Try to SPREAD THE ZONES OUT across the area, as it makes the game take longer and be more fun.
 Zones that are harder to get to, have more challenging tasks, or have fewer nearby zones should have higher points (25-50). Zones that are in a cluster, are easier to get to, and have easy tasks should have lower points (5 - 25).
 Based on this structure, generate a JSON object for a game template with $numZones zones. Ensure zones have accurate latitude and longitude coordinates, and the description is: $description. Only return the JSON object, nothing else. If you cannot generate it, respond with "error".
+DO RELEVANT AND INTERSESTING CHALLENGES.
+Example selfie challenges (but make unique ones, just for reference):
+- Take a selfie doing a Mona Lisa smile in front of the Louvre.
+- Take a selfie with a street performer.
+- Make yourself part of the Hollywood sign.
+YOU MUST KNOW AN OBJECTIVE ANSWER TO THE QUESTION.
+Example question challenges (but make unique ones, just for reference):
+- How many steps does it take to climb this building?
+- Which famous person lived in this house?
+- How many windows are on the front of this building?
 """;
   }
 
@@ -574,7 +676,6 @@ Based on this structure, generate a JSON object for a game template with $numZon
         print(
             'No geocoded location found for zone $zoneName within 5 miles. Using original coordinates.');
         // Retain original coordinates from ChatGPT
-        // Optionally, you can log or notify the user
       }
     }
 
@@ -710,6 +811,7 @@ Based on this structure, generate a JSON object for a game template with $numZon
 
         return geocodedLocations;
       } else if (jobResponse.statusCode == 202) {
+        print('Job is still pending. Attempts: $attempts');
         // Job is still pending.
         continue;
       } else {

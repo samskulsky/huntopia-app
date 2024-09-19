@@ -1608,6 +1608,7 @@ class _MainGameScreenState extends State<MainGameScreen> {
               options: MarkerClusterLayerOptions(
                 disableClusteringAtZoom: 18,
                 maxClusterRadius: 45,
+                showPolygon: false,
                 size: const Size(40, 40),
                 alignment: Alignment.center,
                 padding: const EdgeInsets.all(50),
