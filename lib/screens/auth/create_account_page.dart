@@ -60,6 +60,7 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
             // Email TextField
             TextField(
               controller: _emailController,
+              keyboardType: TextInputType.emailAddress,
               decoration: InputDecoration(
                 labelText: 'Email',
                 prefixIcon: const Icon(Icons.email, color: Colors.white),

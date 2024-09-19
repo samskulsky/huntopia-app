@@ -70,6 +70,7 @@ class _SignInPageState extends State<SignInPage> {
             // Email TextField
             TextField(
               controller: _emailController,
+              keyboardType: TextInputType.emailAddress,
               decoration: InputDecoration(
                 labelText: 'Email',
                 prefixIcon: const Icon(Icons.email, color: Colors.white),

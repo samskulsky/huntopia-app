@@ -869,10 +869,10 @@ class _MainGameScreenState extends State<MainGameScreen> {
                     padding: const EdgeInsets.fromLTRB(16, 16, 16, 120),
                     itemCount: currentGameTemplate.zones!.length,
                     itemBuilder: (context, index) {
-                      Zone currentZone = currentGameTemplate.zones![index];
+                      Zone currZone = currentGameTemplate.zones![index];
                       Player? claimedBy = currentGame.players.firstWhereOrNull(
-                          (element) => element.zonesClaimed
-                              .contains(currentZone.zoneId));
+                          (element) =>
+                              element.zonesClaimed.contains(currZone.zoneId));
                       return Card(
                         color: claimedBy != null
                             ? getColor(claimedBy.teamColor).withOpacity(0.3)
@@ -891,23 +891,23 @@ class _MainGameScreenState extends State<MainGameScreen> {
                         ),
                         child: ListTile(
                           title: Text(
-                            currentZone.zoneName,
+                            currZone.zoneName,
                             style: baseTextStyle.copyWith(
-                              fontSize: 20,
+                              fontSize: 16,
                               fontWeight: FontWeight.w700,
                             ),
                           ),
                           subtitle: Row(
                             children: [
                               Text(
-                                currentZone.points.toString(),
+                                currZone.points.toString(),
                                 style: baseTextStyle.copyWith(fontSize: 14),
                               ),
                               const SizedBox(width: 4),
                               const FaIcon(FontAwesomeIcons.trophy, size: 12),
                               const SizedBox(width: 8),
                               Text(
-                                currentZone.coins.toString(),
+                                currZone.coins.toString(),
                                 style: baseTextStyle.copyWith(fontSize: 14),
                               ),
                               const SizedBox(width: 4),
@@ -921,16 +921,61 @@ class _MainGameScreenState extends State<MainGameScreen> {
                               ),
                             ],
                           ),
-                          trailing: IconButton(
-                            icon: const FaIcon(FontAwesomeIcons.locationArrow),
-                            onPressed: () {
-                              _controller.jumpToTab(0);
-                              mapController.move(
-                                LatLng(currentZone.location.latitude,
-                                    currentZone.location.longitude),
-                                18,
-                              );
-                            },
+                          trailing: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              IconButton(
+                                icon: const FaIcon(
+                                    FontAwesomeIcons.locationArrow),
+                                onPressed: () {
+                                  _controller.jumpToTab(0);
+                                  mapController.move(
+                                    LatLng(currZone.location.latitude,
+                                        currZone.location.longitude),
+                                    18,
+                                  );
+                                },
+                              ),
+                              IconButton(
+                                icon: const FaIcon(FontAwesomeIcons.infoCircle),
+                                onPressed: () {
+                                  _controller.jumpToTab(0);
+                                  mapController.move(
+                                    LatLng(currZone.location.latitude,
+                                        currZone.location.longitude),
+                                    18,
+                                  );
+
+                                  if (currentGame.players.any((player) => player
+                                      .zonesClaimed
+                                      .contains(currZone.zoneId))) {
+                                    disabled = false;
+                                    Get.to(() => const CantClaim());
+                                    return;
+                                  }
+
+                                  Player currentPlayer = currentGame.players
+                                      .firstWhere((element) =>
+                                          element.playerId ==
+                                          FirebaseAuth
+                                              .instance.currentUser!.uid);
+
+                                  if (currentPlayer.sabotagedUntil
+                                      .isAfter(DateTime.now())) {
+                                    disabled = true;
+                                    Get.to(() => const CantClaim());
+                                    return;
+                                  }
+
+                                  cGame = currentGame;
+                                  curGame = currentGame;
+                                  curPlayer = currentPlayer;
+                                  currentZone = currZone;
+
+                                  Get.to(() => const ClaimZoneScreen());
+                                },
+                              ),
+                            ],
                           ),
                         ),
                       );
@@ -1711,7 +1756,7 @@ class _MainGameScreenState extends State<MainGameScreen> {
                       child: Text(
                         points.toString(),
                         style: GoogleFonts.spaceGrotesk(
-                          fontSize: 20,
+                          fontSize: points < 1000 ? 20 : 15,
                           fontWeight: FontWeight.w700,
                           color: Colors.green,
                         ),

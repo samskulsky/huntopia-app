@@ -5,7 +5,8 @@ COCOAPODS_PARALLEL_CODE_SIGN=true
 FLUTTER_TARGET=/Users/samuelskulsky/Coding/Flutter Projects/sc/scavhuntapp/lib/main.dart
 FLUTTER_BUILD_DIR=build
 FLUTTER_BUILD_NAME=1.1.1
-FLUTTER_BUILD_NUMBER=7
+FLUTTER_BUILD_NUMBER=8
+CONFIGURATION_BUILD_DIR=/Users/samuelskulsky/Coding/Flutter Projects/sc/scavhuntapp/build/ios/iphoneos
 EXCLUDED_ARCHS[sdk=iphonesimulator*]=i386 arm64
 EXCLUDED_ARCHS[sdk=iphoneos*]=armv7
 DART_OBFUSCATION=false

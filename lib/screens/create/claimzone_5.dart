@@ -3,6 +3,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
+import 'package:flutter_map_marker_cluster_2/flutter_map_marker_cluster.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -180,52 +181,91 @@ class _ClaimZone5State extends State<ClaimZone5> {
             );
           }).toList(),
         ),
-        MarkerLayer(
-          rotate: true,
-          markers: gameTemplate.zones!.map((zone) {
-            return Marker(
-              width: 18 + (zone.points / 7 * 2) > 35
-                  ? 35
-                  : 18 + (zone.points / 7 * 2),
-              height: 18 + (zone.points / 7 * 2) > 35
-                  ? 35
-                  : 18 + (zone.points / 7 * 2),
-              point: LatLng(zone.location.latitude, zone.location.longitude),
-              child: Container(
-                alignment: Alignment.center,
-                decoration: const BoxDecoration(
-                  color: Colors.black,
-                  shape: BoxShape.circle,
-                ),
-                child: Text(
-                  zone.points.toStringAsFixed(0),
-                  style: GoogleFonts.spaceGrotesk(
-                    fontSize: zone.points >= 100
-                        ? 20
-                        : 10 + (zone.points / 8 * 2) > 27
-                            ? 27
-                            : 10 + (zone.points / 8 * 2),
-                    fontWeight: FontWeight.w900,
-                    color: zone.points <= 5
-                        ? Colors.red
-                        : zone.points <= 10
-                            ? Colors.deepOrange
-                            : zone.points <= 15
-                                ? Colors.orange
-                                : zone.points <= 20
-                                    ? Colors.amber
-                                    : zone.points <= 25
-                                        ? Colors.yellow
-                                        : zone.points <= 30
-                                            ? Colors.lime
-                                            : zone.points <= 40
-                                                ? Colors.lightGreen
-                                                : Colors.green,
+        MarkerClusterLayerWidget(
+          options: MarkerClusterLayerOptions(
+            disableClusteringAtZoom: 18,
+            maxClusterRadius: 45,
+            showPolygon: false,
+            size: const Size(40, 40),
+            alignment: Alignment.center,
+            padding: const EdgeInsets.all(50),
+            maxZoom: 15,
+            markers: List<Marker>.generate(
+              gameTemplate.zones!.length,
+              (index) {
+                Zone currentZone = gameTemplate.zones![index];
+                return Marker(
+                  key: ValueKey(currentZone.zoneId),
+                  width: 18 + (currentZone.points / 7 * 2) > 35
+                      ? 35
+                      : 18 + (currentZone.points / 7 * 2),
+                  height: 18 + (currentZone.points / 7 * 2) > 35
+                      ? 35
+                      : 18 + (currentZone.points / 7 * 2),
+                  point: LatLng(currentZone.location.latitude,
+                      currentZone.location.longitude), // Location of the marker
+                  child: Container(
+                    alignment: Alignment.center,
+                    decoration: const BoxDecoration(
+                      color: Colors.black,
+                      shape: BoxShape.circle,
+                    ),
+                    child: Text(
+                      currentZone.points.toStringAsFixed(0),
+                      style: GoogleFonts.spaceGrotesk(
+                        fontSize: currentZone.points >= 100
+                            ? 20
+                            : 10 + (currentZone.points / 8 * 2) > 27
+                                ? 27
+                                : 10 + (currentZone.points / 8 * 2),
+                        fontWeight: FontWeight.w900,
+                        color: currentZone.points <= 5
+                            ? Colors.red
+                            : currentZone.points <= 10
+                                ? Colors.deepOrange
+                                : currentZone.points <= 15
+                                    ? Colors.orange
+                                    : currentZone.points <= 20
+                                        ? Colors.amber
+                                        : currentZone.points <= 25
+                                            ? Colors.yellow
+                                            : currentZone.points <= 30
+                                                ? Colors.lime
+                                                : currentZone.points <= 40
+                                                    ? Colors.lightGreen
+                                                    : Colors.green,
+                      ),
+                    ),
+                  ),
+                );
+              },
+            ),
+            builder: (context, markers) {
+              int points = 0;
+              List<Zone> zones = gameTemplate.zones!
+                  .where((element) => markers
+                      .any((marker) => ValueKey(element.zoneId) == marker.key))
+                  .toList();
+              for (var zone in zones) {
+                points += zone.points;
+              }
+              return Container(
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    color: Colors.black),
+                child: Center(
+                  child: Text(
+                    points.toString(),
+                    style: GoogleFonts.spaceGrotesk(
+                      fontSize: points < 1000 ? 20 : 15,
+                      fontWeight: FontWeight.w700,
+                      color: Colors.green,
+                    ),
                   ),
                 ),
-              ),
-            );
-          }).toList(),
+              );
+            },
+          ),
         ),
       ],
     );

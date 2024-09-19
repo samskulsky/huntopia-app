@@ -8,12 +8,15 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
+import 'package:scavhuntapp/models/game.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:toastification/toastification.dart';
 
 import 'firebase_options.dart';
 import 'screens/auth/auth_page.dart';
 import 'screens/claimrush_ingame/maingamescreen.dart';
 import 'utils/home_loading.dart';
+import 'utils/live_activities.dart';
 import 'utils/theme_data.dart';
 
 late SharedPreferences prefs;
@@ -43,9 +46,136 @@ void main() async {
   messaging.setForegroundNotificationPresentationOptions(
       alert: true, badge: true, sound: true);
 
-  // TODO: Set up Firebase Messaging handlers
+  FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
+  FirebaseMessaging.onMessage.listen((RemoteMessage message) async {
+    final DynamicIslandManager diManager =
+        DynamicIslandManager(channelKey: 'DI');
+    print("Handling a foreground message: ${message.messageId}");
+
+    if (prefs.containsKey('currentGameId')) {
+      Game currentGame = (await getGame(prefs.getString('currentGameId')!))!;
+      Player currentPlayer = currentGame.players.firstWhere((element) =>
+          element.playerId == FirebaseAuth.instance.currentUser!.uid);
+
+      Toastification toast = Toastification();
+      toastification.show(
+        style: ToastificationStyle.fillColored,
+        applyBlurEffect: true,
+        primaryColor: Colors.green[800]!,
+        backgroundColor: Colors.green[800]!,
+        showIcon: false,
+        autoCloseDuration: const Duration(seconds: 5),
+        context: Get.overlayContext,
+        title: Text(
+          message.data['title'],
+          style: baseTextStyle.copyWith(
+            fontSize: 16,
+            fontWeight: FontWeight.w700,
+            decoration: TextDecoration.underline,
+          ),
+        ),
+        description: Text(
+          message.data['body'],
+          style: baseTextStyle.copyWith(
+            fontSize: 14,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+        alignment: Alignment.topCenter,
+        boxShadow: highModeShadow,
+      );
+      Map<String, dynamic> data = {
+        "gameId": currentGame.gameId,
+        "gameName": currentGame.game.gameName,
+        "hostName": currentGame.hostName,
+        "startTime": currentGame.startTime.toIso8601String(),
+        "endTime": currentGame.endTime.toIso8601String(),
+        "timeLeftMinutes":
+            currentGame.endTime.difference(DateTime.now()).inMinutes,
+        "gameStatus": currentGame.gameStatus,
+        "playerCount": currentGame.players.length,
+        "maxTeams": currentGame.maxTeams,
+        "durationMinutes": currentGame.durationMinutes,
+        "teamPlace": currentGame.players.indexWhere(
+                (element) => element.playerId == currentPlayer.playerId) +
+            1,
+        "teamScore": currentPlayer.points,
+        "teamCoins": currentPlayer.coinBalance,
+        "teamName": currentPlayer.teamName,
+        "teamColor": currentPlayer.teamColor,
+        "zonesClaimed": currentPlayer.zonesClaimed.length,
+      };
+      diManager.updateLiveActivity(jsonData: data);
+    }
+  });
 
   runApp(const MyApp());
+}
+
+@pragma('vm:entry-point')
+Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
+  try {
+    // Initialize Firebase
+    await Firebase.initializeApp();
+
+    // Initialize SharedPreferences
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    final DynamicIslandManager diManager =
+        DynamicIslandManager(channelKey: 'DI');
+
+    print("Handling a background message: ${message.messageId}");
+
+    if (prefs.containsKey('currentGameId')) {
+      Game? currentGame = await getGame(prefs.getString('currentGameId')!);
+      if (currentGame == null) {
+        log("Current game not found");
+        return;
+      }
+
+      // Initialize FirebaseAuth to get current user
+      User? currentUser = FirebaseAuth.instance.currentUser;
+      if (currentUser == null) {
+        log("No user is currently signed in");
+        return;
+      }
+
+      Player? currentPlayer = currentGame.players.firstWhereOrNull(
+        (element) => element.playerId == currentUser.uid,
+      );
+
+      if (currentPlayer == null) {
+        log("Current player not found in the game");
+        return;
+      }
+
+      Map<String, dynamic> data = {
+        "gameId": currentGame.gameId,
+        "gameName": currentGame.game.gameName,
+        "hostName": currentGame.hostName,
+        "startTime": currentGame.startTime.toIso8601String(),
+        "endTime": currentGame.endTime.toIso8601String(),
+        "timeLeftMinutes":
+            currentGame.endTime.difference(DateTime.now()).inMinutes,
+        "gameStatus": currentGame.gameStatus,
+        "playerCount": currentGame.players.length,
+        "maxTeams": currentGame.maxTeams,
+        "durationMinutes": currentGame.durationMinutes,
+        "teamPlace": currentGame.players.indexWhere(
+                (element) => element.playerId == currentPlayer.playerId) +
+            1,
+        "teamScore": currentPlayer.points,
+        "teamCoins": currentPlayer.coinBalance,
+        "teamName": currentPlayer.teamName,
+        "teamColor": currentPlayer.teamColor,
+        "zonesClaimed": currentPlayer.zonesClaimed.length,
+      };
+
+      diManager.updateLiveActivity(jsonData: data);
+    }
+  } catch (e) {
+    print("Error in background message handler: $e");
+  }
 }
 
 class MyApp extends StatelessWidget {
