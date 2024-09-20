@@ -23,12 +23,6 @@ class _ClaimZone6State extends State<ClaimZone6> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Finish', style: TextStyle(color: Colors.white)),
-        leading: IconButton(
-          icon: const FaIcon(FontAwesomeIcons.arrowLeft, color: Colors.white),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
         backgroundColor: Colors.black,
       ),
       backgroundColor: Colors.black,

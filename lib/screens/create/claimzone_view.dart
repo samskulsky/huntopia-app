@@ -373,6 +373,7 @@ class _ClaimZoneViewState extends State<ClaimZoneView> {
                       ),
                       onPressed: () {
                         edit = false;
+                        fromInfoPage = true;
                         Get.to(() => const AddZone());
                       },
                       icon: const FaIcon(FontAwesomeIcons.plus,

@@ -1,0 +1,32 @@
+{
+  "name": "motion",
+  "version": "0.0.1",
+  "summary": "Motion",
+  "description": "A fancy widget that applies a gyroscope or hover based motion effect to its child.",
+  "homepage": "https://github.com/mrcendre/motion",
+  "license": {
+    "type": "BSD",
+    "file": "../LICENSE"
+  },
+  "authors": {
+    "mrcendre": "guillaume@cendre.me"
+  },
+  "source": {
+    "http": "https://github.com/mrcendre/motion"
+  },
+  "documentation_url": "https://pub.dev/packages/motion",
+  "source_files": "Classes/**/*",
+  "public_header_files": "Classes/**/*.h",
+  "dependencies": {
+    "Flutter": [
+
+    ]
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "pod_target_xcconfig": {
+    "DEFINES_MODULE": "YES",
+    "VALID_ARCHS[sdk=iphonesimulator*]": "x86_64"
+  }
+}

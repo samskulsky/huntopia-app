@@ -7,7 +7,6 @@ export "FLUTTER_TARGET=/Users/samuelskulsky/Coding/Flutter Projects/sc/scavhunta
 export "FLUTTER_BUILD_DIR=build"
 export "FLUTTER_BUILD_NAME=1.1.1"
 export "FLUTTER_BUILD_NUMBER=8"
-export "CONFIGURATION_BUILD_DIR=/Users/samuelskulsky/Coding/Flutter Projects/sc/scavhuntapp/build/ios/iphoneos"
 export "DART_OBFUSCATION=false"
 export "TRACK_WIDGET_CREATION=true"
 export "TREE_SHAKE_ICONS=false"

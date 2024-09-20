@@ -55,9 +55,13 @@ class _HomeScreenState extends State<HomeScreen> {
       final fcmToken = await FirebaseMessaging.instance.getToken();
 
       if (currentUser != null) {
-        currentUser!.apnsToken = apnsToken;
-        currentUser!.fcmToken = fcmToken;
-        updateAppUser(currentUser!);
+        if (currentUser!.apnsToken != apnsToken ||
+            currentUser!.fcmToken != fcmToken) {
+          currentUser!.apnsToken = apnsToken;
+          currentUser!.fcmToken = fcmToken;
+          updateAppUser(currentUser!);
+          print('Updated FCM token');
+        }
       }
     } catch (e) {
       ToastificationHelper.showErrorToast(
@@ -77,13 +81,7 @@ class _HomeScreenState extends State<HomeScreen> {
           usernameController.text = currentUser?.displayName ?? '';
           emailController.text = currentUser?.email ?? '';
 
-          // Update FCM token after fetching user data
-          if (currentUser!.fcmToken == null ||
-              currentUser!.apnsToken == null ||
-              currentUser!.fcmToken!.isEmpty ||
-              currentUser!.apnsToken!.isEmpty) {
-            updateFCMToken();
-          }
+          updateFCMToken();
 
           // Handle banned users
           if (currentUser!.role == 'ban') {

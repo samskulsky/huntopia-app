@@ -939,13 +939,6 @@ class _MainGameScreenState extends State<MainGameScreen> {
                               IconButton(
                                 icon: const FaIcon(FontAwesomeIcons.infoCircle),
                                 onPressed: () {
-                                  _controller.jumpToTab(0);
-                                  mapController.move(
-                                    LatLng(currZone.location.latitude,
-                                        currZone.location.longitude),
-                                    18,
-                                  );
-
                                   if (currentGame.players.any((player) => player
                                       .zonesClaimed
                                       .contains(currZone.zoneId))) {
@@ -995,6 +988,16 @@ class _MainGameScreenState extends State<MainGameScreen> {
                   ),
                   body: Column(
                     children: [
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          'Each extra coin will be converted to a point at the end of the game.',
+                          style: baseTextStyle.copyWith(
+                            fontSize: 12,
+                            color: Colors.white54,
+                          ),
+                        ),
+                      ),
                       const SizedBox(height: 8),
                       Podium(
                         height: 180,
@@ -1610,6 +1613,12 @@ class _MainGameScreenState extends State<MainGameScreen> {
     bool interaction = true,
     List<Widget> children = const [], // Optional with default empty list
   }) {
+    List<Zone> unclaimedZones = currentGameTemplate.zones!
+        .where((element) =>
+            !currentGame.players.any(
+                (player) => player.zonesClaimed.contains(element.zoneId)) &&
+            element.points > 0)
+        .toList();
     return Stack(
       children: [
         FlutterMap(
@@ -1660,7 +1669,7 @@ class _MainGameScreenState extends State<MainGameScreen> {
                 maxZoom: 15,
                 onMarkerTap: (marker) {
                   if (!interaction) return;
-                  Zone tappedZone = currentGameTemplate.zones!.firstWhere(
+                  Zone tappedZone = unclaimedZones.firstWhere(
                       (element) => ValueKey(element.zoneId) == marker.key);
                   if (currentGame.players.any((player) =>
                       player.zonesClaimed.contains(tappedZone.zoneId))) {
@@ -1688,9 +1697,9 @@ class _MainGameScreenState extends State<MainGameScreen> {
                   Get.to(() => const ClaimZoneScreen());
                 },
                 markers: List<Marker>.generate(
-                  currentGameTemplate.zones!.length,
+                  unclaimedZones.length,
                   (index) {
-                    Zone currentZone = currentGameTemplate.zones![index];
+                    Zone currentZone = unclaimedZones[index];
                     return Marker(
                       key: ValueKey(currentZone.zoneId),
                       width: 18 + (currentZone.points / 7 * 2) > 35
@@ -1741,7 +1750,7 @@ class _MainGameScreenState extends State<MainGameScreen> {
                 ),
                 builder: (context, markers) {
                   int points = 0;
-                  List<Zone> zones = currentGameTemplate.zones!
+                  List<Zone> zones = unclaimedZones
                       .where((element) => markers.any(
                           (marker) => ValueKey(element.zoneId) == marker.key))
                       .toList();

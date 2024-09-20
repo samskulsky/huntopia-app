@@ -26,6 +26,7 @@ class _WarningPageState extends State<WarningPage> {
     Get.offAll(() => const MainGameScreen());
 
     try {
+      print('Subscribing to game-${prefs.getString('currentGameId')}');
       FirebaseMessaging messaging = FirebaseMessaging.instance;
       await messaging
           .subscribeToTopic('game-${prefs.getString('currentGameId')}');

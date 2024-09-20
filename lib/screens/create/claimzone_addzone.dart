@@ -226,6 +226,7 @@ class _AddZoneState extends State<AddZone> {
                   const SizedBox(height: 8),
                   TextField(
                     controller: zoneNameController,
+                    textCapitalization: TextCapitalization.words,
                     decoration: InputDecoration(
                       labelText: 'Zone Name',
                       labelStyle: baseTextStyle.copyWith(color: Colors.white70),
