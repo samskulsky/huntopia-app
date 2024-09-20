@@ -153,7 +153,7 @@ class _AIGenerateState extends State<AIGenerate> {
         ),
       ),
       maxLines: 4,
-      maxLength: 200,
+      maxLength: 300,
       keyboardType: TextInputType.text,
       style: baseTextStyle.copyWith(color: Colors.white),
     );
@@ -507,8 +507,8 @@ The game is played via a Flutter/Firebase app, using the following JSON structur
 }
 The game ALREADY has the following zone names: [$existingZonesStr]. 
 DO NOT make ANY zones with the same name or location as the existing zones -- NO OVERLAPS.
-Always use SPECIFIC LOCATIONS, like "Space Mountain" instead of "Roller Coaster". Ensure the names are accurate.
-The names are used in a GEOCODING API to get the exact coordinates.
+Always use SPECIFIC LOCATIONS, ex. like "Space Mountain" instead of "Roller Coaster". Ensure the names are accurate.
+The names are searched in GOOGLE MAPS to get the exact coordinates, so ONLY locations that would be foumd.
 Try to SPREAD THE ZONES OUT across the area, as it makes the game take longer and be more fun.
 Zones that are harder to get to, have more challenging tasks, or have fewer nearby zones should have higher points (25-50). Zones that are in a cluster, are easier to get to, and have easy tasks should have lower points (5 - 25).
 Based on this structure, generate a JSON object for a game template with $numZones zones. Ensure zones have accurate latitude and longitude coordinates, and the description is: $description. Only return the JSON object, nothing else. If you cannot generate it, respond with "error".
@@ -702,7 +702,7 @@ Example question challenges (but make unique ones, just for reference):
       },
       {
         "itemId": "161cb90e-fb6c-4174-8723-76b18797f128",
-        "itemName": "Sabotage 15m",
+        "itemName": "15 Min Sabotage",
         "itemDescription": "Disables opponents for 15 minutes.",
         "itemPrice": 25,
         "pointsPerCoin": 1,
@@ -712,7 +712,7 @@ Example question challenges (but make unique ones, just for reference):
       },
       {
         "itemId": "161cb90e-fb6c-4174-8723-76b18797f128",
-        "itemName": "Sabotage 30m",
+        "itemName": "30 Min Sabotage",
         "itemDescription": "Disables opponents for 30 minutes.",
         "itemPrice": 45,
         "pointsPerCoin": 1,

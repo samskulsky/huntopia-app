@@ -33,7 +33,7 @@ class _AddZoneState extends State<AddZone> {
   TextEditingController qrCodeController = TextEditingController();
 
   final MapController mapController = MapController();
-  String dropdownValue = 'question';
+  String dropdownValue = 'selfie';
 
   int sliderValue = 30;
   int pointsSliderValue = 10;
@@ -76,9 +76,9 @@ class _AddZoneState extends State<AddZone> {
   CircleMarker createCircle(LatLng latLng, double radius) {
     return CircleMarker(
       point: latLng,
-      color: Colors.redAccent.withOpacity(0.3),
-      borderStrokeWidth: 1,
-      borderColor: Colors.redAccent,
+      color: Colors.deepPurple.withOpacity(0.5),
+      borderStrokeWidth: 2,
+      borderColor: Colors.deepPurple,
       useRadiusInMeter: true,
       radius: radius,
     );
@@ -264,7 +264,11 @@ class _AddZoneState extends State<AddZone> {
                     child: FlutterMap(
                       mapController: mapController,
                       options: MapOptions(
-                        initialCenter: LatLng(currentLat, currentLong),
+                        initialCenter: LatLng(
+                            edit ? currentLat : gameTemplate.center!.latitude,
+                            edit
+                                ? currentLong
+                                : gameTemplate.center!.longitude),
                         initialZoom: 15.0,
                         onTap: (tapPosition, latLng) {
                           updateZoneCircle(latLng, sliderValue.toDouble());
@@ -276,10 +280,22 @@ class _AddZoneState extends State<AddZone> {
                               "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
                           userAgentPackageName: 'com.samdev.scavhuntapp',
                         ),
-                        if (selectedZoneCircle != null)
-                          CircleLayer(
-                            circles: [selectedZoneCircle!],
-                          ),
+                        CircleLayer(
+                          circles: [
+                            for (Zone zone in gameTemplate.zones!.where(
+                                (element) => element.zoneId != currentZoneId))
+                              CircleMarker(
+                                point: LatLng(zone.location.latitude,
+                                    zone.location.longitude),
+                                color: Colors.redAccent.withOpacity(0.5),
+                                borderStrokeWidth: 1,
+                                borderColor: Colors.redAccent,
+                                useRadiusInMeter: true,
+                                radius: zone.radius.toDouble(),
+                              ),
+                            if (selectedZoneCircle != null) selectedZoneCircle!,
+                          ],
+                        ),
                       ],
                     ),
                   ),

@@ -50,6 +50,8 @@ class _MainGameScreenState extends State<MainGameScreen> {
       PersistentTabController(initialIndex: 0);
   late String currentGameId;
   final DynamicIslandManager diManager = DynamicIslandManager(channelKey: 'DI');
+  TextEditingController announcementController = TextEditingController();
+  TextEditingController messageController = TextEditingController();
 
   MapController mapController = MapController();
 
@@ -1383,55 +1385,99 @@ class _MainGameScreenState extends State<MainGameScreen> {
                   appBar: AppBar(
                     title: const Text('Game Alerts'),
                   ),
-                  body: ListView.builder(
-                    itemCount: currentGame.logMessages.length,
-                    itemBuilder: (context, index) {
-                      return ListTile(
-                        visualDensity: const VisualDensity(vertical: 4),
-                        tileColor: index % 2 == 0
-                            ? Colors.greenAccent.withOpacity(0.05)
-                            : Colors.transparent,
-                        leading: RotatedBox(
-                          quarterTurns: -1,
-                          child: Text(
-                              DateFormat.jm().format(currentGame
-                                  .logMessages[index].timestamp
-                                  .toLocal()),
-                              style: GoogleFonts.spaceMono(
-                                  fontSize: 14, color: Colors.green)),
-                        ),
-                        title: Text(currentGame.logMessages[index].displayName,
-                            style: baseTextStyle.copyWith(
-                              fontSize: 14,
-                              fontWeight: FontWeight.w700,
-                              decoration: TextDecoration.underline,
-                            )),
-                        subtitle: Text(currentGame.logMessages[index].message,
-                            style: baseTextStyle.copyWith(fontSize: 18)),
-                        trailing: currentGame
-                                .logMessages[index].imageUrl.isNotEmpty
-                            ? GestureDetector(
-                                child: Container(
-                                  height: 100,
-                                  width: 100,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(8),
-                                    image: DecorationImage(
-                                      image: NetworkImage(currentGame
-                                          .logMessages[index].imageUrl),
-                                      fit: BoxFit.cover,
+                  body: ListView(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 16, vertical: 16),
+                        child: TextField(
+                          controller: messageController,
+                          decoration: InputDecoration(
+                            labelText: 'Message',
+                            helperText:
+                                'Send a message to all teams in the game',
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            suffix: IconButton(
+                              padding: EdgeInsets.zero,
+                              visualDensity: const VisualDensity(
+                                  horizontal: -4, vertical: -4),
+                              icon: const FaIcon(FontAwesomeIcons.paperPlane),
+                              onPressed: () {
+                                if (messageController.text.isNotEmpty) {
+                                  currentGame.logMessages.add(
+                                    LogMessage(
+                                      message: '[TM]${messageController.text}',
+                                      uid: FirebaseAuth
+                                          .instance.currentUser!.uid,
+                                      timestamp: DateTime.now(),
+                                      displayName: currentPlayer.teamName,
                                     ),
-                                  ),
-                                ),
-                                onTap: () {
-                                  imUrl =
-                                      currentGame.logMessages[index].imageUrl;
-                                  Get.to(() => const FullImageView());
-                                },
-                              )
-                            : null,
-                      );
-                    },
+                                  );
+                                  updateGame(currentGame);
+                                  messageController.clear();
+                                }
+                              },
+                            ),
+                          ),
+                        ),
+                      ),
+                      ListView.builder(
+                        shrinkWrap: true,
+                        physics: NeverScrollableScrollPhysics(),
+                        itemCount: currentGame.logMessages.length,
+                        itemBuilder: (context, index) {
+                          return ListTile(
+                            visualDensity: const VisualDensity(vertical: 4),
+                            tileColor: index % 2 == 0
+                                ? Colors.greenAccent.withOpacity(0.05)
+                                : Colors.transparent,
+                            leading: RotatedBox(
+                              quarterTurns: -1,
+                              child: Text(
+                                  DateFormat.jm().format(currentGame
+                                      .logMessages[index].timestamp
+                                      .toLocal()),
+                                  style: GoogleFonts.spaceMono(
+                                      fontSize: 14, color: Colors.green)),
+                            ),
+                            title:
+                                Text(currentGame.logMessages[index].displayName,
+                                    style: baseTextStyle.copyWith(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w700,
+                                      decoration: TextDecoration.underline,
+                                    )),
+                            subtitle: Text(
+                                currentGame.logMessages[index].message,
+                                style: baseTextStyle.copyWith(fontSize: 18)),
+                            trailing: currentGame
+                                    .logMessages[index].imageUrl.isNotEmpty
+                                ? GestureDetector(
+                                    child: Container(
+                                      height: 100,
+                                      width: 100,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(8),
+                                        image: DecorationImage(
+                                          image: NetworkImage(currentGame
+                                              .logMessages[index].imageUrl),
+                                          fit: BoxFit.cover,
+                                        ),
+                                      ),
+                                    ),
+                                    onTap: () {
+                                      imUrl = currentGame
+                                          .logMessages[index].imageUrl;
+                                      Get.to(() => const FullImageView());
+                                    },
+                                  )
+                                : null,
+                          );
+                        },
+                      ),
+                    ],
                   ),
                 ),
               ),
@@ -1446,157 +1492,314 @@ class _MainGameScreenState extends State<MainGameScreen> {
                     appBar: AppBar(
                       title: const Text('Host Controls'),
                     ),
-                    body: ListView(
-                      padding: const EdgeInsets.all(16),
-                      children: [
-                        Text(
-                          'Host Controls',
-                          style: baseTextStyle.copyWith(
-                            fontSize: 30,
-                            fontWeight: FontWeight.w700,
-                          ),
-                        ),
-                        const SizedBox(height: 8),
-                        Text(
-                          'As the host, you have the ability to control the game. Use these controls to manage the game and players. Please note, all changes will be reflected in real-time and broadcast to all players.',
-                          style: baseTextStyle.copyWith(
-                            fontSize: 18,
-                            fontWeight: FontWeight.w500,
-                            color: Colors.white54,
-                          ),
-                        ),
-                        const SizedBox(height: 16),
-                        Text(
-                          'Edit Teams',
-                          style: baseTextStyle.copyWith(
-                            fontSize: 22,
-                            fontWeight: FontWeight.w700,
-                          ),
-                        ),
-                        for (var player in currentGame.players)
-                          ListTile(
-                            leading: Container(
-                              width: 20,
-                              height: 20,
-                              decoration: BoxDecoration(
-                                color: getColor(player.teamColor),
-                                borderRadius: BorderRadius.circular(4),
-                              ),
+                    body: SafeArea(
+                      child: ListView(
+                        padding: const EdgeInsets.all(16),
+                        children: [
+                          Text(
+                            'As the host, you have the ability to control the game. Use these controls to manage the game and players. Please note, all changes will be reflected in real-time and broadcast to all players.',
+                            style: baseTextStyle.copyWith(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w500,
+                              color: Colors.white54,
                             ),
-                            title: Text(player.teamName,
-                                style: baseTextStyle.copyWith(
-                                    fontSize: 18, fontWeight: FontWeight.w700)),
-                            subtitle: Text(
-                                'Points: ${player.points}, Coins: ${player.coinBalance}, Multiplier: ${player.pointMultiplier}x',
-                                style: baseTextStyle.copyWith(fontSize: 16)),
-                            trailing: const Icon(FontAwesomeIcons.angleRight),
-                            onTap: () {
-                              currentPlayerId = player.playerId;
-                              cGame = currentGame;
-                              Get.to(() => const EditTeamScreen());
+                          ),
+                          const SizedBox(height: 16),
+                          Text(
+                            'Edit Teams',
+                            style: baseTextStyle.copyWith(
+                              fontSize: 22,
+                              fontWeight: FontWeight.w700,
+                            ),
+                          ),
+                          for (var player in currentGame.players)
+                            ListTile(
+                              leading: Container(
+                                width: 20,
+                                height: 20,
+                                decoration: BoxDecoration(
+                                  color: getColor(player.teamColor),
+                                  borderRadius: BorderRadius.circular(4),
+                                ),
+                              ),
+                              title: Text(player.teamName,
+                                  style: baseTextStyle.copyWith(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.w700)),
+                              subtitle: Text(
+                                  'Points: ${player.points}, Coins: ${player.coinBalance}, Multiplier: ${player.pointMultiplier}x',
+                                  style: baseTextStyle.copyWith(fontSize: 16)),
+                              trailing: const Icon(FontAwesomeIcons.angleRight),
+                              onTap: () {
+                                currentPlayerId = player.playerId;
+                                cGame = currentGame;
+                                Get.to(() => const EditTeamScreen());
+                              },
+                            ),
+                          const SizedBox(height: 16),
+                          Text(
+                            'Edit End Time',
+                            style: baseTextStyle.copyWith(
+                              fontSize: 22,
+                              fontWeight: FontWeight.w700,
+                            ),
+                          ),
+                          Text(
+                              'The game is scheduled to end at ${DateFormat.jm().format(currentGame.endTime)} ${DateFormat.Md().format(currentGame.endTime)}.'),
+                          TextButton(
+                            child: const Text('Update End Time'),
+                            onPressed: () async {
+                              TimeOfDay? tod = await showTimePicker(
+                                context: context,
+                                initialTime:
+                                    TimeOfDay.fromDateTime(currentGame.endTime),
+                              );
+                              if (tod != null) {
+                                if (tod.isAfter(TimeOfDay.now())) {
+                                  currentGame.endTime = DateTime.now().copyWith(
+                                      hour: tod.hour, minute: tod.minute);
+                                  currentGame.logMessages.add(
+                                    LogMessage(
+                                      message:
+                                          'The game now ends at ${DateFormat.jm().format(currentGame.endTime)}.',
+                                      uid: FirebaseAuth
+                                          .instance.currentUser!.uid,
+                                      timestamp: DateTime.now(),
+                                      displayName: 'Game Update',
+                                    ),
+                                  );
+                                  updateGame(currentGame);
+                                }
+                              }
                             },
                           ),
-                        const SizedBox(height: 16),
-                        Text(
-                          'Edit End Time',
-                          style: baseTextStyle.copyWith(
-                            fontSize: 22,
-                            fontWeight: FontWeight.w700,
-                          ),
-                        ),
-                        Text(
-                            'The game is scheduled to end at ${DateFormat.jm().format(currentGame.endTime)} ${DateFormat.Md().format(currentGame.endTime)}.'),
-                        TextButton(
-                          child: const Text('Update End Time'),
-                          onPressed: () async {
-                            TimeOfDay? tod = await showTimePicker(
-                              context: context,
-                              initialTime:
-                                  TimeOfDay.fromDateTime(currentGame.endTime),
-                            );
-                            if (tod != null) {
-                              if (tod.isAfter(TimeOfDay.now())) {
-                                currentGame.endTime = DateTime.now().copyWith(
-                                    hour: tod.hour, minute: tod.minute);
-                                currentGame.logMessages.add(
-                                  LogMessage(
-                                    message:
-                                        'The game now ends at ${DateFormat.jm().format(currentGame.endTime)}.',
-                                    uid: FirebaseAuth.instance.currentUser!.uid,
-                                    timestamp: DateTime.now(),
-                                    displayName: 'Game Update',
-                                  ),
-                                );
-                                updateGame(currentGame);
-                              }
-                            }
-                          },
-                        ),
-                        const SizedBox(height: 16),
-                        ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.red,
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 32, vertical: 16),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(12),
+                          Text(
+                            'Send Announcement',
+                            style: baseTextStyle.copyWith(
+                              fontSize: 22,
+                              fontWeight: FontWeight.w700,
                             ),
                           ),
-                          onPressed: () {
-                            showDialog(
-                                context: context,
-                                builder: (context) {
-                                  return AlertDialog(
-                                    title: const Text('End Game'),
-                                    content: const Text(
-                                        'Are you sure you want to end the game early? You will not be able to undo this action.'),
-                                    actions: [
-                                      TextButton(
-                                        onPressed: () {
-                                          Navigator.pop(context);
-                                        },
-                                        child: const Text('Cancel'),
+                          const SizedBox(height: 8),
+                          TextField(
+                            controller: announcementController,
+                            decoration: InputDecoration(
+                              labelText: 'Announcement',
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                              suffix: IconButton(
+                                padding: EdgeInsets.zero,
+                                visualDensity: const VisualDensity(
+                                    horizontal: -4, vertical: -4),
+                                icon: const FaIcon(FontAwesomeIcons.paperPlane),
+                                onPressed: () {
+                                  if (announcementController.text.isNotEmpty) {
+                                    currentGame.logMessages.add(
+                                      LogMessage(
+                                        message: announcementController.text,
+                                        uid: FirebaseAuth
+                                            .instance.currentUser!.uid,
+                                        timestamp: DateTime.now(),
+                                        displayName: 'Announcement',
                                       ),
-                                      TextButton(
-                                        onPressed: () {
-                                          currentGame.gameStatus = 'ended';
-                                          currentGame.endTime = DateTime.now()
-                                              .subtract(
-                                                  const Duration(seconds: 1));
-                                          currentGame.logMessages.add(
-                                            LogMessage(
-                                              uid: FirebaseAuth
-                                                  .instance.currentUser!.uid,
-                                              message:
-                                                  'The game has been ended early by the host. Thanks for playing!',
-                                              timestamp: DateTime.now(),
-                                              displayName: 'Game Update',
-                                            ),
-                                          );
-                                          Navigator.pop(context);
-                                          updateGame(currentGame);
-                                        },
-                                        style: ElevatedButton.styleFrom(
-                                          backgroundColor: Colors.red,
+                                    );
+                                    updateGame(currentGame);
+                                    announcementController.clear();
+                                  }
+                                },
+                              ),
+                            ),
+                            style: baseTextStyle.copyWith(
+                              fontSize: 18,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                          const SizedBox(height: 16),
+                          Text(
+                            'Game Controls',
+                            style: baseTextStyle.copyWith(
+                              fontSize: 22,
+                              fontWeight: FontWeight.w700,
+                            ),
+                          ),
+                          const SizedBox(height: 8),
+                          TextButton(
+                            child: const Text('Halve All Point Values'),
+                            onPressed: () async {
+                              // are you sure?
+                              Get.dialog(
+                                AlertDialog(
+                                  title: const Text('Halve Points'),
+                                  content: const Text(
+                                      'Are you sure you want to halve all point values? This action cannot be undone.'),
+                                  actions: [
+                                    TextButton(
+                                      onPressed: () {
+                                        Navigator.pop(context);
+                                      },
+                                      child: const Text('Cancel'),
+                                    ),
+                                    TextButton(
+                                      onPressed: () {
+                                        Navigator.pop(context);
+                                        // for unclaimed zones, double the points
+                                        for (var zone
+                                            in currentGameTemplate.zones!) {
+                                          if (!currentGame.players.any(
+                                              (player) => player.zonesClaimed
+                                                  .contains(zone.zoneId))) {
+                                            zone.points =
+                                                (zone.points.toDouble() / 2.0)
+                                                    .toInt();
+                                          }
+                                        }
+
+                                        currentGame.logMessages.add(
+                                          LogMessage(
+                                            message:
+                                                'All point values have been halved.',
+                                            uid: FirebaseAuth
+                                                .instance.currentUser!.uid,
+                                            timestamp: DateTime.now(),
+                                            displayName: 'Game Update',
+                                          ),
+                                        );
+
+                                        updateGame(currentGame);
+                                      },
+                                      style: ElevatedButton.styleFrom(
+                                        backgroundColor: Colors.red,
+                                      ),
+                                      child: Text('Halve Points',
+                                          style: baseTextStyle.copyWith(
+                                              color: Colors.white)),
+                                    ),
+                                  ],
+                                ),
+                              );
+                            },
+                          ),
+                          TextButton(
+                            child: const Text('Double All Point Values'),
+                            onPressed: () async {
+                              // are you sure?
+                              Get.dialog(
+                                AlertDialog(
+                                  title: const Text('Double Points'),
+                                  content: const Text(
+                                      'Are you sure you want to double all point values? This action cannot be undone.'),
+                                  actions: [
+                                    TextButton(
+                                      onPressed: () {
+                                        Navigator.pop(context);
+                                      },
+                                      child: const Text('Cancel'),
+                                    ),
+                                    TextButton(
+                                      onPressed: () {
+                                        Navigator.pop(context);
+                                        // for unclaimed zones, double the points
+                                        for (var zone
+                                            in currentGameTemplate.zones!) {
+                                          if (!currentGame.players.any(
+                                              (player) => player.zonesClaimed
+                                                  .contains(zone.zoneId))) {
+                                            zone.points *= 2;
+                                          }
+                                        }
+
+                                        currentGame.logMessages.add(
+                                          LogMessage(
+                                            message:
+                                                'All point values have been doubled!',
+                                            uid: FirebaseAuth
+                                                .instance.currentUser!.uid,
+                                            timestamp: DateTime.now(),
+                                            displayName: 'Game Update',
+                                          ),
+                                        );
+
+                                        updateGame(currentGame);
+                                      },
+                                      style: ElevatedButton.styleFrom(
+                                        backgroundColor: Colors.red,
+                                      ),
+                                      child: Text('Double Points',
+                                          style: baseTextStyle.copyWith(
+                                              color: Colors.white)),
+                                    ),
+                                  ],
+                                ),
+                              );
+                            },
+                          ),
+                          const SizedBox(height: 32),
+                          ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.red,
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 32, vertical: 16),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(12),
+                              ),
+                            ),
+                            onPressed: () {
+                              showDialog(
+                                  context: context,
+                                  builder: (context) {
+                                    return AlertDialog(
+                                      title: const Text('End Game'),
+                                      content: const Text(
+                                          'Are you sure you want to end the game early? You will not be able to undo this action.'),
+                                      actions: [
+                                        TextButton(
+                                          onPressed: () {
+                                            Navigator.pop(context);
+                                          },
+                                          child: const Text('Cancel'),
                                         ),
-                                        child: Text('End Game',
-                                            style: baseTextStyle.copyWith(
-                                                color: Colors.white)),
-                                      ),
-                                    ],
-                                  );
-                                });
-                          },
-                          child: Text(
-                            'End Game',
-                            style: GoogleFonts.spaceGrotesk(
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white,
+                                        TextButton(
+                                          onPressed: () {
+                                            currentGame.gameStatus = 'ended';
+                                            currentGame.endTime = DateTime.now()
+                                                .subtract(
+                                                    const Duration(seconds: 1));
+                                            currentGame.logMessages.add(
+                                              LogMessage(
+                                                uid: FirebaseAuth
+                                                    .instance.currentUser!.uid,
+                                                message:
+                                                    'The game has been ended early by the host. Thanks for playing!',
+                                                timestamp: DateTime.now(),
+                                                displayName: 'Game Update',
+                                              ),
+                                            );
+                                            Navigator.pop(context);
+                                            updateGame(currentGame);
+                                          },
+                                          style: ElevatedButton.styleFrom(
+                                            backgroundColor: Colors.red,
+                                          ),
+                                          child: Text('End Game',
+                                              style: baseTextStyle.copyWith(
+                                                  color: Colors.white)),
+                                        ),
+                                      ],
+                                    );
+                                  });
+                            },
+                            child: Text(
+                              'End Game',
+                              style: GoogleFonts.spaceGrotesk(
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                              ),
                             ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                 ),
@@ -1668,9 +1871,11 @@ class _MainGameScreenState extends State<MainGameScreen> {
                 padding: const EdgeInsets.all(50),
                 maxZoom: 15,
                 onMarkerTap: (marker) {
-                  if (!interaction) return;
                   Zone tappedZone = unclaimedZones.firstWhere(
                       (element) => ValueKey(element.zoneId) == marker.key);
+                  if (!interaction) {
+                    return;
+                  }
                   if (currentGame.players.any((player) =>
                       player.zonesClaimed.contains(tappedZone.zoneId))) {
                     disabled = false;

@@ -345,7 +345,7 @@ class _ClaimZoneScreenState extends State<ClaimZoneScreen> {
               Expanded(
                 child: Text(
                   currentZone!.taskType == 'selfie'
-                      ? 'To claim this zone, take a selfie at the location and upload it below.'
+                      ? 'To claim this zone, take a photo at the location and upload it below.'
                       : currentZone!.taskType == 'question'
                           ? 'To claim this zone, answer the question below.'
                           : 'To claim this zone, scan the QR code at the location.',
@@ -463,7 +463,7 @@ class _ClaimZoneScreenState extends State<ClaimZoneScreen> {
                 ),
                 if (currentZone!.clue == null || currentZone!.clue!.isEmpty)
                   Text(
-                    'Take a selfie at the location',
+                    'Take a photo at the location',
                     style: baseTextStyle.copyWith(
                       fontSize: 20,
                       fontWeight: FontWeight.w500,

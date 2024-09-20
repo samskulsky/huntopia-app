@@ -60,13 +60,25 @@ void main() async {
       toastification.show(
         style: ToastificationStyle.fillColored,
         applyBlurEffect: true,
-        primaryColor: Colors.green[800]!,
-        backgroundColor: Colors.green[800]!,
-        showIcon: false,
-        autoCloseDuration: const Duration(seconds: 5),
+        primaryColor: message.data['title'].contains('[TM]')
+            ? Colors.blue[800]!
+            : Colors.green[800]!,
+        backgroundColor: message.data['title'].contains('[TM]')
+            ? Colors.blue[800]!
+            : Colors.green[800]!,
+        showIcon: true,
+        showProgressBar: message.data['title'] != 'Announcement',
+        icon: message.data['title'].contains('[TM]')
+            ? const Icon(Icons.message)
+            : const Icon(Icons.notifications),
+        autoCloseDuration: message.data['title'] == 'Announcement'
+            ? null
+            : const Duration(seconds: 5),
         context: Get.overlayContext,
         title: Text(
-          message.data['title'],
+          message.data['title'].contains('[TM]')
+              ? message.data['title'].toString().substring(4)
+              : message.data['title'],
           style: baseTextStyle.copyWith(
             fontSize: 16,
             fontWeight: FontWeight.w700,
