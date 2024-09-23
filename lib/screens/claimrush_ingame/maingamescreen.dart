@@ -1450,7 +1450,11 @@ class _MainGameScreenState extends State<MainGameScreen> {
                                       decoration: TextDecoration.underline,
                                     )),
                             subtitle: Text(
-                                currentGame.logMessages[index].message,
+                                currentGame.logMessages[index].message
+                                        .contains('[TM]')
+                                    ? currentGame.logMessages[index].message
+                                        .replaceAll('[TM]', '')
+                                    : currentGame.logMessages[index].message,
                                 style: baseTextStyle.copyWith(fontSize: 18)),
                             trailing: currentGame
                                     .logMessages[index].imageUrl.isNotEmpty

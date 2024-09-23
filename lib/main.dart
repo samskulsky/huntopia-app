@@ -56,19 +56,18 @@ void main() async {
       Player currentPlayer = currentGame.players.firstWhere((element) =>
           element.playerId == FirebaseAuth.instance.currentUser!.uid);
 
-      Toastification toast = Toastification();
       toastification.show(
         style: ToastificationStyle.fillColored,
         applyBlurEffect: true,
-        primaryColor: message.data['title'].contains('[TM]')
+        primaryColor: message.data['body'].contains('[TM]')
             ? Colors.blue[800]!
             : Colors.green[800]!,
-        backgroundColor: message.data['title'].contains('[TM]')
+        backgroundColor: message.data['body'].contains('[TM]')
             ? Colors.blue[800]!
             : Colors.green[800]!,
         showIcon: true,
         showProgressBar: message.data['title'] != 'Announcement',
-        icon: message.data['title'].contains('[TM]')
+        icon: message.data['body'].contains('[TM]')
             ? const Icon(Icons.message)
             : const Icon(Icons.notifications),
         autoCloseDuration: message.data['title'] == 'Announcement'
@@ -76,9 +75,7 @@ void main() async {
             : const Duration(seconds: 5),
         context: Get.overlayContext,
         title: Text(
-          message.data['title'].contains('[TM]')
-              ? message.data['title'].toString().substring(4)
-              : message.data['title'],
+          message.data['title'],
           style: baseTextStyle.copyWith(
             fontSize: 16,
             fontWeight: FontWeight.w700,
@@ -86,7 +83,9 @@ void main() async {
           ),
         ),
         description: Text(
-          message.data['body'],
+          message.data['body'].contains('[TM]')
+              ? message.data['body'].substring(4)
+              : message.data['body'],
           style: baseTextStyle.copyWith(
             fontSize: 14,
             fontWeight: FontWeight.w600,

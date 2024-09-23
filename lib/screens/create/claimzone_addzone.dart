@@ -282,17 +282,19 @@ class _AddZoneState extends State<AddZone> {
                         ),
                         CircleLayer(
                           circles: [
-                            for (Zone zone in gameTemplate.zones!.where(
-                                (element) => element.zoneId != currentZoneId))
-                              CircleMarker(
-                                point: LatLng(zone.location.latitude,
-                                    zone.location.longitude),
-                                color: Colors.redAccent.withOpacity(0.5),
-                                borderStrokeWidth: 1,
-                                borderColor: Colors.redAccent,
-                                useRadiusInMeter: true,
-                                radius: zone.radius.toDouble(),
-                              ),
+                            if (gameTemplate.zones != null &&
+                                gameTemplate.zones!.isNotEmpty)
+                              for (Zone zone in gameTemplate.zones!.where(
+                                  (element) => element.zoneId != currentZoneId))
+                                CircleMarker(
+                                  point: LatLng(zone.location.latitude,
+                                      zone.location.longitude),
+                                  color: Colors.redAccent.withOpacity(0.5),
+                                  borderStrokeWidth: 1,
+                                  borderColor: Colors.redAccent,
+                                  useRadiusInMeter: true,
+                                  radius: zone.radius.toDouble(),
+                                ),
                             if (selectedZoneCircle != null) selectedZoneCircle!,
                           ],
                         ),
