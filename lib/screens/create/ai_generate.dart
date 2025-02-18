@@ -43,118 +43,135 @@ class _AIGenerateState extends State<AIGenerate> {
         title: Text(
           'Generate Game Using AI',
           style: baseTextStyle.copyWith(
-              fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
+            fontSize: 28,
+            fontWeight: FontWeight.w600,
+            letterSpacing: -0.5,
+          ),
         ),
         leading: IconButton(
-          icon: const FaIcon(FontAwesomeIcons.xmark),
+          icon: const FaIcon(FontAwesomeIcons.xmark, color: Colors.white70),
           onPressed:
               isLoading ? null : () => Get.offAll(() => const HomeScreen()),
         ),
         backgroundColor: Colors.black,
+        elevation: 0,
       ),
       backgroundColor: Colors.black,
-      body: Stack(
-        children: [
-          ListView(
-            padding: const EdgeInsets.all(16),
-            children: [
-              _buildGlassCard(
-                title: 'Use AI to generate a game for you!',
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              Colors.black,
+              Colors.green.shade900.withOpacity(0.3),
+              Colors.black,
+            ],
+          ),
+        ),
+        child: Stack(
+          children: [
+            ListView(
+              padding: const EdgeInsets.all(20),
+              children: [
+                Text(
+                  'Use AI to generate a game for you!',
+                  style: baseTextStyle.copyWith(
+                    fontSize: 20,
+                    fontWeight: FontWeight.w600,
+                    letterSpacing: -0.5,
+                  ),
+                ),
+                const SizedBox(height: 12),
+                Text(
+                  'In order to successfully generate a game using AI, provide a brief description of the game you want to create. The more detailed the description, the better the game will be!',
+                  style: baseTextStyle.copyWith(
+                    fontSize: 16,
+                    color: Colors.white70,
+                    height: 1.5,
+                  ),
+                ),
+                const SizedBox(height: 24),
+                _buildDescriptionTextField(),
+                const SizedBox(height: 12),
+                Text(
+                  'You currently have ${currentUser!.tokens} token${currentUser!.tokens == 1 ? '' : 's'} remaining.',
+                  style: baseTextStyle.copyWith(
+                    fontSize: 14,
+                    color: Colors.white70,
+                  ),
+                ),
+                const SizedBox(height: 8),
+                Text(
+                  'We recommend using the basic model for most games. If you need a larger game, use the advanced model.',
+                  style: baseTextStyle.copyWith(
+                    fontSize: 14,
+                    color: Colors.white70,
+                  ),
+                ),
+                const SizedBox(height: 32),
+                if (!isLoading && currentUser!.tokens >= 1)
+                  _buildGenerateButton(),
+                if (!isLoading && currentUser!.tokens >= 15) ...[
+                  const SizedBox(height: 12),
+                  _buildGenerateButton2(),
+                ],
+                if (!isLoading && currentUser!.tokens >= 50) ...[
+                  const SizedBox(height: 12),
+                  _buildGenerateButton3(),
+                ],
+                if (currentUser!.tokens < 1) _buildBuyButton(),
+              ],
+            ),
+            if (isLoading)
+              Container(
+                color: Colors.black.withOpacity(0.9),
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(
-                      'In order to successfully generate a game using AI, provide a brief description of the game you want to create. The more detailed the description, the better the game will be!',
-                      style: baseTextStyle.copyWith(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w500,
-                          color: Colors.white70),
+                    const SpinKitFadingCube(
+                      color: Colors.white,
+                      size: 50.0,
                     ),
-                    const SizedBox(height: 16),
-                    _buildDescriptionTextField(),
-                    const SizedBox(height: 8),
+                    const SizedBox(height: 24),
                     Text(
-                      'You currently have ${currentUser!.tokens} token${currentUser!.tokens == 1 ? '' : 's'} remaining.',
-                      style: baseTextStyle.copyWith(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w500,
-                        color: Colors.white70,
-                        decoration: TextDecoration.underline,
-                      ),
-                      textAlign: TextAlign.center,
+                      loadingMessage,
+                      style: baseTextStyle.copyWith(color: Colors.white),
                     ),
-                    const SizedBox(height: 8),
-                    Text(
-                      'We recommend using the basic model for most games. If you need a larger game, use the advanced model.',
-                      style: baseTextStyle.copyWith(
-                          fontSize: 11,
-                          fontWeight: FontWeight.w500,
-                          color: Colors.white70),
-                      textAlign: TextAlign.center,
-                    ),
-                    const SizedBox(height: 8),
-                    if (!isLoading && currentUser!.tokens >= 1)
-                      _buildGenerateButton(),
-                    if (!isLoading && currentUser!.tokens >= 15)
-                      const SizedBox(height: 8),
-                    if (!isLoading && currentUser!.tokens >= 15)
-                      _buildGenerateButton2(),
-                    if (!isLoading && currentUser!.tokens >= 50)
-                      const SizedBox(height: 8),
-                    if (!isLoading && currentUser!.tokens >= 50)
-                      _buildGenerateButton3(),
-                    if (currentUser!.tokens < 1) _buildBuyButton(),
                   ],
                 ),
               ),
-            ],
-          ),
-          if (isLoading)
-            Container(
-              color: Colors.black.withOpacity(0.9),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const SpinKitFadingCube(
-                    color: Colors.white,
-                    size: 50.0,
-                  ),
-                  const SizedBox(height: 24),
-                  Text(
-                    loadingMessage,
-                    style: baseTextStyle.copyWith(color: Colors.white),
-                  ),
-                ],
-              ),
-            ),
-        ],
+          ],
+        ),
       ),
     );
   }
 
   Widget _buildDescriptionTextField() {
-    return TextField(
+    return TextFormField(
       controller: gameDescriptionController,
       decoration: InputDecoration(
         hintText:
             'This game will take you on a journey through the streets of Tokyo, where you will visit famous landmarks and hidden gems.',
-        hintStyle: baseTextStyle.copyWith(
-            color: Colors.white70, fontStyle: FontStyle.italic),
+        hintStyle: baseTextStyle.copyWith(color: Colors.white38),
         filled: true,
-        fillColor: Colors.grey[800],
+        fillColor: Colors.white.withOpacity(0.1),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
           borderSide: BorderSide.none,
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
-          borderSide: BorderSide.none,
+          borderSide: BorderSide(color: Colors.white.withOpacity(0.1)),
         ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12),
+          borderSide: BorderSide(color: Colors.green.shade400),
+        ),
+        contentPadding: const EdgeInsets.all(16),
       ),
       maxLines: 4,
       maxLength: 300,
-      keyboardType: TextInputType.text,
       style: baseTextStyle.copyWith(color: Colors.white),
     );
   }
@@ -178,260 +195,356 @@ class _AIGenerateState extends State<AIGenerate> {
 
   Widget _buildGenerateButton() {
     totalZones = 40;
-    return SizedBox(
-      width: double.infinity,
-      child: ElevatedButton(
-        style: ElevatedButton.styleFrom(
-          backgroundColor: Colors.green,
-          padding: const EdgeInsets.symmetric(vertical: 16),
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+    return ElevatedButton(
+      style: ElevatedButton.styleFrom(
+        backgroundColor: Colors.white.withOpacity(0.1),
+        foregroundColor: Colors.white,
+        padding: const EdgeInsets.all(20),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(16),
+          side: BorderSide(color: Colors.white.withOpacity(0.1)),
         ),
-        onPressed: () async {
-          FocusScope.of(context).unfocus();
-          model = "gpt-4o-mini";
-          if (gameDescriptionController.text.isEmpty) {
-            ToastificationHelper.showErrorToast(
-                context, 'Please enter a game description.');
-            return;
+        elevation: 0,
+      ),
+      onPressed: () async {
+        FocusScope.of(context).unfocus();
+        model = "gpt-4o-mini";
+        if (gameDescriptionController.text.isEmpty) {
+          ToastificationHelper.showErrorToast(
+              context, 'Please enter a game description.');
+          return;
+        }
+
+        setState(() {
+          isLoading = true;
+          loadingMessage = "Making request...";
+        });
+
+        currentUser!.tokens -= 1;
+        await FirebaseFirestore.instance
+            .collection('users')
+            .doc(currentUser!.uid)
+            .update({'tokens': currentUser!.tokens});
+
+        try {
+          List<OpenAIChatCompletionModel> responses =
+              await _generateMultipleZoneMessages(
+                  gameDescriptionController.text, totalZones, [], []);
+          if (responses.isEmpty) {
+            throw Exception('Failed to generate any responses from GPT');
           }
 
+          var gameData = await _combineZones(responses);
+
+          var gameTemplate = GameTemplate(
+            templateId: const Uuid().v4(),
+            creatorUid: FirebaseAuth.instance.currentUser!.uid,
+            creatorName: 'AI Game Creator',
+            gameType: 'claimthezone',
+            createdAt: DateTime.now(),
+            lastUpdated: DateTime.now(),
+            zones: gameData['zones'] as List<Zone>,
+            gameName: 'AI Generated Game',
+            gameDescription: gameDescriptionController.text,
+            center: GeoPoint(
+                (gameData['zones'] as List<Zone>).first.location.latitude,
+                (gameData['zones'] as List<Zone>).first.location.longitude),
+            coinShopItems: gameData['coinShopItems'] as List<CoinShopItem>,
+          );
+
+          await saveGameTemplate(gameTemplate);
+
+          _showSuccessToast(
+              'Game Generated Successfully! You can view it in the "My Games" section.');
+        } catch (e) {
+          print('Error: $e');
+          ToastificationHelper.showErrorToast(
+              context, 'Error: Failed to generate game. $e');
+        } finally {
           setState(() {
-            isLoading = true;
-            loadingMessage = "Making request...";
+            isLoading = false;
           });
-
-          currentUser!.tokens -= 1;
-          await FirebaseFirestore.instance
-              .collection('users')
-              .doc(currentUser!.uid)
-              .update({'tokens': currentUser!.tokens});
-
-          try {
-            List<OpenAIChatCompletionModel> responses =
-                await _generateMultipleZoneMessages(
-                    gameDescriptionController.text, totalZones, [], []);
-            if (responses.isEmpty) {
-              throw Exception('Failed to generate any responses from GPT');
-            }
-
-            var gameData = await _combineZones(responses);
-
-            var gameTemplate = GameTemplate(
-              templateId: const Uuid().v4(),
-              creatorUid: FirebaseAuth.instance.currentUser!.uid,
-              creatorName: 'AI Game Creator',
-              gameType: 'claimthezone',
-              createdAt: DateTime.now(),
-              lastUpdated: DateTime.now(),
-              zones: gameData['zones'] as List<Zone>,
-              gameName: 'AI Generated Game',
-              gameDescription: gameDescriptionController.text,
-              center: GeoPoint(
-                  (gameData['zones'] as List<Zone>).first.location.latitude,
-                  (gameData['zones'] as List<Zone>).first.location.longitude),
-              coinShopItems: gameData['coinShopItems'] as List<CoinShopItem>,
-            );
-
-            await saveGameTemplate(gameTemplate);
-
-            _showSuccessToast(
-                'Game Generated Successfully! You can view it in the "My Games" section.');
-          } catch (e) {
-            print('Error: $e');
-            ToastificationHelper.showErrorToast(
-                context, 'Error: Failed to generate game. $e');
-          } finally {
-            setState(() {
-              isLoading = false;
-            });
-            Get.offAll(() => const HomeScreen());
-          }
-        },
-        child: Column(
-          children: [
-            Text('Generate Basic Game',
-                style:
-                    baseTextStyle.copyWith(color: Colors.white, fontSize: 18)),
-            Text('Basic Model • Smaller Game • 1 Token',
-                style: baseTextStyle.copyWith(
-                    fontSize: 12, color: Colors.white70)),
-          ],
-        ),
+          Get.offAll(() => const HomeScreen());
+        }
+      },
+      child: Row(
+        children: [
+          Container(
+            width: 40,
+            height: 40,
+            decoration: BoxDecoration(
+              color: Colors.green.withOpacity(0.2),
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: Center(
+              child: FaIcon(
+                FontAwesomeIcons.wandMagicSparkles,
+                color: Colors.green.shade400,
+                size: 20,
+              ),
+            ),
+          ),
+          const SizedBox(width: 16),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Generate Basic Game',
+                  style: baseTextStyle.copyWith(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                Text(
+                  'Basic Model • Smaller Game • 1 Token',
+                  style: baseTextStyle.copyWith(
+                    fontSize: 14,
+                    color: Colors.white70,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }
 
   Widget _buildGenerateButton2() {
     totalZones = 50;
-    return SizedBox(
-      width: double.infinity,
-      child: ElevatedButton(
-        style: ElevatedButton.styleFrom(
-          backgroundColor: Colors.green,
-          padding: const EdgeInsets.symmetric(vertical: 16),
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+    return ElevatedButton(
+      style: ElevatedButton.styleFrom(
+        backgroundColor: Colors.white.withOpacity(0.1),
+        foregroundColor: Colors.white,
+        padding: const EdgeInsets.all(20),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(16),
+          side: BorderSide(color: Colors.white.withOpacity(0.1)),
         ),
-        onPressed: () async {
-          FocusScope.of(context).unfocus();
-          if (gameDescriptionController.text.isEmpty) {
-            ToastificationHelper.showErrorToast(
-                context, 'Please enter a game description.');
-            return;
+        elevation: 0,
+      ),
+      onPressed: () async {
+        FocusScope.of(context).unfocus();
+        if (gameDescriptionController.text.isEmpty) {
+          ToastificationHelper.showErrorToast(
+              context, 'Please enter a game description.');
+          return;
+        }
+
+        setState(() {
+          isLoading = true;
+          loadingMessage = "Making request...";
+        });
+
+        currentUser!.tokens -= 15;
+        await FirebaseFirestore.instance
+            .collection('users')
+            .doc(currentUser!.uid)
+            .update({'tokens': currentUser!.tokens});
+
+        model = "gpt-4o";
+
+        try {
+          List<OpenAIChatCompletionModel> responses =
+              await _generateMultipleZoneMessages(
+                  gameDescriptionController.text, totalZones, [], []);
+          if (responses.isEmpty) {
+            throw Exception('Failed to generate any responses from GPT');
           }
 
+          var gameData = await _combineZones(responses);
+
+          var gameTemplate = GameTemplate(
+            templateId: const Uuid().v4(),
+            creatorUid: FirebaseAuth.instance.currentUser!.uid,
+            creatorName: 'AI Game Creator',
+            gameType: 'claimthezone',
+            createdAt: DateTime.now(),
+            lastUpdated: DateTime.now(),
+            zones: gameData['zones'] as List<Zone>,
+            gameName: 'AI Generated Game',
+            gameDescription: gameDescriptionController.text,
+            center: GeoPoint(
+                (gameData['zones'] as List<Zone>).first.location.latitude,
+                (gameData['zones'] as List<Zone>).first.location.longitude),
+            coinShopItems: gameData['coinShopItems'] as List<CoinShopItem>,
+          );
+
+          await saveGameTemplate(gameTemplate);
+
+          _showSuccessToast(
+              'Game Generated Successfully! You can view it in the "My Games" section.');
+        } catch (e) {
+          print('Error: $e');
+          ToastificationHelper.showErrorToast(
+              context, 'Error: Failed to generate game. $e');
+        } finally {
           setState(() {
-            isLoading = true;
-            loadingMessage = "Making request...";
+            isLoading = false;
           });
-
-          currentUser!.tokens -= 15;
-          await FirebaseFirestore.instance
-              .collection('users')
-              .doc(currentUser!.uid)
-              .update({'tokens': currentUser!.tokens});
-
-          model = "gpt-4o";
-
-          try {
-            List<OpenAIChatCompletionModel> responses =
-                await _generateMultipleZoneMessages(
-                    gameDescriptionController.text, totalZones, [], []);
-            if (responses.isEmpty) {
-              throw Exception('Failed to generate any responses from GPT');
-            }
-
-            var gameData = await _combineZones(responses);
-
-            var gameTemplate = GameTemplate(
-              templateId: const Uuid().v4(),
-              creatorUid: FirebaseAuth.instance.currentUser!.uid,
-              creatorName: 'AI Game Creator',
-              gameType: 'claimthezone',
-              createdAt: DateTime.now(),
-              lastUpdated: DateTime.now(),
-              zones: gameData['zones'] as List<Zone>,
-              gameName: 'AI Generated Game',
-              gameDescription: gameDescriptionController.text,
-              center: GeoPoint(
-                  (gameData['zones'] as List<Zone>).first.location.latitude,
-                  (gameData['zones'] as List<Zone>).first.location.longitude),
-              coinShopItems: gameData['coinShopItems'] as List<CoinShopItem>,
-            );
-
-            await saveGameTemplate(gameTemplate);
-
-            _showSuccessToast(
-                'Game Generated Successfully! You can view it in the "My Games" section.');
-          } catch (e) {
-            print('Error: $e');
-            ToastificationHelper.showErrorToast(
-                context, 'Error: Failed to generate game. $e');
-          } finally {
-            setState(() {
-              isLoading = false;
-            });
-            Get.offAll(() => const HomeScreen());
-          }
-        },
-        child: Column(
-          children: [
-            Text('Generate Advanced Game',
-                style:
-                    baseTextStyle.copyWith(color: Colors.white, fontSize: 18)),
-            Text('Advanced Model • Larger Game • 15 Tokens',
-                style: baseTextStyle.copyWith(
-                    fontSize: 12, color: Colors.white70)),
-          ],
-        ),
+          Get.offAll(() => const HomeScreen());
+        }
+      },
+      child: Row(
+        children: [
+          Container(
+            width: 40,
+            height: 40,
+            decoration: BoxDecoration(
+              color: Colors.green.withOpacity(0.2),
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: Center(
+              child: FaIcon(
+                FontAwesomeIcons.wandMagicSparkles,
+                color: Colors.green.shade400,
+                size: 20,
+              ),
+            ),
+          ),
+          const SizedBox(width: 16),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Generate Advanced Game',
+                  style: baseTextStyle.copyWith(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                Text(
+                  'Advanced Model • Larger Game • 15 Tokens',
+                  style: baseTextStyle.copyWith(
+                    fontSize: 14,
+                    color: Colors.white70,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }
 
   Widget _buildGenerateButton3() {
     totalZones = 165;
-    return SizedBox(
-      width: double.infinity,
-      child: ElevatedButton(
-        style: ElevatedButton.styleFrom(
-          backgroundColor: Colors.green,
-          padding: const EdgeInsets.symmetric(vertical: 16),
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+    return ElevatedButton(
+      style: ElevatedButton.styleFrom(
+        backgroundColor: Colors.white.withOpacity(0.1),
+        foregroundColor: Colors.white,
+        padding: const EdgeInsets.all(20),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(16),
+          side: BorderSide(color: Colors.white.withOpacity(0.1)),
         ),
-        onPressed: () async {
-          FocusScope.of(context).unfocus();
-          if (gameDescriptionController.text.isEmpty) {
-            ToastificationHelper.showErrorToast(
-                context, 'Please enter a game description.');
-            return;
+        elevation: 0,
+      ),
+      onPressed: () async {
+        FocusScope.of(context).unfocus();
+        if (gameDescriptionController.text.isEmpty) {
+          ToastificationHelper.showErrorToast(
+              context, 'Please enter a game description.');
+          return;
+        }
+
+        setState(() {
+          isLoading = true;
+          loadingMessage = "Making request...";
+        });
+
+        currentUser!.tokens -= 15;
+        await FirebaseFirestore.instance
+            .collection('users')
+            .doc(currentUser!.uid)
+            .update({'tokens': currentUser!.tokens});
+
+        model = "gpt-4o";
+
+        try {
+          List<OpenAIChatCompletionModel> responses =
+              await _generateMultipleZoneMessages(
+                  gameDescriptionController.text, totalZones, [], []);
+          if (responses.isEmpty) {
+            throw Exception('Failed to generate any responses from GPT');
           }
 
+          var gameData = await _combineZones(responses);
+
+          var gameTemplate = GameTemplate(
+            templateId: const Uuid().v4(),
+            creatorUid: FirebaseAuth.instance.currentUser!.uid,
+            creatorName: 'AI Game Creator',
+            gameType: 'claimthezone',
+            createdAt: DateTime.now(),
+            lastUpdated: DateTime.now(),
+            zones: gameData['zones'] as List<Zone>,
+            gameName: 'AI Generated Game',
+            gameDescription: gameDescriptionController.text,
+            center: GeoPoint(
+                (gameData['zones'] as List<Zone>).first.location.latitude,
+                (gameData['zones'] as List<Zone>).first.location.longitude),
+            coinShopItems: gameData['coinShopItems'] as List<CoinShopItem>,
+          );
+
+          await saveGameTemplate(gameTemplate);
+
+          _showSuccessToast(
+              'Game Generated Successfully! You can view it in the "My Games" section.');
+        } catch (e) {
+          print('Error: $e');
+          ToastificationHelper.showErrorToast(
+              context, 'Error: Failed to generate game. $e');
+        } finally {
           setState(() {
-            isLoading = true;
-            loadingMessage = "Making request...";
+            isLoading = false;
           });
-
-          currentUser!.tokens -= 15;
-          await FirebaseFirestore.instance
-              .collection('users')
-              .doc(currentUser!.uid)
-              .update({'tokens': currentUser!.tokens});
-
-          model = "gpt-4o";
-
-          try {
-            List<OpenAIChatCompletionModel> responses =
-                await _generateMultipleZoneMessages(
-                    gameDescriptionController.text, totalZones, [], []);
-            if (responses.isEmpty) {
-              throw Exception('Failed to generate any responses from GPT');
-            }
-
-            var gameData = await _combineZones(responses);
-
-            var gameTemplate = GameTemplate(
-              templateId: const Uuid().v4(),
-              creatorUid: FirebaseAuth.instance.currentUser!.uid,
-              creatorName: 'AI Game Creator',
-              gameType: 'claimthezone',
-              createdAt: DateTime.now(),
-              lastUpdated: DateTime.now(),
-              zones: gameData['zones'] as List<Zone>,
-              gameName: 'AI Generated Game',
-              gameDescription: gameDescriptionController.text,
-              center: GeoPoint(
-                  (gameData['zones'] as List<Zone>).first.location.latitude,
-                  (gameData['zones'] as List<Zone>).first.location.longitude),
-              coinShopItems: gameData['coinShopItems'] as List<CoinShopItem>,
-            );
-
-            await saveGameTemplate(gameTemplate);
-
-            _showSuccessToast(
-                'Game Generated Successfully! You can view it in the "My Games" section.');
-          } catch (e) {
-            print('Error: $e');
-            ToastificationHelper.showErrorToast(
-                context, 'Error: Failed to generate game. $e');
-          } finally {
-            setState(() {
-              isLoading = false;
-            });
-            Get.offAll(() => const HomeScreen());
-          }
-        },
-        child: Column(
-          children: [
-            Text('Generate Expert Game',
-                style:
-                    baseTextStyle.copyWith(color: Colors.white, fontSize: 18)),
-            Text('Advanced Model • Very Large Game • 50 Tokens',
-                style: baseTextStyle.copyWith(
-                    fontSize: 12, color: Colors.white70)),
-          ],
-        ),
+          Get.offAll(() => const HomeScreen());
+        }
+      },
+      child: Row(
+        children: [
+          Container(
+            width: 40,
+            height: 40,
+            decoration: BoxDecoration(
+              color: Colors.green.withOpacity(0.2),
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: Center(
+              child: FaIcon(
+                FontAwesomeIcons.wandMagicSparkles,
+                color: Colors.green.shade400,
+                size: 20,
+              ),
+            ),
+          ),
+          const SizedBox(width: 16),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Generate Expert Game',
+                  style: baseTextStyle.copyWith(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                Text(
+                  'Advanced Model • Very Large Game • 50 Tokens',
+                  style: baseTextStyle.copyWith(
+                    fontSize: 14,
+                    color: Colors.white70,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -867,48 +980,4 @@ Example question challenges (but make unique ones, just for reference):
       autoCloseDuration: const Duration(seconds: 5),
     );
   }
-}
-
-Widget _buildGlassCard({required String title, required Widget child}) {
-  return Container(
-    margin: const EdgeInsets.only(bottom: 16),
-    decoration: BoxDecoration(
-      gradient: LinearGradient(
-        colors: [Colors.white.withOpacity(0.1), Colors.white.withOpacity(0.05)],
-        begin: Alignment.topLeft,
-        end: Alignment.bottomRight,
-      ),
-      border: Border.all(color: Colors.white.withOpacity(0.2), width: 1),
-      borderRadius: BorderRadius.circular(20),
-    ),
-    child: ClipRRect(
-      borderRadius: BorderRadius.circular(20),
-      child: BackdropFilter(
-        filter: ImageFilter.blur(sigmaX: 12.0, sigmaY: 12.0),
-        child: Container(
-          padding: const EdgeInsets.all(16),
-          decoration: BoxDecoration(
-            color: Colors.white.withOpacity(0.05),
-            borderRadius: BorderRadius.circular(20),
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              if (title.isNotEmpty)
-                Text(
-                  title,
-                  style: baseTextStyle.copyWith(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                  ),
-                ),
-              if (title.isNotEmpty) const SizedBox(height: 12),
-              child,
-            ],
-          ),
-        ),
-      ),
-    ),
-  );
 }

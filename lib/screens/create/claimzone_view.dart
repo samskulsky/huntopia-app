@@ -2,7 +2,6 @@ import 'dart:ui';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_map/flutter_map.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:latlong2/latlong.dart';
@@ -182,6 +181,7 @@ class _ClaimZoneViewState extends State<ClaimZoneView> {
                   ),
                   onPressed: () {
                     edit = false;
+                    fromInfoPage = true;
                     Get.to(() => const AddZone());
                   },
                   icon: const FaIcon(FontAwesomeIcons.plus, size: 16),
@@ -231,6 +231,7 @@ class _ClaimZoneViewState extends State<ClaimZoneView> {
                   ),
                   onPressed: () {
                     itemEdit = false;
+                    fromInfoPage = true;
                     Get.to(() => const ClaimZoneAddItem());
                   },
                   icon: const FaIcon(FontAwesomeIcons.plus, size: 16),
@@ -277,6 +278,7 @@ class _ClaimZoneViewState extends State<ClaimZoneView> {
       onTap: () {
         edit = true;
         currentZoneId = zone.zoneId;
+        fromInfoPage = true;
         Get.to(() => const AddZone());
       },
       leading: Container(
@@ -319,6 +321,7 @@ class _ClaimZoneViewState extends State<ClaimZoneView> {
       onTap: () {
         itemEdit = true;
         currentItemId = item.itemId;
+        fromInfoPage = true;
         Get.to(() => const ClaimZoneAddItem());
       },
       leading: Container(

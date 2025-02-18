@@ -61,449 +61,226 @@ class _ClaimZoneAddItemState extends State<ClaimZoneAddItem> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(itemEdit ? 'Edit Coin Shop Item' : 'Add Coin Shop Item',
-            style: baseTextStyle),
-        leading: IconButton(
-          icon: const FaIcon(FontAwesomeIcons.arrowLeft, color: Colors.white),
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
+        title: Text(
+          itemEdit ? 'Edit Item' : 'Add Item',
+          style: baseTextStyle.copyWith(
+            fontSize: 28,
+            fontWeight: FontWeight.w600,
+            letterSpacing: -0.5,
+          ),
         ),
-        actions: [
-          if (itemEdit)
-            IconButton(
-              icon: const FaIcon(FontAwesomeIcons.trash, color: Colors.white),
-              onPressed: () {
-                gameTemplate.coinShopItems!
-                    .removeWhere((element) => element.itemId == currentItemId);
-                updateGameTemplate(gameTemplate);
-                Navigator.of(context).pop();
-                Navigator.of(context).pop();
-                Get.to(() => const ClaimZoneView());
-              },
-            ),
-        ],
+        leading: IconButton(
+          icon: const FaIcon(FontAwesomeIcons.arrowLeft, color: Colors.white70),
+          onPressed: () => Navigator.pop(context),
+        ),
         backgroundColor: Colors.black,
+        elevation: 0,
       ),
       backgroundColor: Colors.black,
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              Colors.black,
+              Colors.green.shade900.withOpacity(0.3),
+              Colors.black,
+            ],
+          ),
+        ),
+        child: ListView(
+          padding: const EdgeInsets.all(20),
           children: [
-            _buildGlassCard(
-              title: 'Preset Items',
-              child: SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  children: [
-                    ActionChip(
-                      side: BorderSide.none,
-                      label: Text('1.5x Boost',
-                          style: baseTextStyle.copyWith(fontSize: 18)),
-                      backgroundColor: Colors.green,
-                      onPressed: () {
-                        setState(() {
-                          itemType = 'booster';
-                          pointMultiplier = 1.5;
-                          boosterTime = 15;
-                          itemNameController.text = 'Point Dash 1.5x';
-                          coinPrice = 20;
-                        });
-                      },
-                    ),
-                    const SizedBox(width: 8),
-                    ActionChip(
-                      side: BorderSide.none,
-                      label: Text('2x Boost',
-                          style: baseTextStyle.copyWith(fontSize: 18)),
-                      backgroundColor: Colors.green,
-                      onPressed: () {
-                        setState(() {
-                          itemType = 'booster';
-                          pointMultiplier = 2;
-                          boosterTime = 15;
-                          itemNameController.text = 'Point Dash 2x';
-                          coinPrice = 30;
-                        });
-                      },
-                    ),
-                    const SizedBox(width: 8),
-                    ActionChip(
-                      side: BorderSide.none,
-                      label: Text('15m Sabotage',
-                          style: baseTextStyle.copyWith(fontSize: 18)),
-                      backgroundColor: Colors.red,
-                      onPressed: () {
-                        setState(() {
-                          itemType = 'disabler';
-                          disablerTime = 15;
-                          itemNameController.text = '15 Min Sabotage';
-                          coinPrice = 25;
-                        });
-                      },
-                    ),
-                    const SizedBox(width: 8),
-                    ActionChip(
-                      side: BorderSide.none,
-                      label: Text('30m Sabotage',
-                          style: baseTextStyle.copyWith(fontSize: 18)),
-                      backgroundColor: Colors.red,
-                      onPressed: () {
-                        setState(() {
-                          itemType = 'disabler';
-                          disablerTime = 30;
-                          itemNameController.text = '30 Min Sabotage';
-                          coinPrice = 40;
-                        });
-                      },
-                    ),
-                    const SizedBox(width: 8),
-                    ActionChip(
-                      side: BorderSide.none,
-                      label: Text('Coin ATM',
-                          style: baseTextStyle.copyWith(fontSize: 18)),
-                      backgroundColor: Colors.blue,
-                      onPressed: () {
-                        setState(() {
-                          itemType = 'coin';
-                          pointsPerCoin = 1;
-                          itemNameController.text = '1-for-1 Coin ATM';
-                          coinPrice = 5;
-                        });
-                      },
-                    ),
-                    const SizedBox(width: 8),
-                    ActionChip(
-                      side: BorderSide.none,
-                      label: Text('Task Skip',
-                          style: baseTextStyle.copyWith(fontSize: 18)),
-                      backgroundColor: Colors.purple,
-                      onPressed: () {
-                        setState(() {
-                          itemType = 'skip';
-                          coinPrice = 10;
-                          itemNameController.text = 'Task Skip';
-                        });
-                      },
-                    ),
-                  ],
+            Text(
+              'Item Name',
+              style: baseTextStyle.copyWith(
+                fontSize: 16,
+                fontWeight: FontWeight.w600,
+                color: Colors.white70,
+              ),
+            ),
+            const SizedBox(height: 8),
+            TextFormField(
+              controller: itemNameController,
+              decoration: InputDecoration(
+                hintText: 'Enter item name',
+                hintStyle: baseTextStyle.copyWith(color: Colors.white38),
+                filled: true,
+                fillColor: Colors.white.withOpacity(0.1),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(12),
+                  borderSide: BorderSide.none,
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(12),
+                  borderSide: BorderSide(color: Colors.white.withOpacity(0.1)),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(12),
+                  borderSide: BorderSide(color: Colors.green.shade400),
+                ),
+                contentPadding: const EdgeInsets.all(16),
+              ),
+              style: baseTextStyle.copyWith(color: Colors.white),
+            ),
+            const SizedBox(height: 32),
+            Text(
+              'Item Type',
+              style: baseTextStyle.copyWith(
+                fontSize: 20,
+                fontWeight: FontWeight.w600,
+                letterSpacing: -0.5,
+              ),
+            ),
+            const SizedBox(height: 12),
+            Container(
+              decoration: BoxDecoration(
+                color: Colors.white.withOpacity(0.05),
+                borderRadius: BorderRadius.circular(16),
+                border: Border.all(color: Colors.white.withOpacity(0.1)),
+              ),
+              child: Column(
+                children: [
+                  _buildItemTypeOption(
+                    icon: FontAwesomeIcons.gem,
+                    iconColor: Colors.green,
+                    title: 'Point Booster',
+                    subtitle:
+                        'When players buy this item, they will receive a point multiplier for a set amount of time.',
+                    value: 'booster',
+                    isFirst: true,
+                  ),
+                  Divider(color: Colors.white.withOpacity(0.1), height: 1),
+                  _buildItemTypeOption(
+                    icon: FontAwesomeIcons.ban,
+                    iconColor: Colors.red,
+                    title: 'Disabler',
+                    subtitle:
+                        'When players buy this item, they will be able to disable another team\'s claiming ability for a set amount of time.',
+                    value: 'disabler',
+                  ),
+                  Divider(color: Colors.white.withOpacity(0.1), height: 1),
+                  _buildItemTypeOption(
+                    icon: FontAwesomeIcons.coins,
+                    iconColor: Colors.blue,
+                    title: 'Point Exchanger',
+                    subtitle: 'Players can exchange coins for points.',
+                    value: 'coin',
+                  ),
+                  Divider(color: Colors.white.withOpacity(0.1), height: 1),
+                  _buildItemTypeOption(
+                    icon: FontAwesomeIcons.forward,
+                    iconColor: Colors.purple,
+                    title: 'Task Skipper',
+                    subtitle:
+                        'Players can skip a task for a set amount of coins.',
+                    value: 'skip',
+                    isLast: true,
+                  ),
+                ],
+              ),
+            ),
+            if (itemType != 'skip') ...[
+              const SizedBox(height: 32),
+              Text(
+                'Item Details',
+                style: baseTextStyle.copyWith(
+                  fontSize: 20,
+                  fontWeight: FontWeight.w600,
+                  letterSpacing: -0.5,
                 ),
               ),
-            ),
-            _buildGlassCard(
-              title: 'Item Name',
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Write the name of the item.',
-                    style: baseTextStyle.copyWith(color: Colors.white70),
-                  ),
-                  const SizedBox(height: 8),
-                  TextField(
-                    controller: itemNameController,
-                    decoration: InputDecoration(
-                      labelText: 'Item Name',
-                      labelStyle: baseTextStyle.copyWith(color: Colors.white70),
-                      filled: true,
-                      fillColor: Colors.grey[800],
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(12),
-                        borderSide: BorderSide.none,
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(12),
-                        borderSide: BorderSide.none,
-                      ),
-                    ),
-                    style: baseTextStyle.copyWith(color: Colors.white),
-                  ),
-                ],
-              ),
-            ),
-            _buildGlassCard(
-              title: 'Item Type',
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Select the type of the item.',
-                    style: baseTextStyle.copyWith(color: Colors.white70),
-                  ),
-                  const SizedBox(height: 8),
-                  ListTile(
-                    contentPadding: EdgeInsets.zero,
-                    leading: Container(
-                      height: 50,
-                      width: 50,
-                      alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: Colors.green,
-                      ),
-                      child: const FaIcon(
-                        FontAwesomeIcons.gem,
-                        color: Colors.white,
-                        size: 28,
-                      ),
-                    ),
-                    title: Text(
-                      'Point Booster',
-                      style: baseTextStyle.copyWith(
-                          fontSize: 18, fontWeight: FontWeight.w700),
-                    ),
-                    subtitle: Text(
-                      'When players buy this item, they will receive a point multiplier for a set amount of time.',
-                      style: baseTextStyle.copyWith(
-                          fontSize: 16, color: Colors.white70),
-                    ),
-                    trailing: Radio(
-                      value: 'booster',
-                      groupValue: itemType,
-                      onChanged: (value) {
-                        setState(() {
-                          itemType = value.toString();
-                        });
-                      },
-                      activeColor: Colors.green,
-                    ),
-                    onTap: () {
-                      setState(() {
-                        itemType = 'booster';
-                      });
-                    },
-                  ),
-                  ListTile(
-                    contentPadding: EdgeInsets.zero,
-                    leading: Container(
-                      height: 50,
-                      width: 50,
-                      alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: Colors.red,
-                      ),
-                      child: const FaIcon(
-                        FontAwesomeIcons.ban,
-                        color: Colors.white,
-                        size: 28,
-                      ),
-                    ),
-                    title: Text(
-                      'Disabler',
-                      style: baseTextStyle.copyWith(
-                          fontSize: 18, fontWeight: FontWeight.w700),
-                    ),
-                    subtitle: Text(
-                      'When players buy this item, they will be able to disable another team\'s claiming ability for a set amount of time.',
-                      style: baseTextStyle.copyWith(
-                          fontSize: 16, color: Colors.white70),
-                    ),
-                    trailing: Radio(
-                      value: 'disabler',
-                      groupValue: itemType,
-                      onChanged: (value) {
-                        setState(() {
-                          itemType = value.toString();
-                        });
-                      },
-                      activeColor: Colors.green,
-                    ),
-                    onTap: () {
-                      setState(() {
-                        itemType = 'disabler';
-                      });
-                    },
-                  ),
-                  ListTile(
-                    contentPadding: EdgeInsets.zero,
-                    leading: Container(
-                      height: 50,
-                      width: 50,
-                      alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: Colors.blue,
-                      ),
-                      child: const FaIcon(
-                        FontAwesomeIcons.coins,
-                        color: Colors.white,
-                        size: 28,
-                      ),
-                    ),
-                    title: Text(
-                      'Point Exchanger',
-                      style: baseTextStyle.copyWith(
-                          fontSize: 18, fontWeight: FontWeight.w700),
-                    ),
-                    subtitle: Text(
-                      'Players can exchange coins for points.',
-                      style: baseTextStyle.copyWith(
-                          fontSize: 16, color: Colors.white70),
-                    ),
-                    trailing: Radio(
-                      value: 'coin',
-                      groupValue: itemType,
-                      onChanged: (value) {
-                        setState(() {
-                          itemType = value.toString();
-                        });
-                      },
-                      activeColor: Colors.green,
-                    ),
-                    onTap: () {
-                      setState(() {
-                        itemType = 'coin';
-                      });
-                    },
-                  ),
-                  ListTile(
-                    contentPadding: EdgeInsets.zero,
-                    leading: Container(
-                      height: 50,
-                      width: 50,
-                      alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: Colors.purple,
-                      ),
-                      child: const FaIcon(
-                        FontAwesomeIcons.forward,
-                        color: Colors.white,
-                        size: 28,
-                      ),
-                    ),
-                    title: Text(
-                      'Task Skipper',
-                      style: baseTextStyle.copyWith(
-                          fontSize: 18, fontWeight: FontWeight.w700),
-                    ),
-                    subtitle: Text(
-                      'Players can skip a task for a set amount of coins.',
-                      style: baseTextStyle.copyWith(
-                          fontSize: 16, color: Colors.white70),
-                    ),
-                    trailing: Radio(
-                      value: 'skip',
-                      groupValue: itemType,
-                      onChanged: (value) {
-                        setState(() {
-                          itemType = value.toString();
-                        });
-                      },
-                      activeColor: Colors.green,
-                    ),
-                    onTap: () {
-                      setState(() {
-                        itemType = 'skip';
-                      });
-                    },
-                  ),
-                ],
-              ),
-            ),
-            if (itemType != 'skip')
-              _buildGlassCard(
-                title: 'Item Details',
+              const SizedBox(height: 12),
+              Container(
+                decoration: BoxDecoration(
+                  color: Colors.white.withOpacity(0.05),
+                  borderRadius: BorderRadius.circular(16),
+                  border: Border.all(color: Colors.white.withOpacity(0.1)),
+                ),
+                padding: const EdgeInsets.all(20),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     if (itemType == 'booster') ...[
-                      Text(
-                        '${pointMultiplier.toStringAsFixed(1)}x multiplier',
-                        style: baseTextStyle.copyWith(
-                          fontSize: 18,
-                          fontWeight: FontWeight.w700,
-                          color: Colors.green,
-                        ),
-                        textAlign: TextAlign.center,
-                      ),
-                      Slider(
+                      _buildSliderOption(
+                        title: 'Multiplier',
                         value: pointMultiplier,
+                        min: 1.1,
+                        max: 3.0,
+                        color: Colors.green,
+                        suffix: 'x',
                         onChanged: (value) {
                           setState(() {
                             pointMultiplier =
                                 double.parse(value.toStringAsFixed(1));
                           });
                         },
-                        min: 1.1,
-                        max: 3,
-                        activeColor: Colors.green,
-                        inactiveColor: Colors.white70,
                       ),
-                      const SizedBox(height: 16),
-                      Text(
-                        '${boosterTime.toStringAsFixed(0)} minutes',
-                        style: baseTextStyle.copyWith(
-                          fontSize: 18,
-                          fontWeight: FontWeight.w700,
-                          color: Colors.green,
-                        ),
-                        textAlign: TextAlign.center,
-                      ),
-                      Slider(
+                      const SizedBox(height: 24),
+                      _buildSliderOption(
+                        title: 'Duration',
                         value: boosterTime,
+                        min: 5,
+                        max: 60,
+                        color: Colors.green,
+                        suffix: ' minutes',
                         onChanged: (value) {
                           setState(() {
                             boosterTime = value;
                           });
                         },
-                        min: 5,
-                        max: 60,
-                        activeColor: Colors.green,
-                        inactiveColor: Colors.white70,
                       ),
                     ] else if (itemType == 'disabler') ...[
-                      Text(
-                        '${disablerTime.toStringAsFixed(0)} minutes',
-                        style: baseTextStyle.copyWith(
-                          fontSize: 18,
-                          fontWeight: FontWeight.w700,
-                          color: Colors.green,
-                        ),
-                        textAlign: TextAlign.center,
-                      ),
-                      Slider(
+                      _buildSliderOption(
+                        title: 'Duration',
                         value: disablerTime,
+                        min: 5,
+                        max: 60,
+                        color: Colors.red,
+                        suffix: ' minutes',
                         onChanged: (value) {
                           setState(() {
                             disablerTime = value;
                           });
                         },
-                        min: 5,
-                        max: 60,
-                        activeColor: Colors.green,
-                        inactiveColor: Colors.white70,
                       ),
                     ] else if (itemType == 'coin') ...[
-                      Text(
-                        '${pointsPerCoin.toStringAsFixed(0)} points per coin',
-                        style: baseTextStyle.copyWith(
-                          fontSize: 18,
-                          fontWeight: FontWeight.w700,
-                          color: Colors.green,
-                        ),
-                        textAlign: TextAlign.center,
-                      ),
-                      Slider(
+                      _buildSliderOption(
+                        title: 'Points per Coin',
                         value: pointsPerCoin,
+                        min: 1,
+                        max: 20,
+                        color: Colors.blue,
+                        suffix: ' points',
                         onChanged: (value) {
                           setState(() {
                             pointsPerCoin = value;
                           });
                         },
-                        min: 1,
-                        max: 20,
-                        activeColor: Colors.green,
-                        inactiveColor: Colors.white70,
                       ),
                     ],
                   ],
                 ),
               ),
-            _buildGlassCard(
-              title: 'Price',
+            ],
+            const SizedBox(height: 32),
+            Text(
+              'Price',
+              style: baseTextStyle.copyWith(
+                fontSize: 20,
+                fontWeight: FontWeight.w600,
+                letterSpacing: -0.5,
+              ),
+            ),
+            const SizedBox(height: 12),
+            Container(
+              decoration: BoxDecoration(
+                color: Colors.white.withOpacity(0.05),
+                borderRadius: BorderRadius.circular(16),
+                border: Border.all(color: Colors.white.withOpacity(0.1)),
+              ),
+              padding: const EdgeInsets.all(20),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -511,152 +288,221 @@ class _ClaimZoneAddItemState extends State<ClaimZoneAddItem> {
                     'Set the number of coins required to purchase this item.',
                     style: baseTextStyle.copyWith(color: Colors.white70),
                   ),
-                  const SizedBox(height: 8),
-                  Text(
-                    '${coinPrice.round()} coins',
-                    style: baseTextStyle.copyWith(
-                      fontSize: 18,
-                      fontWeight: FontWeight.w700,
-                      color: Colors.green,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                  Slider(
+                  const SizedBox(height: 16),
+                  _buildSliderOption(
+                    title: 'Cost',
                     value: coinPrice,
+                    min: 1,
+                    max: 100,
+                    color: Colors.amber,
+                    suffix: ' coins',
                     onChanged: (value) {
                       setState(() {
                         coinPrice = value;
                       });
                     },
-                    min: 1,
-                    max: 100,
-                    activeColor: Colors.green,
-                    inactiveColor: Colors.white70,
                   ),
                 ],
-              ),
-            ),
-            _buildGlassCard(
-              title: '',
-              child: SizedBox(
-                width: double.infinity,
-                child: FilledButton(
-                  style: FilledButton.styleFrom(
-                    padding: const EdgeInsets.symmetric(
-                        vertical: 12, horizontal: 24),
-                    backgroundColor: Colors.green,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                  ),
-                  onPressed: () {
-                    if (itemNameController.text.isEmpty) {
-                      ToastificationHelper.showErrorToast(context,
-                          'To save the coin shop item, please complete all fields.');
-                      return;
-                    }
-                    gameTemplate.coinShopItems ??= [];
-                    if (itemEdit) {
-                      CoinShopItem? item = gameTemplate.coinShopItems!
-                          .firstWhereOrNull(
-                              (element) => element.itemId == currentItemId);
-                      if (item != null) {
-                        item.itemName = itemNameController.text;
-                        item.itemType = itemType;
-                        item.multiplier = pointMultiplier;
-                        item.duration = itemType == 'booster'
-                            ? boosterTime.round()
-                            : itemType == 'disabler'
-                                ? disablerTime.round()
-                                : 0;
-                        item.itemPrice = coinPrice.round();
-                        item.pointsPerCoin = pointsPerCoin.round();
-                      }
-                    } else {
-                      CoinShopItem item = CoinShopItem(
-                        itemId: const Uuid().v4(),
-                        itemName: itemNameController.text,
-                        itemDescription: '',
-                        itemType: itemType,
-                        itemPrice: coinPrice.round(),
-                        multiplier: pointMultiplier,
-                        duration: itemType == 'booster'
-                            ? boosterTime.round()
-                            : itemType == 'disabler'
-                                ? disablerTime.round()
-                                : 0,
-                        pointsPerCoin:
-                            itemType == 'coin' ? pointsPerCoin.round() : 0,
-                      );
-                      gameTemplate.coinShopItems!.add(item);
-                    }
-                    updateGameTemplate(gameTemplate);
-                    Navigator.of(context).pop();
-                    Navigator.of(context).pop();
-                    Get.to(() => const ClaimZoneView());
-                  },
-                  child: Text(
-                    'Save Item',
-                    style: baseTextStyle.copyWith(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                    ),
-                  ),
-                ),
               ),
             ),
             const SizedBox(height: 32),
           ],
         ),
       ),
-    );
-  }
-
-  Widget _buildGlassCard({required String title, required Widget child}) {
-    return Container(
-      margin: const EdgeInsets.only(bottom: 16),
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          colors: [
-            Colors.white.withOpacity(0.1),
-            Colors.white.withOpacity(0.05)
-          ],
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
+      bottomNavigationBar: Container(
+        decoration: BoxDecoration(
+          color: Colors.black,
+          border: Border(
+            top: BorderSide(color: Colors.white.withOpacity(0.1)),
+          ),
         ),
-        border: Border.all(color: Colors.white.withOpacity(0.2), width: 1),
-        borderRadius: BorderRadius.circular(20),
-      ),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(20),
-        child: BackdropFilter(
-          filter: ImageFilter.blur(sigmaX: 12.0, sigmaY: 12.0),
-          child: Container(
-            padding: const EdgeInsets.all(16),
-            decoration: BoxDecoration(
-              color: Colors.white.withOpacity(0.05),
-              borderRadius: BorderRadius.circular(20),
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                if (title.isNotEmpty)
-                  Text(
-                    title,
-                    style: baseTextStyle.copyWith(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                    ),
+        child: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.all(20),
+            child: SizedBox(
+              width: double.infinity,
+              height: 56,
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.white,
+                  foregroundColor: Colors.black,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(16),
                   ),
-                if (title.isNotEmpty) const SizedBox(height: 12),
-                child,
-              ],
+                  elevation: 0,
+                ),
+                onPressed: saveItem,
+                child: Text(
+                  'Save Item',
+                  style: baseTextStyle.copyWith(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ),
             ),
           ),
         ),
       ),
     );
+  }
+
+  Widget _buildItemTypeOption({
+    required IconData icon,
+    required Color iconColor,
+    required String title,
+    required String subtitle,
+    required String value,
+    bool isFirst = false,
+    bool isLast = false,
+  }) {
+    return InkWell(
+      onTap: () => setState(() => itemType = value),
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.vertical(
+            top: isFirst ? const Radius.circular(16) : Radius.zero,
+            bottom: isLast ? const Radius.circular(16) : Radius.zero,
+          ),
+        ),
+        child: ListTile(
+          contentPadding: const EdgeInsets.all(20),
+          leading: Container(
+            width: 40,
+            height: 40,
+            decoration: BoxDecoration(
+              color: iconColor.withOpacity(0.2),
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: Center(
+              child: FaIcon(
+                icon,
+                color: iconColor,
+                size: 20,
+              ),
+            ),
+          ),
+          title: Padding(
+            padding: const EdgeInsets.only(bottom: 8),
+            child: Text(
+              title,
+              style: baseTextStyle.copyWith(
+                fontSize: 18,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+          ),
+          subtitle: Text(
+            subtitle,
+            style: baseTextStyle.copyWith(
+              color: Colors.white70,
+              height: 1.3,
+            ),
+          ),
+          trailing: Radio(
+            value: value,
+            groupValue: itemType,
+            onChanged: (value) => setState(() => itemType = value.toString()),
+            activeColor: iconColor,
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildSliderOption({
+    required String title,
+    required double value,
+    required double min,
+    required double max,
+    required Color color,
+    required String suffix,
+    required Function(double) onChanged,
+  }) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              title,
+              style: baseTextStyle.copyWith(
+                color: Colors.white70,
+              ),
+            ),
+            Text(
+              value.toStringAsFixed(title.contains('Multiplier') ? 1 : 0) +
+                  suffix,
+              style: baseTextStyle.copyWith(
+                fontSize: 18,
+                fontWeight: FontWeight.w600,
+                color: color,
+              ),
+            ),
+          ],
+        ),
+        const SizedBox(height: 8),
+        SliderTheme(
+          data: SliderThemeData(
+            activeTrackColor: color,
+            inactiveTrackColor: Colors.white.withOpacity(0.1),
+            thumbColor: color,
+            overlayColor: color.withOpacity(0.2),
+          ),
+          child: Slider(
+            value: value,
+            min: min,
+            max: max,
+            onChanged: onChanged,
+          ),
+        ),
+      ],
+    );
+  }
+
+  void saveItem() {
+    if (itemNameController.text.isEmpty) {
+      ToastificationHelper.showErrorToast(
+          context, 'To save the coin shop item, please complete all fields.');
+      return;
+    }
+    gameTemplate.coinShopItems ??= [];
+    if (itemEdit) {
+      CoinShopItem? item = gameTemplate.coinShopItems!
+          .firstWhereOrNull((element) => element.itemId == currentItemId);
+      if (item != null) {
+        item.itemName = itemNameController.text;
+        item.itemType = itemType;
+        item.multiplier = pointMultiplier;
+        item.duration = itemType == 'booster'
+            ? boosterTime.round()
+            : itemType == 'disabler'
+                ? disablerTime.round()
+                : 0;
+        item.itemPrice = coinPrice.round();
+        item.pointsPerCoin = pointsPerCoin.round();
+      }
+    } else {
+      CoinShopItem item = CoinShopItem(
+        itemId: const Uuid().v4(),
+        itemName: itemNameController.text,
+        itemDescription: '',
+        itemType: itemType,
+        itemPrice: coinPrice.round(),
+        multiplier: pointMultiplier,
+        duration: itemType == 'booster'
+            ? boosterTime.round()
+            : itemType == 'disabler'
+                ? disablerTime.round()
+                : 0,
+        pointsPerCoin: itemType == 'coin' ? pointsPerCoin.round() : 0,
+      );
+      gameTemplate.coinShopItems!.add(item);
+    }
+    updateGameTemplate(gameTemplate);
+    Navigator.of(context).pop();
+    Navigator.of(context).pop();
+    Get.to(() => const ClaimZoneView());
   }
 }

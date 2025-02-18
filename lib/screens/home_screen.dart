@@ -71,300 +71,209 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder<AppUser?>(
-      stream: appUserStream(FirebaseAuth.instance.currentUser!.uid),
-      builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.active &&
-            snapshot.hasData &&
-            snapshot.data != null) {
-          currentUser = snapshot.data!;
-          usernameController.text = currentUser?.displayName ?? '';
-          emailController.text = currentUser?.email ?? '';
-
-          updateFCMToken();
-
-          // Handle banned users
-          if (currentUser!.role == 'ban') {
-            return Scaffold(
-              backgroundColor: Colors.black,
-              body: Center(
-                child: Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Your account has been disabled.',
-                        style: baseTextStyle.copyWith(
-                          fontSize: 20,
-                          fontWeight: FontWeight.w700,
-                          color: Colors.white,
-                        ),
+    return Scaffold(
+      backgroundColor: Colors.black,
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              Colors.black,
+              Colors.green.shade900.withOpacity(0.3),
+              Colors.black,
+            ],
+          ),
+        ),
+        child: Column(
+          children: [
+            SafeArea(
+              bottom: false,
+              child: Padding(
+                padding: const EdgeInsets.all(20),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'ClaimRush',
+                      style: baseTextStyle.copyWith(
+                        fontSize: 32,
+                        fontWeight: FontWeight.w600,
+                        letterSpacing: -0.5,
                       ),
-                      const SizedBox(height: 8),
-                      Text(
-                        'This could be due to a violation of our terms of service. If you believe this is a mistake, please contact support.\n\nWe apologize for any inconvenience this may have caused.',
-                        style: baseTextStyle.copyWith(
-                          fontSize: 16,
-                          color: Colors.white70,
-                        ),
+                    ),
+                    IconButton(
+                      icon: const FaIcon(FontAwesomeIcons.user,
+                          color: Colors.white70),
+                      onPressed: () => showDialog(
+                        context: context,
+                        builder: (context) => _buildProfileDialog(),
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
-            );
-          }
-
-          return Scaffold(
-            backgroundColor: Colors.black,
-            body: SafeArea(
-              child: Column(
+            ),
+            Expanded(
+              child: ListView(
+                padding: const EdgeInsets.all(20),
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 16, vertical: 16),
-                    child: _buildHeader(),
+                  Pinput(
+                    length: 6,
+                    defaultPinTheme: PinTheme(
+                      width: 50,
+                      height: 50,
+                      textStyle: baseTextStyle.copyWith(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w600,
+                      ),
+                      decoration: BoxDecoration(
+                        color: Colors.white.withOpacity(0.1),
+                        borderRadius: BorderRadius.circular(12),
+                        border:
+                            Border.all(color: Colors.white.withOpacity(0.1)),
+                      ),
+                    ),
+                    focusedPinTheme: PinTheme(
+                      width: 50,
+                      height: 50,
+                      textStyle: baseTextStyle.copyWith(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w600,
+                      ),
+                      decoration: BoxDecoration(
+                        color: Colors.white.withOpacity(0.1),
+                        borderRadius: BorderRadius.circular(12),
+                        border: Border.all(color: Colors.green.shade400),
+                      ),
+                    ),
+                    submittedPinTheme: PinTheme(
+                      width: 50,
+                      height: 50,
+                      textStyle: baseTextStyle.copyWith(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w600,
+                      ),
+                      decoration: BoxDecoration(
+                        color: Colors.white.withOpacity(0.1),
+                        borderRadius: BorderRadius.circular(12),
+                        border:
+                            Border.all(color: Colors.white.withOpacity(0.1)),
+                      ),
+                    ),
+                    onCompleted: (pin) async {
+                      await _handleGameJoin(pin);
+                    },
                   ),
-                  Expanded(
-                    child: ListView(
-                      padding: const EdgeInsets.symmetric(horizontal: 16),
+                  const SizedBox(height: 12),
+                  Text(
+                    'Enter your game code above to join an existing game.',
+                    style: baseTextStyle.copyWith(color: Colors.white70),
+                    textAlign: TextAlign.center,
+                  ),
+                  const SizedBox(height: 24),
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.white.withOpacity(0.1),
+                      foregroundColor: Colors.white,
+                      padding: const EdgeInsets.all(20),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(16),
+                        side: BorderSide(color: Colors.white.withOpacity(0.1)),
+                      ),
+                      elevation: 0,
+                    ),
+                    onPressed: () {
+                      _showCreateGameOptions();
+                    },
+                    child: Row(
                       children: [
-                        _buildJoinGame(),
-                        _buildGameTypes(),
-                        _buildYourGames(),
+                        Container(
+                          width: 40,
+                          height: 40,
+                          decoration: BoxDecoration(
+                            color: Colors.green.withOpacity(0.2),
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: const Center(
+                            child: FaIcon(
+                              FontAwesomeIcons.plus,
+                              color: Colors.green,
+                              size: 20,
+                            ),
+                          ),
+                        ),
+                        const SizedBox(width: 16),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Create a New Game',
+                                style: baseTextStyle.copyWith(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                              Text(
+                                'Start from scratch or use AI to generate',
+                                style: baseTextStyle.copyWith(
+                                  fontSize: 14,
+                                  color: Colors.white70,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
                       ],
                     ),
                   ),
+                  const SizedBox(height: 32),
+                  _buildYourGames(),
                 ],
               ),
             ),
-          );
-        } else {
-          return const Scaffold(
-            backgroundColor: Colors.black,
-            body: Center(
-              child: SpinKitFadingCube(color: Colors.green),
-            ),
-          );
-        }
-      },
-    );
-  }
-
-  Widget _buildHeader() {
-    return Row(
-      children: [
-        AvatarBrick(
-          size: const Size(40, 40),
-          backgroundColor: Colors.green,
-          nameTextColor: Colors.white,
-          name: '${currentUser?.firstName} ${currentUser?.lastName}',
-          nameTextStyle:
-              const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-          radius: 24,
+          ],
         ),
-        const SizedBox(width: 12),
-        Expanded(
-          child: Text(
-            'Hello, ${currentUser?.firstName}!',
-            style: GoogleFonts.spaceGrotesk(
-              fontSize: 24,
-              fontWeight: FontWeight.bold,
-              color: Colors.white,
-            ),
-          ),
-        ),
-        IconButton(
-          icon: const FaIcon(FontAwesomeIcons.gear),
-          color: Colors.white,
-          onPressed: () {
-            Navigator.of(context).push(MaterialPageRoute<void>(
-              fullscreenDialog: true,
-              builder: (BuildContext context) {
-                return _buildProfileDialog();
-              },
-            ));
-          },
-        ),
-      ],
-    );
-  }
-
-  Widget _buildJoinGame() {
-    return _buildGlassCard(
-      title: 'Join a Game',
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Pinput(
-            length: 6,
-            textCapitalization: TextCapitalization.characters,
-            keyboardType: TextInputType.text,
-            inputFormatters: [
-              FilteringTextInputFormatter.allow(RegExp(r'[A-Z]')),
-            ],
-            defaultPinTheme: PinTheme(
-              width: 48,
-              height: 48,
-              textStyle: const TextStyle(fontSize: 20, color: Colors.white),
-              decoration: BoxDecoration(
-                color: Colors.grey[800],
-                borderRadius: BorderRadius.circular(12),
-              ),
-            ),
-            onCompleted: (pin) async {
-              await _handleGameJoin(pin);
-            },
-          ),
-          const SizedBox(height: 12),
-          Text(
-            'Enter your game code above to join an existing game.',
-            style: baseTextStyle.copyWith(color: Colors.white70),
-          ),
-          const SizedBox(height: 12),
-          ElevatedButton(
-            style: ElevatedButton.styleFrom(
-              padding: const EdgeInsets.symmetric(vertical: 12),
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12)),
-              backgroundColor: Colors.green,
-            ),
-            onPressed: () {
-              _showCreateGameOptions();
-            },
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const FaIcon(FontAwesomeIcons.plus, color: Colors.white),
-                const SizedBox(width: 8),
-                Text(
-                  'Create a New Game',
-                  style: baseTextStyle.copyWith(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ],
       ),
-    );
-  }
-
-  void _showCreateGameOptions() {
-    showModalBottomSheet(
-      context: context,
-      backgroundColor: Colors.black.withOpacity(0.8),
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
-      ),
-      builder: (context) {
-        return Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 16.0),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Container(
-                width: 50,
-                height: 5,
-                decoration: BoxDecoration(
-                  color: Colors.grey[700],
-                  borderRadius: BorderRadius.circular(10),
-                ),
-              ),
-              const SizedBox(height: 16),
-              Text(
-                'Create a New Game',
-                style: baseTextStyle.copyWith(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
-                ),
-              ),
-              const SizedBox(height: 24),
-              SizedBox(
-                width: double.infinity,
-                child: ElevatedButton.icon(
-                  style: ElevatedButton.styleFrom(
-                    padding: const EdgeInsets.symmetric(vertical: 4),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                  ),
-                  icon: const FaIcon(
-                    FontAwesomeIcons.penToSquare,
-                    color: Colors.white,
-                  ),
-                  label: Text(
-                    'Create Game Yourself',
-                    style: baseTextStyle.copyWith(color: Colors.white),
-                  ),
-                  onPressed: () {
-                    Navigator.pop(context);
-                    Get.to(() => const CreateGamePage());
-                  },
-                ),
-              ),
-              SizedBox(
-                width: double.infinity,
-                child: ElevatedButton.icon(
-                  style: ElevatedButton.styleFrom(
-                    padding: const EdgeInsets.symmetric(vertical: 4),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    backgroundColor: Colors.green,
-                  ),
-                  icon: const FaIcon(
-                    FontAwesomeIcons.robot,
-                    color: Colors.white,
-                  ),
-                  label: Text(
-                    'Use AI to Generate Game',
-                    style: baseTextStyle.copyWith(color: Colors.white),
-                  ),
-                  onPressed: () {
-                    Navigator.pop(context);
-                    Get.to(() => const AIGenerate());
-                  },
-                ),
-              ),
-              const SizedBox(height: 16),
-            ],
-          ),
-        );
-      },
     );
   }
 
   Widget _buildGameTypes() {
-    return _buildGlassCard(
-      title: 'Explore Game Details',
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.white.withOpacity(0.05),
+        borderRadius: BorderRadius.circular(16),
+        border: Border.all(color: Colors.white.withOpacity(0.1)),
+      ),
       child: ListTile(
-        contentPadding: EdgeInsets.zero,
+        contentPadding: const EdgeInsets.all(20),
         leading: Container(
-          padding: const EdgeInsets.all(12),
+          width: 40,
+          height: 40,
           decoration: BoxDecoration(
-            gradient: const LinearGradient(
-              colors: [Colors.blueAccent, Colors.blue],
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-            ),
-            borderRadius: BorderRadius.circular(12),
+            color: Colors.blue.withOpacity(0.2),
+            borderRadius: BorderRadius.circular(10),
           ),
-          child: const FaIcon(FontAwesomeIcons.mapLocationDot,
-              color: Colors.white, size: 18),
+          child: const Center(
+            child: FaIcon(
+              FontAwesomeIcons.mapLocationDot,
+              color: Colors.blue,
+              size: 20,
+            ),
+          ),
         ),
         title: Text(
           'ClaimRush',
           style: baseTextStyle.copyWith(
             fontSize: 18,
-            fontWeight: FontWeight.bold,
-            color: Colors.white,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+        subtitle: Text(
+          'Explore game details and how to play',
+          style: baseTextStyle.copyWith(
+            color: Colors.white70,
           ),
         ),
         trailing:
@@ -385,81 +294,111 @@ class _HomeScreenState extends State<HomeScreen> {
           return const Center(
             child: CircularProgressIndicator(color: Colors.green),
           );
-        } else if (snapshot.data!.isEmpty) {
+        }
+
+        if (snapshot.data!.isEmpty) {
           return Text(
             'You have no games yet.',
             style: baseTextStyle.copyWith(color: Colors.white70),
           );
-        } else {
-          return Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'Your Games',
-                style: baseTextStyle.copyWith(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
-                ),
-              ),
-              const SizedBox(height: 12),
-              ListView.builder(
-                itemCount: snapshot.data!.length,
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                itemBuilder: (context, index) {
-                  final game = snapshot.data![index];
-                  return _buildGameCard(game);
-                },
-              ),
-            ],
-          );
         }
+
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Your Games',
+              style: baseTextStyle.copyWith(
+                fontSize: 20,
+                fontWeight: FontWeight.w600,
+                letterSpacing: -0.5,
+              ),
+            ),
+            const SizedBox(height: 12),
+            Container(
+              decoration: BoxDecoration(
+                color: Colors.white.withOpacity(0.05),
+                borderRadius: BorderRadius.circular(16),
+                border: Border.all(color: Colors.white.withOpacity(0.1)),
+              ),
+              child: Column(
+                children: [
+                  ...snapshot.data!
+                      .map((game) => Column(
+                            children: [
+                              _buildGameCard(game),
+                              if (game != snapshot.data!.last)
+                                Divider(
+                                  color: Colors.white.withOpacity(0.1),
+                                  height: 1,
+                                ),
+                            ],
+                          ))
+                      .toList(),
+                ],
+              ),
+            ),
+          ],
+        );
       },
     );
   }
 
   Widget _buildGameCard(GameTemplate game) {
-    return _buildGlassCard(
-      title: '',
-      child: ListTile(
-        contentPadding: EdgeInsets.zero,
-        leading: _buildGameIcon(game.gameType),
-        title: Text(
-          game.gameName,
-          style: baseTextStyle.copyWith(
-              fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white),
+    return ListTile(
+      contentPadding: const EdgeInsets.all(20),
+      leading: _buildGameIcon(game.gameType),
+      title: Text(
+        game.gameName,
+        style: baseTextStyle.copyWith(
+          fontSize: 18,
+          fontWeight: FontWeight.w600,
         ),
-        subtitle: Text(
-          'Created ${DateFormat.yMMMd().format(game.createdAt)}',
-          style: baseTextStyle.copyWith(fontSize: 14, color: Colors.white70),
-        ),
-        trailing:
-            const FaIcon(FontAwesomeIcons.angleRight, color: Colors.white70),
-        onTap: () {
-          gameTemplate = game;
-          Get.to(() => const ClaimZoneView());
-        },
       ),
+      subtitle: Text(
+        'Created ${DateFormat.yMMMd().format(game.createdAt)}',
+        style: baseTextStyle.copyWith(
+          color: Colors.white70,
+        ),
+      ),
+      trailing:
+          const FaIcon(FontAwesomeIcons.angleRight, color: Colors.white70),
+      onTap: () {
+        gameTemplate = game;
+        Get.to(() => const ClaimZoneView());
+      },
     );
   }
 
   Widget _buildGameIcon(String gameType) {
     IconData iconData;
+    Color iconColor;
+
     if (gameType == 'claimthezone') {
       iconData = FontAwesomeIcons.mapLocationDot;
+      iconColor = Colors.green;
     } else if (gameType == 'photohunt') {
       iconData = FontAwesomeIcons.camera;
+      iconColor = Colors.blue;
     } else {
       iconData = FontAwesomeIcons.personRunning;
+      iconColor = Colors.orange;
     }
+
     return Container(
-      padding: const EdgeInsets.all(8),
+      width: 40,
+      height: 40,
       decoration: BoxDecoration(
-        color: Colors.green.withOpacity(0.1),
-        borderRadius: BorderRadius.circular(8),
+        color: iconColor.withOpacity(0.2),
+        borderRadius: BorderRadius.circular(10),
       ),
-      child: FaIcon(iconData, color: Colors.green, size: 24),
+      child: Center(
+        child: FaIcon(
+          iconData,
+          color: iconColor,
+          size: 20,
+        ),
+      ),
     );
   }
 
@@ -666,48 +605,178 @@ class _HomeScreenState extends State<HomeScreen> {
       style: baseTextStyle.copyWith(color: Colors.white),
     ).animate().fadeIn(duration: 500.ms).slideY(begin: 0.1);
   }
-}
 
-Widget _buildGlassCard({required String title, required Widget child}) {
-  return Container(
-    margin: const EdgeInsets.only(bottom: 16),
-    decoration: BoxDecoration(
-      gradient: LinearGradient(
-        colors: [Colors.white.withOpacity(0.1), Colors.white.withOpacity(0.05)],
-        begin: Alignment.topLeft,
-        end: Alignment.bottomRight,
-      ),
-      border: Border.all(color: Colors.white.withOpacity(0.2), width: 1),
-      borderRadius: BorderRadius.circular(20),
-    ),
-    child: ClipRRect(
-      borderRadius: BorderRadius.circular(20),
-      child: BackdropFilter(
-        filter: ImageFilter.blur(sigmaX: 12.0, sigmaY: 12.0),
-        child: Container(
-          padding: const EdgeInsets.all(16),
-          decoration: BoxDecoration(
-            color: Colors.white.withOpacity(0.05),
-            borderRadius: BorderRadius.circular(20),
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              if (title.isNotEmpty)
-                Text(
-                  title,
-                  style: baseTextStyle.copyWith(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
+  void _showCreateGameOptions() {
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: Colors.transparent,
+      builder: (context) => ClipRRect(
+        borderRadius: const BorderRadius.vertical(top: Radius.circular(20)),
+        child: BackdropFilter(
+          filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+          child: Container(
+            decoration: BoxDecoration(
+              color: Colors.black.withOpacity(0.8),
+              borderRadius:
+                  const BorderRadius.vertical(top: Radius.circular(20)),
+              border: Border(
+                top: BorderSide(color: Colors.white.withOpacity(0.1)),
+                left: BorderSide(color: Colors.white.withOpacity(0.1)),
+                right: BorderSide(color: Colors.white.withOpacity(0.1)),
+              ),
+            ),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Container(
+                  width: 40,
+                  height: 4,
+                  margin: const EdgeInsets.only(top: 12),
+                  decoration: BoxDecoration(
+                    color: Colors.white.withOpacity(0.2),
+                    borderRadius: BorderRadius.circular(2),
                   ),
                 ),
-              if (title.isNotEmpty) const SizedBox(height: 12),
-              child,
-            ],
+                Padding(
+                  padding: const EdgeInsets.all(20),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Create Game',
+                        style: baseTextStyle.copyWith(
+                          fontSize: 28,
+                          fontWeight: FontWeight.w600,
+                          letterSpacing: -0.5,
+                        ),
+                      ),
+                      const SizedBox(height: 20),
+                      ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.white.withOpacity(0.1),
+                          foregroundColor: Colors.white,
+                          padding: const EdgeInsets.all(20),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(16),
+                            side: BorderSide(
+                                color: Colors.white.withOpacity(0.1)),
+                          ),
+                          elevation: 0,
+                        ),
+                        onPressed: () {
+                          Navigator.pop(context);
+                          Get.to(() => const CreateGamePage());
+                        },
+                        child: Row(
+                          children: [
+                            Container(
+                              width: 40,
+                              height: 40,
+                              decoration: BoxDecoration(
+                                color: Colors.green.withOpacity(0.2),
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              child: const Center(
+                                child: FaIcon(
+                                  FontAwesomeIcons.pencil,
+                                  color: Colors.green,
+                                  size: 20,
+                                ),
+                              ),
+                            ),
+                            const SizedBox(width: 16),
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    'Create Manually',
+                                    style: baseTextStyle.copyWith(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
+                                  Text(
+                                    'Design your game from scratch',
+                                    style: baseTextStyle.copyWith(
+                                      fontSize: 14,
+                                      color: Colors.white70,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(height: 12),
+                      ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.white.withOpacity(0.1),
+                          foregroundColor: Colors.white,
+                          padding: const EdgeInsets.all(20),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(16),
+                            side: BorderSide(
+                                color: Colors.white.withOpacity(0.1)),
+                          ),
+                          elevation: 0,
+                        ),
+                        onPressed: () {
+                          Navigator.pop(context);
+                          Get.to(() => const AIGenerate());
+                        },
+                        child: Row(
+                          children: [
+                            Container(
+                              width: 40,
+                              height: 40,
+                              decoration: BoxDecoration(
+                                color: Colors.purple.withOpacity(0.2),
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              child: const Center(
+                                child: FaIcon(
+                                  FontAwesomeIcons.wandMagicSparkles,
+                                  color: Colors.purple,
+                                  size: 20,
+                                ),
+                              ),
+                            ),
+                            const SizedBox(width: 16),
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    'Generate with AI',
+                                    style: baseTextStyle.copyWith(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
+                                  Text(
+                                    'Let AI create a game for you',
+                                    style: baseTextStyle.copyWith(
+                                      fontSize: 14,
+                                      color: Colors.white70,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(height: 32),
+                    ],
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),
-    ),
-  );
+    );
+  }
 }
