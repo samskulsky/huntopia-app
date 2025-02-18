@@ -33,497 +33,365 @@ class _ClaimZoneViewState extends State<ClaimZoneView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Game Details', style: baseTextStyle),
+        title: Text(
+          'Game Details',
+          style: baseTextStyle.copyWith(
+            fontSize: 28,
+            fontWeight: FontWeight.w600,
+            letterSpacing: -0.5,
+          ),
+        ),
         leading: IconButton(
-          icon: const FaIcon(FontAwesomeIcons.arrowLeft),
-          onPressed: () {
-            Navigator.pop(context);
-          },
+          icon: const FaIcon(FontAwesomeIcons.arrowLeft, color: Colors.white70),
+          onPressed: () => Navigator.pop(context),
         ),
         actions: [
           IconButton(
-            icon: const FaIcon(FontAwesomeIcons.trash),
-            onPressed: () {
-              showDialog(
-                context: context,
-                builder: (BuildContext context) {
-                  return AlertDialog(
-                    backgroundColor: Colors.black,
-                    title: Text('Delete Game', style: baseTextStyle),
-                    content: Text(
-                      'Are you sure you want to delete this game? This action cannot be undone.',
-                      style: baseTextStyle.copyWith(color: Colors.white70),
-                    ),
-                    actions: [
-                      TextButton(
-                        onPressed: () {
-                          Navigator.of(context).pop();
-                        },
-                        child: Text('Cancel',
-                            style: baseTextStyle.copyWith(color: Colors.white)),
-                      ),
-                      TextButton(
-                        onPressed: () {
-                          deleteGameTemplate(gameTemplate.templateId);
-                          Navigator.of(context).pop();
-                          Get.offAll(() => const HomeScreen());
-                        },
-                        child: Text('Delete',
-                            style: baseTextStyle.copyWith(
-                                color: Colors.red,
-                                fontWeight: FontWeight.bold)),
-                      ),
-                    ],
-                  );
-                },
-              );
-            },
+            icon: const FaIcon(FontAwesomeIcons.trash, color: Colors.white70),
+            onPressed: () => _showDeleteDialog(context),
           ),
         ],
+        backgroundColor: Colors.black,
+        elevation: 0,
       ),
       backgroundColor: Colors.black,
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              Colors.black,
+              Colors.green.shade900.withOpacity(0.3),
+              Colors.black,
+            ],
+          ),
+        ),
+        child: ListView(
+          padding: const EdgeInsets.all(20),
           children: [
-            _buildGlassCard(
-              title: '',
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  SizedBox(
-                    width: double.infinity,
+            Row(
+              children: [
+                Expanded(
+                  child: SizedBox(
+                    height: 56,
                     child: ElevatedButton.icon(
                       style: ElevatedButton.styleFrom(
-                        padding: const EdgeInsets.symmetric(vertical: 12),
-                        backgroundColor: Colors.green,
+                        backgroundColor: Colors.green.shade600,
+                        foregroundColor: Colors.white,
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12),
+                          borderRadius: BorderRadius.circular(16),
                         ),
+                        elevation: 0,
                       ),
-                      onPressed: () {
-                        Get.to(() => const ClaimZonePlay());
-                      },
-                      icon: const FaIcon(FontAwesomeIcons.play,
-                          color: Colors.white),
+                      onPressed: () => Get.to(() => const ClaimZonePlay()),
+                      icon: const FaIcon(FontAwesomeIcons.play),
                       label: Text(
                         'Start Game',
                         style: baseTextStyle.copyWith(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
+                          fontSize: 18,
+                          fontWeight: FontWeight.w600,
                         ),
                       ),
                     ),
                   ),
-                  const SizedBox(height: 12),
-                  SizedBox(
-                    width: double.infinity,
-                    child: TextButton.icon(
-                      style: TextButton.styleFrom(
-                        padding: const EdgeInsets.symmetric(vertical: 12),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12),
+                ),
+                const SizedBox(width: 12),
+                SizedBox(
+                  height: 56,
+                  width: 56,
+                  child: TextButton(
+                    style: TextButton.styleFrom(
+                      padding: EdgeInsets.zero,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(16),
+                        side: BorderSide(color: Colors.white.withOpacity(0.3)),
+                      ),
+                    ),
+                    onPressed: () {
+                      fromInfoPage = true;
+                      Get.to(() => const ClaimZone5());
+                    },
+                    child: const FaIcon(
+                      FontAwesomeIcons.eye,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 32),
+            Row(
+              children: [
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        gameTemplate.gameName,
+                        style: baseTextStyle.copyWith(
+                          fontSize: 24,
+                          fontWeight: FontWeight.w600,
+                          letterSpacing: -0.5,
                         ),
                       ),
-                      onPressed: () {
-                        fromInfoPage = true;
-                        Get.to(() => const ClaimZone5());
-                      },
-                      icon: const FaIcon(FontAwesomeIcons.eye,
-                          color: Colors.white),
-                      label: Text(
-                        'Game Preview',
+                      const SizedBox(height: 8),
+                      Text(
+                        gameTemplate.gameDescription,
                         style: baseTextStyle.copyWith(
                           fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
+                          color: Colors.white70,
+                          height: 1.5,
                         ),
                       ),
+                    ],
+                  ),
+                ),
+                IconButton(
+                  icon: Container(
+                    padding: const EdgeInsets.all(8),
+                    decoration: BoxDecoration(
+                      color: Colors.white.withOpacity(0.1),
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: const FaIcon(
+                      FontAwesomeIcons.penToSquare,
+                      color: Colors.white70,
+                      size: 20,
                     ),
                   ),
-                ],
-              ),
+                  onPressed: () => _showEditDialog(context),
+                ),
+              ],
             ),
-            _buildGlassCard(
-              title: '',
-              child: ListTile(
-                contentPadding: EdgeInsets.zero,
-                title: Text(
-                  gameTemplate.gameName,
+            const SizedBox(height: 32),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  'Game Zones',
                   style: baseTextStyle.copyWith(
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
+                    fontSize: 20,
+                    fontWeight: FontWeight.w600,
+                    letterSpacing: -0.5,
                   ),
                 ),
-                subtitle: Text(
-                  gameTemplate.gameDescription,
-                  style: baseTextStyle.copyWith(
-                    fontSize: 16,
-                    color: Colors.white70,
+                TextButton.icon(
+                  style: TextButton.styleFrom(
+                    foregroundColor: Colors.white,
                   ),
-                ),
-                trailing: IconButton(
-                  icon: const FaIcon(FontAwesomeIcons.penToSquare,
-                      color: Colors.white),
                   onPressed: () {
-                    Navigator.of(context).push(MaterialPageRoute<void>(
-                      fullscreenDialog: true,
-                      builder: (BuildContext context) {
-                        TextEditingController gameNameController =
-                            TextEditingController(text: gameTemplate.gameName);
-                        TextEditingController gameDescriptionController =
-                            TextEditingController(
-                                text: gameTemplate.gameDescription);
-                        return Scaffold(
-                          appBar: AppBar(
-                            title: Text('Edit Name and Description',
-                                style: baseTextStyle),
-                            leading: IconButton(
-                              icon: const FaIcon(FontAwesomeIcons.xmark),
-                              onPressed: () {
-                                Navigator.of(context).pop();
-                              },
-                            ),
-                          ),
-                          backgroundColor: Colors.black,
-                          body: Padding(
-                            padding: const EdgeInsets.all(16),
-                            child: Column(
-                              children: [
-                                TextFormField(
-                                  controller: gameNameController,
-                                  decoration: InputDecoration(
-                                    labelText: 'Game Name',
-                                    labelStyle: baseTextStyle.copyWith(
-                                        color: Colors.white70),
-                                    enabledBorder: const OutlineInputBorder(
-                                      borderSide:
-                                          BorderSide(color: Colors.white70),
-                                    ),
-                                    focusedBorder: const OutlineInputBorder(
-                                      borderSide:
-                                          BorderSide(color: Colors.green),
-                                    ),
-                                  ),
-                                  style: baseTextStyle.copyWith(
-                                      color: Colors.white),
-                                  textCapitalization: TextCapitalization.words,
-                                ),
-                                const SizedBox(height: 16),
-                                TextFormField(
-                                  controller: gameDescriptionController,
-                                  decoration: InputDecoration(
-                                    labelText: 'Game Description',
-                                    labelStyle: baseTextStyle.copyWith(
-                                        color: Colors.white70),
-                                    enabledBorder: const OutlineInputBorder(
-                                      borderSide:
-                                          BorderSide(color: Colors.white70),
-                                    ),
-                                    focusedBorder: const OutlineInputBorder(
-                                      borderSide:
-                                          BorderSide(color: Colors.green),
-                                    ),
-                                  ),
-                                  style: baseTextStyle.copyWith(
-                                      color: Colors.white),
-                                  maxLines: 3,
-                                  keyboardType: TextInputType.text,
-                                ),
-                                const SizedBox(height: 16),
-                                SizedBox(
-                                  width: double.infinity,
-                                  child: ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                      padding: const EdgeInsets.symmetric(
-                                          vertical: 12),
-                                      backgroundColor: Colors.green,
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(12),
-                                      ),
-                                    ),
-                                    onPressed: () {
-                                      setState(() {
-                                        gameTemplate.gameName =
-                                            gameNameController.text;
-                                        gameTemplate.gameDescription =
-                                            gameDescriptionController.text;
-                                      });
-                                      updateGameTemplate(gameTemplate);
-                                      Navigator.of(context).pop();
-                                    },
-                                    child: Text(
-                                      'Save',
-                                      style: baseTextStyle.copyWith(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.white,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        );
-                      },
-                    ));
+                    edit = false;
+                    Get.to(() => const AddZone());
                   },
+                  icon: const FaIcon(FontAwesomeIcons.plus, size: 16),
+                  label: const Text('Add Zone'),
+                ),
+              ],
+            ),
+            const SizedBox(height: 12),
+            Container(
+              decoration: BoxDecoration(
+                color: Colors.white.withOpacity(0.05),
+                borderRadius: BorderRadius.circular(16),
+                border: Border.all(color: Colors.white.withOpacity(0.1)),
+              ),
+              child: Column(
+                children: [
+                  ...gameTemplate.zones!
+                      .map((zone) => Column(
+                            children: [
+                              _buildZoneItem(zone),
+                              if (zone != gameTemplate.zones!.last)
+                                Divider(
+                                  color: Colors.white.withOpacity(0.1),
+                                  height: 1,
+                                ),
+                            ],
+                          ))
+                      .toList(),
+                ],
+              ),
+            ),
+            const SizedBox(height: 32),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  'Coin Shop',
+                  style: baseTextStyle.copyWith(
+                    fontSize: 20,
+                    fontWeight: FontWeight.w600,
+                    letterSpacing: -0.5,
+                  ),
+                ),
+                TextButton.icon(
+                  style: TextButton.styleFrom(
+                    foregroundColor: Colors.white,
+                  ),
+                  onPressed: () {
+                    itemEdit = false;
+                    Get.to(() => const ClaimZoneAddItem());
+                  },
+                  icon: const FaIcon(FontAwesomeIcons.plus, size: 16),
+                  label: const Text('Add Item'),
+                ),
+              ],
+            ),
+            const SizedBox(height: 12),
+            if (gameTemplate.coinShopItems != null &&
+                gameTemplate.coinShopItems!.isNotEmpty)
+              Container(
+                decoration: BoxDecoration(
+                  color: Colors.white.withOpacity(0.05),
+                  borderRadius: BorderRadius.circular(16),
+                  border: Border.all(color: Colors.white.withOpacity(0.1)),
+                ),
+                child: Column(
+                  children: [
+                    ...gameTemplate.coinShopItems!
+                        .map((item) => Column(
+                              children: [
+                                _buildShopItem(item),
+                                if (item != gameTemplate.coinShopItems!.last)
+                                  Divider(
+                                    color: Colors.white.withOpacity(0.1),
+                                    height: 1,
+                                  ),
+                              ],
+                            ))
+                        .toList(),
+                  ],
                 ),
               ),
-            ),
-            _buildGlassCard(
-              title: 'Start Location',
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Tap to change the starting location for your game. This is where players will begin their adventure.',
-                    style: baseTextStyle.copyWith(color: Colors.white70),
-                  ),
-                  const SizedBox(height: 8),
-                  Container(
-                      height: 200,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      child: FlutterMap(
-                        options: MapOptions(
-                          initialZoom: 15,
-                          initialCenter: _startLocation,
-                          onTap: (tapPosition, latLng) {
-                            setState(() {
-                              _startLocation = latLng;
-                            });
-                            gameTemplate.center =
-                                GeoPoint(latLng.latitude, latLng.longitude);
-                            updateGameTemplate(gameTemplate);
-                          },
-                        ),
-                        children: [
-                          TileLayer(
-                            urlTemplate:
-                                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
-                            userAgentPackageName: 'com.samdev.scavhuntapp',
-                          ),
-                          MarkerLayer(
-                            markers: [
-                              Marker(
-                                point: _startLocation,
-                                width: 60,
-                                height: 60,
-                                child: Stack(
-                                  alignment: Alignment.center,
-                                  children: [
-                                    Container(
-                                      decoration: BoxDecoration(
-                                        color: Colors.white.withOpacity(0.8),
-                                        shape: BoxShape.circle,
-                                        boxShadow: [
-                                          BoxShadow(
-                                            color:
-                                                Colors.black.withOpacity(0.5),
-                                            spreadRadius: 2,
-                                            blurRadius: 6,
-                                            offset: const Offset(0, 3),
-                                          ),
-                                        ],
-                                      ),
-                                      width: 45,
-                                      height: 45,
-                                    ),
-                                    const Icon(
-                                      Icons.location_on,
-                                      color: Colors.red,
-                                      size: 40,
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
-                      )),
-                ],
-              ),
-            ),
-            _buildGlassCard(
-              title: 'Zones',
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Add zones to your game. Each zone can have a different number of points and coins.',
-                    style: baseTextStyle.copyWith(color: Colors.white70),
-                  ),
-                  const SizedBox(height: 16),
-                  SizedBox(
-                    width: double.infinity,
-                    child: ElevatedButton.icon(
-                      style: ElevatedButton.styleFrom(
-                        padding: const EdgeInsets.symmetric(vertical: 12),
-                        backgroundColor: Colors.green,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                      ),
-                      onPressed: () {
-                        edit = false;
-                        fromInfoPage = true;
-                        Get.to(() => const AddZone());
-                      },
-                      icon: const FaIcon(FontAwesomeIcons.plus,
-                          color: Colors.white),
-                      label: Text(
-                        'Add Zone',
-                        style: baseTextStyle.copyWith(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 16),
-                  if (gameTemplate.zones != null)
-                    Column(
-                      children: gameTemplate.zones!.map((zone) {
-                        return ListTile(
-                          contentPadding: EdgeInsets.zero,
-                          onTap: () {
-                            edit = true;
-                            fromInfoPage = true;
-                            currentZoneId = zone.zoneId;
-                            Get.to(() => const AddZone());
-                          },
-                          leading: const FaIcon(FontAwesomeIcons.locationDot,
-                              color: Colors.white),
-                          title: Text(
-                            zone.zoneName,
-                            style: baseTextStyle.copyWith(
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white,
-                            ),
-                          ),
-                          subtitle: Text(
-                            zone.taskType == 'question'
-                                ? 'Answer a question'
-                                : zone.taskType == 'selfie'
-                                    ? 'Take a selfie'
-                                    : 'Scan a QR code',
-                            style:
-                                baseTextStyle.copyWith(color: Colors.white70),
-                          ),
-                          trailing: _buildZoneInfoChip(zone),
-                        );
-                      }).toList(),
-                    ),
-                ],
-              ),
-            ),
-            _buildGlassCard(
-              title: 'Coin Shop Items',
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Add items to your coin shop. Players can use coins to buy these items.',
-                    style: baseTextStyle.copyWith(color: Colors.white70),
-                  ),
-                  const SizedBox(height: 16),
-                  SizedBox(
-                    width: double.infinity,
-                    child: ElevatedButton.icon(
-                      style: ElevatedButton.styleFrom(
-                        padding: const EdgeInsets.symmetric(vertical: 12),
-                        backgroundColor: Colors.green,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                      ),
-                      onPressed: () {
-                        itemEdit = false;
-                        Get.to(() => const ClaimZoneAddItem());
-                      },
-                      icon: const FaIcon(FontAwesomeIcons.plus,
-                          color: Colors.white),
-                      label: Text(
-                        'Add Item',
-                        style: baseTextStyle.copyWith(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 16),
-                  if (gameTemplate.coinShopItems != null)
-                    Column(
-                      children: gameTemplate.coinShopItems!.map((item) {
-                        Color itemColor;
-                        IconData iconData;
-                        if (item.itemType == 'booster') {
-                          itemColor = Colors.green;
-                          iconData = FontAwesomeIcons.gem;
-                        } else if (item.itemType == 'disabler') {
-                          itemColor = Colors.red;
-                          iconData = FontAwesomeIcons.ban;
-                        } else if (item.itemType == 'coin') {
-                          itemColor = Colors.blue;
-                          iconData = FontAwesomeIcons.coins;
-                        } else {
-                          itemColor = Colors.purple;
-                          iconData = FontAwesomeIcons.forward;
-                        }
-                        return ListTile(
-                          contentPadding: EdgeInsets.zero,
-                          onTap: () {
-                            itemEdit = true;
-                            currentItemId = item.itemId;
-                            Get.to(() => const ClaimZoneAddItem());
-                          },
-                          leading: FaIcon(
-                            iconData,
-                            size: 30,
-                            color: itemColor,
-                          ),
-                          title: Text(
-                            item.itemName,
-                            style: baseTextStyle.copyWith(
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white,
-                            ),
-                          ),
-                          subtitle: Text(
-                            item.itemType == 'booster'
-                                ? '${item.multiplier}x point booster for ${item.duration} minutes'
-                                : item.itemType == 'disabler'
-                                    ? 'Disables a team for ${item.duration} minutes'
-                                    : item.itemType == 'coin'
-                                        ? 'Exchange ${item.itemPrice} coins for ${item.pointsPerCoin! * item.itemPrice} points'
-                                        : 'Skip any claim task once',
-                            style:
-                                baseTextStyle.copyWith(color: Colors.white70),
-                          ),
-                          trailing: _buildItemInfoChip(item),
-                        );
-                      }).toList(),
-                    ),
-                ],
-              ),
-            ),
             const SizedBox(height: 32),
           ],
         ),
       ),
     );
+  }
+
+  Widget _buildZoneItem(Zone zone) {
+    return ListTile(
+      contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+      onTap: () {
+        edit = true;
+        currentZoneId = zone.zoneId;
+        Get.to(() => const AddZone());
+      },
+      leading: Container(
+        width: 36,
+        height: 36,
+        decoration: BoxDecoration(
+          color: Colors.white.withOpacity(0.1),
+          borderRadius: BorderRadius.circular(10),
+        ),
+        child: Center(
+          child: FaIcon(
+            _getTaskIcon(zone.taskType),
+            color: Colors.white,
+            size: 16,
+          ),
+        ),
+      ),
+      title: Text(
+        zone.zoneName,
+        style: baseTextStyle.copyWith(
+          fontSize: 16,
+          fontWeight: FontWeight.w600,
+        ),
+      ),
+      subtitle: Text(
+        _getTaskDescription(zone.taskType),
+        style: baseTextStyle.copyWith(
+          fontSize: 14,
+          color: Colors.white70,
+          height: 1.3,
+        ),
+      ),
+      trailing: _buildZoneInfoChip(zone),
+    );
+  }
+
+  Widget _buildShopItem(CoinShopItem item) {
+    return ListTile(
+      contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+      onTap: () {
+        itemEdit = true;
+        currentItemId = item.itemId;
+        Get.to(() => const ClaimZoneAddItem());
+      },
+      leading: Container(
+        width: 36,
+        height: 36,
+        decoration: BoxDecoration(
+          color: Colors.white.withOpacity(0.1),
+          borderRadius: BorderRadius.circular(10),
+        ),
+        child: Center(
+          child: FaIcon(
+            _getItemIcon(item.itemType),
+            color: _getItemColor(item.itemType),
+            size: 16,
+          ),
+        ),
+      ),
+      title: Text(
+        item.itemName,
+        style: baseTextStyle.copyWith(
+          fontSize: 16,
+          fontWeight: FontWeight.w600,
+        ),
+      ),
+      subtitle: Text(
+        _getItemDescription(item),
+        style: baseTextStyle.copyWith(
+          fontSize: 14,
+          color: Colors.white70,
+          height: 1.3,
+        ),
+      ),
+      trailing: _buildItemInfoChip(item),
+    );
+  }
+
+  IconData _getItemIcon(String itemType) {
+    switch (itemType) {
+      case 'booster':
+        return FontAwesomeIcons.gem;
+      case 'disabler':
+        return FontAwesomeIcons.ban;
+      case 'coin':
+        return FontAwesomeIcons.coins;
+      default:
+        return FontAwesomeIcons.forward;
+    }
+  }
+
+  Color _getItemColor(String itemType) {
+    switch (itemType) {
+      case 'booster':
+        return Colors.green;
+      case 'disabler':
+        return Colors.red;
+      case 'coin':
+        return Colors.blue;
+      default:
+        return Colors.purple;
+    }
+  }
+
+  String _getItemDescription(CoinShopItem item) {
+    switch (item.itemType) {
+      case 'booster':
+        return '${item.multiplier}x point booster for ${item.duration} minutes';
+      case 'disabler':
+        return 'Disables a team for ${item.duration} minutes';
+      case 'coin':
+        return 'Exchange ${item.itemPrice} coins for ${item.pointsPerCoin! * item.itemPrice} points';
+      default:
+        return 'Skip any claim task once';
+    }
   }
 
   Widget _buildItemInfoChip(CoinShopItem item) {
@@ -590,50 +458,228 @@ class _ClaimZoneViewState extends State<ClaimZoneView> {
     );
   }
 
-  Widget _buildGlassCard({required String title, required Widget child}) {
-    return Container(
-      margin: const EdgeInsets.only(bottom: 16),
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          colors: [
-            Colors.white.withOpacity(0.1),
-            Colors.white.withOpacity(0.05)
-          ],
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-        ),
-        border: Border.all(color: Colors.white.withOpacity(0.2), width: 1),
-        borderRadius: BorderRadius.circular(20),
-      ),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(20),
-        child: BackdropFilter(
-          filter: ImageFilter.blur(sigmaX: 12.0, sigmaY: 12.0),
-          child: Container(
-            padding: const EdgeInsets.all(16),
-            decoration: BoxDecoration(
-              color: Colors.white.withOpacity(0.05),
-              borderRadius: BorderRadius.circular(20),
+  void _showDeleteDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          backgroundColor: Colors.black,
+          title: Text('Delete Game',
+              style: baseTextStyle.copyWith(color: Colors.white70)),
+          content: Text(
+            'Are you sure you want to delete this game? This action cannot be undone.',
+            style: baseTextStyle.copyWith(color: Colors.white70),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: Text('Cancel',
+                  style: baseTextStyle.copyWith(color: Colors.white)),
             ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+            TextButton(
+              onPressed: () {
+                deleteGameTemplate(gameTemplate.templateId);
+                Navigator.of(context).pop();
+                Get.offAll(() => const HomeScreen());
+              },
+              child: Text('Delete',
+                  style: baseTextStyle.copyWith(
+                      color: Colors.red, fontWeight: FontWeight.bold)),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  void _showEditDialog(BuildContext context) {
+    TextEditingController gameNameController =
+        TextEditingController(text: gameTemplate.gameName);
+    TextEditingController gameDescriptionController =
+        TextEditingController(text: gameTemplate.gameDescription);
+
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return Scaffold(
+          appBar: AppBar(
+            title: Text(
+              'Edit Game',
+              style: baseTextStyle.copyWith(
+                fontSize: 28,
+                fontWeight: FontWeight.w600,
+                letterSpacing: -0.5,
+              ),
+            ),
+            leading: IconButton(
+              icon: const FaIcon(FontAwesomeIcons.xmark, color: Colors.white70),
+              onPressed: () => Navigator.pop(context),
+            ),
+            backgroundColor: Colors.black,
+            elevation: 0,
+          ),
+          backgroundColor: Colors.black,
+          body: Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: [
+                  Colors.black,
+                  Colors.green.shade900.withOpacity(0.3),
+                  Colors.black,
+                ],
+              ),
+            ),
+            child: ListView(
+              padding: const EdgeInsets.all(20),
               children: [
-                if (title.isNotEmpty)
-                  Text(
-                    title,
-                    style: baseTextStyle.copyWith(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                    ),
+                Text(
+                  'Game Name',
+                  style: baseTextStyle.copyWith(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.white70,
                   ),
-                if (title.isNotEmpty) const SizedBox(height: 12),
-                child,
+                ),
+                const SizedBox(height: 8),
+                TextFormField(
+                  controller: gameNameController,
+                  decoration: InputDecoration(
+                    hintText: 'Enter game name',
+                    hintStyle: baseTextStyle.copyWith(color: Colors.white38),
+                    filled: true,
+                    fillColor: Colors.white.withOpacity(0.1),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                      borderSide: BorderSide.none,
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                      borderSide:
+                          BorderSide(color: Colors.white.withOpacity(0.1)),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                      borderSide: BorderSide(color: Colors.green.shade400),
+                    ),
+                    contentPadding: const EdgeInsets.all(16),
+                  ),
+                  style: baseTextStyle.copyWith(color: Colors.white),
+                  textCapitalization: TextCapitalization.words,
+                ),
+                const SizedBox(height: 24),
+                Text(
+                  'Game Description',
+                  style: baseTextStyle.copyWith(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.white70,
+                  ),
+                ),
+                const SizedBox(height: 8),
+                TextFormField(
+                  controller: gameDescriptionController,
+                  decoration: InputDecoration(
+                    hintText: 'Enter game description',
+                    hintStyle: baseTextStyle.copyWith(color: Colors.white38),
+                    filled: true,
+                    fillColor: Colors.white.withOpacity(0.1),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                      borderSide: BorderSide.none,
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                      borderSide:
+                          BorderSide(color: Colors.white.withOpacity(0.1)),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                      borderSide: BorderSide(color: Colors.green.shade400),
+                    ),
+                    contentPadding: const EdgeInsets.all(16),
+                  ),
+                  style: baseTextStyle.copyWith(color: Colors.white),
+                  maxLines: 3,
+                  keyboardType: TextInputType.text,
+                ),
               ],
             ),
           ),
-        ),
-      ),
+          bottomNavigationBar: Container(
+            decoration: BoxDecoration(
+              color: Colors.black,
+              border: Border(
+                top: BorderSide(color: Colors.white.withOpacity(0.1)),
+              ),
+            ),
+            child: SafeArea(
+              child: Padding(
+                padding: const EdgeInsets.all(20),
+                child: SizedBox(
+                  width: double.infinity,
+                  height: 56,
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.white,
+                      foregroundColor: Colors.black,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(16),
+                      ),
+                      elevation: 0,
+                    ),
+                    onPressed: () {
+                      setState(() {
+                        gameTemplate.gameName = gameNameController.text;
+                        gameTemplate.gameDescription =
+                            gameDescriptionController.text;
+                      });
+                      updateGameTemplate(gameTemplate);
+                      Navigator.pop(context);
+                    },
+                    child: Text(
+                      'Save Changes',
+                      style: baseTextStyle.copyWith(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
+        );
+      },
     );
+  }
+
+  IconData _getTaskIcon(String taskType) {
+    switch (taskType) {
+      case 'question':
+        return FontAwesomeIcons.question;
+      case 'selfie':
+        return FontAwesomeIcons.camera;
+      case 'qrcode':
+        return FontAwesomeIcons.qrcode;
+      default:
+        return FontAwesomeIcons.locationDot;
+    }
+  }
+
+  String _getTaskDescription(String taskType) {
+    switch (taskType) {
+      case 'question':
+        return 'Answer a question';
+      case 'selfie':
+        return 'Take a selfie';
+      case 'qrcode':
+        return 'Scan a QR code';
+      default:
+        return 'Unknown task';
+    }
   }
 }

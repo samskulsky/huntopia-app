@@ -22,53 +22,63 @@ class _ClaimZone4State extends State<ClaimZone4> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('My Zones', style: TextStyle(color: Colors.white)),
         leading: IconButton(
-          icon: const FaIcon(FontAwesomeIcons.arrowLeft, color: Colors.white),
-          onPressed: () {
-            Navigator.pop(context);
-          },
+          icon: const FaIcon(FontAwesomeIcons.arrowLeft, color: Colors.white70),
+          onPressed: () => Navigator.pop(context),
+        ),
+        title: Text(
+          'ClaimRush',
+          style: baseTextStyle.copyWith(
+            fontSize: 28,
+            fontWeight: FontWeight.w600,
+            letterSpacing: -0.5,
+          ),
         ),
         backgroundColor: Colors.black,
+        elevation: 0,
       ),
       backgroundColor: Colors.black,
-      body: Padding(
-        padding: const EdgeInsets.all(16),
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              Colors.black,
+              Colors.green.shade900.withOpacity(0.3),
+              Colors.black,
+            ],
+          ),
+        ),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'My Zones (${gameTemplate.zones?.length ?? '0'})',
-                  style: baseTextStyle.copyWith(
-                    fontSize: 24,
-                    fontWeight: FontWeight.w700,
-                    color: Colors.white,
+            Expanded(
+              child: ListView(
+                padding: const EdgeInsets.all(20),
+                children: [
+                  Text(
+                    'My Zones (${gameTemplate.zones?.length ?? '0'})',
+                    style: baseTextStyle.copyWith(
+                      fontSize: 24,
+                      fontWeight: FontWeight.w600,
+                      letterSpacing: -0.5,
+                    ),
                   ),
-                ),
-                const SizedBox(height: 8),
-                Text(
-                  'Add the zones you want players to visit to claim them. You can change and add more zones later.',
-                  style: baseTextStyle.copyWith(
-                    fontSize: 18,
-                    fontWeight: FontWeight.w500,
-                    color: Colors.white54,
+                  const SizedBox(height: 12),
+                  Text(
+                    'Add the zones you want players to visit to claim them. You can change and add more zones later.',
+                    style: baseTextStyle.copyWith(
+                      fontSize: 16,
+                      color: Colors.white70,
+                      height: 1.5,
+                    ),
                   ),
-                ),
-              ],
+                  const SizedBox(height: 24),
+                  _buildZoneList(),
+                ],
+              ),
             ),
-            const SizedBox(height: 16),
-            Expanded(child: _buildZoneList()),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Expanded(child: _buildContinueButton()),
-                _buildPlusButton(),
-              ],
-            ),
-            const SizedBox(height: 34),
+            _buildBottomBar(),
           ],
         ),
       ),
@@ -77,56 +87,227 @@ class _ClaimZone4State extends State<ClaimZone4> {
 
   Widget _buildZoneList() {
     if (gameTemplate.zones == null || gameTemplate.zones!.isEmpty) {
-      return Center(
-        child: _buildGlassCard(
-          title: '',
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Text(
-              'No zones added yet. Please add at least 3 zones to continue.',
+      return Container(
+        margin: const EdgeInsets.only(top: 32),
+        padding: const EdgeInsets.all(24),
+        decoration: BoxDecoration(
+          color: Colors.white.withOpacity(0.05),
+          borderRadius: BorderRadius.circular(16),
+          border: Border.all(color: Colors.white.withOpacity(0.1)),
+        ),
+        child: Column(
+          children: [
+            Container(
+              padding: const EdgeInsets.all(16),
+              decoration: BoxDecoration(
+                color: Colors.white.withOpacity(0.05),
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: const FaIcon(
+                FontAwesomeIcons.locationDot,
+                color: Colors.white70,
+                size: 32,
+              ),
+            ),
+            const SizedBox(height: 16),
+            Text(
+              'No zones added yet',
+              style: baseTextStyle.copyWith(
+                fontSize: 18,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+            const SizedBox(height: 8),
+            Text(
+              'Please add at least 3 zones to continue',
               style: baseTextStyle.copyWith(
                 fontSize: 16,
-                color: Colors.grey.shade700,
-                fontWeight: FontWeight.w700,
+                color: Colors.white70,
+                height: 1.3,
               ),
               textAlign: TextAlign.center,
             ),
-          ),
+          ],
         ),
       );
     }
 
-    return ListView.builder(
+    return ListView.separated(
+      shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
       itemCount: gameTemplate.zones!.length,
+      separatorBuilder: (context, index) => const SizedBox(height: 8),
       itemBuilder: (context, index) {
         final zone = gameTemplate.zones![index];
-        return ListTile(
-          onTap: () {
-            edit = true;
-            fromInfoPage = true;
-            currentZoneId = zone.zoneId;
-            Get.to(() => const AddZone());
-          },
-          leading:
-              const FaIcon(FontAwesomeIcons.locationDot, color: Colors.white),
-          title: Text(
-            zone.zoneName,
-            style: baseTextStyle.copyWith(
-              fontSize: 18,
-              fontWeight: FontWeight.w700,
-              color: Colors.white,
-            ),
+        return Container(
+          decoration: BoxDecoration(
+            color: Colors.white.withOpacity(0.05),
+            borderRadius: BorderRadius.circular(16),
+            border: Border.all(color: Colors.white.withOpacity(0.1)),
           ),
-          subtitle: Text(
-            _getTaskDescription(zone.taskType),
-            style: baseTextStyle.copyWith(
-              fontSize: 16,
-              color: Colors.white70,
+          child: ListTile(
+            onTap: () {
+              edit = true;
+              fromInfoPage = true;
+              currentZoneId = zone.zoneId;
+              Get.to(() => const AddZone());
+            },
+            contentPadding: const EdgeInsets.all(16),
+            leading: Container(
+              width: 40,
+              height: 40,
+              decoration: BoxDecoration(
+                color: Colors.white.withOpacity(0.1),
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: const Center(
+                child: FaIcon(
+                  FontAwesomeIcons.locationDot,
+                  color: Colors.white,
+                  size: 20,
+                ),
+              ),
             ),
+            title: Padding(
+              padding: const EdgeInsets.only(bottom: 8),
+              child: Text(
+                zone.zoneName,
+                style: baseTextStyle.copyWith(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ),
+            subtitle: Text(
+              _getTaskDescription(zone.taskType),
+              style: baseTextStyle.copyWith(
+                color: Colors.white70,
+                height: 1.3,
+              ),
+            ),
+            trailing: _buildZoneInfoChip(zone),
           ),
-          trailing: _buildZoneInfoChip(zone),
         );
       },
+    );
+  }
+
+  Widget _buildZoneInfoChip(Zone zone) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+      decoration: BoxDecoration(
+        color: Colors.white.withOpacity(0.1),
+        borderRadius: BorderRadius.circular(8),
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(
+            '${zone.points}',
+            style: baseTextStyle.copyWith(
+              fontSize: 14,
+              color: Colors.green.shade400,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+          const SizedBox(width: 4),
+          FaIcon(
+            FontAwesomeIcons.trophy,
+            size: 12,
+            color: Colors.green.shade400,
+          ),
+          const SizedBox(width: 8),
+          Text(
+            '${zone.coins}',
+            style: baseTextStyle.copyWith(
+              fontSize: 14,
+              color: Colors.purple.shade300,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+          const SizedBox(width: 4),
+          FaIcon(
+            FontAwesomeIcons.coins,
+            size: 12,
+            color: Colors.purple.shade300,
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildBottomBar() {
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.black,
+        border: Border(
+          top: BorderSide(color: Colors.white.withOpacity(0.1)),
+        ),
+      ),
+      child: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(20),
+          child: Row(
+            children: [
+              Expanded(
+                child: SizedBox(
+                  height: 56,
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: gameTemplate.zones != null &&
+                              gameTemplate.zones!.length > 2
+                          ? Colors.white
+                          : Colors.white.withOpacity(0.1),
+                      foregroundColor: gameTemplate.zones != null &&
+                              gameTemplate.zones!.length > 2
+                          ? Colors.black
+                          : Colors.white38,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(16),
+                      ),
+                      elevation: 0,
+                    ),
+                    onPressed: gameTemplate.zones != null &&
+                            gameTemplate.zones!.length > 2
+                        ? () {
+                            fromInfoPage = false;
+                            Get.to(() => const ClaimZone5());
+                          }
+                        : null,
+                    child: Text(
+                      'Continue',
+                      style: baseTextStyle.copyWith(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(width: 12),
+              SizedBox(
+                height: 56,
+                width: 56,
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.green.shade600,
+                    padding: const EdgeInsets.all(0),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(16),
+                    ),
+                    elevation: 0,
+                  ),
+                  onPressed: () {
+                    edit = false;
+                    Get.to(() => const AddZone());
+                  },
+                  child: const FaIcon(FontAwesomeIcons.plus),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 
@@ -141,119 +322,5 @@ class _ClaimZone4State extends State<ClaimZone4> {
       default:
         return 'Unknown task';
     }
-  }
-
-  Widget _buildZoneInfoChip(Zone zone) {
-    return Chip(
-      padding: const EdgeInsets.all(0),
-      backgroundColor: Colors.white,
-      label: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Text(
-            '${zone.points} ',
-            style: baseTextStyle.copyWith(
-              fontSize: 16,
-              color: Colors.deepOrange,
-              fontWeight: FontWeight.w700,
-            ),
-          ),
-          const FaIcon(
-            FontAwesomeIcons.trophy,
-            size: 14,
-            color: Colors.deepOrange,
-          ),
-          const SizedBox(width: 4),
-          Text(
-            '${zone.coins} ',
-            style: baseTextStyle.copyWith(
-              fontSize: 16,
-              color: Colors.deepPurple,
-              fontWeight: FontWeight.w700,
-            ),
-          ),
-          const FaIcon(
-            FontAwesomeIcons.coins,
-            size: 14,
-            color: Colors.deepPurple,
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildContinueButton() {
-    final canContinue =
-        gameTemplate.zones != null && gameTemplate.zones!.length > 2;
-
-    return ElevatedButton(
-      style: ElevatedButton.styleFrom(
-        backgroundColor: canContinue ? Colors.green : Colors.grey,
-        padding: const EdgeInsets.symmetric(vertical: 16),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(12),
-        ),
-      ),
-      onPressed: canContinue
-          ? () {
-              fromInfoPage = false;
-              Get.to(() => const ClaimZone5());
-            }
-          : null,
-      child: Text(
-        'Continue',
-        style: baseTextStyle.copyWith(
-          fontSize: 16,
-          fontWeight: FontWeight.bold,
-          color: Colors.white,
-        ),
-      ),
-    );
-  }
-
-  Widget _buildPlusButton() {
-    return IconButton(
-      style: ElevatedButton.styleFrom(
-        backgroundColor: Colors.green,
-        padding: const EdgeInsets.symmetric(vertical: 16),
-      ),
-      onPressed: () {
-        edit = false;
-        Get.to(() => const AddZone());
-      },
-      icon: const FaIcon(FontAwesomeIcons.plus, color: Colors.white),
-    );
-  }
-
-  Widget _buildGlassCard({required String title, required Widget child}) {
-    return Container(
-      width: double.infinity,
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          colors: [
-            Colors.white.withOpacity(0.1),
-            Colors.white.withOpacity(0.05)
-          ],
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-        ),
-        border: Border.all(color: Colors.white.withOpacity(0.2), width: 1),
-        borderRadius: BorderRadius.circular(20),
-      ),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(20),
-        child: BackdropFilter(
-          filter: ImageFilter.blur(sigmaX: 12.0, sigmaY: 12.0),
-          child: Container(
-            padding: const EdgeInsets.all(16),
-            decoration: BoxDecoration(
-              color: Colors.white.withOpacity(0.05),
-              borderRadius: BorderRadius.circular(20),
-            ),
-            child: child,
-          ),
-        ),
-      ),
-    );
   }
 }

@@ -22,86 +22,113 @@ class _CreateGamePageState extends State<CreateGamePage> {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          icon: const FaIcon(FontAwesomeIcons.arrowLeft),
-          onPressed: () {
-            Navigator.pop(context);
-          },
+          icon: const FaIcon(FontAwesomeIcons.arrowLeft, color: Colors.white70),
+          onPressed: () => Navigator.pop(context),
         ),
-        title: const Text('Create Game', style: TextStyle(color: Colors.white)),
+        title: Text(
+          'Create Game',
+          style: baseTextStyle.copyWith(
+            fontSize: 28,
+            fontWeight: FontWeight.w600,
+            letterSpacing: -0.5,
+          ),
+        ),
         backgroundColor: Colors.black,
+        elevation: 0,
       ),
       backgroundColor: Colors.black,
-      body: ListView(
-        padding: const EdgeInsets.all(16),
-        children: [
-          _buildGlassCard(
-            title: '',
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              Colors.black,
+              Colors.green.shade900.withOpacity(0.3),
+              Colors.black,
+            ],
+          ),
+        ),
+        child: ListView(
+          padding: const EdgeInsets.all(20),
+          children: [
+            Row(
               children: [
-                _buildHeaderText('Game Wizard 🧙‍♂️'),
-                const SizedBox(height: 8),
-                _buildDescriptionText(
-                  'Welcome to the game creation wizard! Let\'s get started by choosing the type of game you want to create.',
-                ),
-                const SizedBox(height: 16),
-                const Divider(color: Colors.white54),
-                const SizedBox(height: 16),
-                _buildHeaderText('Game Type'),
-                const SizedBox(height: 8),
-                _buildGameTypeOption(
-                  value: 'claimthezone',
-                  title: 'ClaimRush',
-                  players: '2-12 teams',
-                  duration: '1hour - 4hours',
-                ),
-                const SizedBox(height: 16),
-                SizedBox(
-                  width: double.infinity,
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.green,
-                      padding: const EdgeInsets.symmetric(vertical: 16),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12)),
-                    ),
-                    onPressed: () => _navigateToNextScreen(),
-                    child: Text(
-                      'Continue',
-                      style: baseTextStyle.copyWith(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                      ),
-                    ),
+                Text(
+                  'Game Wizard ',
+                  style: baseTextStyle.copyWith(
+                    fontSize: 24,
+                    fontWeight: FontWeight.w600,
+                    letterSpacing: -0.5,
                   ),
                 ),
+                const Text('🧙‍♂️', style: TextStyle(fontSize: 24)),
               ],
             ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildHeaderText(String text) {
-    return Text(
-      text,
-      style: baseTextStyle.copyWith(
-        fontSize: 30,
-        fontWeight: FontWeight.w700,
-        color: Colors.white,
-      ),
-    );
-  }
-
-  Widget _buildDescriptionText(String text) {
-    return Text(
-      text,
-      style: baseTextStyle.copyWith(
-        fontSize: 20,
-        fontWeight: FontWeight.w500,
-        color: Colors.white70,
+            const SizedBox(height: 12),
+            Text(
+              'Welcome to the game creation wizard! Let\'s get started by choosing the type of game you want to create.',
+              style: baseTextStyle.copyWith(
+                fontSize: 16,
+                color: Colors.white70,
+                height: 1.5,
+              ),
+            ),
+            const SizedBox(height: 32),
+            Text(
+              'Game Type',
+              style: baseTextStyle.copyWith(
+                fontSize: 20,
+                fontWeight: FontWeight.w600,
+                letterSpacing: -0.5,
+              ),
+            ),
+            const SizedBox(height: 12),
+            Container(
+              decoration: BoxDecoration(
+                color: Colors.white.withOpacity(0.05),
+                borderRadius: BorderRadius.circular(16),
+                border: Border.all(
+                  color: Colors.white.withOpacity(0.1),
+                ),
+              ),
+              child: Column(
+                children: [
+                  _buildGameTypeOption(
+                    value: 'claimthezone',
+                    title: 'ClaimRush',
+                    players: '2-12 teams',
+                    duration: '1hour - 4hours',
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 32),
+            SizedBox(
+              width: double.infinity,
+              height: 56,
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.white,
+                  foregroundColor: Colors.black,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(16),
+                  ),
+                  elevation: 0,
+                ),
+                onPressed: _navigateToNextScreen,
+                child: Text(
+                  'Continue',
+                  style: baseTextStyle.copyWith(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ),
+            ),
+            const SizedBox(height: 32),
+          ],
+        ),
       ),
     );
   }
@@ -112,59 +139,102 @@ class _CreateGamePageState extends State<CreateGamePage> {
     required String players,
     required String duration,
   }) {
-    return RadioListTile(
-      value: value,
-      groupValue: gameType,
-      onChanged: (value) {
-        setState(() {
-          gameType = value.toString();
-        });
-      },
-      activeColor: Colors.green,
-      contentPadding: const EdgeInsets.all(0),
-      title: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            title,
-            style: baseTextStyle.copyWith(
-              fontSize: 18,
-              fontWeight: FontWeight.w700,
-              color: Colors.white,
-            ),
-          ),
-          const SizedBox(height: 4),
-          Row(
-            children: [
-              const FaIcon(
-                FontAwesomeIcons.users,
-                color: Colors.grey,
-                size: 14,
-              ),
-              const SizedBox(width: 4),
-              _buildIconText(players),
-              const SizedBox(width: 16),
-              const FaIcon(
-                FontAwesomeIcons.clock,
-                color: Colors.grey,
-                size: 14,
-              ),
-              const SizedBox(width: 4),
-              _buildIconText(duration),
-            ],
-          ),
-        ],
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(16),
+        border: Border.all(
+          color: gameType == value ? Colors.green.shade400 : Colors.transparent,
+          width: 2,
+        ),
+        gradient: LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: gameType == value
+              ? [Colors.green.shade900.withOpacity(0.3), Colors.transparent]
+              : [Colors.transparent, Colors.transparent],
+        ),
       ),
-    );
-  }
-
-  Widget _buildIconText(String text) {
-    return Text(
-      text,
-      style: baseTextStyle.copyWith(
-        fontSize: 14,
-        color: Colors.grey,
-        fontWeight: FontWeight.bold,
+      child: RadioListTile(
+        value: value,
+        groupValue: gameType,
+        onChanged: (value) {
+          setState(() {
+            gameType = value.toString();
+          });
+        },
+        activeColor: Colors.green.shade400,
+        contentPadding: const EdgeInsets.symmetric(horizontal: 0, vertical: 8),
+        title: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              title,
+              style: baseTextStyle.copyWith(
+                fontSize: 18,
+                fontWeight: FontWeight.w600,
+                color: Colors.white,
+              ),
+            ),
+            const SizedBox(height: 8),
+            Row(
+              children: [
+                Container(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                  decoration: BoxDecoration(
+                    color: Colors.white.withOpacity(0.1),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      FaIcon(
+                        FontAwesomeIcons.users,
+                        color: Colors.green.shade200,
+                        size: 14,
+                      ),
+                      const SizedBox(width: 8),
+                      Text(
+                        players,
+                        style: baseTextStyle.copyWith(
+                          fontSize: 14,
+                          color: Colors.white70,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(width: 12),
+                Container(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                  decoration: BoxDecoration(
+                    color: Colors.white.withOpacity(0.1),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      FaIcon(
+                        FontAwesomeIcons.clock,
+                        color: Colors.green.shade200,
+                        size: 14,
+                      ),
+                      const SizedBox(width: 8),
+                      Text(
+                        duration,
+                        style: baseTextStyle.copyWith(
+                          fontSize: 14,
+                          color: Colors.white70,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -174,48 +244,4 @@ class _CreateGamePageState extends State<CreateGamePage> {
       Get.to(() => const ClaimZone1());
     }
   }
-}
-
-Widget _buildGlassCard({required String title, required Widget child}) {
-  return Container(
-    margin: const EdgeInsets.only(bottom: 16),
-    decoration: BoxDecoration(
-      gradient: LinearGradient(
-        colors: [Colors.white.withOpacity(0.1), Colors.white.withOpacity(0.05)],
-        begin: Alignment.topLeft,
-        end: Alignment.bottomRight,
-      ),
-      border: Border.all(color: Colors.white.withOpacity(0.2), width: 1),
-      borderRadius: BorderRadius.circular(20),
-    ),
-    child: ClipRRect(
-      borderRadius: BorderRadius.circular(20),
-      child: BackdropFilter(
-        filter: ImageFilter.blur(sigmaX: 12.0, sigmaY: 12.0),
-        child: Container(
-          padding: const EdgeInsets.all(16),
-          decoration: BoxDecoration(
-            color: Colors.white.withOpacity(0.05),
-            borderRadius: BorderRadius.circular(20),
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              if (title.isNotEmpty)
-                Text(
-                  title,
-                  style: baseTextStyle.copyWith(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                  ),
-                ),
-              if (title.isNotEmpty) const SizedBox(height: 12),
-              child,
-            ],
-          ),
-        ),
-      ),
-    ),
-  );
 }

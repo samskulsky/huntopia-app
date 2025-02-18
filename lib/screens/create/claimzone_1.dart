@@ -53,95 +53,118 @@ class _ClaimZone1State extends State<ClaimZone1> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('ClaimRush'),
         leading: IconButton(
-          icon: const FaIcon(FontAwesomeIcons.arrowLeft),
-          onPressed: () {
-            Navigator.pop(context);
-          },
+          icon: const FaIcon(FontAwesomeIcons.arrowLeft, color: Colors.white70),
+          onPressed: () => Navigator.pop(context),
+        ),
+        title: Text(
+          'ClaimRush',
+          style: baseTextStyle.copyWith(
+            fontSize: 28,
+            fontWeight: FontWeight.w600,
+            letterSpacing: -0.5,
+          ),
         ),
         backgroundColor: Colors.black,
+        elevation: 0,
       ),
       backgroundColor: Colors.black,
-      body: ListView(
-        padding: const EdgeInsets.all(16),
-        children: [
-          _buildGlassCard(
-            title: '',
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                _buildHeaderText('Great choice! 🎉'),
-                const SizedBox(height: 8),
-                _buildDescriptionText(
-                  'ClaimRush is a game where players must physically visit a location to claim it.',
-                ),
-                const SizedBox(height: 16),
-                const Divider(color: Colors.white54),
-                const SizedBox(height: 16),
-                _buildHeaderText('Game Name'),
-                const SizedBox(height: 8),
-                _buildTextField(
-                  controller: gameNameController,
-                  hintText: 'The Great Tokyo Scavenger Hunt',
-                  capitalization: TextCapitalization.words,
-                ),
-                const SizedBox(height: 16),
-                _buildHeaderText('Game Description'),
-                const SizedBox(height: 8),
-                _buildTextField(
-                  controller: gameDescriptionController,
-                  hintText:
-                      'This game will take you on a journey through the streets of Tokyo, where you will visit famous landmarks and hidden gems.',
-                  maxLines: 4,
-                ),
-                const SizedBox(height: 16),
-                SizedBox(
-                  width: double.infinity,
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.green,
-                      padding: const EdgeInsets.symmetric(vertical: 16),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12)),
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              Colors.black,
+              Colors.green.shade900.withOpacity(0.3),
+              Colors.black,
+            ],
+          ),
+        ),
+        child: SafeArea(
+          child: ListView(
+            padding: const EdgeInsets.all(20),
+            children: [
+              Row(
+                children: [
+                  Text(
+                    'Great choice! ',
+                    style: baseTextStyle.copyWith(
+                      fontSize: 24,
+                      fontWeight: FontWeight.w600,
+                      letterSpacing: -0.5,
                     ),
-                    onPressed: _onNextPressed,
-                    child: Text(
-                      'Next',
-                      style: baseTextStyle.copyWith(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                      ),
+                  ),
+                  const Text('🎉', style: TextStyle(fontSize: 24)),
+                ],
+              ),
+              const SizedBox(height: 12),
+              Text(
+                'ClaimRush is a game where players must physically visit locations to claim them.',
+                style: baseTextStyle.copyWith(
+                  fontSize: 16,
+                  color: Colors.white70,
+                  height: 1.5,
+                ),
+              ),
+              const SizedBox(height: 32),
+              Text(
+                'Game Name',
+                style: baseTextStyle.copyWith(
+                  fontSize: 20,
+                  fontWeight: FontWeight.w600,
+                  letterSpacing: -0.5,
+                ),
+              ),
+              const SizedBox(height: 12),
+              _buildTextField(
+                controller: gameNameController,
+                hintText: 'The Great Tokyo Scavenger Hunt',
+                capitalization: TextCapitalization.words,
+              ),
+              const SizedBox(height: 32),
+              Text(
+                'Game Description',
+                style: baseTextStyle.copyWith(
+                  fontSize: 20,
+                  fontWeight: FontWeight.w600,
+                  letterSpacing: -0.5,
+                ),
+              ),
+              const SizedBox(height: 12),
+              _buildTextField(
+                controller: gameDescriptionController,
+                hintText:
+                    'This game will take you on a journey through the streets of Tokyo, where you will visit famous landmarks and hidden gems.',
+                maxLines: 4,
+              ),
+              const SizedBox(height: 32),
+              SizedBox(
+                width: double.infinity,
+                height: 56,
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.white,
+                    foregroundColor: Colors.black,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(16),
+                    ),
+                    elevation: 0,
+                  ),
+                  onPressed: _onNextPressed,
+                  child: Text(
+                    'Continue',
+                    style: baseTextStyle.copyWith(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w600,
                     ),
                   ),
                 ),
-              ],
-            ),
+              ),
+              const SizedBox(height: 32),
+            ],
           ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildHeaderText(String text) {
-    return Text(
-      text,
-      style: baseTextStyle.copyWith(
-        fontSize: 30,
-        fontWeight: FontWeight.w700,
-        color: Colors.white,
-      ),
-    );
-  }
-
-  Widget _buildDescriptionText(String text) {
-    return Text(
-      text,
-      style: baseTextStyle.copyWith(
-        fontSize: 20,
-        fontWeight: FontWeight.w500,
-        color: Colors.white70,
+        ),
       ),
     );
   }
@@ -156,22 +179,34 @@ class _ClaimZone1State extends State<ClaimZone1> {
       controller: controller,
       decoration: InputDecoration(
         hintText: hintText,
-        hintStyle:
-            const TextStyle(color: Colors.white70, fontStyle: FontStyle.italic),
+        hintStyle: baseTextStyle.copyWith(
+          color: Colors.white38,
+          fontStyle: FontStyle.italic,
+          fontSize: 16,
+        ),
         filled: true,
-        fillColor: Colors.grey[800],
+        fillColor: Colors.white.withOpacity(0.05),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
-          borderSide: BorderSide.none,
+          borderSide: BorderSide(color: Colors.white.withOpacity(0.1)),
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
-          borderSide: BorderSide.none,
+          borderSide: BorderSide(color: Colors.white.withOpacity(0.1)),
         ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12),
+          borderSide: BorderSide(color: Colors.green.shade400, width: 2),
+        ),
+        contentPadding:
+            const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
       ),
       textCapitalization: capitalization,
       maxLines: maxLines,
-      style: baseTextStyle.copyWith(color: Colors.white),
+      style: baseTextStyle.copyWith(
+        color: Colors.white,
+        fontSize: 16,
+      ),
     );
   }
 
@@ -185,48 +220,4 @@ class _ClaimZone1State extends State<ClaimZone1> {
       ..gameDescription = gameDescriptionController.text;
     Get.to(() => const ClaimZoneLocPicker());
   }
-}
-
-Widget _buildGlassCard({required String title, required Widget child}) {
-  return Container(
-    margin: const EdgeInsets.only(bottom: 16),
-    decoration: BoxDecoration(
-      gradient: LinearGradient(
-        colors: [Colors.white.withOpacity(0.1), Colors.white.withOpacity(0.05)],
-        begin: Alignment.topLeft,
-        end: Alignment.bottomRight,
-      ),
-      border: Border.all(color: Colors.white.withOpacity(0.2), width: 1),
-      borderRadius: BorderRadius.circular(20),
-    ),
-    child: ClipRRect(
-      borderRadius: BorderRadius.circular(20),
-      child: BackdropFilter(
-        filter: ImageFilter.blur(sigmaX: 12.0, sigmaY: 12.0),
-        child: Container(
-          padding: const EdgeInsets.all(16),
-          decoration: BoxDecoration(
-            color: Colors.white.withOpacity(0.05),
-            borderRadius: BorderRadius.circular(20),
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              if (title.isNotEmpty)
-                Text(
-                  title,
-                  style: baseTextStyle.copyWith(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                  ),
-                ),
-              if (title.isNotEmpty) const SizedBox(height: 12),
-              child,
-            ],
-          ),
-        ),
-      ),
-    ),
-  );
 }

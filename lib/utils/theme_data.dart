@@ -34,6 +34,7 @@ final buttonStyle = ButtonStyle(
   shape: WidgetStateProperty.all(
     RoundedRectangleBorder(borderRadius: BorderRadius.circular(0)),
   ),
+  iconColor: WidgetStateProperty.all(Colors.white),
   textStyle: WidgetStateProperty.all(
     TextStyle(
       color: Colors.green[900],

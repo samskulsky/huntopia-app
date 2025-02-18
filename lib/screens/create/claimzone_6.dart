@@ -22,218 +22,272 @@ class _ClaimZone6State extends State<ClaimZone6> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Finish', style: TextStyle(color: Colors.white)),
+        title: Text(
+          'Finish',
+          style: baseTextStyle.copyWith(
+            fontSize: 28,
+            fontWeight: FontWeight.w600,
+            letterSpacing: -0.5,
+          ),
+        ),
         backgroundColor: Colors.black,
+        elevation: 0,
       ),
       backgroundColor: Colors.black,
-      body: ListView(
-        padding: const EdgeInsets.all(16),
-        children: [
-          _buildGlassCard(
-            title: '',
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              Colors.black,
+              Colors.green.shade900.withOpacity(0.3),
+              Colors.black,
+            ],
+          ),
+        ),
+        child: ListView(
+          padding: const EdgeInsets.all(20),
+          children: [
+            Row(
               children: [
                 Text(
-                  'That\'s it!',
+                  'That\'s it! ',
                   style: baseTextStyle.copyWith(
-                    fontSize: 30,
-                    fontWeight: FontWeight.w700,
-                    color: Colors.white,
+                    fontSize: 24,
+                    fontWeight: FontWeight.w600,
+                    letterSpacing: -0.5,
                   ),
                 ),
-                const SizedBox(height: 8),
-                Text(
-                  'You\'ve successfully created a game. Your game can be found in the "My Games" section of the app. You can edit it at any time.',
-                  style: baseTextStyle.copyWith(
-                    fontSize: 18,
-                    fontWeight: FontWeight.w500,
-                    color: Colors.white70,
-                  ),
-                ),
-                const SizedBox(height: 16),
-                const Divider(color: Colors.white54),
-                const SizedBox(height: 16),
-                Text(
-                  'What\'s next?',
-                  style: baseTextStyle.copyWith(
-                    fontSize: 22,
-                    fontWeight: FontWeight.w700,
-                    color: Colors.white,
-                  ),
-                ),
-                const SizedBox(height: 8),
-                _buildListTile(
-                  icon: FontAwesomeIcons.coins,
-                  title: 'Add a Coin Shop',
-                  subtitle:
-                      'So far, coins are not used in your game. Add a coin shop to allow players to buy coins.',
-                ),
-                _buildListTile(
-                  icon: FontAwesomeIcons.shareNodes,
-                  title: 'Share your game',
-                  subtitle:
-                      'Share your game with friends and family so they can play.',
-                ),
-                const SizedBox(height: 16),
-                _buildGameSummaryCard(),
+                const Text('🎉', style: TextStyle(fontSize: 24)),
               ],
             ),
-          ),
-          const SizedBox(height: 16),
-          _buildGlassCard(
-            title: '',
-            child: SizedBox(
-              width: double.infinity,
-              child: FilledButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.green,
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
+            const SizedBox(height: 12),
+            Text(
+              'You\'ve successfully created a game. Your game can be found in the "My Games" section of the app. You can edit it at any time.',
+              style: baseTextStyle.copyWith(
+                fontSize: 16,
+                color: Colors.white70,
+                height: 1.5,
+              ),
+            ),
+            const SizedBox(height: 32),
+            Text(
+              'What\'s next?',
+              style: baseTextStyle.copyWith(
+                fontSize: 20,
+                fontWeight: FontWeight.w600,
+                letterSpacing: -0.5,
+              ),
+            ),
+            const SizedBox(height: 12),
+            Container(
+              decoration: BoxDecoration(
+                color: Colors.white.withOpacity(0.05),
+                borderRadius: BorderRadius.circular(16),
+                border: Border.all(color: Colors.white.withOpacity(0.1)),
+              ),
+              child: Column(
+                children: [
+                  _buildActionTile(
+                    icon: FontAwesomeIcons.coins,
+                    title: 'Add a Coin Shop',
+                    subtitle:
+                        'So far, coins are not used in your game. Add a coin shop to allow players to buy coins.',
+                    onTap: () {},
+                    isFirst: true,
                   ),
+                  Divider(color: Colors.white.withOpacity(0.1), height: 1),
+                  _buildActionTile(
+                    icon: FontAwesomeIcons.shareNodes,
+                    title: 'Share your game',
+                    subtitle:
+                        'Share your game with friends and family so they can play.',
+                    onTap: () {},
+                    isLast: true,
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 32),
+            Text(
+              'Game Summary',
+              style: baseTextStyle.copyWith(
+                fontSize: 20,
+                fontWeight: FontWeight.w600,
+                letterSpacing: -0.5,
+              ),
+            ),
+            const SizedBox(height: 12),
+            Container(
+              decoration: BoxDecoration(
+                color: Colors.white.withOpacity(0.05),
+                borderRadius: BorderRadius.circular(16),
+                border: Border.all(color: Colors.white.withOpacity(0.1)),
+              ),
+              padding: const EdgeInsets.all(20),
+              child: Column(
+                children: [
+                  _buildSummaryRow(
+                    icon: FontAwesomeIcons.gamepad,
+                    label: 'Game Name',
+                    value: gameTemplate.gameName,
+                  ),
+                  const SizedBox(height: 16),
+                  _buildSummaryRow(
+                    icon: FontAwesomeIcons.locationDot,
+                    label: 'Number of Zones',
+                    value: gameTemplate.zones!.length.toString(),
+                  ),
+                  const SizedBox(height: 16),
+                  _buildSummaryRow(
+                    icon: FontAwesomeIcons.trophy,
+                    label: 'Total Points',
+                    value: gameTemplate.zones!
+                        .fold<int>(0, (prev, zone) => prev + zone.points)
+                        .toString(),
+                    valueColor: Colors.green.shade400,
+                  ),
+                  const SizedBox(height: 16),
+                  _buildSummaryRow(
+                    icon: FontAwesomeIcons.coins,
+                    label: 'Total Coins',
+                    value: gameTemplate.zones!
+                        .fold<int>(0, (prev, zone) => prev + zone.coins)
+                        .toString(),
+                    valueColor: Colors.purple.shade400,
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 32),
+            SizedBox(
+              width: double.infinity,
+              height: 56,
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.white,
+                  foregroundColor: Colors.black,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(16),
+                  ),
+                  elevation: 0,
                 ),
-                onPressed: () {
-                  Get.offAll(() => const HomeScreen());
-                },
+                onPressed: () => Get.offAll(() => const HomeScreen()),
                 child: Text(
                   'Back to Home',
-                  style: GoogleFonts.spaceGrotesk(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
+                  style: baseTextStyle.copyWith(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w600,
                   ),
                 ),
               ),
             ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildListTile({
-    required IconData icon,
-    required String title,
-    required String subtitle,
-  }) {
-    return ListTile(
-      leading: FaIcon(icon, color: Colors.white),
-      contentPadding: EdgeInsets.zero,
-      title: Text(
-        title,
-        style: baseTextStyle.copyWith(
-          fontSize: 18,
-          fontWeight: FontWeight.w700,
-          color: Colors.white,
-        ),
-      ),
-      subtitle: Text(
-        subtitle,
-        style: baseTextStyle.copyWith(
-          fontSize: 16,
-          color: Colors.white70,
-        ),
-      ),
-      onTap: () {
-        if (title == 'Add a Coin Shop') {
-          Get.to(() => const AddZone());
-        } else if (title == 'Share your game') {
-          // Implement share functionality or navigate to share screen
-        }
-      },
-    );
-  }
-
-  Widget _buildGameSummaryCard() {
-    return _buildGlassCard(
-      title: '',
-      child: ListTile(
-        contentPadding: EdgeInsets.zero,
-        leading: const FaIcon(FontAwesomeIcons.trophy, color: Colors.white),
-        title: Text(
-          'Game Summary',
-          style: baseTextStyle.copyWith(
-            fontSize: 18,
-            fontWeight: FontWeight.w700,
-            color: Colors.white,
-          ),
-        ),
-        subtitle: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            _buildGameSummaryRow(
-              icon: FontAwesomeIcons.envelopeOpenText,
-              label: 'Game Name',
-              value: gameTemplate.gameName,
-            ),
-            _buildGameSummaryRow(
-              icon: FontAwesomeIcons.hashtag,
-              label: 'Number of Zones',
-              value: gameTemplate.zones!.length.toString(),
-            ),
-            _buildGameSummaryRow(
-              icon: FontAwesomeIcons.award,
-              label: 'Total Points',
-              value: gameTemplate.zones!
-                  .fold<int>(
-                      0,
-                      (previousValue, element) =>
-                          previousValue + element.points)
-                  .toString(),
-            ),
-            _buildGameSummaryRow(
-              icon: FontAwesomeIcons.coins,
-              label: 'Total Coins',
-              value: gameTemplate.zones!
-                  .fold<int>(0,
-                      (previousValue, element) => previousValue + element.coins)
-                  .toString(),
-            ),
+            const SizedBox(height: 32),
           ],
         ),
       ),
     );
   }
 
-  Widget _buildGameSummaryRow({
+  Widget _buildActionTile({
     required IconData icon,
-    required String label,
-    required String value,
+    required String title,
+    required String subtitle,
+    required VoidCallback onTap,
+    bool isFirst = false,
+    bool isLast = false,
   }) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 4.0),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Row(
-            children: [
-              FaIcon(icon, size: 12, color: Colors.white),
-              const SizedBox(width: 4),
-              Text(
-                label,
-                style: baseTextStyle.copyWith(
-                  fontSize: 14,
-                  color: Colors.white,
-                ),
-              ),
-            ],
+    return InkWell(
+      onTap: onTap,
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.vertical(
+            top: isFirst ? const Radius.circular(16) : Radius.zero,
+            bottom: isLast ? const Radius.circular(16) : Radius.zero,
           ),
-          Expanded(
-            child: Text(
-              value,
-              textAlign: TextAlign.right,
-              style: baseTextStyle.copyWith(
-                fontSize: 14,
+        ),
+        child: ListTile(
+          contentPadding: const EdgeInsets.all(20),
+          leading: Container(
+            width: 40,
+            height: 40,
+            decoration: BoxDecoration(
+              color: Colors.white.withOpacity(0.1),
+              borderRadius: BorderRadius.circular(12),
+            ),
+            child: Center(
+              child: FaIcon(
+                icon,
                 color: Colors.white,
-                fontWeight: FontWeight.w700,
+                size: 20,
               ),
             ),
           ),
-        ],
+          title: Padding(
+            padding: const EdgeInsets.only(bottom: 8),
+            child: Text(
+              title,
+              style: baseTextStyle.copyWith(
+                fontSize: 18,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+          ),
+          subtitle: Text(
+            subtitle,
+            style: baseTextStyle.copyWith(
+              color: Colors.white70,
+              height: 1.3,
+            ),
+          ),
+        ),
       ),
+    );
+  }
+
+  Widget _buildSummaryRow({
+    required IconData icon,
+    required String label,
+    required String value,
+    Color? valueColor,
+  }) {
+    return Row(
+      children: [
+        Container(
+          width: 40,
+          height: 40,
+          decoration: BoxDecoration(
+            color: Colors.white.withOpacity(0.1),
+            borderRadius: BorderRadius.circular(12),
+          ),
+          child: Center(
+            child: FaIcon(
+              icon,
+              color: Colors.white70,
+              size: 20,
+            ),
+          ),
+        ),
+        const SizedBox(width: 16),
+        Expanded(
+          child: Text(
+            label,
+            style: baseTextStyle.copyWith(
+              fontSize: 16,
+              color: Colors.white70,
+            ),
+          ),
+        ),
+        Text(
+          value,
+          style: baseTextStyle.copyWith(
+            fontSize: 18,
+            fontWeight: FontWeight.w600,
+            color: valueColor ?? Colors.white,
+          ),
+        ),
+      ],
     );
   }
 }

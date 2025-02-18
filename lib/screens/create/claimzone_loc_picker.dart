@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
@@ -7,6 +9,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:interactive_bottom_sheet/interactive_bottom_sheet.dart';
 import 'package:latlong2/latlong.dart';
 
+import '../../utils/theme_data.dart';
 import 'claimzone_1.dart';
 import 'claimzone_3.dart';
 
@@ -29,39 +32,211 @@ class _ClaimZoneLocPickerState extends State<ClaimZoneLocPicker> {
     super.initState();
   }
 
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        leading: IconButton(
+          icon: const FaIcon(FontAwesomeIcons.arrowLeft, color: Colors.white70),
+          onPressed: () => Navigator.pop(context),
+        ),
+        title: Text(
+          'Starting Location',
+          style: baseTextStyle.copyWith(
+            fontSize: 28,
+            fontWeight: FontWeight.w600,
+            letterSpacing: -0.5,
+          ),
+        ),
+        backgroundColor: Colors.black,
+        elevation: 0,
+      ),
+      backgroundColor: Colors.black,
+      body: Stack(
+        children: [
+          FlutterMap(
+            mapController: mapController,
+            options: MapOptions(
+              initialCenter: LatLng(currentLat, currentLong),
+              initialZoom: 16.0,
+              onTap: _onMapTap,
+            ),
+            children: [
+              TileLayer(
+                urlTemplate: "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                userAgentPackageName: 'com.samdev.scavhuntapp',
+              ),
+              if (selectedMarker != null)
+                MarkerLayer(
+                  markers: [selectedMarker!],
+                ),
+            ],
+          ),
+          Positioned(
+            top: 16,
+            left: 16,
+            right: 16,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(16),
+              child: BackdropFilter(
+                filter: ImageFilter.blur(sigmaX: 15.0, sigmaY: 15.0),
+                child: Container(
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 16, horizontal: 20),
+                  decoration: BoxDecoration(
+                    color: Colors.black.withOpacity(0.5),
+                    borderRadius: BorderRadius.circular(16),
+                    border: Border.all(color: Colors.white.withOpacity(0.2)),
+                  ),
+                  child: Row(
+                    children: [
+                      const FaIcon(
+                        FontAwesomeIcons.globe,
+                        color: Colors.white70,
+                        size: 20,
+                      ),
+                      const SizedBox(width: 16),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Selected Location',
+                              style: baseTextStyle.copyWith(
+                                fontSize: 20,
+                                fontWeight: FontWeight.w600,
+                                color: Colors.white,
+                              ),
+                            ),
+                            const SizedBox(height: 4),
+                            Text(
+                              'Latitude: ${currentLat.toStringAsFixed(4)}\nLongitude: ${currentLong.toStringAsFixed(4)}',
+                              style: baseTextStyle.copyWith(
+                                color: Colors.white70,
+                                fontSize: 16,
+                                height: 1.3,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      IconButton(
+                        icon: const FaIcon(
+                          FontAwesomeIcons.pen,
+                          color: Colors.white70,
+                          size: 18,
+                        ),
+                        onPressed: () => _showEditLocationDialog(context),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+      bottomSheet: Container(
+        color: Colors.black,
+        child: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 32.0),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Choose Starting Location',
+                  style: baseTextStyle.copyWith(
+                    fontSize: 24,
+                    fontWeight: FontWeight.w600,
+                    letterSpacing: -0.5,
+                  ),
+                ),
+                const SizedBox(height: 8),
+                Row(
+                  children: [
+                    Expanded(
+                      child: Text(
+                        'Tap on the map to select the starting location. All zones will be created around this location.',
+                        style: baseTextStyle.copyWith(
+                          color: Colors.white70,
+                          fontSize: 16,
+                          height: 1.3,
+                        ),
+                      ),
+                    ),
+                    const SizedBox(width: 12),
+                    const FaIcon(
+                      FontAwesomeIcons.mapPin,
+                      color: Colors.white70,
+                      size: 20,
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 20),
+                SizedBox(
+                  width: double.infinity,
+                  height: 56,
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: selectedMarker == null
+                          ? Colors.grey.shade800
+                          : Colors.white,
+                      foregroundColor: selectedMarker == null
+                          ? Colors.white38
+                          : Colors.black,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(16),
+                      ),
+                      elevation: 0,
+                    ),
+                    onPressed: selectedMarker == null ? null : _saveLocation,
+                    child: Text(
+                      'Save Location',
+                      style: baseTextStyle.copyWith(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
   void _onMapTap(TapPosition position, LatLng latLng) {
     setState(() {
       currentLat = latLng.latitude;
       currentLong = latLng.longitude;
       selectedMarker = Marker(
-        width: 80.0,
-        height: 80.0,
+        width: 50.0,
+        height: 50.0,
         point: latLng,
-        child: Stack(
-          alignment: Alignment.center,
-          children: [
-            Container(
-              decoration: BoxDecoration(
-                color: Colors.white.withOpacity(0.8),
-                shape: BoxShape.circle,
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withOpacity(0.5),
-                    spreadRadius: 2,
-                    blurRadius: 6,
-                    offset: const Offset(0, 3),
-                  ),
-                ],
+        child: Container(
+          decoration: BoxDecoration(
+            color: Colors.black,
+            shape: BoxShape.circle,
+            border: Border.all(color: Colors.white, width: 2),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.3),
+                blurRadius: 8,
+                spreadRadius: 2,
               ),
-              width: 45,
-              height: 45,
-            ),
-            const Icon(
+            ],
+          ),
+          child: const Center(
+            child: Icon(
               Icons.location_on,
-              color: Colors.red,
-              size: 40,
+              color: Colors.white,
+              size: 24,
             ),
-          ],
+          ),
         ),
       );
     });
@@ -70,132 +245,6 @@ class _ClaimZoneLocPickerState extends State<ClaimZoneLocPicker> {
   void _saveLocation() {
     gameTemplate.center = GeoPoint(currentLat, currentLong);
     Get.to(() => const ClaimZone3());
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      bottomSheet: InteractiveBottomSheet(
-        options: InteractiveBottomSheetOptions(
-          initialSize: 0.35,
-          backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-        ),
-        draggableAreaOptions: DraggableAreaOptions(
-          backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-          indicatorColor: Theme.of(context).colorScheme.onBackground,
-        ),
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              ListTile(
-                title: Text(
-                  'Choose Starting Location',
-                  style: GoogleFonts.spaceGrotesk(
-                    fontSize: 18,
-                    fontWeight: FontWeight.w700,
-                    color: Colors.white,
-                  ),
-                ),
-                subtitle: const Text(
-                  'Tap on the map to select the starting location. All zones will be created around this location.',
-                  style: TextStyle(color: Colors.white70),
-                ),
-                trailing:
-                    const FaIcon(FontAwesomeIcons.mapPin, color: Colors.white),
-              ),
-              const SizedBox(height: 16),
-              Container(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                width: double.infinity,
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor:
-                        selectedMarker == null ? Colors.grey : Colors.green,
-                    padding: const EdgeInsets.symmetric(vertical: 16),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                  ),
-                  onPressed: selectedMarker == null ? null : _saveLocation,
-                  child: Text(
-                    'Save Location',
-                    style: GoogleFonts.spaceGrotesk(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
-      appBar: AppBar(
-        bottom: PreferredSize(
-          preferredSize: const Size.fromHeight(80),
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: ListTile(
-              title: Text(
-                'Selected Location',
-                style: GoogleFonts.spaceGrotesk(
-                  fontSize: 18,
-                  fontWeight: FontWeight.w700,
-                  color: Colors.white,
-                ),
-              ),
-              subtitle: Text(
-                'Latitude: ${currentLat.toStringAsFixed(4)}\nLongitude: ${currentLong.toStringAsFixed(4)}',
-                style: GoogleFonts.spaceGrotesk(
-                  color: Colors.white70,
-                ),
-              ),
-              leading: const FaIcon(FontAwesomeIcons.globe, color: Colors.grey),
-              trailing: IconButton(
-                icon: const FaIcon(FontAwesomeIcons.pen, color: Colors.white),
-                onPressed: () {
-                  _showEditLocationDialog(context);
-                },
-              ),
-            ),
-          ),
-        ),
-        leading: IconButton(
-          icon: const FaIcon(FontAwesomeIcons.arrowLeft, color: Colors.white),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
-        title: const Text(
-          'Starting Location',
-          style: TextStyle(color: Colors.white),
-        ),
-        backgroundColor: Colors.black,
-      ),
-      backgroundColor: Colors.black,
-      body: FlutterMap(
-        mapController: mapController,
-        options: MapOptions(
-          initialCenter: LatLng(currentLat, currentLong),
-          initialZoom: 16.0,
-          onTap: _onMapTap,
-        ),
-        children: [
-          TileLayer(
-            urlTemplate: "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
-            userAgentPackageName: 'com.samdev.scavhuntapp',
-          ),
-          if (selectedMarker != null)
-            MarkerLayer(
-              markers: [selectedMarker!],
-            ),
-        ],
-      ),
-    );
   }
 
   void _showEditLocationDialog(BuildContext context) {
@@ -208,8 +257,18 @@ class _ClaimZoneLocPickerState extends State<ClaimZoneLocPicker> {
       context: context,
       builder: (context) {
         return AlertDialog(
+          backgroundColor: Colors.grey[900],
           surfaceTintColor: Colors.transparent,
-          title: const Text('Edit Location'),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(16),
+          ),
+          title: Text(
+            'Edit Location',
+            style: baseTextStyle.copyWith(
+              fontSize: 24,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
@@ -234,6 +293,30 @@ class _ClaimZoneLocPickerState extends State<ClaimZoneLocPicker> {
               ),
             ],
           ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(context),
+              child: Text(
+                'Cancel',
+                style: baseTextStyle.copyWith(color: Colors.white70),
+              ),
+            ),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.green.shade600,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
+                ),
+              ),
+              onPressed: () => Navigator.pop(context),
+              child: Text(
+                'Save',
+                style: baseTextStyle.copyWith(
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ],
         );
       },
     );
@@ -298,34 +381,29 @@ class _ClaimZoneLocPickerState extends State<ClaimZoneLocPicker> {
   void _updateMarker(LatLng position) {
     setState(() {
       selectedMarker = Marker(
-        width: 80.0,
-        height: 80.0,
+        width: 50.0,
+        height: 50.0,
         point: position,
-        child: Stack(
-          alignment: Alignment.center,
-          children: [
-            Container(
-              decoration: BoxDecoration(
-                color: Colors.white.withOpacity(0.8),
-                shape: BoxShape.circle,
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withOpacity(0.5),
-                    spreadRadius: 2,
-                    blurRadius: 6,
-                    offset: const Offset(0, 3),
-                  ),
-                ],
+        child: Container(
+          decoration: BoxDecoration(
+            color: Colors.black,
+            shape: BoxShape.circle,
+            border: Border.all(color: Colors.white, width: 2),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.3),
+                blurRadius: 8,
+                spreadRadius: 2,
               ),
-              width: 45,
-              height: 45,
-            ),
-            const Icon(
+            ],
+          ),
+          child: const Center(
+            child: Icon(
               Icons.location_on,
-              color: Colors.red,
-              size: 40,
+              color: Colors.white,
+              size: 24,
             ),
-          ],
+          ),
         ),
       );
     });
