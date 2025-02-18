@@ -29,148 +29,230 @@ class _ClaimZonePlayState extends State<ClaimZonePlay> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Setup Game', style: TextStyle(color: Colors.white)),
+        title: Text(
+          'Setup Game',
+          style: baseTextStyle.copyWith(
+            fontSize: 28,
+            fontWeight: FontWeight.w600,
+            letterSpacing: -0.5,
+          ),
+        ),
         leading: IconButton(
-          icon: const FaIcon(FontAwesomeIcons.arrowLeft, color: Colors.white),
-          onPressed: () {
-            Navigator.pop(context);
-          },
+          icon: const FaIcon(FontAwesomeIcons.arrowLeft, color: Colors.white70),
+          onPressed: () => Navigator.pop(context),
         ),
         backgroundColor: Colors.black,
+        elevation: 0,
       ),
       backgroundColor: Colors.black,
-      body: ListView(
-        padding: const EdgeInsets.all(16),
-        children: [
-          _buildGlassCard(
-            title: '',
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'It\'s time to play!',
-                  style: baseTextStyle.copyWith(
-                    fontSize: 30,
-                    fontWeight: FontWeight.w700,
-                    color: Colors.white,
-                  ),
-                ),
-                const SizedBox(height: 8),
-                Text(
-                  'Now that your game is all set up, it\'s time to play! Fill out the fields below to host it.',
-                  style: baseTextStyle.copyWith(
-                    fontSize: 18,
-                    fontWeight: FontWeight.w500,
-                    color: Get.isDarkMode ? Colors.white54 : Colors.black54,
-                  ),
-                ),
-                const SizedBox(height: 16),
-                _buildSectionHeader('Max Teams'),
-                const SizedBox(height: 8),
-                Text(
-                  'How many teams will be playing? Each team should only have one device.',
-                  style: baseTextStyle.copyWith(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w500,
-                    color: Get.isDarkMode ? Colors.white54 : Colors.black54,
-                  ),
-                ),
-                const SizedBox(height: 8),
-                Text(
-                  '$maxPlayers team${maxPlayers > 1 ? 's' : ''}',
-                  style: baseTextStyle.copyWith(
-                    fontSize: 18,
-                    fontWeight: FontWeight.w700,
-                    color: Colors.green,
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-                Slider(
-                  value: maxPlayers.toDouble(),
-                  onChanged: (value) {
-                    setState(() {
-                      maxPlayers = value.toInt();
-                    });
-                  },
-                  min: 2,
-                  max: 12,
-                  activeColor: Colors.green,
-                  inactiveColor: Colors.grey,
-                ),
-                const SizedBox(height: 16),
-                _buildSectionHeader('Game Duration'),
-                const SizedBox(height: 8),
-                Text(
-                  'How long will the game last? The game will automatically end after this duration. During the game, you can extend or end the game manually.',
-                  style: baseTextStyle.copyWith(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w500,
-                    color: Get.isDarkMode ? Colors.white54 : Colors.black54,
-                  ),
-                ),
-                const SizedBox(height: 8),
-                Text(
-                  _formatDuration(gameDuration),
-                  style: baseTextStyle.copyWith(
-                    fontSize: 18,
-                    fontWeight: FontWeight.w700,
-                    color: Colors.green,
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-                Slider(
-                  value: gameDuration.toDouble(),
-                  divisions: 114,
-                  onChanged: (value) {
-                    setState(() {
-                      gameDuration = value.toInt();
-                    });
-                  },
-                  min: 30,
-                  max: 600,
-                  activeColor: Colors.green,
-                  inactiveColor: Colors.grey,
-                ),
-                const SizedBox(height: 16),
-                _buildSectionHeader('Start Game'),
-                const SizedBox(height: 8),
-                Text(
-                  'Once you start the game, you will not be able to make any changes to the game template. Are you sure you want to start the game?',
-                  style: baseTextStyle.copyWith(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w500,
-                    color: Get.isDarkMode ? Colors.white54 : Colors.black54,
-                  ),
-                ),
-                const SizedBox(height: 16),
-                SizedBox(
-                  width: double.infinity,
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.green,
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 32, vertical: 16),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                    ),
-                    onPressed: () {
-                      _startGame();
-                    },
-                    child: Text(
-                      'Start Game',
-                      style: GoogleFonts.spaceGrotesk(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                      ),
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              Colors.black,
+              Colors.green.shade900.withOpacity(0.3),
+              Colors.black,
+            ],
+          ),
+        ),
+        child: ListView(
+          padding: const EdgeInsets.all(20),
+          children: [
+            Text(
+              'It\'s time to play!',
+              style: baseTextStyle.copyWith(
+                fontSize: 24,
+                fontWeight: FontWeight.w600,
+                letterSpacing: -0.5,
+              ),
+            ),
+            const SizedBox(height: 8),
+            Text(
+              'Now that your game is all set up, it\'s time to play! Fill out the fields below to host it.',
+              style: baseTextStyle.copyWith(
+                fontSize: 16,
+                color: Colors.white70,
+                height: 1.5,
+              ),
+            ),
+            const SizedBox(height: 32),
+            Container(
+              padding: const EdgeInsets.all(20),
+              decoration: BoxDecoration(
+                color: Colors.white.withOpacity(0.05),
+                borderRadius: BorderRadius.circular(16),
+                border: Border.all(color: Colors.white.withOpacity(0.1)),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Max Teams',
+                    style: baseTextStyle.copyWith(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w600,
                     ),
                   ),
+                  const SizedBox(height: 8),
+                  Text(
+                    'How many teams will be playing? Each team should only have one device.',
+                    style: baseTextStyle.copyWith(
+                      fontSize: 14,
+                      color: Colors.white70,
+                      height: 1.5,
+                    ),
+                  ),
+                  const SizedBox(height: 16),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'Teams',
+                        style: baseTextStyle.copyWith(
+                          color: Colors.white70,
+                        ),
+                      ),
+                      Text(
+                        '$maxPlayers team${maxPlayers > 1 ? 's' : ''}',
+                        style: baseTextStyle.copyWith(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.green,
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 8),
+                  SliderTheme(
+                    data: SliderThemeData(
+                      activeTrackColor: Colors.green,
+                      inactiveTrackColor: Colors.white.withOpacity(0.1),
+                      thumbColor: Colors.green,
+                      overlayColor: Colors.green.withOpacity(0.2),
+                    ),
+                    child: Slider(
+                      value: maxPlayers.toDouble(),
+                      onChanged: (value) {
+                        setState(() {
+                          maxPlayers = value.toInt();
+                        });
+                      },
+                      min: 2,
+                      max: 12,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 16),
+            Container(
+              padding: const EdgeInsets.all(20),
+              decoration: BoxDecoration(
+                color: Colors.white.withOpacity(0.05),
+                borderRadius: BorderRadius.circular(16),
+                border: Border.all(color: Colors.white.withOpacity(0.1)),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Game Duration',
+                    style: baseTextStyle.copyWith(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  Text(
+                    'How long will the game last? The game will automatically end after this duration. During the game, you can extend or end the game manually.',
+                    style: baseTextStyle.copyWith(
+                      fontSize: 14,
+                      color: Colors.white70,
+                      height: 1.5,
+                    ),
+                  ),
+                  const SizedBox(height: 16),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'Duration',
+                        style: baseTextStyle.copyWith(
+                          color: Colors.white70,
+                        ),
+                      ),
+                      Text(
+                        _formatDuration(gameDuration),
+                        style: baseTextStyle.copyWith(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.green,
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 8),
+                  SliderTheme(
+                    data: SliderThemeData(
+                      activeTrackColor: Colors.green,
+                      inactiveTrackColor: Colors.white.withOpacity(0.1),
+                      thumbColor: Colors.green,
+                      overlayColor: Colors.green.withOpacity(0.2),
+                    ),
+                    child: Slider(
+                      value: gameDuration.toDouble(),
+                      divisions: 114,
+                      onChanged: (value) {
+                        setState(() {
+                          gameDuration = value.toInt();
+                        });
+                      },
+                      min: 30,
+                      max: 600,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+      bottomNavigationBar: Container(
+        decoration: BoxDecoration(
+          color: Colors.black,
+          border: Border(
+            top: BorderSide(color: Colors.white.withOpacity(0.1)),
+          ),
+        ),
+        child: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.all(20),
+            child: SizedBox(
+              width: double.infinity,
+              height: 56,
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.white,
+                  foregroundColor: Colors.black,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(16),
+                  ),
+                  elevation: 0,
                 ),
-              ],
+                onPressed: _startGame,
+                child: Text(
+                  'Start Game',
+                  style: baseTextStyle.copyWith(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ),
             ),
           ),
-        ],
+        ),
       ),
     );
   }
@@ -185,17 +267,6 @@ class _ClaimZonePlayState extends State<ClaimZonePlay> {
     } else {
       return '${duration ~/ 60} hours ${duration % 60} minutes';
     }
-  }
-
-  Widget _buildSectionHeader(String title) {
-    return Text(
-      title,
-      style: baseTextStyle.copyWith(
-        fontSize: 22,
-        fontWeight: FontWeight.w700,
-        color: Colors.white,
-      ),
-    );
   }
 
   void _startGame() {
@@ -259,48 +330,4 @@ class _ClaimZonePlayState extends State<ClaimZonePlay> {
     return List.generate(length, (_) => letters[random.nextInt(letters.length)])
         .join();
   }
-}
-
-Widget _buildGlassCard({required String title, required Widget child}) {
-  return Container(
-    width: double.infinity,
-    decoration: BoxDecoration(
-      gradient: LinearGradient(
-        colors: [Colors.white.withOpacity(0.1), Colors.white.withOpacity(0.05)],
-        begin: Alignment.topLeft,
-        end: Alignment.bottomRight,
-      ),
-      border: Border.all(color: Colors.white.withOpacity(0.2), width: 1),
-      borderRadius: BorderRadius.circular(20),
-    ),
-    child: ClipRRect(
-      borderRadius: BorderRadius.circular(20),
-      child: BackdropFilter(
-        filter: ImageFilter.blur(sigmaX: 12.0, sigmaY: 12.0),
-        child: Container(
-          padding: const EdgeInsets.all(16),
-          decoration: BoxDecoration(
-            color: Colors.white.withOpacity(0.05),
-            borderRadius: BorderRadius.circular(20),
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              if (title.isNotEmpty)
-                Text(
-                  title,
-                  style: GoogleFonts.spaceGrotesk(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                  ),
-                ),
-              if (title.isNotEmpty) const SizedBox(height: 12),
-              child,
-            ],
-          ),
-        ),
-      ),
-    ),
-  );
 }

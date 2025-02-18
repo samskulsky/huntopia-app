@@ -118,60 +118,128 @@ class _HomeScreenState extends State<HomeScreen> {
               child: ListView(
                 padding: const EdgeInsets.all(20),
                 children: [
-                  Pinput(
-                    length: 6,
-                    defaultPinTheme: PinTheme(
-                      width: 50,
-                      height: 50,
-                      textStyle: baseTextStyle.copyWith(
-                        fontSize: 20,
-                        fontWeight: FontWeight.w600,
-                      ),
-                      decoration: BoxDecoration(
-                        color: Colors.white.withOpacity(0.1),
-                        borderRadius: BorderRadius.circular(12),
-                        border:
-                            Border.all(color: Colors.white.withOpacity(0.1)),
-                      ),
-                    ),
-                    focusedPinTheme: PinTheme(
-                      width: 50,
-                      height: 50,
-                      textStyle: baseTextStyle.copyWith(
-                        fontSize: 20,
-                        fontWeight: FontWeight.w600,
-                      ),
-                      decoration: BoxDecoration(
-                        color: Colors.white.withOpacity(0.1),
-                        borderRadius: BorderRadius.circular(12),
-                        border: Border.all(color: Colors.green.shade400),
-                      ),
-                    ),
-                    submittedPinTheme: PinTheme(
-                      width: 50,
-                      height: 50,
-                      textStyle: baseTextStyle.copyWith(
-                        fontSize: 20,
-                        fontWeight: FontWeight.w600,
-                      ),
-                      decoration: BoxDecoration(
-                        color: Colors.white.withOpacity(0.1),
-                        borderRadius: BorderRadius.circular(12),
-                        border:
-                            Border.all(color: Colors.white.withOpacity(0.1)),
-                      ),
-                    ),
-                    onCompleted: (pin) async {
-                      await _handleGameJoin(pin);
-                    },
-                  ),
-                  const SizedBox(height: 12),
                   Text(
-                    'Enter your game code above to join an existing game.',
-                    style: baseTextStyle.copyWith(color: Colors.white70),
-                    textAlign: TextAlign.center,
+                    'Join Game',
+                    style: baseTextStyle.copyWith(
+                      fontSize: 20,
+                      fontWeight: FontWeight.w600,
+                      letterSpacing: -0.5,
+                    ),
+                  ).animate().fadeIn(duration: 500.ms),
+                  const SizedBox(height: 8),
+                  Text(
+                    'Enter a 6-digit code to join an existing game',
+                    style: baseTextStyle.copyWith(
+                      fontSize: 14,
+                      color: Colors.white70,
+                    ),
+                  ).animate().fadeIn(duration: 500.ms),
+                  const SizedBox(height: 16),
+                  Container(
+                    padding: const EdgeInsets.all(20),
+                    decoration: BoxDecoration(
+                      color: Colors.white.withOpacity(0.05),
+                      borderRadius: BorderRadius.circular(16),
+                      border: Border.all(color: Colors.white.withOpacity(0.1)),
+                    ),
+                    child: Column(
+                      children: [
+                        Pinput(
+                          length: 6,
+                          defaultPinTheme: PinTheme(
+                            width: 50,
+                            height: 50,
+                            textStyle: baseTextStyle.copyWith(
+                              fontSize: 20,
+                              fontWeight: FontWeight.w600,
+                            ),
+                            decoration: BoxDecoration(
+                              color: Colors.white.withOpacity(0.1),
+                              borderRadius: BorderRadius.circular(12),
+                              border: Border.all(
+                                  color: Colors.white.withOpacity(0.1)),
+                            ),
+                          ),
+                          focusedPinTheme: PinTheme(
+                            width: 50,
+                            height: 50,
+                            textStyle: baseTextStyle.copyWith(
+                              fontSize: 20,
+                              fontWeight: FontWeight.w600,
+                            ),
+                            decoration: BoxDecoration(
+                              color: Colors.white.withOpacity(0.1),
+                              borderRadius: BorderRadius.circular(12),
+                              border: Border.all(color: Colors.green.shade400),
+                            ),
+                          ),
+                          submittedPinTheme: PinTheme(
+                            width: 50,
+                            height: 50,
+                            textStyle: baseTextStyle.copyWith(
+                              fontSize: 20,
+                              fontWeight: FontWeight.w600,
+                            ),
+                            decoration: BoxDecoration(
+                              color: Colors.white.withOpacity(0.1),
+                              borderRadius: BorderRadius.circular(12),
+                              border: Border.all(
+                                  color: Colors.white.withOpacity(0.1)),
+                            ),
+                          ),
+                          onCompleted: (pin) async {
+                            await _handleGameJoin(pin);
+                          },
+                        ),
+                      ],
+                    ),
+                  ).animate().fadeIn(duration: 500.ms).slideY(begin: 0.1),
+                  const SizedBox(height: 32),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: Container(
+                          height: 1,
+                          color: Colors.white.withOpacity(0.1),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 16),
+                        child: Text(
+                          'OR',
+                          style: baseTextStyle.copyWith(
+                            color: Colors.white38,
+                            fontSize: 12,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      ),
+                      Expanded(
+                        child: Container(
+                          height: 1,
+                          color: Colors.white.withOpacity(0.1),
+                        ),
+                      ),
+                    ],
                   ),
-                  const SizedBox(height: 24),
+                  const SizedBox(height: 32),
+                  Text(
+                    'Create New Game',
+                    style: baseTextStyle.copyWith(
+                      fontSize: 20,
+                      fontWeight: FontWeight.w600,
+                      letterSpacing: -0.5,
+                    ),
+                  ).animate().fadeIn(duration: 500.ms),
+                  const SizedBox(height: 8),
+                  Text(
+                    'Start a new game from scratch or use AI to generate one',
+                    style: baseTextStyle.copyWith(
+                      fontSize: 14,
+                      color: Colors.white70,
+                    ),
+                  ).animate().fadeIn(duration: 500.ms),
+                  const SizedBox(height: 16),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.white.withOpacity(0.1),
@@ -227,9 +295,34 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                       ],
                     ),
-                  ),
+                  ).animate().fadeIn(duration: 500.ms).slideY(begin: 0.1),
                   const SizedBox(height: 32),
-                  _buildYourGames(),
+                  Text(
+                    'Game Types',
+                    style: baseTextStyle.copyWith(
+                      fontSize: 20,
+                      fontWeight: FontWeight.w600,
+                      letterSpacing: -0.5,
+                    ),
+                  ).animate().fadeIn(duration: 500.ms),
+                  const SizedBox(height: 8),
+                  Text(
+                    'Learn more about the different types of games',
+                    style: baseTextStyle.copyWith(
+                      fontSize: 14,
+                      color: Colors.white70,
+                    ),
+                  ).animate().fadeIn(duration: 500.ms),
+                  const SizedBox(height: 16),
+                  _buildGameTypes()
+                      .animate()
+                      .fadeIn(duration: 500.ms)
+                      .slideY(begin: 0.1),
+                  const SizedBox(height: 32),
+                  _buildYourGames()
+                      .animate()
+                      .fadeIn(duration: 500.ms)
+                      .slideY(begin: 0.1),
                 ],
               ),
             ),
@@ -461,13 +554,36 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget _buildProfileDialog() {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Profile'),
+        title: Text(
+          'Profile',
+          style: baseTextStyle.copyWith(
+            fontSize: 28,
+            fontWeight: FontWeight.w600,
+            letterSpacing: -0.5,
+          ),
+        ),
+        leading: IconButton(
+          icon: const FaIcon(FontAwesomeIcons.xmark, color: Colors.white70),
+          onPressed: () => Navigator.pop(context),
+        ),
         backgroundColor: Colors.black,
+        elevation: 0,
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(24),
+      backgroundColor: Colors.black,
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              Colors.black,
+              Colors.green.shade900.withOpacity(0.3),
+              Colors.black,
+            ],
+          ),
+        ),
         child: ListView(
-          shrinkWrap: true,
+          padding: const EdgeInsets.all(20),
           children: [
             Center(
               child: AvatarBrick(
@@ -482,36 +598,157 @@ class _HomeScreenState extends State<HomeScreen> {
               child: Text(
                 "${currentUser?.firstName} ${currentUser?.lastName}",
                 style: baseTextStyle.copyWith(
-                    fontSize: 24, fontWeight: FontWeight.bold),
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                ),
               ).animate().fadeIn(duration: 500.ms),
             ),
             Center(
               child: Text(
                 '@${currentUser?.displayName}',
                 style: baseTextStyle.copyWith(
-                    fontSize: 18,
-                    fontWeight: FontWeight.w600,
-                    color: Colors.white70),
+                  fontSize: 18,
+                  fontWeight: FontWeight.w600,
+                  color: Colors.white70,
+                ),
               ).animate().fadeIn(duration: 500.ms),
             ),
             const SizedBox(height: 32),
-            _buildProfileField(
-                'User ID', FontAwesomeIcons.hashtag, currentUser?.uid ?? '',
-                isReadOnly: true),
-            const SizedBox(height: 16),
-            _buildProfileField(
-                'Email', FontAwesomeIcons.envelope, emailController.text,
-                isReadOnly: true),
-            const SizedBox(height: 16),
-            _buildUsernameField(),
+            Text(
+              'User ID',
+              style: baseTextStyle.copyWith(
+                fontSize: 14,
+                fontWeight: FontWeight.w600,
+                color: Colors.white70,
+              ),
+            ),
+            const SizedBox(height: 8),
+            TextFormField(
+              controller: TextEditingController(text: currentUser?.uid ?? ''),
+              readOnly: true,
+              decoration: InputDecoration(
+                filled: true,
+                fillColor: Colors.white.withOpacity(0.1),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(12),
+                  borderSide: BorderSide.none,
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(12),
+                  borderSide: BorderSide(color: Colors.white.withOpacity(0.1)),
+                ),
+                contentPadding: const EdgeInsets.all(16),
+                suffixIcon: IconButton(
+                  onPressed: () {
+                    Clipboard.setData(
+                        ClipboardData(text: currentUser?.uid ?? ''));
+                    ToastificationHelper.showSuccessToast(
+                        context, 'User ID copied to clipboard');
+                  },
+                  icon: const FaIcon(FontAwesomeIcons.copy,
+                      color: Colors.white70, size: 16),
+                ),
+              ),
+              style: baseTextStyle.copyWith(color: Colors.white),
+            ).animate().fadeIn(duration: 500.ms).slideY(begin: 0.1),
+            const SizedBox(height: 24),
+            Text(
+              'Email',
+              style: baseTextStyle.copyWith(
+                fontSize: 14,
+                fontWeight: FontWeight.w600,
+                color: Colors.white70,
+              ),
+            ),
+            const SizedBox(height: 8),
+            TextFormField(
+              controller: TextEditingController(text: currentUser?.email ?? ''),
+              readOnly: true,
+              decoration: InputDecoration(
+                filled: true,
+                fillColor: Colors.white.withOpacity(0.1),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(12),
+                  borderSide: BorderSide.none,
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(12),
+                  borderSide: BorderSide(color: Colors.white.withOpacity(0.1)),
+                ),
+                contentPadding: const EdgeInsets.all(16),
+                suffixIcon: IconButton(
+                  onPressed: () {
+                    Clipboard.setData(
+                        ClipboardData(text: currentUser?.email ?? ''));
+                    ToastificationHelper.showSuccessToast(
+                        context, 'Email copied to clipboard');
+                  },
+                  icon: const FaIcon(FontAwesomeIcons.copy,
+                      color: Colors.white70, size: 16),
+                ),
+              ),
+              style: baseTextStyle.copyWith(color: Colors.white),
+            ).animate().fadeIn(duration: 500.ms).slideY(begin: 0.1),
+            const SizedBox(height: 24),
+            Text(
+              'Username',
+              style: baseTextStyle.copyWith(
+                fontSize: 14,
+                fontWeight: FontWeight.w600,
+                color: Colors.white70,
+              ),
+            ),
+            const SizedBox(height: 8),
+            TextFormField(
+              controller: usernameController,
+              decoration: InputDecoration(
+                filled: true,
+                fillColor: Colors.white.withOpacity(0.1),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(12),
+                  borderSide: BorderSide.none,
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(12),
+                  borderSide: BorderSide(color: Colors.white.withOpacity(0.1)),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(12),
+                  borderSide: BorderSide(color: Colors.green.shade400),
+                ),
+                contentPadding: const EdgeInsets.all(16),
+              ),
+              style: baseTextStyle.copyWith(color: Colors.white),
+              maxLength: 20,
+              inputFormatters: [
+                FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z0-9]')),
+              ],
+              onChanged: (value) {
+                usernameController.text = usernameController.text
+                    .replaceAll(RegExp(r'\s+'), '')
+                    .toLowerCase()
+                    .replaceAll(RegExp(r'[^a-zA-Z0-9]'), '');
+                usernameController.selection = TextSelection.fromPosition(
+                    TextPosition(offset: usernameController.text.length));
+              },
+              onEditingComplete: () {
+                FocusScope.of(context).unfocus();
+                if (currentUser != null) {
+                  currentUser!.displayName = usernameController.text;
+                  updateAppUser(currentUser!);
+                }
+              },
+            ).animate().fadeIn(duration: 500.ms).slideY(begin: 0.1),
             const SizedBox(height: 32),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
-                padding: const EdgeInsets.symmetric(vertical: 16),
+                backgroundColor: Colors.red.withOpacity(0.2),
+                foregroundColor: Colors.red,
+                padding: const EdgeInsets.all(16),
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8),
+                  borderRadius: BorderRadius.circular(12),
                 ),
-                backgroundColor: Colors.red,
+                elevation: 0,
               ),
               onPressed: () {
                 FirebaseAuth.instance.signOut();
@@ -521,89 +758,16 @@ class _HomeScreenState extends State<HomeScreen> {
                 FirebaseAuth.instance.currentUser!.isAnonymous
                     ? 'DELETE ACCOUNT'
                     : 'SIGN OUT',
-                style: const TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white),
+                style: baseTextStyle.copyWith(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w600,
+                ),
               ),
             ).animate().fadeIn(duration: 500.ms).slideY(begin: 0.1),
           ],
         ),
       ),
     );
-  }
-
-  Widget _buildProfileField(String label, IconData icon, String value,
-      {bool isReadOnly = false}) {
-    return TextField(
-      controller: TextEditingController(text: value),
-      decoration: InputDecoration(
-        labelText: label,
-        prefixIcon: Icon(icon, color: Colors.white),
-        suffixIcon: isReadOnly
-            ? IconButton(
-                onPressed: () {
-                  Clipboard.setData(ClipboardData(text: value));
-                  ToastificationHelper.showSuccessToast(
-                      context, 'Copied $label to clipboard');
-                },
-                icon: const Icon(FontAwesomeIcons.copy, color: Colors.white),
-              )
-            : null,
-        filled: true,
-        fillColor: Colors.grey[800],
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12),
-          borderSide: BorderSide.none,
-        ),
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12),
-          borderSide: BorderSide.none,
-        ),
-      ),
-      readOnly: isReadOnly,
-      style: baseTextStyle.copyWith(color: Colors.white),
-    ).animate().fadeIn(duration: 500.ms).slideY(begin: 0.1);
-  }
-
-  Widget _buildUsernameField() {
-    return TextField(
-      controller: usernameController,
-      decoration: InputDecoration(
-        labelText: 'Username',
-        prefixIcon: const Icon(FontAwesomeIcons.at, color: Colors.white),
-        filled: true,
-        fillColor: Colors.grey[800],
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12),
-          borderSide: BorderSide.none,
-        ),
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12),
-          borderSide: BorderSide.none,
-        ),
-      ),
-      maxLength: 20,
-      inputFormatters: [
-        FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z0-9]')),
-      ],
-      onChanged: (value) {
-        usernameController.text = usernameController.text
-            .replaceAll(RegExp(r'\s+'), '')
-            .toLowerCase()
-            .replaceAll(RegExp(r'[^a-zA-Z0-9]'), '');
-        usernameController.selection = TextSelection.fromPosition(
-            TextPosition(offset: usernameController.text.length));
-      },
-      onEditingComplete: () {
-        FocusScope.of(context).unfocus();
-        if (currentUser != null) {
-          currentUser!.displayName = usernameController.text;
-          updateAppUser(currentUser!);
-        }
-      },
-      style: baseTextStyle.copyWith(color: Colors.white),
-    ).animate().fadeIn(duration: 500.ms).slideY(begin: 0.1);
   }
 
   void _showCreateGameOptions() {

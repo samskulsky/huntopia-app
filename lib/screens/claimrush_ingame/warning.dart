@@ -8,6 +8,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:scavhuntapp/screens/claimrush_ingame/maingamescreen.dart';
 import 'package:scavhuntapp/screens/home_screen.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../main.dart';
 import '../../utils/theme_data.dart';
@@ -49,166 +50,173 @@ class _WarningPageState extends State<WarningPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title:
-            const Text('Safety Notice', style: TextStyle(color: Colors.white)),
+        title: Text(
+          'Safety Notice',
+          style: baseTextStyle.copyWith(
+            fontSize: 28,
+            fontWeight: FontWeight.w600,
+            letterSpacing: -0.5,
+          ),
+        ),
         backgroundColor: Colors.black,
+        elevation: 0,
       ),
       backgroundColor: Colors.black,
-      body: ListView(
-        padding: const EdgeInsets.all(16),
-        children: [
-          _buildHeaderText(),
-          const SizedBox(height: 8),
-          _buildBodyText(),
-          const SizedBox(height: 16),
-          _buildWarningTile(
-              'DO NOT play ClaimRush while driving or operating a vehicle.'),
-          const SizedBox(height: 8),
-          _buildWarningTile(
-              'DO NOT play ClaimRush in dangerous or hazardous areas.'),
-          const SizedBox(height: 8),
-          _buildWarningTile(
-              'DO NOT play ClaimRush in areas where it is illegal to do so.'),
-          const SizedBox(height: 16),
-          _buildFooterText(),
-          const SizedBox(height: 16),
-          _buildButtonsCard().animate(delay: 1000.ms).flip()
-        ],
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              Colors.black,
+              Colors.green.shade900.withOpacity(0.3),
+              Colors.black,
+            ],
+          ),
+        ),
+        child: ListView(
+          padding: const EdgeInsets.all(20),
+          children: [
+            Text(
+              'While playing ClaimRush, please be aware of your surroundings and follow all local laws and regulations. Do not trespass or enter private property.\n\nStay safe and have fun! 🎉',
+              style: baseTextStyle.copyWith(
+                fontSize: 16,
+                color: Colors.white70,
+                height: 1.5,
+              ),
+            ),
+            const SizedBox(height: 24),
+            Container(
+              padding: const EdgeInsets.all(16),
+              decoration: BoxDecoration(
+                color: Colors.red.withOpacity(0.1),
+                borderRadius: BorderRadius.circular(16),
+                border: Border.all(color: Colors.red.withOpacity(0.2)),
+              ),
+              child: Column(
+                children: [
+                  _buildWarningTile(
+                    'DO NOT play ClaimRush while driving or operating a vehicle.',
+                  ),
+                  const SizedBox(height: 16),
+                  _buildWarningTile(
+                    'DO NOT play ClaimRush in dangerous or hazardous areas.',
+                  ),
+                  const SizedBox(height: 16),
+                  _buildWarningTile(
+                    'DO NOT play ClaimRush in areas where it is illegal to do so.',
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 24),
+            Text(
+              'Please note that we are not responsible for any injuries or accidents that may occur while playing ClaimRush. By continuing, you agree to these terms and release us from any liability.',
+              style: baseTextStyle.copyWith(
+                fontSize: 12,
+                color: Colors.white54,
+                height: 1.5,
+              ),
+            ),
+          ],
+        ),
       ),
-    );
-  }
-
-  Widget _buildHeaderText() {
-    return Text(
-      'Safety Notice',
-      style: baseTextStyle.copyWith(
-        fontSize: 30,
-        fontWeight: FontWeight.w700,
-        color: Colors.white,
-      ),
-    );
-  }
-
-  Widget _buildBodyText() {
-    return Text(
-      'While playing ClaimRush, please be aware of your surroundings and follow all local laws and regulations. Do not trespass or enter private property.\n\nStay safe and have fun! 🎉',
-      style: baseTextStyle.copyWith(
-        fontSize: 20,
-        fontWeight: FontWeight.w500,
-        color: Colors.white70,
+      bottomNavigationBar: Container(
+        decoration: BoxDecoration(
+          color: Colors.black,
+          border: Border(
+            top: BorderSide(color: Colors.white.withOpacity(0.1)),
+          ),
+        ),
+        child: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.all(20),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                SizedBox(
+                  width: double.infinity,
+                  height: 56,
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.white,
+                      foregroundColor: Colors.black,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(16),
+                      ),
+                      elevation: 0,
+                    ),
+                    onPressed: _agreeAndContinue,
+                    child: Text(
+                      'Agree & Continue',
+                      style: baseTextStyle.copyWith(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 12),
+                SizedBox(
+                  width: double.infinity,
+                  height: 56,
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.red.withOpacity(0.3),
+                      foregroundColor: Colors.red,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(16),
+                      ),
+                      elevation: 0,
+                    ),
+                    onPressed: _cancel,
+                    child: Text(
+                      'Cancel',
+                      style: baseTextStyle.copyWith(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
       ),
     );
   }
 
   Widget _buildWarningTile(String message) {
-    return ListTile(
-      tileColor: Colors.red,
-      leading: const Icon(Icons.warning, color: Colors.white),
-      title: Text(
-        message,
-        style: baseTextStyle.copyWith(
-          color: Colors.white,
-          fontSize: 16,
-          fontWeight: FontWeight.w600,
-        ),
-      ),
-    );
-  }
-
-  Widget _buildFooterText() {
-    return Text(
-      'Please note that we are not responsible for any injuries or accidents that may occur while playing ClaimRush. By continuing, you agree to these terms and release us from any liability.',
-      style: baseTextStyle.copyWith(
-        fontSize: 12,
-        fontWeight: FontWeight.w500,
-        color: Colors.white54,
-      ),
-    );
-  }
-
-  Widget _buildButtonsCard() {
-    return _buildGlassCard(
-      title: '',
-      child: Column(
-        children: [
-          SizedBox(
-            width: double.infinity,
-            child: ElevatedButton(
-              onPressed: _agreeAndContinue,
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.green,
-                padding: const EdgeInsets.symmetric(vertical: 16),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12),
-                ),
-              ),
-              child: Text(
-                'Agree & Continue',
-                style: GoogleFonts.spaceGrotesk(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
-                ),
-              ),
+    return Row(
+      children: [
+        Container(
+          width: 40,
+          height: 40,
+          decoration: BoxDecoration(
+            color: Colors.red.withOpacity(0.2),
+            borderRadius: BorderRadius.circular(10),
+          ),
+          child: const Center(
+            child: FaIcon(
+              FontAwesomeIcons.triangleExclamation,
+              color: Colors.red,
+              size: 20,
             ),
           ),
-          const SizedBox(height: 8),
-          SizedBox(
-            width: double.infinity,
-            child: ElevatedButton(
-              onPressed: _cancel,
-              style: ElevatedButton.styleFrom(
-                backgroundColor: const Color.fromARGB(255, 106, 23, 23),
-                padding: const EdgeInsets.symmetric(vertical: 16),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12),
-                ),
-              ),
-              child: Text(
-                'Cancel',
-                style: GoogleFonts.spaceGrotesk(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
-                ),
-              ),
+        ),
+        const SizedBox(width: 16),
+        Expanded(
+          child: Text(
+            message,
+            style: baseTextStyle.copyWith(
+              fontSize: 16,
+              fontWeight: FontWeight.w600,
+              color: Colors.white,
             ),
           ),
-        ],
-      ),
-    );
-  }
-
-  /// Builds a glassmorphism card with optional title and child widgets.
-  Widget _buildGlassCard({required String title, required Widget child}) {
-    return Container(
-      width: double.infinity,
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          colors: [
-            Colors.white.withOpacity(0.1),
-            Colors.white.withOpacity(0.05)
-          ],
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
         ),
-        border: Border.all(color: Colors.white.withOpacity(0.2), width: 1),
-        borderRadius: BorderRadius.circular(20),
-      ),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(20),
-        child: BackdropFilter(
-          filter: ImageFilter.blur(sigmaX: 12.0, sigmaY: 12.0),
-          child: Container(
-            padding: const EdgeInsets.all(16),
-            decoration: BoxDecoration(
-              color: Colors.white.withOpacity(0.05),
-              borderRadius: BorderRadius.circular(20),
-            ),
-            child: child,
-          ),
-        ),
-      ),
+      ],
     );
   }
 }
