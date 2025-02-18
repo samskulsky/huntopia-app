@@ -12,6 +12,7 @@ import '../../utils/toastification_helper.dart';
 import 'claimzone_1.dart';
 import 'claimzone_view.dart';
 import 'claimzone_additem.dart';
+import 'package:scavhuntapp/widgets/gradient_background.dart';
 
 class ClaimZoneAddItem extends StatefulWidget {
   const ClaimZoneAddItem({super.key});
@@ -77,18 +78,7 @@ class _ClaimZoneAddItemState extends State<ClaimZoneAddItem> {
         elevation: 0,
       ),
       backgroundColor: Colors.black,
-      body: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [
-              Colors.black,
-              Colors.green.shade900.withOpacity(0.3),
-              Colors.black,
-            ],
-          ),
-        ),
+      body: GradientBackground(
         child: ListView(
           padding: const EdgeInsets.all(20),
           children: [

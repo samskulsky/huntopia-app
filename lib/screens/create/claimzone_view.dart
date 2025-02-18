@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_map/flutter_map.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:latlong2/latlong.dart';
@@ -12,6 +13,7 @@ import 'package:scavhuntapp/screens/create/claimzone_additem.dart';
 import 'package:scavhuntapp/screens/create/claimzone_addzone.dart';
 import 'package:scavhuntapp/screens/create/claimzone_play.dart';
 import 'package:scavhuntapp/screens/home_screen.dart';
+import 'package:scavhuntapp/widgets/gradient_background.dart';
 
 import '../../utils/theme_data.dart';
 
@@ -54,18 +56,7 @@ class _ClaimZoneViewState extends State<ClaimZoneView> {
         elevation: 0,
       ),
       backgroundColor: Colors.black,
-      body: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [
-              Colors.black,
-              Colors.green.shade900.withOpacity(0.3),
-              Colors.black,
-            ],
-          ),
-        ),
+      body: GradientBackground(
         child: ListView(
           padding: const EdgeInsets.all(20),
           children: [
@@ -162,6 +153,68 @@ class _ClaimZoneViewState extends State<ClaimZoneView> {
                   onPressed: () => _showEditDialog(context),
                 ),
               ],
+            ),
+            const SizedBox(height: 32),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  'Starting Location',
+                  style: baseTextStyle.copyWith(
+                    fontSize: 20,
+                    fontWeight: FontWeight.w600,
+                    letterSpacing: -0.5,
+                  ),
+                ),
+                TextButton.icon(
+                  style: TextButton.styleFrom(
+                    foregroundColor: Colors.white,
+                  ),
+                  onPressed: () => _showLocationPicker(context),
+                  icon: const FaIcon(FontAwesomeIcons.locationDot, size: 16),
+                  label: const Text('Change Location'),
+                ),
+              ],
+            ),
+            const SizedBox(height: 12),
+            Container(
+              decoration: BoxDecoration(
+                color: Colors.white.withOpacity(0.05),
+                borderRadius: BorderRadius.circular(16),
+                border: Border.all(color: Colors.white.withOpacity(0.1)),
+              ),
+              child: ListTile(
+                contentPadding: const EdgeInsets.all(16),
+                leading: Container(
+                  width: 40,
+                  height: 40,
+                  decoration: BoxDecoration(
+                    color: Colors.white.withOpacity(0.1),
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: const Center(
+                    child: FaIcon(
+                      FontAwesomeIcons.globe,
+                      color: Colors.white,
+                      size: 20,
+                    ),
+                  ),
+                ),
+                title: Text(
+                  'Center Coordinates',
+                  style: baseTextStyle.copyWith(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                subtitle: Text(
+                  'Lat: ${gameTemplate.center!.latitude.toStringAsFixed(4)}\nLng: ${gameTemplate.center!.longitude.toStringAsFixed(4)}',
+                  style: baseTextStyle.copyWith(
+                    color: Colors.white70,
+                    height: 1.3,
+                  ),
+                ),
+              ),
             ),
             const SizedBox(height: 32),
             Row(
@@ -524,18 +577,7 @@ class _ClaimZoneViewState extends State<ClaimZoneView> {
             elevation: 0,
           ),
           backgroundColor: Colors.black,
-          body: Container(
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-                colors: [
-                  Colors.black,
-                  Colors.green.shade900.withOpacity(0.3),
-                  Colors.black,
-                ],
-              ),
-            ),
+          body: GradientBackground(
             child: ListView(
               padding: const EdgeInsets.all(20),
               children: [
@@ -660,6 +702,45 @@ class _ClaimZoneViewState extends State<ClaimZoneView> {
     );
   }
 
+  void _showLocationPicker(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (context) => Scaffold(
+        appBar: AppBar(
+          title: Text(
+            'Change Location',
+            style: baseTextStyle.copyWith(
+              fontSize: 28,
+              fontWeight: FontWeight.w600,
+              letterSpacing: -0.5,
+            ),
+          ),
+          leading: IconButton(
+            icon: const FaIcon(FontAwesomeIcons.xmark, color: Colors.white70),
+            onPressed: () => Navigator.pop(context),
+          ),
+          backgroundColor: Colors.black,
+          elevation: 0,
+        ),
+        backgroundColor: Colors.black,
+        body: _LocationPickerContent(
+          initialLocation: LatLng(
+            gameTemplate.center!.latitude,
+            gameTemplate.center!.longitude,
+          ),
+          onLocationSelected: (location) {
+            setState(() {
+              gameTemplate.center =
+                  GeoPoint(location.latitude, location.longitude);
+            });
+            updateGameTemplate(gameTemplate);
+            Navigator.pop(context);
+          },
+        ),
+      ),
+    );
+  }
+
   IconData _getTaskIcon(String taskType) {
     switch (taskType) {
       case 'question':
@@ -684,5 +765,134 @@ class _ClaimZoneViewState extends State<ClaimZoneView> {
       default:
         return 'Unknown task';
     }
+  }
+}
+
+class _LocationPickerContent extends StatefulWidget {
+  final LatLng initialLocation;
+  final Function(LatLng) onLocationSelected;
+
+  const _LocationPickerContent({
+    required this.initialLocation,
+    required this.onLocationSelected,
+  });
+
+  @override
+  State<_LocationPickerContent> createState() => _LocationPickerContentState();
+}
+
+class _LocationPickerContentState extends State<_LocationPickerContent> {
+  late MapController mapController;
+  Marker? selectedMarker;
+  late LatLng currentLocation;
+
+  @override
+  void initState() {
+    super.initState();
+    mapController = MapController();
+    currentLocation = widget.initialLocation;
+    selectedMarker = _createMarker(currentLocation);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Expanded(
+          child: Stack(
+            children: [
+              FlutterMap(
+                mapController: mapController,
+                options: MapOptions(
+                  initialCenter: currentLocation,
+                  initialZoom: 15.0,
+                  onTap: _onMapTap,
+                ),
+                children: [
+                  TileLayer(
+                    urlTemplate:
+                        "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                    userAgentPackageName: 'com.samdev.scavhuntapp',
+                  ),
+                  if (selectedMarker != null)
+                    MarkerLayer(markers: [selectedMarker!]),
+                ],
+              ),
+            ],
+          ),
+        ),
+        Container(
+          decoration: BoxDecoration(
+            color: Colors.black,
+            border: Border(
+              top: BorderSide(color: Colors.white.withOpacity(0.1)),
+            ),
+          ),
+          child: SafeArea(
+            child: Padding(
+              padding: const EdgeInsets.all(20),
+              child: SizedBox(
+                width: double.infinity,
+                height: 56,
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.white,
+                    foregroundColor: Colors.black,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(16),
+                    ),
+                    elevation: 0,
+                  ),
+                  onPressed: () => widget.onLocationSelected(currentLocation),
+                  child: Text(
+                    'Save Location',
+                    style: baseTextStyle.copyWith(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  void _onMapTap(TapPosition position, LatLng location) {
+    setState(() {
+      currentLocation = location;
+      selectedMarker = _createMarker(location);
+    });
+  }
+
+  Marker _createMarker(LatLng position) {
+    return Marker(
+      width: 50.0,
+      height: 50.0,
+      point: position,
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.black,
+          shape: BoxShape.circle,
+          border: Border.all(color: Colors.white, width: 2),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.3),
+              blurRadius: 8,
+              spreadRadius: 2,
+            ),
+          ],
+        ),
+        child: const Center(
+          child: Icon(
+            Icons.location_on,
+            color: Colors.white,
+            size: 24,
+          ),
+        ),
+      ),
+    );
   }
 }

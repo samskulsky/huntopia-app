@@ -6,6 +6,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:scavhuntapp/models/game_template.dart';
 import 'package:uuid/uuid.dart';
+import 'package:scavhuntapp/widgets/gradient_background.dart';
 
 import '../../utils/theme_data.dart';
 import '../home_screen.dart';
@@ -69,18 +70,7 @@ class _ClaimZone1State extends State<ClaimZone1> {
         elevation: 0,
       ),
       backgroundColor: Colors.black,
-      body: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [
-              Colors.black,
-              Colors.green.shade900.withOpacity(0.3),
-              Colors.black,
-            ],
-          ),
-        ),
+      body: GradientBackground(
         child: SafeArea(
           child: ListView(
             padding: const EdgeInsets.all(20),

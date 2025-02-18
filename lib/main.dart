@@ -196,8 +196,9 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       title: 'Huntopia',
       themeMode: ThemeMode.dark,
-      defaultTransition: Transition.topLevel,
-      transitionDuration: const Duration(milliseconds: 500),
+      defaultTransition: Transition.fadeIn,
+      transitionDuration: const Duration(milliseconds: 300),
+      customTransition: GenericTransition(),
       theme: ThemeData(
         colorScheme: ColorScheme.fromSwatch(
           primarySwatch: primaryColor,
@@ -303,6 +304,26 @@ class MyApp extends StatelessWidget {
                 : const HomeLoading(),
         duration: const Duration(milliseconds: 3000),
       ),
+    );
+  }
+}
+
+class GenericTransition extends CustomTransition {
+  @override
+  Widget buildTransition(
+    BuildContext context,
+    Curve? curve,
+    Alignment? alignment,
+    Animation<double> animation,
+    Animation<double> secondaryAnimation,
+    Widget child,
+  ) {
+    return FadeTransition(
+      opacity: CurvedAnimation(
+        parent: animation,
+        curve: Curves.easeOut,
+      ),
+      child: child,
     );
   }
 }
