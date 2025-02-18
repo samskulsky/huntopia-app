@@ -1,14 +1,10 @@
-import 'dart:async';
 import 'dart:ui';
 import 'package:data_table_2/data_table_2.dart';
-import 'package:flutter_map_location_marker/flutter_map_location_marker.dart';
-import 'package:flutter_map_marker_cluster_2/flutter_map_marker_cluster.dart';
 import 'package:flutter_podium/flutter_podium.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
@@ -21,11 +17,8 @@ import 'package:scavhuntapp/screens/claimrush_ingame/cant_claim.dart';
 import 'package:scavhuntapp/screens/claimrush_ingame/claim_zone.dart';
 import 'package:scavhuntapp/screens/claimrush_ingame/edit_team.dart';
 import 'package:scavhuntapp/screens/claimrush_ingame/full_image_view.dart';
-import 'package:scavhuntapp/screens/create/claimzone_1.dart';
 import 'package:scavhuntapp/screens/home_screen.dart';
-import 'package:simple_gradient_text/simple_gradient_text.dart';
 import 'package:slide_countdown/slide_countdown.dart';
-import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 
@@ -34,7 +27,6 @@ import '../../utils/theme_data.dart';
 import 'purchase_screen.dart';
 import 'package:scavhuntapp/widgets/game_map.dart';
 import 'package:scavhuntapp/widgets/game_ui_components.dart';
-import 'package:scavhuntapp/utils/game_utils.dart';
 import 'package:scavhuntapp/screens/claimrush_ingame/game_end_screen.dart';
 
 class MainGameScreen extends StatefulWidget {
@@ -1254,7 +1246,7 @@ class _MainGameScreenState extends State<MainGameScreen> {
                       ),
                       ListView.builder(
                         shrinkWrap: true,
-                        physics: NeverScrollableScrollPhysics(),
+                        physics: const NeverScrollableScrollPhysics(),
                         itemCount: currentGame.logMessages.length,
                         itemBuilder: (context, index) {
                           return ListTile(

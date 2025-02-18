@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:scavhuntapp/utils/theme_data.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 Color getColor(String color) {
   switch (color) {
@@ -87,6 +88,132 @@ Widget buildGlassCard({required String title, required Widget child}) {
             ],
           ),
         ),
+      ),
+    ),
+  );
+}
+
+Future<T?> showStandardDialog<T>({
+  required BuildContext context,
+  required String title,
+  required Widget child,
+  bool showCloseButton = true,
+  List<Widget>? actions,
+}) {
+  return showDialog<T>(
+    context: context,
+    barrierColor: Colors.black87,
+    builder: (BuildContext context) {
+      return Dialog(
+        backgroundColor: Colors.black,
+        insetPadding: const EdgeInsets.all(16),
+        child: Container(
+          constraints: const BoxConstraints(maxWidth: 500),
+          decoration: BoxDecoration(
+            color: Colors.black,
+            borderRadius: BorderRadius.circular(20),
+            border: Border.all(color: Colors.white.withOpacity(0.1)),
+          ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // Header
+              Container(
+                padding: const EdgeInsets.all(20),
+                decoration: BoxDecoration(
+                  border: Border(
+                    bottom: BorderSide(
+                      color: Colors.white.withOpacity(0.1),
+                    ),
+                  ),
+                ),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Text(
+                        title,
+                        style: baseTextStyle.copyWith(
+                          fontSize: 24,
+                          fontWeight: FontWeight.w600,
+                          letterSpacing: -0.5,
+                        ),
+                      ),
+                    ),
+                    if (showCloseButton)
+                      IconButton(
+                        icon: const FaIcon(
+                          FontAwesomeIcons.xmark,
+                          color: Colors.white70,
+                          size: 20,
+                        ),
+                        onPressed: () => Navigator.pop(context),
+                      ),
+                  ],
+                ),
+              ),
+              // Content
+              Flexible(
+                child: SingleChildScrollView(
+                  child: Padding(
+                    padding: const EdgeInsets.all(20),
+                    child: child,
+                  ),
+                ),
+              ),
+              // Actions if provided
+              if (actions != null) ...[
+                Container(
+                  padding: const EdgeInsets.all(20),
+                  decoration: BoxDecoration(
+                    border: Border(
+                      top: BorderSide(
+                        color: Colors.white.withOpacity(0.1),
+                      ),
+                    ),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: actions,
+                  ),
+                ),
+              ],
+            ],
+          ),
+        ),
+      );
+    },
+  );
+}
+
+Widget buildDialogAction({
+  required String text,
+  required VoidCallback onPressed,
+  bool isPrimary = false,
+  bool isDestructive = false,
+}) {
+  Color getColor() {
+    if (isDestructive) return Colors.red;
+    if (isPrimary) return Colors.green;
+    return Colors.white70;
+  }
+
+  return ElevatedButton(
+    style: ElevatedButton.styleFrom(
+      backgroundColor: getColor().withOpacity(0.2),
+      foregroundColor: getColor(),
+      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(12),
+      ),
+      elevation: 0,
+    ),
+    onPressed: onPressed,
+    child: Text(
+      text,
+      style: baseTextStyle.copyWith(
+        fontSize: 16,
+        fontWeight: FontWeight.w600,
       ),
     ),
   );

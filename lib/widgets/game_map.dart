@@ -2,11 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_map_location_marker/flutter_map_location_marker.dart';
 import 'package:flutter_map_marker_cluster_2/flutter_map_marker_cluster.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:latlong2/latlong.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:scavhuntapp/models/game.dart';
 import 'package:scavhuntapp/models/game_template.dart';
 import 'package:scavhuntapp/screens/claimrush_ingame/cant_claim.dart';
@@ -25,7 +23,7 @@ class GameMap extends StatelessWidget {
   final List<Widget> children;
 
   const GameMap({
-    Key? key,
+    super.key,
     required this.currentGame,
     required this.currentGameTemplate,
     required this.currentPlayer,
@@ -33,7 +31,7 @@ class GameMap extends StatelessWidget {
     required this.mapController,
     this.interaction = true,
     this.children = const [],
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

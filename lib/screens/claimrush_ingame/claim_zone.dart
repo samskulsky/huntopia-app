@@ -39,16 +39,6 @@ class _ClaimZoneScreenState extends State<ClaimZoneScreen> {
   bool done = false;
 
   final ImagePicker _picker = ImagePicker();
-  XFile? _image;
-
-  Future<void> _takePhoto() async {
-    final XFile? photo = await _picker.pickImage(source: ImageSource.camera);
-    if (photo != null) {
-      setState(() {
-        _image = photo;
-      });
-    }
-  }
 
   Future<String?> uploadImage(XFile? image) async {
     dev.log('Uploading image');
@@ -79,9 +69,7 @@ class _ClaimZoneScreenState extends State<ClaimZoneScreen> {
     dev.log('Photo taken');
 
     if (photo != null) {
-      setState(() {
-        _image = photo;
-      });
+      setState(() {});
 
       String? imageUrl = await uploadImage(photo);
       if (imageUrl != null) {

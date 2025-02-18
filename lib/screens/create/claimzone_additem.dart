@@ -1,9 +1,6 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
-import 'package:toastification/toastification.dart';
 import 'package:uuid/uuid.dart';
 
 import '../../models/game_template.dart';
@@ -11,7 +8,6 @@ import '../../utils/theme_data.dart';
 import '../../utils/toastification_helper.dart';
 import 'claimzone_1.dart';
 import 'claimzone_view.dart';
-import 'claimzone_additem.dart';
 import 'package:scavhuntapp/widgets/gradient_background.dart';
 
 class ClaimZoneAddItem extends StatefulWidget {

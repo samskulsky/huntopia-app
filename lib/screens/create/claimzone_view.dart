@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
@@ -16,6 +14,7 @@ import 'package:scavhuntapp/screens/home_screen.dart';
 import 'package:scavhuntapp/widgets/gradient_background.dart';
 
 import '../../utils/theme_data.dart';
+import '../../utils/game_utils.dart';
 
 class ClaimZoneView extends StatefulWidget {
   const ClaimZoneView({super.key});
@@ -25,11 +24,6 @@ class ClaimZoneView extends StatefulWidget {
 }
 
 class _ClaimZoneViewState extends State<ClaimZoneView> {
-  LatLng _startLocation = LatLng(
-    gameTemplate.center!.latitude,
-    gameTemplate.center!.longitude,
-  );
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -251,18 +245,16 @@ class _ClaimZoneViewState extends State<ClaimZoneView> {
               ),
               child: Column(
                 children: [
-                  ...gameTemplate.zones!
-                      .map((zone) => Column(
-                            children: [
-                              _buildZoneItem(zone),
-                              if (zone != gameTemplate.zones!.last)
-                                Divider(
-                                  color: Colors.white.withOpacity(0.1),
-                                  height: 1,
-                                ),
-                            ],
-                          ))
-                      .toList(),
+                  ...gameTemplate.zones!.map((zone) => Column(
+                        children: [
+                          _buildZoneItem(zone),
+                          if (zone != gameTemplate.zones!.last)
+                            Divider(
+                              color: Colors.white.withOpacity(0.1),
+                              height: 1,
+                            ),
+                        ],
+                      )),
                 ],
               ),
             ),
@@ -303,18 +295,16 @@ class _ClaimZoneViewState extends State<ClaimZoneView> {
                 ),
                 child: Column(
                   children: [
-                    ...gameTemplate.coinShopItems!
-                        .map((item) => Column(
-                              children: [
-                                _buildShopItem(item),
-                                if (item != gameTemplate.coinShopItems!.last)
-                                  Divider(
-                                    color: Colors.white.withOpacity(0.1),
-                                    height: 1,
-                                  ),
-                              ],
-                            ))
-                        .toList(),
+                    ...gameTemplate.coinShopItems!.map((item) => Column(
+                          children: [
+                            _buildShopItem(item),
+                            if (item != gameTemplate.coinShopItems!.last)
+                              Divider(
+                                color: Colors.white.withOpacity(0.1),
+                                height: 1,
+                              ),
+                          ],
+                        )),
                   ],
                 ),
               ),
@@ -515,38 +505,33 @@ class _ClaimZoneViewState extends State<ClaimZoneView> {
   }
 
   void _showDeleteDialog(BuildContext context) {
-    showDialog(
+    showStandardDialog(
       context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          backgroundColor: Colors.black,
-          title: Text('Delete Game',
-              style: baseTextStyle.copyWith(color: Colors.white70)),
-          content: Text(
-            'Are you sure you want to delete this game? This action cannot be undone.',
-            style: baseTextStyle.copyWith(color: Colors.white70),
-          ),
-          actions: [
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              child: Text('Cancel',
-                  style: baseTextStyle.copyWith(color: Colors.white)),
-            ),
-            TextButton(
-              onPressed: () {
-                deleteGameTemplate(gameTemplate.templateId);
-                Navigator.of(context).pop();
-                Get.offAll(() => const HomeScreen());
-              },
-              child: Text('Delete',
-                  style: baseTextStyle.copyWith(
-                      color: Colors.red, fontWeight: FontWeight.bold)),
-            ),
-          ],
-        );
-      },
+      title: 'Delete Game',
+      child: Text(
+        'Are you sure you want to delete this game? This action cannot be undone.',
+        style: baseTextStyle.copyWith(
+          fontSize: 16,
+          color: Colors.white70,
+          height: 1.5,
+        ),
+      ),
+      actions: [
+        buildDialogAction(
+          text: 'Cancel',
+          onPressed: () => Navigator.pop(context),
+        ),
+        const SizedBox(width: 12),
+        buildDialogAction(
+          text: 'Delete',
+          onPressed: () {
+            deleteGameTemplate(gameTemplate.templateId);
+            Navigator.pop(context);
+            Get.offAll(() => const HomeScreen());
+          },
+          isDestructive: true,
+        ),
+      ],
     );
   }
 
@@ -556,156 +541,110 @@ class _ClaimZoneViewState extends State<ClaimZoneView> {
     TextEditingController gameDescriptionController =
         TextEditingController(text: gameTemplate.gameDescription);
 
-    showDialog(
+    showStandardDialog(
       context: context,
-      builder: (BuildContext context) {
-        return Scaffold(
-          appBar: AppBar(
-            title: Text(
-              'Edit Game',
-              style: baseTextStyle.copyWith(
-                fontSize: 28,
-                fontWeight: FontWeight.w600,
-                letterSpacing: -0.5,
-              ),
-            ),
-            leading: IconButton(
-              icon: const FaIcon(FontAwesomeIcons.xmark, color: Colors.white70),
-              onPressed: () => Navigator.pop(context),
-            ),
-            backgroundColor: Colors.black,
-            elevation: 0,
-          ),
-          backgroundColor: Colors.black,
-          body: GradientBackground(
-            child: ListView(
-              padding: const EdgeInsets.all(20),
-              children: [
-                Text(
-                  'Game Name',
-                  style: baseTextStyle.copyWith(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w600,
-                    color: Colors.white70,
-                  ),
-                ),
-                const SizedBox(height: 8),
-                TextFormField(
-                  controller: gameNameController,
-                  decoration: InputDecoration(
-                    hintText: 'Enter game name',
-                    hintStyle: baseTextStyle.copyWith(color: Colors.white38),
-                    filled: true,
-                    fillColor: Colors.white.withOpacity(0.1),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12),
-                      borderSide: BorderSide.none,
-                    ),
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12),
-                      borderSide:
-                          BorderSide(color: Colors.white.withOpacity(0.1)),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12),
-                      borderSide: BorderSide(color: Colors.green.shade400),
-                    ),
-                    contentPadding: const EdgeInsets.all(16),
-                  ),
-                  style: baseTextStyle.copyWith(color: Colors.white),
-                  textCapitalization: TextCapitalization.words,
-                ),
-                const SizedBox(height: 24),
-                Text(
-                  'Game Description',
-                  style: baseTextStyle.copyWith(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w600,
-                    color: Colors.white70,
-                  ),
-                ),
-                const SizedBox(height: 8),
-                TextFormField(
-                  controller: gameDescriptionController,
-                  decoration: InputDecoration(
-                    hintText: 'Enter game description',
-                    hintStyle: baseTextStyle.copyWith(color: Colors.white38),
-                    filled: true,
-                    fillColor: Colors.white.withOpacity(0.1),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12),
-                      borderSide: BorderSide.none,
-                    ),
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12),
-                      borderSide:
-                          BorderSide(color: Colors.white.withOpacity(0.1)),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12),
-                      borderSide: BorderSide(color: Colors.green.shade400),
-                    ),
-                    contentPadding: const EdgeInsets.all(16),
-                  ),
-                  style: baseTextStyle.copyWith(color: Colors.white),
-                  maxLines: 3,
-                  keyboardType: TextInputType.text,
-                ),
-              ],
+      title: 'Edit Game',
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'Game Name',
+            style: baseTextStyle.copyWith(
+              fontSize: 16,
+              fontWeight: FontWeight.w600,
+              color: Colors.white70,
             ),
           ),
-          bottomNavigationBar: Container(
-            decoration: BoxDecoration(
-              color: Colors.black,
-              border: Border(
-                top: BorderSide(color: Colors.white.withOpacity(0.1)),
+          const SizedBox(height: 8),
+          TextFormField(
+            controller: gameNameController,
+            decoration: InputDecoration(
+              hintText: 'Enter game name',
+              hintStyle: baseTextStyle.copyWith(color: Colors.white38),
+              filled: true,
+              fillColor: Colors.white.withOpacity(0.1),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(12),
+                borderSide: BorderSide.none,
               ),
+              enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(12),
+                borderSide: BorderSide(color: Colors.white.withOpacity(0.1)),
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(12),
+                borderSide: BorderSide(color: Colors.green.shade400),
+              ),
+              contentPadding: const EdgeInsets.all(16),
             ),
-            child: SafeArea(
-              child: Padding(
-                padding: const EdgeInsets.all(20),
-                child: SizedBox(
-                  width: double.infinity,
-                  height: 56,
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.white,
-                      foregroundColor: Colors.black,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(16),
-                      ),
-                      elevation: 0,
-                    ),
-                    onPressed: () {
-                      setState(() {
-                        gameTemplate.gameName = gameNameController.text;
-                        gameTemplate.gameDescription =
-                            gameDescriptionController.text;
-                      });
-                      updateGameTemplate(gameTemplate);
-                      Navigator.pop(context);
-                    },
-                    child: Text(
-                      'Save Changes',
-                      style: baseTextStyle.copyWith(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                  ),
-                ),
-              ),
+            style: baseTextStyle.copyWith(color: Colors.white),
+            textCapitalization: TextCapitalization.words,
+          ),
+          const SizedBox(height: 24),
+          Text(
+            'Game Description',
+            style: baseTextStyle.copyWith(
+              fontSize: 16,
+              fontWeight: FontWeight.w600,
+              color: Colors.white70,
             ),
           ),
-        );
-      },
+          const SizedBox(height: 8),
+          TextFormField(
+            controller: gameDescriptionController,
+            decoration: InputDecoration(
+              hintText: 'Enter game description',
+              hintStyle: baseTextStyle.copyWith(color: Colors.white38),
+              filled: true,
+              fillColor: Colors.white.withOpacity(0.1),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(12),
+                borderSide: BorderSide.none,
+              ),
+              enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(12),
+                borderSide: BorderSide(color: Colors.white.withOpacity(0.1)),
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(12),
+                borderSide: BorderSide(color: Colors.green.shade400),
+              ),
+              contentPadding: const EdgeInsets.all(16),
+            ),
+            style: baseTextStyle.copyWith(color: Colors.white),
+            maxLines: 3,
+            keyboardType: TextInputType.text,
+          ),
+        ],
+      ),
+      actions: [
+        buildDialogAction(
+          text: 'Cancel',
+          onPressed: () => Navigator.pop(context),
+        ),
+        const SizedBox(width: 12),
+        buildDialogAction(
+          text: 'Save Changes',
+          onPressed: () {
+            setState(() {
+              gameTemplate.gameName = gameNameController.text;
+              gameTemplate.gameDescription = gameDescriptionController.text;
+            });
+            updateGameTemplate(gameTemplate);
+            Navigator.pop(context);
+          },
+          isPrimary: true,
+        ),
+      ],
     );
   }
 
   void _showLocationPicker(BuildContext context) {
     showDialog(
       context: context,
+      barrierColor: Colors.black87,
       builder: (context) => Scaffold(
+        backgroundColor: Colors.black,
         appBar: AppBar(
           title: Text(
             'Change Location',
@@ -722,20 +661,25 @@ class _ClaimZoneViewState extends State<ClaimZoneView> {
           backgroundColor: Colors.black,
           elevation: 0,
         ),
-        backgroundColor: Colors.black,
-        body: _LocationPickerContent(
-          initialLocation: LatLng(
-            gameTemplate.center!.latitude,
-            gameTemplate.center!.longitude,
-          ),
-          onLocationSelected: (location) {
-            setState(() {
-              gameTemplate.center =
-                  GeoPoint(location.latitude, location.longitude);
-            });
-            updateGameTemplate(gameTemplate);
-            Navigator.pop(context);
-          },
+        body: Column(
+          children: [
+            Expanded(
+              child: _LocationPickerContent(
+                initialLocation: LatLng(
+                  gameTemplate.center!.latitude,
+                  gameTemplate.center!.longitude,
+                ),
+                onLocationSelected: (location) {
+                  setState(() {
+                    gameTemplate.center =
+                        GeoPoint(location.latitude, location.longitude);
+                  });
+                  updateGameTemplate(gameTemplate);
+                  Navigator.pop(context);
+                },
+              ),
+            ),
+          ],
         ),
       ),
     );

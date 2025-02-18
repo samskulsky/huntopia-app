@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -6,6 +7,7 @@ import 'package:scavhuntapp/models/app_user.dart';
 
 import '../../utils/theme_data.dart';
 import '../../utils/toastification_helper.dart';
+import '../../widgets/gradient_background.dart';
 import 'setup_2.dart';
 import 'setup_5.dart';
 
@@ -37,88 +39,119 @@ class _SetupPage4State extends State<SetupPage4> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black,
       appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
         leading: IconButton(
-          icon: const FaIcon(FontAwesomeIcons.arrowLeft),
+          icon: const FaIcon(FontAwesomeIcons.arrowLeft, color: Colors.white70),
           onPressed: () => Navigator.pop(context),
         ),
-        title: const Text('Permissions & Access'),
+        title: Text(
+          'Permissions',
+          style: baseTextStyle.copyWith(
+            fontSize: 28,
+            fontWeight: FontWeight.w600,
+            letterSpacing: -0.5,
+          ),
+        ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'Permissions & Access',
-              style: baseTextStyle.copyWith(
-                fontSize: 30,
-                fontWeight: FontWeight.w700,
-              ),
-            ),
-            const SizedBox(height: 8),
-            Text(
-              'In order to use the app, we need to request some permissions from you. We will never share your data with anyone.',
-              style: baseTextStyle.copyWith(
-                fontSize: 20,
-                fontWeight: FontWeight.w500,
-                color: Colors.white54,
-              ),
-            ),
-            const SizedBox(height: 16),
-            TextButton(
-              onPressed: _refreshPermissions,
-              child: const Text('Refresh Permissions'),
-            ),
-            _buildPermissionTile(
-              icon: Icons.camera_alt,
-              title: 'Camera',
-              permissionGranted: cameraPermission,
-              requestPermission: () => _requestPermission(Permission.camera),
-            ),
-            _buildPermissionTile(
-              icon: Icons.location_city,
-              title: 'Location',
-              permissionGranted: locationPermission,
-              requestPermission: () => _requestPermission(Permission.location),
-            ),
-            _buildPermissionTile(
-              icon: Icons.notifications,
-              title: 'Notifications',
-              permissionGranted: notificationPermission,
-              requestPermission: () =>
-                  _requestPermission(Permission.notification),
-            ),
-            const SizedBox(height: 16),
-            SizedBox(
-              width: double.infinity,
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  padding: const EdgeInsets.symmetric(vertical: 16),
-                  backgroundColor: Colors.green,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
+      body: GradientBackground(
+        child: SafeArea(
+          child: ListView(
+            padding: const EdgeInsets.all(24),
+            children: [
+              Text(
+                'Almost there!',
+                style: baseTextStyle.copyWith(
+                  fontSize: 24,
+                  fontWeight: FontWeight.w600,
+                  letterSpacing: -0.5,
+                ),
+              ).animate().fadeIn(duration: 300.ms),
+              const SizedBox(height: 8),
+              Text(
+                'We need a few permissions to make the app work properly. We\'ll never share your data with anyone.',
+                style: baseTextStyle.copyWith(
+                  fontSize: 16,
+                  color: Colors.white70,
+                  height: 1.5,
+                ),
+              ).animate().fadeIn(duration: 300.ms, delay: 100.ms),
+              const SizedBox(height: 32),
+              Container(
+                decoration: BoxDecoration(
+                  color: Colors.white.withOpacity(0.05),
+                  borderRadius: BorderRadius.circular(16),
+                  border: Border.all(color: Colors.white.withOpacity(0.1)),
+                ),
+                child: Column(
+                  children: [
+                    _buildPermissionTile(
+                      icon: Icons.camera_alt,
+                      title: 'Camera',
+                      permissionGranted: cameraPermission,
+                      requestPermission: () =>
+                          _requestPermission(Permission.camera),
+                      isFirst: true,
+                    ),
+                    Divider(color: Colors.white.withOpacity(0.1), height: 1),
+                    _buildPermissionTile(
+                      icon: Icons.location_on,
+                      title: 'Location',
+                      permissionGranted: locationPermission,
+                      requestPermission: () =>
+                          _requestPermission(Permission.location),
+                    ),
+                    Divider(color: Colors.white.withOpacity(0.1), height: 1),
+                    _buildPermissionTile(
+                      icon: Icons.notifications,
+                      title: 'Notifications',
+                      permissionGranted: notificationPermission,
+                      requestPermission: () =>
+                          _requestPermission(Permission.notification),
+                      isLast: true,
+                    ),
+                  ],
+                ),
+              ).animate().fadeIn(duration: 300.ms, delay: 200.ms),
+              const SizedBox(height: 32),
+              SizedBox(
+                width: double.infinity,
+                height: 56,
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.green.shade600,
+                    foregroundColor: Colors.white,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(16),
+                    ),
+                    elevation: 0,
+                  ),
+                  onPressed: !_allPermissionsGranted()
+                      ? null
+                      : () => _createUserAndContinue(),
+                  child: Text(
+                    'Continue',
+                    style: baseTextStyle.copyWith(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w600,
+                    ),
                   ),
                 ),
-                onPressed: !_allPermissionsGranted()
-                    ? null
-                    : () => _createUserAndContinue(),
-                child: Text(
-                  'Continue',
-                  style: baseTextStyle.copyWith(
-                    color: Colors.white,
-                    fontSize: 18,
+              ).animate().fadeIn(duration: 300.ms, delay: 300.ms),
+              if (!_allPermissionsGranted())
+                TextButton(
+                  onPressed: () => _createUserAndContinue(),
+                  child: Text(
+                    'Grant Permissions Later',
+                    style: baseTextStyle.copyWith(
+                      color: Colors.white70,
+                    ),
                   ),
-                ),
-              ),
-            ),
-            if (!_allPermissionsGranted())
-              TextButton(
-                onPressed: () => _createUserAndContinue(),
-                child: const Text('Grant Permissions Later'),
-              ),
-          ],
+                ).animate().fadeIn(duration: 300.ms, delay: 400.ms),
+            ],
+          ),
         ),
       ),
     );
@@ -129,21 +162,73 @@ class _SetupPage4State extends State<SetupPage4> {
     required String title,
     required bool permissionGranted,
     required Function requestPermission,
+    bool isFirst = false,
+    bool isLast = false,
   }) {
-    return ListTile(
-      contentPadding: EdgeInsets.zero,
-      leading: Icon(icon),
-      title: Text(
-        title,
-        style: baseTextStyle.copyWith(
-          fontSize: 18,
-          fontWeight: FontWeight.w700,
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.vertical(
+          top: isFirst ? const Radius.circular(16) : Radius.zero,
+          bottom: isLast ? const Radius.circular(16) : Radius.zero,
         ),
       ),
-      trailing: Switch(
-        value: permissionGranted,
-        activeTrackColor: Colors.blueAccent,
-        onChanged: (value) async {
+      child: ListTile(
+        contentPadding: const EdgeInsets.all(20),
+        leading: Container(
+          width: 40,
+          height: 40,
+          decoration: BoxDecoration(
+            color: Colors.white.withOpacity(0.1),
+            borderRadius: BorderRadius.circular(12),
+          ),
+          child: Icon(icon, color: Colors.white),
+        ),
+        title: Text(
+          title,
+          style: baseTextStyle.copyWith(
+            fontSize: 16,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+        trailing: Container(
+          width: 44,
+          height: 24,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(12),
+            color: permissionGranted
+                ? Colors.green.withOpacity(0.2)
+                : Colors.white.withOpacity(0.1),
+            border: Border.all(
+              color: permissionGranted
+                  ? Colors.green
+                  : Colors.white.withOpacity(0.2),
+              width: 1.5,
+            ),
+          ),
+          child: Stack(
+            children: [
+              AnimatedAlign(
+                duration: const Duration(milliseconds: 200),
+                curve: Curves.easeOut,
+                alignment: permissionGranted
+                    ? Alignment.centerRight
+                    : Alignment.centerLeft,
+                child: Container(
+                  width: 20,
+                  height: 20,
+                  margin: const EdgeInsets.symmetric(horizontal: 2),
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: permissionGranted
+                        ? Colors.green
+                        : Colors.white.withOpacity(0.5),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+        onTap: () async {
           if (!permissionGranted) {
             await requestPermission();
           }

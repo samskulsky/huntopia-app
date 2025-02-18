@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:slide_countdown/slide_countdown.dart';
 import 'package:scavhuntapp/models/game.dart';
 import 'package:scavhuntapp/utils/theme_data.dart';
@@ -8,7 +7,7 @@ import 'package:scavhuntapp/utils/theme_data.dart';
 class GameCodeChip extends StatelessWidget {
   final Game currentGame;
 
-  const GameCodeChip({Key? key, required this.currentGame}) : super(key: key);
+  const GameCodeChip({super.key, required this.currentGame});
 
   @override
   Widget build(BuildContext context) {
@@ -50,8 +49,7 @@ class PlayerScoreChip extends StatelessWidget {
   final Player currentPlayer;
 
   const PlayerScoreChip(
-      {Key? key, required this.currentGame, required this.currentPlayer})
-      : super(key: key);
+      {super.key, required this.currentGame, required this.currentPlayer});
 
   @override
   Widget build(BuildContext context) {
@@ -99,8 +97,7 @@ class PlayerScoreChip extends StatelessWidget {
 class PlayerStatusChip extends StatelessWidget {
   final Player currentPlayer;
 
-  const PlayerStatusChip({Key? key, required this.currentPlayer})
-      : super(key: key);
+  const PlayerStatusChip({super.key, required this.currentPlayer});
 
   @override
   Widget build(BuildContext context) {

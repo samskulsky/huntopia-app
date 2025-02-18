@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:intl/intl.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -19,10 +17,10 @@ class GameEndScreen extends StatelessWidget {
   final Player currentPlayer;
 
   const GameEndScreen({
-    Key? key,
+    super.key,
     required this.currentGame,
     required this.currentPlayer,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

@@ -1,14 +1,10 @@
 import 'dart:ui';
-import 'package:avatar_brick/avatar_brick.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:pinput/pinput.dart';
 import 'package:intl/intl.dart';
 
@@ -20,7 +16,6 @@ import '../models/game_template.dart';
 import '../utils/live_activities.dart';
 import '../utils/theme_data.dart';
 import '../utils/toastification_helper.dart';
-import 'auth/auth_page.dart';
 import 'claimrush_ingame/warning.dart';
 import 'create/ai_generate.dart';
 import 'create/claimzone_1.dart';
@@ -447,18 +442,16 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               child: Column(
                 children: [
-                  ...snapshot.data!
-                      .map((game) => Column(
-                            children: [
-                              _buildGameCard(game),
-                              if (game != snapshot.data!.last)
-                                Divider(
-                                  color: Colors.white.withOpacity(0.1),
-                                  height: 1,
-                                ),
-                            ],
-                          ))
-                      .toList(),
+                  ...snapshot.data!.map((game) => Column(
+                        children: [
+                          _buildGameCard(game),
+                          if (game != snapshot.data!.last)
+                            Divider(
+                              color: Colors.white.withOpacity(0.1),
+                              height: 1,
+                            ),
+                        ],
+                      )),
                 ],
               ),
             ),
@@ -700,7 +693,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                         onPressed: () {
                           Navigator.pop(context);
-                          Get.to(() => const AIGenerate());
+                          Get.offAll(() => const AIGenerate());
                         },
                         child: Row(
                           children: [

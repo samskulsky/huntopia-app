@@ -12,6 +12,7 @@ import '../../utils/toastification_helper.dart';
 import '../auth/auth_page.dart';
 import '../home_screen.dart';
 import '../../widgets/gradient_background.dart';
+import '../../utils/game_utils.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -41,6 +42,14 @@ class _ProfilePageState extends State<ProfilePage> {
               const FaIcon(FontAwesomeIcons.chevronLeft, color: Colors.white70),
           onPressed: () => Get.back(),
         ),
+        title: Text(
+          'Profile',
+          style: baseTextStyle.copyWith(
+            fontSize: 28,
+            fontWeight: FontWeight.w600,
+            letterSpacing: -0.5,
+          ),
+        ),
       ),
       body: GradientBackground(
         child: ListView(
@@ -49,22 +58,85 @@ class _ProfilePageState extends State<ProfilePage> {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Center(
-                  child: AvatarBrick(
-                    radius: 50,
-                    name: '${currentUser?.firstName} ${currentUser?.lastName}',
-                    backgroundColor: Colors.green,
-                    nameTextColor: Colors.white,
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 12),
+                  child: Row(
+                    children: [
+                      Stack(
+                        children: [
+                          AvatarBrick(
+                            radius: 40,
+                            name:
+                                '${currentUser?.firstName} ${currentUser?.lastName}',
+                            backgroundColor: Colors.green,
+                            nameTextColor: Colors.white,
+                          ),
+                          if (FirebaseAuth.instance.currentUser!.isAnonymous)
+                            Positioned(
+                              right: 0,
+                              bottom: 0,
+                              child: Container(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 8, vertical: 4),
+                                decoration: BoxDecoration(
+                                  color: Colors.orange.withOpacity(0.9),
+                                  borderRadius: BorderRadius.circular(12),
+                                ),
+                                child: Text(
+                                  'GUEST',
+                                  style: baseTextStyle.copyWith(
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                              ),
+                            ),
+                        ],
+                      ),
+                      const SizedBox(width: 20),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "${currentUser?.firstName} ${currentUser?.lastName}",
+                              style: baseTextStyle.copyWith(
+                                fontSize: 24,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            const SizedBox(height: 4),
+                            Text(
+                              FirebaseAuth.instance.currentUser!.isAnonymous
+                                  ? 'Guest Account'
+                                  : 'Account Member',
+                              style: baseTextStyle.copyWith(
+                                fontSize: 16,
+                                color: Colors.white70,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-                const SizedBox(height: 24),
-                Center(
-                  child: Text(
-                    "${currentUser?.firstName} ${currentUser?.lastName}",
-                    style: baseTextStyle.copyWith(
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
-                    ),
+                const SizedBox(height: 32),
+                Container(
+                  decoration: BoxDecoration(
+                    color: Colors.white.withOpacity(0.05),
+                    borderRadius: BorderRadius.circular(16),
+                    border: Border.all(color: Colors.white.withOpacity(0.1)),
+                  ),
+                  child: Column(
+                    children: [
+                      _buildStatTile(
+                        icon: FontAwesomeIcons.coins,
+                        title: 'AI Tokens',
+                        value: '${currentUser?.tokens ?? 0}',
+                        isFirst: true,
+                      ),
+                    ],
                   ),
                 ),
                 const SizedBox(height: 32),
@@ -193,10 +265,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       ),
                       elevation: 0,
                     ),
-                    onPressed: () {
-                      FirebaseAuth.instance.signOut();
-                      Get.offAll(() => const AuthPage());
-                    },
+                    onPressed: _handleSignOut,
                     child: Text(
                       FirebaseAuth.instance.currentUser!.isAnonymous
                           ? 'DELETE ACCOUNT'
@@ -234,6 +303,56 @@ class _ProfilePageState extends State<ProfilePage> {
     );
   }
 
+  Widget _buildStatTile({
+    required IconData icon,
+    required String title,
+    required String value,
+    bool isFirst = false,
+    bool isLast = false,
+  }) {
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.vertical(
+          top: isFirst ? const Radius.circular(16) : Radius.zero,
+          bottom: isLast ? const Radius.circular(16) : Radius.zero,
+        ),
+      ),
+      child: ListTile(
+        contentPadding: const EdgeInsets.all(20),
+        leading: Container(
+          width: 40,
+          height: 40,
+          decoration: BoxDecoration(
+            color: Colors.white.withOpacity(0.1),
+            borderRadius: BorderRadius.circular(12),
+          ),
+          child: Center(
+            child: FaIcon(
+              icon,
+              color: Colors.white,
+              size: 20,
+            ),
+          ),
+        ),
+        title: Text(
+          title,
+          style: baseTextStyle.copyWith(
+            fontSize: 16,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+        trailing: Text(
+          value,
+          style: baseTextStyle.copyWith(
+            fontSize: 18,
+            fontWeight: FontWeight.w600,
+            color: Colors.green,
+          ),
+        ),
+      ),
+    );
+  }
+
   void _updateUsername() {
     if (currentUser != null && usernameController.text.isNotEmpty) {
       currentUser!.displayName = usernameController.text;
@@ -241,5 +360,42 @@ class _ProfilePageState extends State<ProfilePage> {
       setState(() {});
       ToastificationHelper.showSuccessToast(context, 'Username updated');
     }
+  }
+
+  void _handleSignOut() {
+    showStandardDialog(
+      context: context,
+      title: FirebaseAuth.instance.currentUser!.isAnonymous
+          ? 'Delete Account'
+          : 'Sign Out',
+      child: Text(
+        FirebaseAuth.instance.currentUser!.isAnonymous
+            ? 'Are you sure you want to delete your account? This action cannot be undone.'
+            : 'Are you sure you want to sign out?',
+        style: baseTextStyle.copyWith(
+          fontSize: 16,
+          color: Colors.white70,
+          height: 1.5,
+        ),
+      ),
+      actions: [
+        buildDialogAction(
+          text: 'Cancel',
+          onPressed: () => Navigator.pop(context),
+        ),
+        const SizedBox(width: 12),
+        buildDialogAction(
+          text: FirebaseAuth.instance.currentUser!.isAnonymous
+              ? 'Delete'
+              : 'Sign Out',
+          onPressed: () {
+            Navigator.pop(context);
+            FirebaseAuth.instance.signOut();
+            Get.offAll(() => const AuthPage());
+          },
+          isDestructive: true,
+        ),
+      ],
+    );
   }
 }

@@ -1,11 +1,8 @@
-import 'dart:ui';
 import 'dart:developer';
 
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:scavhuntapp/screens/claimrush_ingame/maingamescreen.dart';
 import 'package:scavhuntapp/screens/home_screen.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';

@@ -6,8 +6,6 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_map_marker_cluster_2/flutter_map_marker_cluster.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:interactive_bottom_sheet/interactive_bottom_sheet.dart';
 import 'package:latlong2/latlong.dart';
 
 import '../../models/game_template.dart';
@@ -357,33 +355,4 @@ class _ClaimZone5State extends State<ClaimZone5> {
       LatLng(maxLat + latBuffer, maxLng + lngBuffer),
     );
   }
-}
-
-Widget _buildGlassCard({required String title, required Widget child}) {
-  return Container(
-    width: double.infinity,
-    decoration: BoxDecoration(
-      gradient: LinearGradient(
-        colors: [Colors.white.withOpacity(0.1), Colors.white.withOpacity(0.05)],
-        begin: Alignment.topLeft,
-        end: Alignment.bottomRight,
-      ),
-      border: Border.all(color: Colors.white.withOpacity(0.2), width: 1),
-      borderRadius: BorderRadius.circular(20),
-    ),
-    child: ClipRRect(
-      borderRadius: BorderRadius.circular(20),
-      child: BackdropFilter(
-        filter: ImageFilter.blur(sigmaX: 12.0, sigmaY: 12.0),
-        child: Container(
-          padding: const EdgeInsets.all(16),
-          decoration: BoxDecoration(
-            color: Colors.white.withOpacity(0.05),
-            borderRadius: BorderRadius.circular(20),
-          ),
-          child: child,
-        ),
-      ),
-    ),
-  );
 }
