@@ -86,6 +86,7 @@ Future<void> setupFlow(String uid) async {
   if (!exists) {
     Get.offAll(() => const SetupPage());
   } else {
+    currentUser = await getUser(uid);
     Get.offAll(() => const HomeScreen());
   }
 }

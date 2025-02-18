@@ -32,6 +32,10 @@ import 'package:latlong2/latlong.dart';
 import '../../utils/live_activities.dart';
 import '../../utils/theme_data.dart';
 import 'purchase_screen.dart';
+import 'package:scavhuntapp/widgets/game_map.dart';
+import 'package:scavhuntapp/widgets/game_ui_components.dart';
+import 'package:scavhuntapp/utils/game_utils.dart';
+import 'package:scavhuntapp/screens/claimrush_ingame/game_end_screen.dart';
 
 class MainGameScreen extends StatefulWidget {
   const MainGameScreen({super.key});
@@ -199,188 +203,9 @@ class _MainGameScreenState extends State<MainGameScreen> {
 
             cGame = currentGame;
 
-            return Scaffold(
-              appBar: AppBar(
-                title: const Text('Game Ended'),
-              ),
-              body: ListView(
-                padding: const EdgeInsets.all(16),
-                children: [
-                  Text(
-                    'Game Over! 🏁',
-                    style: baseTextStyle.copyWith(
-                      fontSize: 32,
-                      fontWeight: FontWeight.w700,
-                    ),
-                  )
-                      .animate()
-                      .flip(duration: const Duration(seconds: 1))
-                      .scale(duration: const Duration(seconds: 1)),
-                  const SizedBox(height: 16),
-                  Text(
-                    'The game has ended. Your final score is ${currentPlayer.points + currentPlayer.coinBalance} points. Each extra coin (you had ${currentPlayer.coinBalance}) was converted to a point. \n\nView the game recap at https://scavhuntapp.web.app/#/${currentGame.gameId}.\n\nWe hope you had fun! 😀\n',
-                    style: baseTextStyle.copyWith(
-                      fontSize: 18,
-                      fontWeight: FontWeight.w500,
-                      color: Colors.white54,
-                    ),
-                  ),
-                  ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.green,
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 32, vertical: 16),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                    ),
-                    onPressed: () {
-                      launchUrl(
-                          Uri.parse(
-                              'https://scavhuntapp.web.app/#/${currentGame.gameId}'),
-                          mode: LaunchMode.externalApplication);
-                    },
-                    child: Text(
-                      'View Game Recap',
-                      style: GoogleFonts.spaceGrotesk(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 16),
-                  Text(
-                    'Leaderboard',
-                    style: baseTextStyle.copyWith(
-                      fontSize: 22,
-                      fontWeight: FontWeight.w700,
-                    ),
-                  ).animate().fadeIn(
-                      duration: const Duration(seconds: 1),
-                      delay: const Duration(seconds: 3)),
-                  const SizedBox(height: 16),
-                  ListView.separated(
-                    itemCount: currentGame.players.length,
-                    shrinkWrap: true,
-                    padding: const EdgeInsets.all(0),
-                    physics: const NeverScrollableScrollPhysics(),
-                    separatorBuilder: (context, index) =>
-                        const SizedBox(height: 8),
-                    itemBuilder: (context, index) {
-                      return Container(
-                        padding: const EdgeInsets.only(right: 16),
-                        height: 60,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Row(
-                              children: [
-                                Text(
-                                  index == 0
-                                      ? '🥇 '
-                                      : index == 1
-                                          ? '🥈 '
-                                          : index == 2
-                                              ? '🥉 '
-                                              : '',
-                                  style: baseTextStyle.copyWith(
-                                    fontSize: 40,
-                                  ),
-                                ),
-                                Text(
-                                  currentGame.players[index].teamName,
-                                  style: baseTextStyle.copyWith(
-                                    fontSize: 22,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            if (index < 3)
-                              GradientText(
-                                (currentGame.players[index].points +
-                                        currentGame.players[index].coinBalance)
-                                    .toString(),
-                                style: baseTextStyle.copyWith(
-                                  fontSize: 30,
-                                  fontWeight: FontWeight.w600,
-                                ),
-                                colors: index == 0
-                                    ? [
-                                        const Color.fromARGB(255, 241, 189, 0),
-                                        const Color.fromARGB(255, 241, 129, 0),
-                                        const Color.fromARGB(255, 241, 145, 0),
-                                      ]
-                                    : index == 1
-                                        ? [
-                                            const Color.fromARGB(
-                                                255, 168, 169, 173),
-                                            const Color.fromARGB(
-                                                255, 192, 192, 195),
-                                            const Color.fromARGB(
-                                                255, 165, 165, 165),
-                                          ]
-                                        : [
-                                            const Color.fromARGB(
-                                                255, 128, 74, 0),
-                                            const Color.fromARGB(
-                                                255, 137, 94, 26),
-                                            const Color.fromARGB(
-                                                255, 176, 141, 87),
-                                          ],
-                              ),
-                            if (index >= 3)
-                              Text(
-                                currentGame.players[index].points.toString(),
-                                style: baseTextStyle.copyWith(
-                                  fontSize: 30,
-                                  color: getColor(
-                                      currentGame.players[index].teamColor),
-                                  fontWeight: FontWeight.w600,
-                                ),
-                              ),
-                          ],
-                        ),
-                      )
-                          .animate()
-                          .fadeIn(
-                              duration: const Duration(seconds: 2),
-                              delay: Duration(seconds: 4 + index))
-                          .slideX(
-                              duration: const Duration(seconds: 1),
-                              delay: Duration(seconds: 5 + index));
-                    },
-                  ),
-                  const SizedBox(height: 16),
-                  ElevatedButton(
-                    onPressed: () {
-                      prefs.remove('currentGameId');
-                      FirebaseMessaging messaging = FirebaseMessaging.instance;
-
-                      messaging.unsubscribeFromTopic('game-$currentGameId');
-                      Get.off(() => const HomeScreen());
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.red,
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 32, vertical: 16),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                    ),
-                    child: Text(
-                      'Leave Game',
-                      style: GoogleFonts.spaceGrotesk(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ).animate().fadeIn(
-                      duration: const Duration(seconds: 1),
-                      delay: Duration(seconds: 6 + currentGame.players.length)),
-                ],
-              ),
+            return GameEndScreen(
+              currentGame: currentGame,
+              currentPlayer: currentPlayer,
             );
           }
 
@@ -585,7 +410,13 @@ class _MainGameScreenState extends State<MainGameScreen> {
                               currentGame,
                               currentGameTemplate,
                               currentPlayer,
-                              currentGameTemplate.zones!,
+                              currentGameTemplate.zones!
+                                  .where((element) =>
+                                      !currentGame.players.any((player) =>
+                                          player.zonesClaimed
+                                              .contains(element.zoneId)) &&
+                                      element.points > 0)
+                                  .toList(),
                               interaction: false,
                             ),
                           );
@@ -838,21 +669,25 @@ class _MainGameScreenState extends State<MainGameScreen> {
                   extendBody: false,
                   body: Stack(
                     children: [
-                      buildMap(
-                          currentGame,
-                          currentGameTemplate,
-                          currentPlayer,
-                          currentGameTemplate.zones!
-                              .where((element) =>
-                                  !currentGame.players.any((player) => player
-                                      .zonesClaimed
-                                      .contains(element.zoneId)) &&
-                                  element.points > 0)
-                              .toList()),
-                      _buildGameCodeChip(context, currentGame),
-                      _buildPlayerScoreChip(
-                          context, currentGame, currentPlayer),
-                      _buildPlayerStatusChip(context, currentPlayer),
+                      GameMap(
+                        currentGame: currentGame,
+                        currentGameTemplate: currentGameTemplate,
+                        currentPlayer: currentPlayer,
+                        unclaimedZones: currentGameTemplate.zones!
+                            .where((element) =>
+                                !currentGame.players.any((player) => player
+                                    .zonesClaimed
+                                    .contains(element.zoneId)) &&
+                                element.points > 0)
+                            .toList(),
+                        mapController: mapController,
+                      ),
+                      GameCodeChip(currentGame: currentGame),
+                      PlayerScoreChip(
+                        currentGame: currentGame,
+                        currentPlayer: currentPlayer,
+                      ),
+                      PlayerStatusChip(currentPlayer: currentPlayer),
                     ],
                   ),
                 ),
@@ -1333,12 +1168,6 @@ class _MainGameScreenState extends State<MainGameScreen> {
                                             : item.itemType == 'coin'
                                                 ? 'Exchange ${item.itemPrice} coins for ${item.pointsPerCoin! * item.itemPrice} points'
                                                 : 'Skip any claim task once'),
-                                    if (item.itemType == 'skip')
-                                      Text(
-                                          'You currently have ${currentPlayer.skips} skip${currentPlayer.skips == 1 ? '' : 's'}',
-                                          style: baseTextStyle.copyWith(
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.w700)),
                                   ],
                                 ),
                                 trailing: Chip(
@@ -1820,172 +1649,15 @@ class _MainGameScreenState extends State<MainGameScreen> {
     bool interaction = true,
     List<Widget> children = const [], // Optional with default empty list
   }) {
-    List<Zone> unclaimedZones = currentGameTemplate.zones!
-        .where((element) =>
-            !currentGame.players.any(
-                (player) => player.zonesClaimed.contains(element.zoneId)) &&
-            element.points > 0)
-        .toList();
     return Stack(
       children: [
-        FlutterMap(
+        GameMap(
+          currentGame: currentGame,
+          currentGameTemplate: currentGameTemplate,
+          currentPlayer: currentPlayer,
+          unclaimedZones: unclaimedZones,
           mapController: mapController,
-          options: MapOptions(
-            initialCenter: LatLng(
-              currentGameTemplate.center!.latitude,
-              currentGameTemplate.center!.longitude,
-            ),
-            cameraConstraint: CameraConstraint.containCenter(
-                bounds: calculateBounds(currentGameTemplate)),
-            initialZoom: 15.0,
-            minZoom: 12,
-            maxZoom: 20,
-          ),
-          children: [
-            TileLayer(
-              urlTemplate: "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
-              userAgentPackageName: 'com.samdev.scavhuntapp',
-            ),
-            CircleLayer(
-              circles: currentGameTemplate.zones!.map((zone) {
-                Player? claimedBy = currentGame.players.firstWhereOrNull(
-                    (element) => element.zonesClaimed.contains(zone.zoneId));
-                return CircleMarker(
-                  point:
-                      LatLng(zone.location.latitude, zone.location.longitude),
-                  radius: zone.radius.toDouble(),
-                  useRadiusInMeter: true,
-                  color: claimedBy != null
-                      ? getColor(claimedBy.teamColor).withOpacity(0.75)
-                      : Colors.grey.withOpacity(0.5),
-                  borderStrokeWidth: 2,
-                  borderColor: claimedBy != null
-                      ? getColor(claimedBy.teamColor)
-                      : Colors.grey,
-                );
-              }).toList(),
-            ),
-            MarkerClusterLayerWidget(
-              options: MarkerClusterLayerOptions(
-                disableClusteringAtZoom: 18,
-                maxClusterRadius: 45,
-                showPolygon: false,
-                size: const Size(40, 40),
-                alignment: Alignment.center,
-                padding: const EdgeInsets.all(50),
-                maxZoom: 15,
-                onMarkerTap: (marker) {
-                  Zone tappedZone = unclaimedZones.firstWhere(
-                      (element) => ValueKey(element.zoneId) == marker.key);
-                  if (!interaction) {
-                    return;
-                  }
-                  if (currentGame.players.any((player) =>
-                      player.zonesClaimed.contains(tappedZone.zoneId))) {
-                    disabled = false;
-                    Get.to(() => const CantClaim());
-                    return;
-                  }
-
-                  Player currentPlayer = currentGame.players.firstWhere(
-                      (element) =>
-                          element.playerId ==
-                          FirebaseAuth.instance.currentUser!.uid);
-
-                  if (currentPlayer.sabotagedUntil.isAfter(DateTime.now())) {
-                    disabled = true;
-                    Get.to(() => const CantClaim());
-                    return;
-                  }
-
-                  cGame = currentGame;
-                  curGame = currentGame;
-                  curPlayer = currentPlayer;
-                  currentZone = tappedZone;
-
-                  Get.to(() => const ClaimZoneScreen());
-                },
-                markers: List<Marker>.generate(
-                  unclaimedZones.length,
-                  (index) {
-                    Zone currentZone = unclaimedZones[index];
-                    return Marker(
-                      key: ValueKey(currentZone.zoneId),
-                      width: 18 + (currentZone.points / 7 * 2) > 35
-                          ? 35
-                          : 18 + (currentZone.points / 7 * 2),
-                      height: 18 + (currentZone.points / 7 * 2) > 35
-                          ? 35
-                          : 18 + (currentZone.points / 7 * 2),
-                      point: LatLng(
-                          currentZone.location.latitude,
-                          currentZone
-                              .location.longitude), // Location of the marker
-                      child: Container(
-                        alignment: Alignment.center,
-                        decoration: const BoxDecoration(
-                          color: Colors.black,
-                          shape: BoxShape.circle,
-                        ),
-                        child: Text(
-                          currentZone.points.toStringAsFixed(0),
-                          style: GoogleFonts.spaceGrotesk(
-                            fontSize: currentZone.points >= 100
-                                ? 20
-                                : 10 + (currentZone.points / 8 * 2) > 27
-                                    ? 27
-                                    : 10 + (currentZone.points / 8 * 2),
-                            fontWeight: FontWeight.w900,
-                            color: currentZone.points <= 5
-                                ? Colors.red
-                                : currentZone.points <= 10
-                                    ? Colors.deepOrange
-                                    : currentZone.points <= 15
-                                        ? Colors.orange
-                                        : currentZone.points <= 20
-                                            ? Colors.amber
-                                            : currentZone.points <= 25
-                                                ? Colors.yellow
-                                                : currentZone.points <= 30
-                                                    ? Colors.lime
-                                                    : currentZone.points <= 40
-                                                        ? Colors.lightGreen
-                                                        : Colors.green,
-                          ),
-                        ),
-                      ),
-                    );
-                  },
-                ),
-                builder: (context, markers) {
-                  int points = 0;
-                  List<Zone> zones = unclaimedZones
-                      .where((element) => markers.any(
-                          (marker) => ValueKey(element.zoneId) == marker.key))
-                      .toList();
-                  for (var zone in zones) {
-                    points += zone.points;
-                  }
-                  return Container(
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                        color: Colors.black),
-                    child: Center(
-                      child: Text(
-                        points.toString(),
-                        style: GoogleFonts.spaceGrotesk(
-                          fontSize: points < 1000 ? 20 : 15,
-                          fontWeight: FontWeight.w700,
-                          color: Colors.green,
-                        ),
-                      ),
-                    ),
-                  );
-                },
-              ),
-            ),
-            CurrentLocationLayer(),
-          ],
+          interaction: interaction,
         ),
         ...children,
       ],
@@ -2141,228 +1813,6 @@ class _MainGameScreenState extends State<MainGameScreen> {
           ],
         );
       },
-    );
-  }
-
-  Widget _buildGameCodeChip(BuildContext context, Game currentGame) {
-    return Container(
-      alignment: Alignment.topRight,
-      padding: const EdgeInsets.only(top: 4),
-      child: Chip(
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(6),
-            bottomLeft: Radius.circular(6),
-          ),
-          side: BorderSide(
-            color: Color.fromARGB(255, 19, 20, 47),
-            width: 2,
-          ),
-        ),
-        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-        label: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text('Game Code',
-                style: baseTextStyle.copyWith(
-                    fontSize: 12, color: Colors.white54)),
-            Text(currentGame.gameId,
-                style: baseTextStyle.copyWith(
-                    fontSize: 21,
-                    fontWeight: FontWeight.w700,
-                    color: Colors.white)),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildPlayerScoreChip(
-      BuildContext context, Game currentGame, Player currentPlayer) {
-    return Container(
-      alignment: Alignment.topRight,
-      padding: const EdgeInsets.only(top: 50),
-      child: Chip(
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(6),
-            bottomLeft: Radius.circular(6),
-          ),
-          side: BorderSide(
-            color: Color.fromARGB(255, 19, 20, 47),
-            width: 2,
-          ),
-        ),
-        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-        label: SizedBox(
-          height: 24,
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              const FaIcon(FontAwesomeIcons.trophy, size: 16),
-              const SizedBox(width: 4),
-              Text(
-                  currentGame.players
-                      .firstWhere((element) =>
-                          element.playerId ==
-                          FirebaseAuth.instance.currentUser!.uid)
-                      .points
-                      .toString(),
-                  style: baseTextStyle.copyWith(
-                      fontSize: 16, color: Colors.white)),
-              const SizedBox(width: 16),
-              const VerticalDivider(),
-              const SizedBox(width: 16),
-              const FaIcon(FontAwesomeIcons.coins, size: 16),
-              const SizedBox(width: 4),
-              Text(
-                  currentGame.players
-                      .firstWhere((element) =>
-                          element.playerId ==
-                          FirebaseAuth.instance.currentUser!.uid)
-                      .coinBalance
-                      .toString(),
-                  style: baseTextStyle.copyWith(
-                      fontSize: 16, color: Colors.white)),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget _buildPlayerStatusChip(BuildContext context, Player currentPlayer) {
-    return Container(
-      alignment: Alignment.bottomRight,
-      padding: const EdgeInsets.only(bottom: 100),
-      child: Chip(
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(6),
-            bottomLeft: Radius.circular(6),
-          ),
-          side: BorderSide(
-            color: Color.fromARGB(255, 19, 20, 47),
-            width: 2,
-          ),
-        ),
-        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-        label: SizedBox(
-          height:
-              currentPlayer.sabotagedUntil.isAfter(DateTime.now()) ? 100 : 50,
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Container(
-                    width: 42,
-                    height: 42,
-                    alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: Colors.green,
-                    ),
-                    child: Column(
-                      children: [
-                        Text(
-                          currentPlayer.pointBoostUntil.isBefore(DateTime.now())
-                              ? '1x'
-                              : currentPlayer.pointMultiplier == 2 ||
-                                      currentPlayer.pointMultiplier == 3
-                                  ? '${currentPlayer.pointMultiplier.toStringAsFixed(0)}x'
-                                  : '${currentPlayer.pointMultiplier.toStringAsFixed(1)}x',
-                          style: baseTextStyle.copyWith(
-                            fontSize: 14,
-                            color: Colors.white,
-                            fontWeight: FontWeight.w700,
-                          ),
-                        ),
-                        const FaIcon(
-                          FontAwesomeIcons.gem,
-                          color: Colors.white,
-                          size: 22,
-                        ),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(width: 8),
-                  if (currentPlayer.pointBoostUntil.isAfter(DateTime.now()))
-                    SlideCountdown(
-                      duration: currentPlayer.pointBoostUntil
-                          .difference(DateTime.now()),
-                      slideDirection: SlideDirection.down,
-                      decoration: const BoxDecoration(
-                        color: Colors.transparent,
-                      ),
-                      style: baseTextStyle.copyWith(
-                        fontSize: 24,
-                        color: Colors.green,
-                        fontWeight: FontWeight.w700,
-                      ),
-                      separatorStyle: baseTextStyle.copyWith(
-                        fontSize: 24,
-                        color: Colors.green,
-                        fontWeight: FontWeight.w700,
-                      ),
-                      onDone: () {
-                        setState(() {});
-                      },
-                    ),
-                ],
-              ),
-              if (currentPlayer.sabotagedUntil.isAfter(DateTime.now()))
-                const SizedBox(height: 8),
-              if (currentPlayer.sabotagedUntil.isAfter(DateTime.now()))
-                Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Container(
-                      width: 42,
-                      height: 42,
-                      alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: Colors.red,
-                      ),
-                      child: const FaIcon(
-                        FontAwesomeIcons.ban,
-                        color: Colors.white,
-                        size: 28,
-                      ),
-                    ),
-                    const SizedBox(width: 8),
-                    if (currentPlayer.sabotagedUntil.isAfter(DateTime.now()))
-                      SlideCountdown(
-                        duration: currentPlayer.sabotagedUntil
-                            .difference(DateTime.now()),
-                        slideDirection: SlideDirection.down,
-                        decoration: const BoxDecoration(
-                          color: Colors.transparent,
-                        ),
-                        style: baseTextStyle.copyWith(
-                          fontSize: 24,
-                          color: Colors.red,
-                          fontWeight: FontWeight.w700,
-                        ),
-                        separatorStyle: baseTextStyle.copyWith(
-                          fontSize: 24,
-                          color: Colors.red,
-                          fontWeight: FontWeight.w700,
-                        ),
-                        onDone: () {
-                          setState(() {});
-                        },
-                      ),
-                  ],
-                ),
-            ],
-          ),
-        ),
-      ),
     );
   }
 }

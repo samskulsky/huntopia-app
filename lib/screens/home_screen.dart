@@ -46,7 +46,18 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     super.initState();
     diManager.stopLiveActivity();
-    // Token update will be handled after fetching currentUser
+    _initializeUser();
+  }
+
+  void _initializeUser() async {
+    if (currentUser == null) {
+      final uid = FirebaseAuth.instance.currentUser?.uid;
+      if (uid != null) {
+        currentUser = await getUser(uid);
+        if (mounted) setState(() {});
+      }
+    }
+    updateFCMToken();
   }
 
   void updateFCMToken() async {
@@ -128,7 +139,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ).animate().fadeIn(duration: 500.ms),
                   const SizedBox(height: 8),
                   Text(
-                    'Enter a 6-digit code to join an existing game',
+                    'Enter a 6-letter code to join an existing game',
                     style: baseTextStyle.copyWith(
                       fontSize: 14,
                       color: Colors.white70,
@@ -145,7 +156,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     child: Column(
                       children: [
                         Pinput(
+                          keyboardType: TextInputType.text,
                           length: 6,
+                          textCapitalization: TextCapitalization.characters,
                           defaultPinTheme: PinTheme(
                             width: 50,
                             height: 50,
@@ -379,6 +392,12 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Widget _buildYourGames() {
+    if (currentUser == null) {
+      return const Center(
+        child: CircularProgressIndicator(color: Colors.green),
+      );
+    }
+
     return StreamBuilder<List<GameTemplate>>(
       stream: getUserGameTemplates(currentUser!.uid),
       builder: (context, snapshot) {
