@@ -7,6 +7,7 @@ import 'package:flutter_map_marker_cluster_2/flutter_map_marker_cluster.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:latlong2/latlong.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../../models/game_template.dart';
 import '../../utils/theme_data.dart';
@@ -74,13 +75,19 @@ class _ClaimZone5State extends State<ClaimZone5> {
                 gameTemplate.center!.latitude,
                 gameTemplate.center!.longitude,
               ),
+              cameraConstraint: CameraConstraint.containCenter(
+                bounds: bounds,
+              ),
               initialZoom: 15.0,
-              minZoom: 3.0,
-              maxZoom: 18.0,
+              minZoom: 12,
+              maxZoom: 20,
+              backgroundColor: const Color(0xFF1A1A1A),
             ),
             children: [
               TileLayer(
-                urlTemplate: "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                urlTemplate:
+                    'https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png',
+                subdomains: const ['a', 'b', 'c', 'd'],
                 userAgentPackageName: 'com.samdev.scavhuntapp',
               ),
               CircleLayer(
@@ -90,9 +97,9 @@ class _ClaimZone5State extends State<ClaimZone5> {
                         LatLng(zone.location.latitude, zone.location.longitude),
                     radius: zone.radius.toDouble(),
                     useRadiusInMeter: true,
-                    color: Colors.grey.withOpacity(0.5),
-                    borderStrokeWidth: 2,
-                    borderColor: Colors.grey,
+                    color: Colors.grey.withOpacity(0.25),
+                    borderStrokeWidth: 3,
+                    borderColor: Colors.grey.withOpacity(0.5),
                   );
                 }).toList(),
               ),
@@ -105,79 +112,56 @@ class _ClaimZone5State extends State<ClaimZone5> {
                   alignment: Alignment.center,
                   padding: const EdgeInsets.all(50),
                   maxZoom: 15,
-                  markers: List<Marker>.generate(
-                    gameTemplate.zones!.length,
-                    (index) {
-                      Zone currentZone = gameTemplate.zones![index];
-                      return Marker(
-                        key: ValueKey(currentZone.zoneId),
-                        width: 18 + (currentZone.points / 7 * 2) > 35
-                            ? 35
-                            : 18 + (currentZone.points / 7 * 2),
-                        height: 18 + (currentZone.points / 7 * 2) > 35
-                            ? 35
-                            : 18 + (currentZone.points / 7 * 2),
-                        point: LatLng(currentZone.location.latitude,
-                            currentZone.location.longitude),
-                        child: Container(
-                          alignment: Alignment.center,
-                          decoration: BoxDecoration(
-                            color: Colors.black,
-                            shape: BoxShape.circle,
-                            border: Border.all(color: Colors.white, width: 2),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.black.withOpacity(0.3),
-                                blurRadius: 8,
-                                spreadRadius: 2,
-                              ),
-                            ],
-                          ),
-                          child: Text(
-                            currentZone.points.toStringAsFixed(0),
-                            style: baseTextStyle.copyWith(
-                              fontSize: currentZone.points >= 100
-                                  ? 20
-                                  : 10 + (currentZone.points / 8 * 2) > 27
-                                      ? 27
-                                      : 10 + (currentZone.points / 8 * 2),
-                              fontWeight: FontWeight.w900,
-                              color: _getPointsColor(currentZone.points),
-                            ),
-                          ),
-                        ),
-                      );
-                    },
-                  ),
+                  markers: _buildMarkers(),
                   builder: (context, markers) {
-                    int points = 0;
-                    List<Zone> zones = gameTemplate.zones!
-                        .where((element) => markers.any(
-                            (marker) => ValueKey(element.zoneId) == marker.key))
-                        .toList();
-                    for (var zone in zones) {
-                      points += zone.points;
-                    }
+                    int totalPoints = _calculateClusterPoints(markers);
+                    int minPoints =
+                        gameTemplate.zones!.map((z) => z.points).reduce(min);
+                    int maxPoints =
+                        gameTemplate.zones!.map((z) => z.points).reduce(max);
+
+                    Color clusterColor = _getGradientColor(
+                      totalPoints,
+                      minPoints * markers.length ~/ 2,
+                      maxPoints * markers.length ~/ 2,
+                    );
+
                     return Container(
                       decoration: BoxDecoration(
-                        color: Colors.black,
-                        shape: BoxShape.circle,
-                        border: Border.all(color: Colors.white, width: 2),
+                        gradient: LinearGradient(
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
+                          colors: [
+                            clusterColor,
+                            clusterColor.withOpacity(0.8),
+                          ],
+                        ),
+                        borderRadius: BorderRadius.circular(20),
+                        border: Border.all(
+                          color: Colors.white24,
+                          width: 2,
+                        ),
                         boxShadow: [
                           BoxShadow(
-                            color: Colors.black.withOpacity(0.3),
-                            blurRadius: 8,
+                            color: clusterColor.withOpacity(0.3),
+                            blurRadius: 10,
                             spreadRadius: 2,
                           ),
                         ],
                       ),
                       child: Center(
-                        child: Text(
-                          points.toString(),
-                          style: baseTextStyle.copyWith(
-                            fontSize: points < 1000 ? 20 : 15,
-                            fontWeight: FontWeight.w700,
-                            color: Colors.green.shade400,
+                        child: FittedBox(
+                          fit: BoxFit.scaleDown,
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(
+                              totalPoints.toString(),
+                              style: GoogleFonts.spaceGrotesk(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w700,
+                                color: Colors.white,
+                              ),
+                            ),
                           ),
                         ),
                       ),
@@ -313,15 +297,108 @@ class _ClaimZone5State extends State<ClaimZone5> {
     );
   }
 
-  Color _getPointsColor(int points) {
-    if (points <= 5) return Colors.red;
-    if (points <= 10) return Colors.deepOrange;
-    if (points <= 15) return Colors.orange;
-    if (points <= 20) return Colors.amber;
-    if (points <= 25) return Colors.yellow;
-    if (points <= 30) return Colors.lime;
-    if (points <= 40) return Colors.lightGreen;
-    return Colors.green;
+  List<Marker> _buildMarkers() {
+    int minPoints = gameTemplate.zones!.map((z) => z.points).reduce(min);
+    int maxPoints = gameTemplate.zones!.map((z) => z.points).reduce(max);
+
+    return List<Marker>.generate(
+      gameTemplate.zones!.length,
+      (index) {
+        Zone currentZone = gameTemplate.zones![index];
+        double markerSize =
+            18 + (currentZone.points / maxPoints * 25).clamp(0, 25);
+        Color markerColor =
+            _getGradientColor(currentZone.points, minPoints, maxPoints);
+
+        return Marker(
+          key: ValueKey(currentZone.zoneId),
+          width: markerSize,
+          height: markerSize,
+          point: LatLng(
+              currentZone.location.latitude, currentZone.location.longitude),
+          rotate: false,
+          child: Container(
+            alignment: Alignment.center,
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: [
+                  markerColor,
+                  markerColor.withOpacity(0.8),
+                ],
+              ),
+              shape: BoxShape.circle,
+              border: Border.all(
+                color: Colors.white24,
+                width: 2,
+              ),
+              boxShadow: [
+                BoxShadow(
+                  color: markerColor.withOpacity(0.3),
+                  blurRadius: 8,
+                  spreadRadius: 2,
+                ),
+              ],
+            ),
+            child: FittedBox(
+              fit: BoxFit.scaleDown,
+              child: Padding(
+                padding: const EdgeInsets.all(4.0),
+                child: Text(
+                  currentZone.points.toStringAsFixed(0),
+                  style: GoogleFonts.spaceGrotesk(
+                    fontSize: markerSize * 0.5,
+                    fontWeight: FontWeight.w700,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  Color _getGradientColor(int points, int minPoints, int maxPoints) {
+    double position = (points - minPoints) / (maxPoints - minPoints);
+    position = position.clamp(0.0, 1.0);
+
+    List<Color> colors = [
+      const Color(0xFFFF5252), // Red
+      const Color(0xFFFF7043), // Deep Orange
+      const Color(0xFFFF9800), // Orange
+      const Color(0xFFFFC107), // Amber
+      const Color(0xFFFFEB3B), // Yellow
+      const Color(0xFFCDDC39), // Lime
+      const Color(0xFF8BC34A), // Light Green
+      const Color(0xFF4CAF50), // Green
+      const Color(0xFF009688), // Teal
+    ];
+
+    int colorIndex = (position * (colors.length - 1)).floor();
+    colorIndex = colorIndex.clamp(0, colors.length - 2);
+    int nextColorIndex = colorIndex + 1;
+    double colorPosition = (position * (colors.length - 1)) - colorIndex;
+    colorPosition = colorPosition.clamp(0.0, 1.0);
+
+    return Color.lerp(
+      colors[colorIndex],
+      colors[nextColorIndex],
+      colorPosition,
+    )!;
+  }
+
+  int _calculateClusterPoints(List<Marker> markers) {
+    int points = 0;
+    for (var marker in markers) {
+      Zone zone = gameTemplate.zones!.firstWhere(
+        (z) => ValueKey(z.zoneId) == marker.key,
+      );
+      points += zone.points;
+    }
+    return points;
   }
 
   LatLngBounds calculateBounds(GameTemplate currentGameTemplate) {

@@ -153,18 +153,7 @@ class GameMap extends StatelessWidget {
                 },
               ),
             ),
-            CurrentLocationLayer(
-              style: const LocationMarkerStyle(
-                marker: DefaultLocationMarker(
-                  child: Icon(
-                    Icons.navigation,
-                    color: Colors.white,
-                  ),
-                ),
-                markerSize: Size(40, 40),
-                accuracyCircleColor: Colors.blue,
-              ),
-            ),
+            CurrentLocationLayer(),
           ],
         ),
         ...children,
@@ -198,7 +187,6 @@ class GameMap extends StatelessWidget {
   }
 
   List<Marker> _buildMarkers() {
-    // Find min and max points for gradient calculation
     int minPoints = unclaimedZones.map((z) => z.points).reduce(min);
     int maxPoints = unclaimedZones.map((z) => z.points).reduce(max);
 
@@ -206,12 +194,8 @@ class GameMap extends StatelessWidget {
       unclaimedZones.length,
       (index) {
         Zone currentZone = unclaimedZones[index];
-
-        // Calculate marker size based on points
         double markerSize =
             18 + (currentZone.points / maxPoints * 25).clamp(0, 25);
-
-        // Calculate color based on point value position in range
         Color markerColor =
             _getGradientColor(currentZone.points, minPoints, maxPoints);
 
@@ -221,6 +205,7 @@ class GameMap extends StatelessWidget {
           height: markerSize,
           point: LatLng(
               currentZone.location.latitude, currentZone.location.longitude),
+          rotate: false,
           child: Container(
             alignment: Alignment.center,
             decoration: BoxDecoration(

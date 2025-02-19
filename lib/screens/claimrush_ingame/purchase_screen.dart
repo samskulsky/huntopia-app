@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter/services.dart';
+import 'dart:math';
 
 import '../../models/game.dart';
 import '../../models/game_template.dart';
@@ -275,7 +277,78 @@ class _PurchaseScreenState extends State<PurchaseScreen> {
     setState(() {});
   }
 
-  void _disableTeam(CoinShopItem item, Player player) {
+  void _disableTeam(CoinShopItem item, Player player) async {
+    HapticFeedback.mediumImpact();
+
+    late OverlayEntry overlayEntry;
+    overlayEntry = OverlayEntry(
+      builder: (context) => Stack(
+        children: [
+          // Center ban icon
+          TweenAnimationBuilder(
+            tween: Tween<double>(begin: 0.0, end: 1.0),
+            duration: const Duration(milliseconds: 800),
+            builder: (context, double value, child) {
+              return Center(
+                child: Transform.scale(
+                  scale: 1 + (1 - value),
+                  child: Opacity(
+                    opacity: value,
+                    child: Container(
+                      padding: const EdgeInsets.all(24),
+                      decoration: BoxDecoration(
+                        color: Colors.red.withOpacity(0.2),
+                        shape: BoxShape.circle,
+                        border: Border.all(
+                          color: Colors.red.withOpacity(0.3),
+                          width: 2,
+                        ),
+                      ),
+                      child: const FaIcon(
+                        FontAwesomeIcons.ban,
+                        color: Colors.red,
+                        size: 48,
+                      ),
+                    ),
+                  ),
+                ),
+              );
+            },
+          ),
+          // Expanding ring effect
+          ...List.generate(3, (index) {
+            return TweenAnimationBuilder(
+              tween: Tween<double>(begin: 0.0, end: 1.0),
+              duration: Duration(milliseconds: 1500 + (index * 200)),
+              builder: (context, double value, child) {
+                return Center(
+                  child: Transform.scale(
+                    scale: value * 2,
+                    child: Container(
+                      width: 100,
+                      height: 100,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        border: Border.all(
+                          color: Colors.red.withOpacity((1 - value) * 0.3),
+                          width: 2,
+                        ),
+                      ),
+                    ),
+                  ),
+                );
+              },
+            );
+          }),
+        ],
+      ),
+    );
+
+    Overlay.of(context).insert(overlayEntry);
+
+    await Future.delayed(const Duration(milliseconds: 2000));
+    overlayEntry.remove();
+
     player.coinBalance -= item.itemPrice;
     Player targetPlayer =
         cGame!.players.firstWhere((element) => element.playerId == value);
@@ -287,7 +360,60 @@ class _PurchaseScreenState extends State<PurchaseScreen> {
     updateGame(cGame!);
   }
 
-  void _exchangeCoinsForPoints(CoinShopItem item, Player player) {
+  void _exchangeCoinsForPoints(CoinShopItem item, Player player) async {
+    HapticFeedback.mediumImpact();
+
+    late OverlayEntry overlayEntry;
+    overlayEntry = OverlayEntry(
+      builder: (context) => Stack(
+        children: [
+          for (var i = 0; i < 3; i++)
+            for (var j = 0; j < 3; j++)
+              TweenAnimationBuilder(
+                tween: Tween<double>(
+                  begin: 0.0,
+                  end: 1.0,
+                ),
+                duration: Duration(milliseconds: 1500 + ((i + j) * 200)),
+                curve: Curves.easeInOut,
+                builder: (context, double value, child) {
+                  return Positioned(
+                    left:
+                        MediaQuery.of(context).size.width * (0.25 + (j * 0.25)),
+                    top: MediaQuery.of(context).size.height *
+                            (0.3 + (i * 0.15)) -
+                        (value * 300),
+                    child: Opacity(
+                      opacity: 1 - value,
+                      child: Container(
+                        padding: const EdgeInsets.all(12),
+                        decoration: BoxDecoration(
+                          color: Colors.blue.withOpacity(0.2),
+                          borderRadius: BorderRadius.circular(20),
+                          border: Border.all(
+                            color: Colors.blue.withOpacity(0.3),
+                            width: 2,
+                          ),
+                        ),
+                        child: const FaIcon(
+                          FontAwesomeIcons.coins,
+                          color: Colors.blue,
+                          size: 24,
+                        ),
+                      ),
+                    ),
+                  );
+                },
+              ),
+        ],
+      ),
+    );
+
+    Overlay.of(context).insert(overlayEntry);
+
+    await Future.delayed(const Duration(milliseconds: 2500));
+    overlayEntry.remove();
+
     player.coinBalance -= item.itemPrice;
     player.points += item.pointsPerCoin! * item.itemPrice;
     _logPurchase(player,
@@ -295,7 +421,115 @@ class _PurchaseScreenState extends State<PurchaseScreen> {
     updateGame(cGame!);
   }
 
-  void _applyBooster(CoinShopItem item, Player player) {
+  void _applyBooster(CoinShopItem item, Player player) async {
+    HapticFeedback.mediumImpact();
+
+    late OverlayEntry overlayEntry;
+    overlayEntry = OverlayEntry(
+      builder: (context) => Stack(
+        children: [
+          // Center multiplier text
+          TweenAnimationBuilder(
+            tween: Tween<double>(begin: 0.0, end: 1.0),
+            duration: const Duration(milliseconds: 1000),
+            builder: (context, double value, child) {
+              return Center(
+                child: Text(
+                  '${item.multiplier}x',
+                  style: baseTextStyle.copyWith(
+                    fontSize: 80 * value,
+                    fontWeight: FontWeight.w800,
+                    color: Colors.green.withOpacity(1 - value),
+                  ),
+                ),
+              );
+            },
+          ),
+          // Starburst rays
+          ...List.generate(8, (index) {
+            final angle = (index * pi / 4);
+            return TweenAnimationBuilder(
+              tween: Tween<double>(begin: 0.0, end: 1.0),
+              duration: Duration(milliseconds: 1200 + (index * 100)),
+              curve: Curves.easeOut,
+              builder: (context, double value, child) {
+                return Center(
+                  child: Transform.rotate(
+                    angle: angle,
+                    child: Opacity(
+                      opacity: (1 - value) * 0.8,
+                      child: Container(
+                        height: 200 * value,
+                        width: 20,
+                        decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                            begin: Alignment.centerLeft,
+                            end: Alignment.centerRight,
+                            colors: [
+                              Colors.green.withOpacity(0),
+                              Colors.green.withOpacity(0.5),
+                              Colors.green.withOpacity(0),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                );
+              },
+            );
+          }),
+          // Floating gems
+          ...List.generate(6, (index) {
+            final radius = 100.0;
+            final angle = (index * pi / 3);
+            return TweenAnimationBuilder(
+              tween: Tween<double>(begin: 0.0, end: 1.0),
+              duration: Duration(milliseconds: 800 + (index * 150)),
+              curve: Curves.easeOut,
+              builder: (context, double value, child) {
+                return Center(
+                  child: Transform.translate(
+                    offset: Offset(
+                      cos(angle) * radius * value,
+                      sin(angle) * radius * value,
+                    ),
+                    child: Transform.rotate(
+                      angle: value * pi * 2,
+                      child: Opacity(
+                        opacity: (1 - value),
+                        child: Container(
+                          padding: const EdgeInsets.all(8),
+                          decoration: BoxDecoration(
+                            color: Colors.green.withOpacity(0.2),
+                            borderRadius: BorderRadius.circular(12),
+                            border: Border.all(
+                              color: Colors.green.withOpacity(0.3),
+                              width: 2,
+                            ),
+                          ),
+                          child: const FaIcon(
+                            FontAwesomeIcons.gem,
+                            color: Colors.green,
+                            size: 20,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                );
+              },
+            );
+          }),
+        ],
+      ),
+    );
+
+    Overlay.of(context).insert(overlayEntry);
+
+    await Future.delayed(const Duration(milliseconds: 2000));
+    overlayEntry.remove();
+
     player.coinBalance -= item.itemPrice;
     player.pointMultiplier = item.multiplier!.toDouble();
     player.pointBoostUntil =
@@ -306,11 +540,56 @@ class _PurchaseScreenState extends State<PurchaseScreen> {
     updateGame(cGame!);
   }
 
-  void _applySkip(CoinShopItem item, Player player) {
-    player.coinBalance -= item.itemPrice;
-    player.skips++;
-    _logPurchase(player, 'purchased a task skip.');
-    updateGame(cGame!);
+  void _applySkip(CoinShopItem item, Player player) async {
+    HapticFeedback.mediumImpact();
+
+    late OverlayEntry overlayEntry;
+    overlayEntry = OverlayEntry(
+      builder: (context) => TweenAnimationBuilder(
+        tween: Tween<double>(
+            begin: -100, end: MediaQuery.of(context).size.width + 100),
+        duration: const Duration(milliseconds: 800),
+        curve: Curves.easeInOut,
+        builder: (context, double value, child) {
+          return Positioned(
+            left: value,
+            top: MediaQuery.of(context).size.height / 2 - 40,
+            child: Container(
+              padding: const EdgeInsets.all(20),
+              decoration: BoxDecoration(
+                color: Colors.purple.withOpacity(0.2),
+                borderRadius: BorderRadius.circular(20),
+                border: Border.all(
+                  color: Colors.purple.withOpacity(0.3),
+                  width: 2,
+                ),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.purple.withOpacity(0.3),
+                    blurRadius: 20,
+                    spreadRadius: 2,
+                  ),
+                ],
+              ),
+              child: const FaIcon(
+                FontAwesomeIcons.forward,
+                color: Colors.purple,
+                size: 40,
+              ),
+            ),
+          );
+        },
+        onEnd: () {
+          overlayEntry.remove();
+          player.coinBalance -= item.itemPrice;
+          player.skips++;
+          _logPurchase(player, 'purchased a task skip.');
+          updateGame(cGame!);
+        },
+      ),
+    );
+
+    Overlay.of(context).insert(overlayEntry);
   }
 
   void _logPurchase(Player player, String action) {

@@ -15,6 +15,8 @@ import 'package:scavhuntapp/widgets/gradient_background.dart';
 
 import '../../utils/theme_data.dart';
 import '../../utils/game_utils.dart';
+import 'package:uuid/uuid.dart';
+import 'package:scavhuntapp/utils/toastification_helper.dart';
 
 class ClaimZoneView extends StatefulWidget {
   const ClaimZoneView({super.key});
@@ -69,7 +71,10 @@ class _ClaimZoneViewState extends State<ClaimZoneView> {
                         elevation: 0,
                       ),
                       onPressed: () => Get.to(() => const ClaimZonePlay()),
-                      icon: const FaIcon(FontAwesomeIcons.play),
+                      icon: const FaIcon(
+                        FontAwesomeIcons.play,
+                        color: Colors.white,
+                      ),
                       label: Text(
                         'Start Game',
                         style: baseTextStyle.copyWith(
@@ -270,17 +275,104 @@ class _ClaimZoneViewState extends State<ClaimZoneView> {
                     letterSpacing: -0.5,
                   ),
                 ),
-                TextButton.icon(
-                  style: TextButton.styleFrom(
-                    foregroundColor: Colors.white,
-                  ),
-                  onPressed: () {
-                    itemEdit = false;
-                    fromInfoPage = true;
-                    Get.to(() => const ClaimZoneAddItem());
-                  },
-                  icon: const FaIcon(FontAwesomeIcons.plus, size: 16),
-                  label: const Text('Add Item'),
+                Row(
+                  children: [
+                    TextButton.icon(
+                      style: TextButton.styleFrom(
+                        foregroundColor: Colors.white,
+                      ),
+                      onPressed: () {
+                        itemEdit = false;
+                        fromInfoPage = true;
+                        Get.to(() => const ClaimZoneAddItem());
+                      },
+                      icon: const FaIcon(FontAwesomeIcons.plus, size: 16),
+                      label: const Text('Add Item'),
+                    ),
+                    if (gameTemplate.coinShopItems!.isEmpty)
+                      TextButton.icon(
+                        style: TextButton.styleFrom(
+                          foregroundColor: Colors.white,
+                        ),
+                        onPressed: () {
+                          // Add default item set
+                          gameTemplate.coinShopItems = [
+                            CoinShopItem(
+                              itemId: const Uuid().v4(),
+                              itemName: 'Point Boost 1.5x',
+                              itemDescription:
+                                  'Boosts points earned by 1.5x for 15 minutes.',
+                              itemPrice: 20,
+                              pointsPerCoin: 1,
+                              itemType: 'booster',
+                              multiplier: 1.5,
+                              duration: 15,
+                            ),
+                            CoinShopItem(
+                              itemId: const Uuid().v4(),
+                              itemName: 'Point Boost 2x',
+                              itemDescription:
+                                  'Boosts points earned by 2x for 15 minutes.',
+                              itemPrice: 30,
+                              pointsPerCoin: 1,
+                              itemType: 'booster',
+                              multiplier: 2,
+                              duration: 15,
+                            ),
+                            CoinShopItem(
+                              itemId: const Uuid().v4(),
+                              itemName: '15 Min Sabotage',
+                              itemDescription:
+                                  'Disables opponents for 15 minutes.',
+                              itemPrice: 25,
+                              pointsPerCoin: 1,
+                              itemType: 'disabler',
+                              multiplier: 1,
+                              duration: 15,
+                            ),
+                            CoinShopItem(
+                              itemId: const Uuid().v4(),
+                              itemName: '30 Min Sabotage',
+                              itemDescription:
+                                  'Disables opponents for 30 minutes.',
+                              itemPrice: 45,
+                              pointsPerCoin: 1,
+                              itemType: 'disabler',
+                              multiplier: 1,
+                              duration: 30,
+                            ),
+                            CoinShopItem(
+                              itemId: const Uuid().v4(),
+                              itemName: 'Coin ATM',
+                              itemDescription:
+                                  'Earns 2 points for each coin spent.',
+                              itemPrice: 5,
+                              pointsPerCoin: 2,
+                              itemType: 'coin',
+                              multiplier: 1,
+                              duration: 0,
+                            ),
+                            CoinShopItem(
+                              itemId: const Uuid().v4(),
+                              itemName: 'Task Skip',
+                              itemDescription: 'Skips a task.',
+                              itemPrice: 10,
+                              pointsPerCoin: 1,
+                              itemType: 'skip',
+                              multiplier: 1,
+                              duration: 0,
+                            ),
+                          ];
+                          updateGameTemplate(gameTemplate);
+                          setState(() {});
+                          ToastificationHelper.showSuccessToast(
+                              context, 'Default item set added successfully!');
+                        },
+                        icon: const FaIcon(FontAwesomeIcons.wandMagicSparkles,
+                            size: 16),
+                        label: const Text('Add Default Set'),
+                      ),
+                  ],
                 ),
               ],
             ),

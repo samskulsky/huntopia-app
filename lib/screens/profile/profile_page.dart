@@ -38,9 +38,8 @@ class _ProfilePageState extends State<ProfilePage> {
         backgroundColor: Colors.transparent,
         elevation: 0,
         leading: IconButton(
-          icon:
-              const FaIcon(FontAwesomeIcons.chevronLeft, color: Colors.white70),
-          onPressed: () => Get.back(),
+          icon: const FaIcon(FontAwesomeIcons.arrowLeft, color: Colors.white70),
+          onPressed: () => Navigator.pop(context),
         ),
         title: Text(
           'Profile',
@@ -388,10 +387,18 @@ class _ProfilePageState extends State<ProfilePage> {
           text: FirebaseAuth.instance.currentUser!.isAnonymous
               ? 'Delete'
               : 'Sign Out',
-          onPressed: () {
+          onPressed: () async {
             Navigator.pop(context);
-            FirebaseAuth.instance.signOut();
-            Get.offAll(() => const AuthPage());
+            try {
+              if (FirebaseAuth.instance.currentUser!.isAnonymous) {
+                await FirebaseAuth.instance.currentUser!.delete();
+              }
+              await FirebaseAuth.instance.signOut();
+              Get.offAll(() => const AuthPage());
+            } catch (e) {
+              ToastificationHelper.showErrorToast(
+                  context, 'Error signing out. Please try again.');
+            }
           },
           isDestructive: true,
         ),

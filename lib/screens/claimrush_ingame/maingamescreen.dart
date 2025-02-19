@@ -448,7 +448,7 @@ class _MainGameScreenState extends State<MainGameScreen> {
                       Text(
                         'Game Map',
                         style: baseTextStyle.copyWith(
-                          fontSize: 16,
+                          fontSize: 22,
                           fontWeight: FontWeight.w600,
                           letterSpacing: -0.5,
                         ),
@@ -456,7 +456,7 @@ class _MainGameScreenState extends State<MainGameScreen> {
                       Text(
                         'Tap a zone\'s point value to claim it!',
                         style: baseTextStyle.copyWith(
-                          fontSize: 10,
+                          fontSize: 12,
                           color: Colors.white70,
                         ),
                       ),
@@ -518,10 +518,8 @@ class _MainGameScreenState extends State<MainGameScreen> {
                           preferredSize: const Size.fromHeight(90),
                           child: Container(
                             margin: const EdgeInsets.only(top: 8),
-                            decoration: BoxDecoration(
-                              color: Colors.red.shade100,
-                              border: Border.all(
-                                  color: Colors.red.shade300, width: 1.5),
+                            decoration: const BoxDecoration(
+                              color: Color.fromARGB(255, 96, 14, 8),
                             ),
                             child: ListTile(
                               dense: true,
@@ -531,7 +529,7 @@ class _MainGameScreenState extends State<MainGameScreen> {
                                 'You\'ve Been Disabled!',
                                 style: baseTextStyle.copyWith(
                                   fontSize: 18,
-                                  color: Colors.red.shade900,
+                                  color: Colors.red.shade100,
                                   fontWeight: FontWeight.w600,
                                 ),
                               ),
@@ -539,18 +537,19 @@ class _MainGameScreenState extends State<MainGameScreen> {
                                 'You cannot claim zones until ${DateFormat.jm().format(currentPlayer.sabotagedUntil.toLocal())}',
                                 style: baseTextStyle.copyWith(
                                   fontSize: 14,
+                                  fontWeight: FontWeight.w600,
                                   color: Colors.red.shade700,
                                 ),
                               ),
                               leading: Container(
                                 padding: const EdgeInsets.all(8),
                                 decoration: BoxDecoration(
-                                  color: Colors.red.shade50,
+                                  color: Colors.red.shade600,
                                   borderRadius: BorderRadius.circular(8),
                                 ),
                                 child: FaIcon(
                                   FontAwesomeIcons.triangleExclamation,
-                                  color: Colors.red.shade700,
+                                  color: Colors.red.shade100,
                                   size: 20,
                                 ),
                               ),
@@ -593,8 +592,6 @@ class _MainGameScreenState extends State<MainGameScreen> {
               ),
               screen: Scaffold(
                 appBar: AppBar(
-                  backgroundColor: Colors.transparent,
-                  elevation: 0,
                   title: Text(
                     'Zones',
                     style: baseTextStyle.copyWith(
@@ -605,7 +602,7 @@ class _MainGameScreenState extends State<MainGameScreen> {
                   ),
                 ),
                 body: ListView.builder(
-                  padding: const EdgeInsets.fromLTRB(12, 24, 12, 120),
+                  padding: const EdgeInsets.fromLTRB(12, 16, 12, 120),
                   itemCount: currentGameTemplate.zones!.length,
                   itemBuilder: (context, index) {
                     Zone currZone = currentGameTemplate.zones![index];
@@ -644,14 +641,14 @@ class _MainGameScreenState extends State<MainGameScreen> {
                         title: Text(
                           currZone.zoneName,
                           style: baseTextStyle.copyWith(
-                            fontSize: 16,
+                            fontSize: 18,
                             fontWeight: FontWeight.w600,
                           ),
                         ),
                         subtitle: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            const SizedBox(height: 4),
+                            const SizedBox(height: 8),
                             Row(
                               children: [
                                 Container(
@@ -765,8 +762,6 @@ class _MainGameScreenState extends State<MainGameScreen> {
               ),
               screen: Scaffold(
                 appBar: AppBar(
-                  backgroundColor: Colors.transparent,
-                  elevation: 0,
                   title: Text(
                     'Leaderboard',
                     style: baseTextStyle.copyWith(
@@ -1002,7 +997,14 @@ class _MainGameScreenState extends State<MainGameScreen> {
               ),
               screen: Scaffold(
                 appBar: AppBar(
-                  title: const Text('Booster Shop'),
+                  title: const Text(
+                    'Booster Shop',
+                    style: TextStyle(
+                      fontSize: 28,
+                      fontWeight: FontWeight.w600,
+                      letterSpacing: -0.5,
+                    ),
+                  ),
                 ),
                 body: ListView(
                   padding: const EdgeInsets.all(16),
@@ -1035,6 +1037,25 @@ class _MainGameScreenState extends State<MainGameScreen> {
                           ),
                         ),
                       ),
+                      if (currentPlayer.skips > 0) ...[
+                        const SizedBox(height: 12),
+                        Container(
+                          padding: const EdgeInsets.all(16),
+                          decoration: BoxDecoration(
+                            color: Colors.purple.withOpacity(0.1),
+                            borderRadius: BorderRadius.circular(12),
+                            border: Border.all(
+                                color: Colors.purple.withOpacity(0.2)),
+                          ),
+                          child: Text(
+                            'You have ${currentPlayer.skips} skips remaining. They can be used to skip any claim task once.',
+                            style: baseTextStyle.copyWith(
+                              fontSize: 14,
+                              color: Colors.purple,
+                            ),
+                          ),
+                        ),
+                      ],
                     ],
                     const SizedBox(height: 24),
                     Row(
@@ -1236,7 +1257,14 @@ class _MainGameScreenState extends State<MainGameScreen> {
               ),
               screen: Scaffold(
                 appBar: AppBar(
-                  title: const Text('Game Alerts'),
+                  title: const Text(
+                    'Game Alerts',
+                    style: TextStyle(
+                      fontSize: 28,
+                      fontWeight: FontWeight.w600,
+                      letterSpacing: -0.5,
+                    ),
+                  ),
                 ),
                 body: Column(
                   children: [
@@ -1411,7 +1439,14 @@ class _MainGameScreenState extends State<MainGameScreen> {
                 ),
                 screen: Scaffold(
                   appBar: AppBar(
-                    title: const Text('Host Controls'),
+                    title: const Text(
+                      'Host Controls',
+                      style: TextStyle(
+                        fontSize: 28,
+                        fontWeight: FontWeight.w600,
+                        letterSpacing: -0.5,
+                      ),
+                    ),
                   ),
                   body: SafeArea(
                     child: ListView(
@@ -1425,7 +1460,7 @@ class _MainGameScreenState extends State<MainGameScreen> {
                             height: 1.5,
                           ),
                         ),
-                        const SizedBox(height: 32),
+                        const SizedBox(height: 16),
                         Container(
                           decoration: BoxDecoration(
                             color: Colors.white.withOpacity(0.05),
@@ -1451,7 +1486,8 @@ class _MainGameScreenState extends State<MainGameScreen> {
                                   height: 1),
                               for (var player in currentGame.players)
                                 ListTile(
-                                  contentPadding: const EdgeInsets.all(20),
+                                  contentPadding: const EdgeInsets.symmetric(
+                                      horizontal: 20, vertical: 10),
                                   leading: Container(
                                     width: 40,
                                     height: 40,
@@ -1490,7 +1526,7 @@ class _MainGameScreenState extends State<MainGameScreen> {
                             ],
                           ),
                         ),
-                        const SizedBox(height: 32),
+                        const SizedBox(height: 16),
                         Container(
                           decoration: BoxDecoration(
                             color: Colors.white.withOpacity(0.05),
@@ -1589,7 +1625,7 @@ class _MainGameScreenState extends State<MainGameScreen> {
                             ],
                           ),
                         ),
-                        const SizedBox(height: 32),
+                        const SizedBox(height: 16),
                         Container(
                           decoration: BoxDecoration(
                             color: Colors.white.withOpacity(0.05),
@@ -1662,13 +1698,13 @@ class _MainGameScreenState extends State<MainGameScreen> {
                                   style: baseTextStyle.copyWith(
                                     fontSize: 16,
                                   ),
-                                  maxLines: 3,
+                                  maxLines: 1,
                                 ),
                               ),
                             ],
                           ),
                         ),
-                        const SizedBox(height: 32),
+                        const SizedBox(height: 16),
                         Container(
                           decoration: BoxDecoration(
                             color: Colors.white.withOpacity(0.05),
@@ -1724,53 +1760,53 @@ class _MainGameScreenState extends State<MainGameScreen> {
                                   ),
                                 ),
                                 onTap: () {
-                                  Get.dialog(
-                                    AlertDialog(
-                                      title: const Text('Halve Points'),
-                                      content: const Text(
-                                          'Are you sure you want to halve all point values? This action cannot be undone.'),
-                                      actions: [
-                                        TextButton(
-                                          onPressed: () {
-                                            Navigator.pop(context);
-                                          },
-                                          child: const Text('Cancel'),
-                                        ),
-                                        TextButton(
-                                          onPressed: () {
-                                            Navigator.pop(context);
-                                            for (var zone
-                                                in currentGameTemplate.zones!) {
-                                              if (!currentGame.players.any(
-                                                  (player) => player
-                                                      .zonesClaimed
-                                                      .contains(zone.zoneId))) {
-                                                zone.points = (zone
-                                                            .originalPoints
-                                                            .toDouble() /
-                                                        2.0)
-                                                    .toInt();
-                                              }
-                                            }
-                                            currentGame.logMessages.add(
-                                              LogMessage(
-                                                message:
-                                                    'All point values have been halved.',
-                                                uid: FirebaseAuth
-                                                    .instance.currentUser!.uid,
-                                                timestamp: DateTime.now(),
-                                                displayName: 'Game Update',
-                                              ),
-                                            );
-                                            updateGame(currentGame);
-                                          },
-                                          style: TextButton.styleFrom(
-                                            foregroundColor: Colors.red,
-                                          ),
-                                          child: const Text('Halve Points'),
-                                        ),
-                                      ],
+                                  showStandardDialog(
+                                    context: context,
+                                    title: 'Halve Points',
+                                    child: Text(
+                                      'Are you sure you want to halve all point values? This action cannot be undone.',
+                                      style: baseTextStyle.copyWith(
+                                        fontSize: 16,
+                                        color: Colors.white,
+                                        height: 1.5,
+                                      ),
                                     ),
+                                    actions: [
+                                      buildDialogAction(
+                                        text: 'Cancel',
+                                        onPressed: () => Navigator.pop(context),
+                                      ),
+                                      const SizedBox(width: 12),
+                                      buildDialogAction(
+                                        text: 'Halve Points',
+                                        onPressed: () {
+                                          Navigator.pop(context);
+                                          for (var zone
+                                              in currentGameTemplate.zones!) {
+                                            if (!currentGame.players.any(
+                                                (player) => player.zonesClaimed
+                                                    .contains(zone.zoneId))) {
+                                              zone.points = (zone.originalPoints
+                                                          .toDouble() /
+                                                      2.0)
+                                                  .toInt();
+                                            }
+                                          }
+                                          currentGame.logMessages.add(
+                                            LogMessage(
+                                              message:
+                                                  'All point values have been halved.',
+                                              uid: FirebaseAuth
+                                                  .instance.currentUser!.uid,
+                                              timestamp: DateTime.now(),
+                                              displayName: 'Game Update',
+                                            ),
+                                          );
+                                          updateGame(currentGame);
+                                        },
+                                        isDestructive: true,
+                                      ),
+                                    ],
                                   );
                                 },
                               ),
@@ -1809,56 +1845,57 @@ class _MainGameScreenState extends State<MainGameScreen> {
                                   ),
                                 ),
                                 onTap: () {
-                                  Get.dialog(
-                                    AlertDialog(
-                                      title: const Text('Double Points'),
-                                      content: const Text(
-                                          'Are you sure you want to double all point values? This action cannot be undone.'),
-                                      actions: [
-                                        TextButton(
-                                          onPressed: () {
-                                            Navigator.pop(context);
-                                          },
-                                          child: const Text('Cancel'),
-                                        ),
-                                        TextButton(
-                                          onPressed: () {
-                                            Navigator.pop(context);
-                                            for (var zone
-                                                in currentGameTemplate.zones!) {
-                                              if (!currentGame.players.any(
-                                                  (player) => player
-                                                      .zonesClaimed
-                                                      .contains(zone.zoneId))) {
-                                                zone.points *= 2;
-                                              }
-                                            }
-                                            currentGame.logMessages.add(
-                                              LogMessage(
-                                                message:
-                                                    'All point values have been doubled!',
-                                                uid: FirebaseAuth
-                                                    .instance.currentUser!.uid,
-                                                timestamp: DateTime.now(),
-                                                displayName: 'Game Update',
-                                              ),
-                                            );
-                                            updateGame(currentGame);
-                                          },
-                                          style: TextButton.styleFrom(
-                                            foregroundColor: Colors.red,
-                                          ),
-                                          child: const Text('Double Points'),
-                                        ),
-                                      ],
+                                  showStandardDialog(
+                                    context: context,
+                                    title: 'Double Points',
+                                    child: Text(
+                                      'Are you sure you want to double all point values? This action cannot be undone.',
+                                      style: baseTextStyle.copyWith(
+                                        fontSize: 16,
+                                        color: Colors.white,
+                                        height: 1.5,
+                                      ),
                                     ),
+                                    actions: [
+                                      buildDialogAction(
+                                        text: 'Cancel',
+                                        onPressed: () => Navigator.pop(context),
+                                      ),
+                                      const SizedBox(width: 12),
+                                      buildDialogAction(
+                                        text: 'Double Points',
+                                        onPressed: () {
+                                          Navigator.pop(context);
+                                          for (var zone
+                                              in currentGameTemplate.zones!) {
+                                            if (!currentGame.players.any(
+                                                (player) => player.zonesClaimed
+                                                    .contains(zone.zoneId))) {
+                                              zone.points *= 2;
+                                            }
+                                          }
+                                          currentGame.logMessages.add(
+                                            LogMessage(
+                                              message:
+                                                  'All point values have been doubled!',
+                                              uid: FirebaseAuth
+                                                  .instance.currentUser!.uid,
+                                              timestamp: DateTime.now(),
+                                              displayName: 'Game Update',
+                                            ),
+                                          );
+                                          updateGame(currentGame);
+                                        },
+                                        isDestructive: true,
+                                      ),
+                                    ],
                                   );
                                 },
                               ),
                             ],
                           ),
                         ),
-                        const SizedBox(height: 32),
+                        const SizedBox(height: 16),
                         SizedBox(
                           width: double.infinity,
                           height: 56,
@@ -2137,7 +2174,8 @@ class _MainGameScreenState extends State<MainGameScreen> {
         ),
       ),
       child: ListTile(
-        contentPadding: const EdgeInsets.all(20),
+        contentPadding:
+            const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
         leading: Container(
           width: 40,
           height: 40,
@@ -2163,7 +2201,7 @@ class _MainGameScreenState extends State<MainGameScreen> {
         trailing: Text(
           value,
           style: baseTextStyle.copyWith(
-            fontSize: 16,
+            fontSize: 22,
             color: Colors.green,
             fontWeight: FontWeight.w600,
           ),

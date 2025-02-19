@@ -199,8 +199,15 @@ class _AddZoneState extends State<AddZone> {
               onPressed: () {
                 gameTemplate.zones!
                     .removeWhere((element) => element.zoneId == currentZoneId);
-                navigateTo(
-                    fromInfoPage ? const ClaimZoneView() : const ClaimZone4());
+                if (fromInfoPage) {
+                  updateGameTemplate(gameTemplate);
+                  Navigator.pop(context);
+                  setState(() {});
+                  ToastificationHelper.showSuccessToast(
+                      context, 'Zone deleted successfully!');
+                } else {
+                  navigateTo(const ClaimZone4());
+                }
               },
               icon: const FaIcon(FontAwesomeIcons.trash, color: Colors.white70),
             ),

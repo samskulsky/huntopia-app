@@ -694,7 +694,9 @@ class _EditTeamScreenState extends State<EditTeamScreen> {
                             newBoostUntil != originalBoostUntil;
 
                         if (multiplierChanged || boostTimeChanged) {
-                          if (newBoostUntil!.isAfter(DateTime.now())) {
+                          if (newMultiplier == 1) {
+                            changes.add('cleared point boost');
+                          } else if (newBoostUntil!.isAfter(DateTime.now())) {
                             changes.add(
                                 'point multiplier to ${newMultiplier}x until ${DateFormat.jm().format(newBoostUntil!)}');
                           } else if (originalBoostUntil
@@ -739,8 +741,12 @@ class _EditTeamScreenState extends State<EditTeamScreen> {
                           currentPlayer.coinBalance += coinDifference;
                           currentPlayer.teamName = teamNameController.text;
                           currentPlayer.pointMultiplier = newMultiplier;
-                          currentPlayer.pointBoostUntil = newBoostUntil!;
-                          currentPlayer.pointBoostAt = DateTime.now();
+                          if (newMultiplier == 1) {
+                            currentPlayer.pointBoostUntil = DateTime.now();
+                          } else {
+                            currentPlayer.pointBoostUntil = newBoostUntil!;
+                            currentPlayer.pointBoostAt = DateTime.now();
+                          }
                           currentPlayer.sabotagedUntil = newSabotagedUntil!;
                           currentPlayer.sabotagedAt = DateTime.now();
                           currentPlayer.skips = newSkips!;

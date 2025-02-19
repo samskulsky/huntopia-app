@@ -70,6 +70,21 @@ class _ClaimZoneAddItemState extends State<ClaimZoneAddItem> {
           icon: const FaIcon(FontAwesomeIcons.arrowLeft, color: Colors.white70),
           onPressed: () => Navigator.pop(context),
         ),
+        actions: [
+          if (itemEdit)
+            IconButton(
+              icon: const FaIcon(FontAwesomeIcons.trash, color: Colors.white70),
+              onPressed: () {
+                gameTemplate.coinShopItems!
+                    .removeWhere((element) => element.itemId == currentItemId);
+                updateGameTemplate(gameTemplate);
+                Navigator.pop(context);
+                setState(() {});
+                ToastificationHelper.showSuccessToast(
+                    context, 'Item deleted successfully!');
+              },
+            ),
+        ],
         backgroundColor: Colors.black,
         elevation: 0,
       ),
