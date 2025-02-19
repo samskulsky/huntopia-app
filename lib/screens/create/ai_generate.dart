@@ -620,7 +620,7 @@ The game is played via a Flutter/Firebase app, using the following JSON structur
 }
 The game ALREADY has the following zone names: [$existingZonesStr]. 
 DO NOT make ANY zones with the same name or location as the existing zones -- NO OVERLAPS.
-Always use SPECIFIC LOCATIONS, ex. like "Space Mountain" instead of "Roller Coaster". Ensure the names are accurate.
+Always use SPECIFIC LOCATIONS, ex. like "Space Mountain" instead of "Roller Coaster" (these are just examples). Ensure the names are accurate.
 The names are searched in GOOGLE MAPS to get the exact coordinates, so ONLY locations that would be foumd.
 Try to SPREAD THE ZONES OUT across the area, as it makes the game take longer and be more fun.
 Zones that are harder to get to, have more challenging tasks, or have fewer nearby zones should have higher points (25-50). Zones that are in a cluster, are easier to get to, and have easy tasks should have lower points (5 - 25).
@@ -804,7 +804,7 @@ Example question challenges (but make unique ones, just for reference):
         "duration": 15
       },
       {
-        "itemId": "008ede97-7eee-4f10-ad21-d18e6368a722",
+        "itemId": "008ede97-7eee-4f10-ad21-d18e6368a723",
         "itemName": "Point Boost 2x",
         "itemDescription": "Boosts points earned by 2x for 15 minutes.",
         "itemPrice": 30,
@@ -824,7 +824,7 @@ Example question challenges (but make unique ones, just for reference):
         "duration": 15
       },
       {
-        "itemId": "161cb90e-fb6c-4174-8723-76b18797f128",
+        "itemId": "161cb90e-fb6c-4174-8723-76b18797f129",
         "itemName": "30 Min Sabotage",
         "itemDescription": "Disables opponents for 30 minutes.",
         "itemPrice": 45,

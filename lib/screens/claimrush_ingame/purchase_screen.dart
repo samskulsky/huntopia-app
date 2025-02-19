@@ -48,34 +48,53 @@ class _PurchaseScreenState extends State<PurchaseScreen> {
         ),
         title: const Text('Purchase Item'),
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+      backgroundColor: Colors.black,
+      body: ListView(
+        padding: const EdgeInsets.all(20),
         children: [
-          _buildItemHeader(item),
-          const SizedBox(height: 16),
-          _buildItemDescription(item),
-          if (item.itemType == 'disabler') ...[
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: Text(
-                'Select the team you want to disable:',
-                style: baseTextStyle.copyWith(
-                  fontSize: 18,
-                  fontWeight: FontWeight.w700,
-                  color: Colors.blue,
-                ),
-              ),
+          Container(
+            decoration: BoxDecoration(
+              color: Colors.white.withOpacity(0.05),
+              borderRadius: BorderRadius.circular(16),
+              border: Border.all(color: Colors.white.withOpacity(0.1)),
             ),
-            _buildTeamSelection(player),
-          ],
-          const SizedBox(height: 16),
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 16),
-            child: Divider(),
+            clipBehavior: Clip.antiAlias,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                _buildItemHeader(item),
+                Padding(
+                  padding: const EdgeInsets.all(16),
+                  child: _buildItemDescription(item),
+                ),
+                if (item.itemType == 'disabler') ...[
+                  Padding(
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                    child: Text(
+                      'Select the team you want to disable:',
+                      style: baseTextStyle.copyWith(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w700,
+                        color: Colors.blue,
+                      ),
+                    ),
+                  ),
+                  _buildTeamSelection(player),
+                ],
+                const Divider(
+                  color: Colors.white54,
+                  thickness: 1,
+                  height: 1,
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(16),
+                  child: _buildConfirmation(item, player),
+                ),
+              ],
+            ),
           ),
-          const SizedBox(height: 16),
-          _buildConfirmation(item, player),
-          const SizedBox(height: 16),
+          const SizedBox(height: 24),
           _buildPurchaseButton(item, player),
         ],
       ),
@@ -159,7 +178,11 @@ class _PurchaseScreenState extends State<PurchaseScreen> {
     }
 
     return ListTile(
-      title: Text(description, style: baseTextStyle),
+      contentPadding: EdgeInsets.zero,
+      title: Text(
+        description,
+        style: baseTextStyle,
+      ),
     );
   }
 
@@ -190,8 +213,8 @@ class _PurchaseScreenState extends State<PurchaseScreen> {
 
   Widget _buildConfirmation(CoinShopItem item, Player player) {
     return ListTile(
+      contentPadding: EdgeInsets.zero,
       leading: const FaIcon(FontAwesomeIcons.coins),
-      contentPadding: const EdgeInsets.symmetric(horizontal: 16),
       title: Text(
         'Are you sure you want to purchase ${item.itemName} for ${item.itemPrice} coins?',
         style: baseTextStyle.copyWith(

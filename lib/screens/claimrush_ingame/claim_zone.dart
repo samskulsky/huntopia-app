@@ -223,501 +223,579 @@ class _ClaimZoneScreenState extends State<ClaimZoneScreen> {
     }
 
     return Scaffold(
+      backgroundColor: Colors.black,
       appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
         leading: IconButton(
-          icon: const FaIcon(FontAwesomeIcons.arrowLeft),
-          onPressed: () {
-            Get.back();
-          },
+          icon: const FaIcon(FontAwesomeIcons.arrowLeft, color: Colors.white70),
+          onPressed: () => Navigator.pop(context),
         ),
-        title: const Text('Claim Zone'),
+        title: Text(
+          'Claim Zone',
+          style: baseTextStyle.copyWith(
+            fontSize: 28,
+            fontWeight: FontWeight.w600,
+            letterSpacing: -0.5,
+          ),
+        ),
       ),
-      body: ListView(
-        padding: const EdgeInsets.all(16),
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Expanded(
-                child: Card(
-                  child: Container(
-                    padding: const EdgeInsets.all(8.0),
-                    margin: const EdgeInsets.only(right: 8.0),
-                    child: Text(
-                      currentZone!.zoneName,
+      body: SafeArea(
+        child: ListView(
+          padding: const EdgeInsets.all(24),
+          children: [
+            // Zone info header
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+              decoration: BoxDecoration(
+                color: Colors.white.withOpacity(0.05),
+                borderRadius: BorderRadius.circular(16),
+                border: Border.all(color: Colors.white.withOpacity(0.1)),
+              ),
+              child: Row(
+                children: [
+                  Container(
+                    width: 40,
+                    height: 40,
+                    decoration: BoxDecoration(
+                      color: Colors.white.withOpacity(0.1),
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: Center(
+                      child: FaIcon(
+                        _getTaskIcon(currentZone!.taskType),
+                        color: Colors.white,
+                        size: 20,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(width: 12),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          currentZone!.zoneName,
+                          style: baseTextStyle.copyWith(
+                            fontSize: 20,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                        const SizedBox(height: 8),
+                        Row(
+                          children: [
+                            Container(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 8,
+                                vertical: 4,
+                              ),
+                              decoration: BoxDecoration(
+                                color: Colors.white.withOpacity(0.1),
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Text(
+                                    currentZone!.points.toString(),
+                                    style: baseTextStyle.copyWith(
+                                      fontSize: 14,
+                                      color: Colors.green,
+                                    ),
+                                  ),
+                                  const SizedBox(width: 4),
+                                  const FaIcon(
+                                    FontAwesomeIcons.trophy,
+                                    size: 12,
+                                    color: Colors.green,
+                                  ),
+                                ],
+                              ),
+                            ),
+                            const SizedBox(width: 8),
+                            Container(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 8,
+                                vertical: 4,
+                              ),
+                              decoration: BoxDecoration(
+                                color: Colors.white.withOpacity(0.1),
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Text(
+                                    currentZone!.coins.toString(),
+                                    style: baseTextStyle.copyWith(
+                                      fontSize: 14,
+                                      color: Colors.yellow,
+                                    ),
+                                  ),
+                                  const SizedBox(width: 4),
+                                  const FaIcon(
+                                    FontAwesomeIcons.coins,
+                                    size: 12,
+                                    color: Colors.yellow,
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 24),
+            GestureDetector(
+              onTap: () async {
+                final availableMaps = await MapLauncher.installedMaps;
+                try {
+                  await availableMaps.first.showMarker(
+                    coords: Coords(
+                      currentZone!.location.latitude,
+                      currentZone!.location.longitude,
+                    ),
+                    title: currentZone!.zoneName,
+                  );
+                } catch (e) {
+                  print(e);
+                }
+              },
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  const FaIcon(
+                    FontAwesomeIcons.locationArrow,
+                    color: Colors.blue,
+                    size: 16,
+                  ),
+                  const SizedBox(width: 8),
+                  Text(
+                    'GET DIRECTIONS',
+                    style: GoogleFonts.spaceGrotesk(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w800,
+                      color: Colors.blue,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 16),
+            Row(
+              children: [
+                const Icon(Icons.info, color: Colors.white54, size: 16),
+                const SizedBox(width: 8),
+                Expanded(
+                  child: Text(
+                    currentZone!.taskType == 'selfie'
+                        ? 'To claim this zone, take a photo at the location and upload it below.'
+                        : currentZone!.taskType == 'question'
+                            ? 'To claim this zone, answer the question below.'
+                            : 'To claim this zone, scan the QR code at the location.',
+                    style: baseTextStyle.copyWith(
+                        fontSize: 14, color: Colors.white54),
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 32),
+            Center(
+              child: Column(
+                children: [
+                  const SizedBox(height: 16),
+                  if (error)
+                    Column(
+                      children: [
+                        const FaIcon(
+                          FontAwesomeIcons.triangleExclamation,
+                          size: 100,
+                          color: Colors.red,
+                        ),
+                        Text(
+                          'Error getting location data',
+                          style: baseTextStyle.copyWith(
+                            fontSize: 24,
+                            fontWeight: FontWeight.w700,
+                            color: Colors.red,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                        Text(
+                          'Try moving your device to help it pick up a location signal. Ensure location devices are enabled.',
+                          style: baseTextStyle.copyWith(
+                            fontSize: 16,
+                            color: Get.isDarkMode
+                                ? Colors.white54
+                                : Colors.black54,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                      ],
+                    ),
+                  if (distanceMeters.toInt() > currentZone!.radius && !error)
+                    Column(
+                      children: [
+                        const FaIcon(
+                          FontAwesomeIcons.locationPinLock,
+                          size: 100,
+                          color: Colors.red,
+                        ),
+                        Text(
+                          'You are ${distanceMeters.toInt() - currentZone!.radius} meters (${((distanceMeters.toInt() - currentZone!.radius) * 3.28084).toInt()} feet) away from this zone',
+                          style: baseTextStyle.copyWith(
+                            fontSize: 24,
+                            fontWeight: FontWeight.w700,
+                            color: Colors.red,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                        Text(
+                          'Please move closer to the zone to claim it',
+                          style: baseTextStyle.copyWith(
+                            fontSize: 16,
+                            color: Get.isDarkMode
+                                ? Colors.white54
+                                : Colors.black54,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                      ],
+                    ),
+                  if (distanceMeters.toInt() <= currentZone!.radius && !error)
+                    Column(
+                      children: [
+                        const FaIcon(
+                          FontAwesomeIcons.locationDot,
+                          size: 100,
+                          color: Colors.green,
+                        ),
+                        Text(
+                          'You are in the zone!',
+                          style: baseTextStyle.copyWith(
+                            fontSize: 24,
+                            fontWeight: FontWeight.w700,
+                            color: Colors.green,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                        Text(
+                          'Complete the task below to claim it',
+                          style: baseTextStyle.copyWith(
+                            fontSize: 16,
+                            color: Get.isDarkMode
+                                ? Colors.white54
+                                : Colors.black54,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                      ],
+                    ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 48),
+            if (currentZone!.taskType == 'selfie' &&
+                distanceMeters <= currentZone!.radius &&
+                !error)
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Task:',
+                    style: baseTextStyle.copyWith(
+                      fontSize: 22,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                  if (currentZone!.clue == null || currentZone!.clue!.isEmpty)
+                    Text(
+                      'Take a photo at the location',
                       style: baseTextStyle.copyWith(
-                        fontSize: 22,
+                        fontSize: 20,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  if (currentZone!.clue != null &&
+                      currentZone!.clue!.isNotEmpty)
+                    Text(
+                      currentZone!.clue!,
+                      style: baseTextStyle.copyWith(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  const SizedBox(height: 16),
+                  SizedBox(
+                    width: double.infinity,
+                    child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          padding: const EdgeInsets.symmetric(vertical: 16),
+                          backgroundColor: Colors.green,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                        ),
+                        onPressed: () {
+                          perm.Permission.camera.request();
+                          _takePhotoAndUpload();
+                        },
+                        child: Text(
+                          'Take a selfie',
+                          style: GoogleFonts.spaceGrotesk(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          ),
+                        )),
+                  ),
+                ],
+              ),
+            if (currentZone!.taskType == 'question' &&
+                distanceMeters <= currentZone!.radius &&
+                !error)
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Task:',
+                    style: baseTextStyle.copyWith(
+                      fontSize: 22,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                  Text(
+                    'Answer the question below',
+                    style: baseTextStyle.copyWith(
+                      fontSize: 20,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  ListTile(
+                    contentPadding: const EdgeInsets.all(0),
+                    leading: const FaIcon(FontAwesomeIcons.solidCircleQuestion),
+                    title: Text(
+                      currentZone!.clue!,
+                      style: baseTextStyle.copyWith(
+                        fontSize: 24,
                         fontWeight: FontWeight.w700,
                       ),
                     ),
                   ),
-                ),
-              ),
-              Column(
-                children: [
-                  Row(
-                    children: [
-                      Text(
-                        ' ${currentZone!.points}',
-                        style: baseTextStyle.copyWith(
-                          fontSize: 20,
-                        ),
+                  const SizedBox(height: 8),
+                  TextField(
+                    decoration: InputDecoration(
+                      labelText: 'Answer',
+                      labelStyle: baseTextStyle.copyWith(color: Colors.white70),
+                      filled: true,
+                      fillColor: Colors.grey[800],
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(12),
+                        borderSide: BorderSide.none,
                       ),
-                      const SizedBox(width: 8),
-                      const FaIcon(
-                        FontAwesomeIcons.trophy,
-                        size: 20,
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(12),
+                        borderSide: BorderSide.none,
                       ),
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      Text(
-                        ' ${currentZone!.coins}',
-                        style: baseTextStyle.copyWith(
-                          fontSize: 20,
-                        ),
-                      ),
-                      const SizedBox(width: 8),
-                      const FaIcon(
-                        FontAwesomeIcons.coins,
-                        size: 20,
-                      ),
-                    ],
+                    ),
+                    onChanged: (value) {
+                      answer = value;
+                    },
+                    onEditingComplete: () async {
+                      int r = ratio(answer.toLowerCase().trim(),
+                          currentZone!.answer!.toLowerCase().trim());
+                      if (r > 80) {
+                        bool canClaim = await canClaimZone(
+                            curGame!.gameId, curPlayer!, currentZone!.zoneId);
+                        if (!canClaim) {
+                          return;
+                        }
+                        cGame!.logMessages.add(LogMessage(
+                          message:
+                              '${curPlayer!.teamName} has claimed ${currentZone!.zoneName} for ${currentZone!.points} points and ${currentZone!.coins} coins.',
+                          timestamp: DateTime.now(),
+                          displayName: 'Zone Claimed!',
+                          uid: FirebaseAuth.instance.currentUser!.uid,
+                        ));
+                        cGame!.players
+                            .firstWhere((element) =>
+                                element.playerId == curPlayer!.playerId)
+                            .points += currentZone!.points;
+                        cGame!.players
+                            .firstWhere((element) =>
+                                element.playerId == curPlayer!.playerId)
+                            .coinBalance += currentZone!.coins;
+                        cGame!.players
+                            .firstWhere((element) =>
+                                element.playerId == curPlayer!.playerId)
+                            .zonesClaimed
+                            .add(currentZone!.zoneId);
+                        updateGame(cGame!);
+                        Get.off(() => const ZoneClaimed());
+                      }
+                    },
                   ),
                 ],
               ),
-            ],
-          ),
-          const SizedBox(height: 8),
-          GestureDetector(
-            onTap: () async {
-              final availableMaps = await MapLauncher.installedMaps;
-              try {
-                await availableMaps.first.showMarker(
-                  coords: Coords(
-                    currentZone!.location.latitude,
-                    currentZone!.location.longitude,
-                  ),
-                  title: currentZone!.zoneName,
-                );
-              } catch (e) {
-                print(e);
-              }
-            },
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                const FaIcon(
-                  FontAwesomeIcons.locationArrow,
-                  color: Colors.blue,
-                  size: 16,
-                ),
-                const SizedBox(width: 8),
-                Text(
-                  'GET DIRECTIONS',
-                  style: GoogleFonts.spaceGrotesk(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w800,
-                    color: Colors.blue,
-                  ),
-                ),
-              ],
-            ),
-          ),
-          const SizedBox(height: 16),
-          Row(
-            children: [
-              const Icon(Icons.info, color: Colors.white54, size: 16),
-              const SizedBox(width: 8),
-              Expanded(
-                child: Text(
-                  currentZone!.taskType == 'selfie'
-                      ? 'To claim this zone, take a photo at the location and upload it below.'
-                      : currentZone!.taskType == 'question'
-                          ? 'To claim this zone, answer the question below.'
-                          : 'To claim this zone, scan the QR code at the location.',
-                  style: baseTextStyle.copyWith(
-                      fontSize: 14, color: Colors.white54),
-                ),
-              ),
-            ],
-          ),
-          const SizedBox(height: 32),
-          Center(
-            child: Column(
-              children: [
-                const SizedBox(height: 16),
-                if (error)
-                  Column(
-                    children: [
-                      const FaIcon(
-                        FontAwesomeIcons.triangleExclamation,
-                        size: 100,
-                        color: Colors.red,
-                      ),
-                      Text(
-                        'Error getting location data',
-                        style: baseTextStyle.copyWith(
-                          fontSize: 24,
-                          fontWeight: FontWeight.w700,
-                          color: Colors.red,
-                        ),
-                        textAlign: TextAlign.center,
-                      ),
-                      Text(
-                        'Try moving your device to help it pick up a location signal. Ensure location devices are enabled.',
-                        style: baseTextStyle.copyWith(
-                          fontSize: 16,
-                          color:
-                              Get.isDarkMode ? Colors.white54 : Colors.black54,
-                        ),
-                        textAlign: TextAlign.center,
-                      ),
-                    ],
-                  ),
-                if (distanceMeters.toInt() > currentZone!.radius && !error)
-                  Column(
-                    children: [
-                      const FaIcon(
-                        FontAwesomeIcons.locationPinLock,
-                        size: 100,
-                        color: Colors.red,
-                      ),
-                      Text(
-                        'You are ${distanceMeters.toInt() - currentZone!.radius} meters (${((distanceMeters.toInt() - currentZone!.radius) * 3.28084).toInt()} feet) away from this zone',
-                        style: baseTextStyle.copyWith(
-                          fontSize: 24,
-                          fontWeight: FontWeight.w700,
-                          color: Colors.red,
-                        ),
-                        textAlign: TextAlign.center,
-                      ),
-                      Text(
-                        'Please move closer to the zone to claim it',
-                        style: baseTextStyle.copyWith(
-                          fontSize: 16,
-                          color:
-                              Get.isDarkMode ? Colors.white54 : Colors.black54,
-                        ),
-                        textAlign: TextAlign.center,
-                      ),
-                    ],
-                  ),
-                if (distanceMeters.toInt() <= currentZone!.radius && !error)
-                  Column(
-                    children: [
-                      const FaIcon(
-                        FontAwesomeIcons.locationDot,
-                        size: 100,
-                        color: Colors.green,
-                      ),
-                      Text(
-                        'You are in the zone!',
-                        style: baseTextStyle.copyWith(
-                          fontSize: 24,
-                          fontWeight: FontWeight.w700,
-                          color: Colors.green,
-                        ),
-                        textAlign: TextAlign.center,
-                      ),
-                      Text(
-                        'Complete the task below to claim it',
-                        style: baseTextStyle.copyWith(
-                          fontSize: 16,
-                          color:
-                              Get.isDarkMode ? Colors.white54 : Colors.black54,
-                        ),
-                        textAlign: TextAlign.center,
-                      ),
-                    ],
-                  ),
-              ],
-            ),
-          ),
-          const SizedBox(height: 48),
-          if (currentZone!.taskType == 'selfie' &&
-              distanceMeters <= currentZone!.radius &&
-              !error)
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Task:',
-                  style: baseTextStyle.copyWith(
-                    fontSize: 22,
-                    fontWeight: FontWeight.w700,
-                  ),
-                ),
-                if (currentZone!.clue == null || currentZone!.clue!.isEmpty)
+            if (currentZone!.taskType == 'qrcode' &&
+                distanceMeters <= currentZone!.radius &&
+                !error)
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
                   Text(
-                    'Take a photo at the location',
+                    'Task:',
                     style: baseTextStyle.copyWith(
-                      fontSize: 20,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                if (currentZone!.clue != null && currentZone!.clue!.isNotEmpty)
-                  Text(
-                    currentZone!.clue!,
-                    style: baseTextStyle.copyWith(
-                      fontSize: 20,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                const SizedBox(height: 16),
-                SizedBox(
-                  width: double.infinity,
-                  child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        padding: const EdgeInsets.symmetric(vertical: 16),
-                        backgroundColor: Colors.green,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                      ),
-                      onPressed: () {
-                        perm.Permission.camera.request();
-                        _takePhotoAndUpload();
-                      },
-                      child: Text(
-                        'Take a selfie',
-                        style: GoogleFonts.spaceGrotesk(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                        ),
-                      )),
-                ),
-              ],
-            ),
-          if (currentZone!.taskType == 'question' &&
-              distanceMeters <= currentZone!.radius &&
-              !error)
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Task:',
-                  style: baseTextStyle.copyWith(
-                    fontSize: 22,
-                    fontWeight: FontWeight.w700,
-                  ),
-                ),
-                Text(
-                  'Answer the question below',
-                  style: baseTextStyle.copyWith(
-                    fontSize: 20,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-                const SizedBox(height: 8),
-                ListTile(
-                  contentPadding: const EdgeInsets.all(0),
-                  leading: const FaIcon(FontAwesomeIcons.solidCircleQuestion),
-                  title: Text(
-                    currentZone!.clue!,
-                    style: baseTextStyle.copyWith(
-                      fontSize: 24,
+                      fontSize: 22,
                       fontWeight: FontWeight.w700,
                     ),
                   ),
-                ),
-                const SizedBox(height: 8),
-                TextField(
-                  decoration: InputDecoration(
-                    labelText: 'Answer',
-                    labelStyle: baseTextStyle.copyWith(color: Colors.white70),
-                    filled: true,
-                    fillColor: Colors.grey[800],
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12),
-                      borderSide: BorderSide.none,
-                    ),
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12),
-                      borderSide: BorderSide.none,
+                  Text(
+                    'Scan the QR code at the location',
+                    style: baseTextStyle.copyWith(
+                      fontSize: 20,
+                      fontWeight: FontWeight.w500,
                     ),
                   ),
-                  onChanged: (value) {
-                    answer = value;
-                  },
-                  onEditingComplete: () async {
-                    int r = ratio(answer.toLowerCase().trim(),
-                        currentZone!.answer!.toLowerCase().trim());
-                    if (r > 80) {
-                      bool canClaim = await canClaimZone(
-                          curGame!.gameId, curPlayer!, currentZone!.zoneId);
-                      if (!canClaim) {
-                        return;
-                      }
-                      cGame!.logMessages.add(LogMessage(
-                        message:
-                            '${curPlayer!.teamName} has claimed ${currentZone!.zoneName} for ${currentZone!.points} points and ${currentZone!.coins} coins.',
-                        timestamp: DateTime.now(),
-                        displayName: 'Zone Claimed!',
-                        uid: FirebaseAuth.instance.currentUser!.uid,
-                      ));
-                      cGame!.players
-                          .firstWhere((element) =>
-                              element.playerId == curPlayer!.playerId)
-                          .points += currentZone!.points;
-                      cGame!.players
-                          .firstWhere((element) =>
-                              element.playerId == curPlayer!.playerId)
-                          .coinBalance += currentZone!.coins;
-                      cGame!.players
-                          .firstWhere((element) =>
-                              element.playerId == curPlayer!.playerId)
-                          .zonesClaimed
-                          .add(currentZone!.zoneId);
-                      updateGame(cGame!);
-                      Get.off(() => const ZoneClaimed());
-                    }
-                  },
-                ),
-              ],
-            ),
-          if (currentZone!.taskType == 'qrcode' &&
-              distanceMeters <= currentZone!.radius &&
-              !error)
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Task:',
-                  style: baseTextStyle.copyWith(
-                    fontSize: 22,
-                    fontWeight: FontWeight.w700,
-                  ),
-                ),
-                Text(
-                  'Scan the QR code at the location',
-                  style: baseTextStyle.copyWith(
-                    fontSize: 20,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-                const SizedBox(height: 16),
-                SizedBox(
-                  width: double.infinity,
-                  child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        padding: const EdgeInsets.symmetric(vertical: 16),
-                        backgroundColor: Colors.green,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                      ),
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const QRView(),
+                  const SizedBox(height: 16),
+                  SizedBox(
+                    width: double.infinity,
+                    child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          padding: const EdgeInsets.symmetric(vertical: 16),
+                          backgroundColor: Colors.green,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12),
                           ),
-                        );
-                      },
-                      child: Text(
-                        'Scan QR code',
-                        style: GoogleFonts.spaceGrotesk(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
                         ),
-                      )),
-                ),
-              ],
-            ),
-          if (distanceMeters <= currentZone!.radius && !error)
-            Column(
-              children: [
-                const SizedBox(height: 16),
-                Row(children: [
-                  const Expanded(child: Divider()),
-                  Text("  OR  ",
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const QRView(),
+                            ),
+                          );
+                        },
+                        child: Text(
+                          'Scan QR code',
+                          style: GoogleFonts.spaceGrotesk(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          ),
+                        )),
+                  ),
+                ],
+              ),
+            if (distanceMeters <= currentZone!.radius && !error)
+              Column(
+                children: [
+                  const SizedBox(height: 16),
+                  Row(children: [
+                    const Expanded(child: Divider()),
+                    Text("  OR  ",
+                        style: baseTextStyle.copyWith(
+                            color: Theme.of(context).dividerTheme.color,
+                            fontWeight: FontWeight.w700)),
+                    const Expanded(child: Divider()),
+                  ]),
+                  const SizedBox(height: 8),
+                  ListTile(
+                    contentPadding: const EdgeInsets.all(0),
+                    leading: Container(
+                      height: 50,
+                      width: 50,
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: Colors.purple,
+                      ),
+                      child: const FaIcon(
+                        FontAwesomeIcons.forward,
+                        color: Colors.white,
+                        size: 28,
+                      ),
+                    ),
+                    title: Text(
+                      'Skip the Task',
                       style: baseTextStyle.copyWith(
-                          color: Theme.of(context).dividerTheme.color,
-                          fontWeight: FontWeight.w700)),
-                  const Expanded(child: Divider()),
-                ]),
-                const SizedBox(height: 8),
-                ListTile(
-                  contentPadding: const EdgeInsets.all(0),
-                  leading: Container(
-                    height: 50,
-                    width: 50,
-                    alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: Colors.purple,
+                        fontSize: 24,
+                        fontWeight: FontWeight.w700,
+                      ),
                     ),
-                    child: const FaIcon(
-                      FontAwesomeIcons.forward,
-                      color: Colors.white,
-                      size: 28,
+                    subtitle: Text(
+                      curPlayer!.skips > 0
+                          ? 'You have ${curPlayer!.skips} skips remaining'
+                          : 'You have no skips available',
+                      style: baseTextStyle.copyWith(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w500,
+                        color: Get.isDarkMode ? Colors.white54 : Colors.black54,
+                      ),
                     ),
-                  ),
-                  title: Text(
-                    'Skip the Task',
-                    style: baseTextStyle.copyWith(
-                      fontSize: 24,
-                      fontWeight: FontWeight.w700,
-                    ),
-                  ),
-                  subtitle: Text(
-                    curPlayer!.skips > 0
-                        ? 'You have ${curPlayer!.skips} skips remaining'
-                        : 'You have no skips available',
-                    style: baseTextStyle.copyWith(
-                      fontSize: 20,
-                      fontWeight: FontWeight.w500,
-                      color: Get.isDarkMode ? Colors.white54 : Colors.black54,
-                    ),
-                  ),
-                  trailing: curPlayer!.skips > 0
-                      ? const Icon(FontAwesomeIcons.angleRight)
-                      : null,
-                  onTap: () async {
-                    if (curPlayer!.skips > 0) {
-                      bool canClaim = await canClaimZone(
-                          curGame!.gameId, curPlayer!, currentZone!.zoneId);
-                      if (!canClaim) {
-                        return;
+                    trailing: curPlayer!.skips > 0
+                        ? const Icon(FontAwesomeIcons.angleRight)
+                        : null,
+                    onTap: () async {
+                      if (curPlayer!.skips > 0) {
+                        bool canClaim = await canClaimZone(
+                            curGame!.gameId, curPlayer!, currentZone!.zoneId);
+                        if (!canClaim) {
+                          return;
+                        }
+                        cGame!.logMessages.add(LogMessage(
+                          message:
+                              '${curPlayer!.teamName} has skipped the task for ${currentZone!.zoneName}.',
+                          timestamp: DateTime.now(),
+                          displayName: 'Task Skipped!',
+                          uid: FirebaseAuth.instance.currentUser!.uid,
+                        ));
+                        cGame!.players
+                            .firstWhere((element) =>
+                                element.playerId == curPlayer!.playerId)
+                            .skips -= 1;
+                        cGame!.players
+                            .firstWhere((element) =>
+                                element.playerId == curPlayer!.playerId)
+                            .points += currentZone!.points;
+                        cGame!.players
+                            .firstWhere((element) =>
+                                element.playerId == curPlayer!.playerId)
+                            .coinBalance += currentZone!.coins;
+                        cGame!.players
+                            .firstWhere((element) =>
+                                element.playerId == curPlayer!.playerId)
+                            .zonesClaimed
+                            .add(currentZone!.zoneId);
+                        updateGame(cGame!);
+                        Get.off(() => const ZoneClaimed());
                       }
-                      cGame!.logMessages.add(LogMessage(
-                        message:
-                            '${curPlayer!.teamName} has skipped the task for ${currentZone!.zoneName}.',
-                        timestamp: DateTime.now(),
-                        displayName: 'Task Skipped!',
-                        uid: FirebaseAuth.instance.currentUser!.uid,
-                      ));
-                      cGame!.players
-                          .firstWhere((element) =>
-                              element.playerId == curPlayer!.playerId)
-                          .skips -= 1;
-                      cGame!.players
-                          .firstWhere((element) =>
-                              element.playerId == curPlayer!.playerId)
-                          .points += currentZone!.points;
-                      cGame!.players
-                          .firstWhere((element) =>
-                              element.playerId == curPlayer!.playerId)
-                          .coinBalance += currentZone!.coins;
-                      cGame!.players
-                          .firstWhere((element) =>
-                              element.playerId == curPlayer!.playerId)
-                          .zonesClaimed
-                          .add(currentZone!.zoneId);
-                      updateGame(cGame!);
-                      Get.off(() => const ZoneClaimed());
-                    }
-                  },
-                ),
-              ],
-            ),
-          const SizedBox(height: 16),
-        ],
+                    },
+                  ),
+                ],
+              ),
+            const SizedBox(height: 16),
+          ],
+        ),
       ),
     );
+  }
+
+  IconData _getTaskIcon(String taskType) {
+    switch (taskType) {
+      case 'question':
+        return FontAwesomeIcons.question;
+      case 'selfie':
+        return FontAwesomeIcons.camera;
+      case 'qrcode':
+        return FontAwesomeIcons.qrcode;
+      default:
+        return FontAwesomeIcons.locationDot;
+    }
   }
 }

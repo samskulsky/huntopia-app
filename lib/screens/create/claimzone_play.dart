@@ -269,6 +269,12 @@ class _ClaimZonePlayState extends State<ClaimZonePlay> {
     }
 
     String gameId = generateRandomString(6);
+
+    // For each zone, set originalPoints to points
+    for (var zone in gameTemplate.zones!) {
+      zone.originalPoints = zone.points;
+    }
+
     Game game = Game(
       gameId: gameId,
       hostUid: FirebaseAuth.instance.currentUser!.uid,
