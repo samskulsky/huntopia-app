@@ -367,7 +367,8 @@ class _ClaimZoneAddItemState extends State<ClaimZoneAddItem> {
           ),
         ),
         child: ListTile(
-          contentPadding: const EdgeInsets.all(20),
+          contentPadding:
+              const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
           leading: Container(
             width: 40,
             height: 40,

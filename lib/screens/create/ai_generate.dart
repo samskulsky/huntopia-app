@@ -1,22 +1,17 @@
-import 'dart:convert';
+import 'dart:async';
 import 'dart:ui';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:dart_openai/dart_openai.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:scavhuntapp/utils/toastification_helper.dart';
-import 'package:toastification/toastification.dart';
-import 'package:uuid/uuid.dart';
-import 'package:http/http.dart' as http;
 
-import '../../models/game_template.dart';
 import '../../utils/theme_data.dart';
+import '../../widgets/gradient_background.dart';
 import '../home_screen.dart';
+import '../../utils/game_utils.dart';
 
 class AIGenerate extends StatefulWidget {
   const AIGenerate({super.key});
@@ -27,957 +22,715 @@ class AIGenerate extends StatefulWidget {
 
 class _AIGenerateState extends State<AIGenerate> {
   TextEditingController gameDescriptionController = TextEditingController();
-  bool isLoading = false;
+  StreamSubscription<QuerySnapshot>? _requestsSubscription;
+  List<DocumentSnapshot> activeRequests = [];
 
-  String loadingMessage = "Initializing...";
-  int totalZones = 0;
-  int zonesGenerated = 0;
+  @override
+  void initState() {
+    super.initState();
+    _listenToRequests();
+  }
 
-  // ignore: non_constant_identifier_names
-  static String GEOAPIFY_API_KEY = dotenv.env['GEOAPIFY_KEY'].toString();
+  @override
+  void dispose() {
+    _requestsSubscription?.cancel();
+    super.dispose();
+  }
+
+  void _listenToRequests() {
+    final userId = FirebaseAuth.instance.currentUser!.uid;
+    _requestsSubscription = FirebaseFirestore.instance
+        .collection('aiGameRequests')
+        .where('userId', isEqualTo: userId)
+        .where('status', whereIn: ['pending', 'processing'])
+        .orderBy('createdAt', descending: true)
+        .snapshots()
+        .listen((snapshot) {
+          setState(() {
+            activeRequests = snapshot.docs;
+          });
+        });
+  }
+
+  Future<void> _createGameRequest(
+      int totalZones, String model, int tokenCost) async {
+    if (gameDescriptionController.text.isEmpty) {
+      ToastificationHelper.showErrorToast(
+          context, 'Please enter a game description.');
+      return;
+    }
+
+    try {
+      currentUser!.tokens -= tokenCost;
+      await FirebaseFirestore.instance.collection('aiGameRequests').add({
+        'userId': FirebaseAuth.instance.currentUser!.uid,
+        'description': gameDescriptionController.text,
+        'totalZones': totalZones,
+        'status': 'pending',
+        'message': 'Request created',
+        'createdAt': FieldValue.serverTimestamp(),
+        'model': model,
+      });
+
+      await FirebaseFirestore.instance
+          .collection('users')
+          .doc(currentUser!.uid)
+          .update({'tokens': currentUser!.tokens});
+
+      gameDescriptionController.clear();
+      ToastificationHelper.showSuccessToast(
+          context, 'Game generation started! Check back soon.');
+    } catch (e) {
+      ToastificationHelper.showErrorToast(
+          context, 'Error creating game request: $e');
+    }
+  }
+
+  void _showTokenRequestDialog() {
+    final TextEditingController amountController = TextEditingController();
+    final TextEditingController reasonController = TextEditingController();
+
+    showStandardDialog(
+      context: context,
+      title: 'Request Tokens',
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'We will review your request, and if approved, you will receive your tokens within 7 days (usually much faster).',
+            style: baseTextStyle.copyWith(
+              fontSize: 14,
+              color: Colors.white70,
+            ),
+          ),
+          const SizedBox(height: 12),
+          Text(
+            'How many tokens do you need?',
+            style: baseTextStyle.copyWith(
+              fontSize: 14,
+              color: Colors.white70,
+            ),
+          ),
+          const SizedBox(height: 12),
+          TextFormField(
+            controller: amountController,
+            keyboardType: TextInputType.number,
+            decoration: InputDecoration(
+              hintText: 'Enter amount',
+              hintStyle: baseTextStyle.copyWith(color: Colors.white38),
+              filled: true,
+              fillColor: Colors.white.withOpacity(0.05),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(12),
+                borderSide: BorderSide.none,
+              ),
+              enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(12),
+                borderSide: BorderSide(color: Colors.white.withOpacity(0.1)),
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(12),
+                borderSide: BorderSide(color: Colors.green.shade400),
+              ),
+              contentPadding: const EdgeInsets.all(16),
+            ),
+            style: baseTextStyle,
+          ),
+          const SizedBox(height: 16),
+          Text(
+            'What will you use them for?',
+            style: baseTextStyle.copyWith(
+              fontSize: 14,
+              color: Colors.white70,
+            ),
+          ),
+          const SizedBox(height: 12),
+          TextFormField(
+            controller: reasonController,
+            maxLines: 3,
+            decoration: InputDecoration(
+              hintText: 'Briefly describe your planned usage',
+              hintStyle: baseTextStyle.copyWith(color: Colors.white38),
+              filled: true,
+              fillColor: Colors.white.withOpacity(0.05),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(12),
+                borderSide: BorderSide.none,
+              ),
+              enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(12),
+                borderSide: BorderSide(color: Colors.white.withOpacity(0.1)),
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(12),
+                borderSide: BorderSide(color: Colors.green.shade400),
+              ),
+              contentPadding: const EdgeInsets.all(16),
+            ),
+            style: baseTextStyle,
+          ),
+        ],
+      ),
+      actions: [
+        buildDialogAction(
+          text: 'Request',
+          isPrimary: true,
+          onPressed: () async {
+            if (amountController.text.isEmpty ||
+                reasonController.text.isEmpty) {
+              ToastificationHelper.showErrorToast(
+                  context, 'Please fill in all fields');
+              return;
+            }
+
+            final amount = int.tryParse(amountController.text);
+            if (amount == null || amount <= 0) {
+              ToastificationHelper.showErrorToast(
+                  context, 'Please enter a valid amount');
+              return;
+            }
+
+            try {
+              await FirebaseFirestore.instance.collection('tokenRequests').add({
+                'userId': currentUser!.uid,
+                'userName': currentUser!.displayName,
+                'amount': amount,
+                'reason': reasonController.text,
+                'status': 'pending',
+                'createdAt': FieldValue.serverTimestamp(),
+              });
+
+              Navigator.pop(context);
+              ToastificationHelper.showSuccessToast(
+                  context, 'Token request submitted');
+            } catch (e) {
+              ToastificationHelper.showErrorToast(
+                  context, 'Error submitting request');
+            }
+          },
+        ),
+      ],
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+          icon: const FaIcon(FontAwesomeIcons.xmark, color: Colors.white70),
+          onPressed: () => Get.offAll(() => const HomeScreen()),
+        ),
         title: Text(
-          'Generate Game Using AI',
+          'AI Game Creator',
           style: baseTextStyle.copyWith(
             fontSize: 28,
             fontWeight: FontWeight.w600,
             letterSpacing: -0.5,
           ),
         ),
-        leading: IconButton(
-          icon: const FaIcon(FontAwesomeIcons.xmark, color: Colors.white70),
-          onPressed:
-              isLoading ? null : () => Get.offAll(() => const HomeScreen()),
-        ),
         backgroundColor: Colors.black,
         elevation: 0,
       ),
       backgroundColor: Colors.black,
-      body: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [
-              Colors.black,
-              Colors.green.shade900.withOpacity(0.3),
-              Colors.black,
-            ],
-          ),
-        ),
-        child: Stack(
-          children: [
-            ListView(
-              padding: const EdgeInsets.all(20),
-              children: [
-                Text(
-                  'Use AI to generate a game for you!',
-                  style: baseTextStyle.copyWith(
-                    fontSize: 20,
-                    fontWeight: FontWeight.w600,
-                    letterSpacing: -0.5,
-                  ),
+      body: GradientBackground(
+        child: SafeArea(
+          child: ListView(
+            padding: const EdgeInsets.all(16),
+            children: [
+              Text(
+                'Describe Your Game',
+                style: baseTextStyle.copyWith(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w600,
                 ),
-                const SizedBox(height: 12),
-                Text(
-                  'In order to successfully generate a game using AI, provide a brief description of the game you want to create. The more detailed the description, the better the game will be!',
-                  style: baseTextStyle.copyWith(
-                    fontSize: 16,
-                    color: Colors.white70,
-                    height: 1.5,
-                  ),
+              ),
+              const SizedBox(height: 4),
+              Text(
+                'Be specific about locations and game style',
+                style: baseTextStyle.copyWith(
+                  fontSize: 13,
+                  color: Colors.white60,
                 ),
-                const SizedBox(height: 24),
-                _buildDescriptionTextField(),
-                const SizedBox(height: 12),
-                Text(
-                  'You currently have ${currentUser!.tokens} token${currentUser!.tokens == 1 ? '' : 's'} remaining.',
-                  style: baseTextStyle.copyWith(
-                    fontSize: 14,
-                    color: Colors.white70,
+              ),
+              const SizedBox(height: 12),
+              TextFormField(
+                controller: gameDescriptionController,
+                decoration: InputDecoration(
+                  hintText:
+                      'Example: Historical downtown tour with stops at courthouse, town square, and monuments...',
+                  hintStyle: baseTextStyle.copyWith(color: Colors.white38),
+                  filled: true,
+                  fillColor: Colors.white.withOpacity(0.05),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                    borderSide: BorderSide.none,
                   ),
-                ),
-                const SizedBox(height: 8),
-                Text(
-                  'We recommend using the basic model for most games. If you need a larger game, use the advanced model.',
-                  style: baseTextStyle.copyWith(
-                    fontSize: 14,
-                    color: Colors.white70,
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                    borderSide:
+                        BorderSide(color: Colors.white.withOpacity(0.1)),
                   ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                    borderSide: BorderSide(color: Colors.green.shade400),
+                  ),
+                  contentPadding: const EdgeInsets.all(16),
                 ),
-                const SizedBox(height: 32),
-                if (!isLoading && currentUser!.tokens >= 1)
-                  _buildGenerateButton(),
-                if (!isLoading && currentUser!.tokens >= 15) ...[
-                  const SizedBox(height: 12),
-                  _buildGenerateButton2(),
-                ],
-                if (!isLoading && currentUser!.tokens >= 50) ...[
-                  const SizedBox(height: 12),
-                  _buildGenerateButton3(),
-                ],
-                if (currentUser!.tokens < 1) _buildBuyButton(),
-              ],
-            ),
-            if (isLoading)
+                maxLines: 4,
+                maxLength: 300,
+                style: baseTextStyle.copyWith(color: Colors.white),
+              ),
+              const SizedBox(height: 24),
               Container(
-                color: Colors.black.withOpacity(0.9),
+                decoration: BoxDecoration(
+                  color: Colors.white.withOpacity(0.05),
+                  borderRadius: BorderRadius.circular(12),
+                  border: Border.all(color: Colors.white.withOpacity(0.1)),
+                ),
+                padding: const EdgeInsets.all(16),
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const SpinKitFadingCube(
-                      color: Colors.white,
-                      size: 50.0,
-                    ),
-                    const SizedBox(height: 24),
                     Text(
-                      loadingMessage,
-                      style: baseTextStyle.copyWith(color: Colors.white),
+                      'Tips for Better Results',
+                      style: baseTextStyle.copyWith(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    const SizedBox(height: 12),
+                    _buildTip(
+                      icon: Icons.tips_and_updates_outlined,
+                      text:
+                          'The more specific your description, the better your game will be!',
+                    ),
+                    const SizedBox(height: 12),
+                    _buildTip(
+                      icon: Icons.place_outlined,
+                      text:
+                          'Include specific location names and landmarks you want in your game.',
+                    ),
+                    const SizedBox(height: 12),
+                    _buildTip(
+                      icon: Icons.format_list_bulleted,
+                      text:
+                          'Add details about difficulty, theme, and any special requirements.',
                     ),
                   ],
                 ),
               ),
+              const SizedBox(height: 24),
+              if (activeRequests.isNotEmpty) ...[
+                Container(
+                  decoration: BoxDecoration(
+                    color: Colors.white.withOpacity(0.05),
+                    borderRadius: BorderRadius.circular(12),
+                    border: Border.all(color: Colors.white.withOpacity(0.1)),
+                  ),
+                  padding: const EdgeInsets.all(16),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Active Generations',
+                        style: baseTextStyle.copyWith(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                      const SizedBox(height: 4),
+                      Text(
+                        'Generation can take up to 10 minutes',
+                        style: baseTextStyle.copyWith(
+                          fontSize: 13,
+                          color: Colors.white60,
+                        ),
+                      ),
+                      const SizedBox(height: 16),
+                      ...activeRequests.map((request) {
+                        final data = request.data() as Map<String, dynamic>;
+                        return _buildRequestTile(
+                          status: data['status'] as String,
+                          message: data['message'] as String,
+                          description: data['description'] as String,
+                          isFirst: request == activeRequests.first,
+                          isLast: request == activeRequests.last,
+                        );
+                      }).toList(),
+                    ],
+                  ),
+                ),
+                const SizedBox(height: 24),
+              ],
+              Container(
+                decoration: BoxDecoration(
+                  color: Colors.white.withOpacity(0.05),
+                  borderRadius: BorderRadius.circular(12),
+                  border: Border.all(color: Colors.white.withOpacity(0.1)),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(16),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Choose Model',
+                            style: baseTextStyle.copyWith(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                          Text(
+                            'You have ${currentUser!.tokens} tokens remaining',
+                            style: baseTextStyle.copyWith(
+                              fontSize: 13,
+                              color: Colors.white60,
+                            ),
+                          ),
+                          if (currentUser!.tokens < 1) ...[
+                            const SizedBox(height: 12),
+                            Text(
+                              'Request more tokens by clicking the button below.',
+                              style: baseTextStyle.copyWith(
+                                fontSize: 13,
+                                color: Colors.white60,
+                              ),
+                            ),
+                          ],
+                        ],
+                      ),
+                    ),
+                    if (currentUser!.tokens >= 1)
+                      _buildModelTile(
+                        title: 'Basic Model',
+                        subtitle: 'Fewer zones • 1 token',
+                        onTap: () => _createGameRequest(40, "gpt-4o-mini", 1),
+                        isFirst: true,
+                        isLast: currentUser!.tokens < 15,
+                      ),
+                    if (currentUser!.tokens >= 15) ...[
+                      Divider(color: Colors.white.withOpacity(0.1), height: 1),
+                      _buildModelTile(
+                        title: 'Advanced Model',
+                        subtitle: 'More zones • 15 tokens',
+                        onTap: () => _createGameRequest(50, "gpt-4o", 15),
+                        isLast: currentUser!.tokens < 50,
+                      ),
+                    ],
+                    if (currentUser!.tokens >= 50) ...[
+                      Divider(color: Colors.white.withOpacity(0.1), height: 1),
+                      _buildModelTile(
+                        title: 'Expert Model',
+                        subtitle: 'Many zones • 50 tokens',
+                        onTap: () => _createGameRequest(165, "gpt-4o", 50),
+                        isLast: true,
+                      ),
+                    ],
+                  ],
+                ),
+              ),
+              if (currentUser!.tokens < 1) ...[
+                const SizedBox(height: 16),
+                _buildTokenRequestButton(),
+              ],
+              const SizedBox(height: 32),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildRequestTile({
+    required String status,
+    required String message,
+    required String description,
+    bool isFirst = false,
+    bool isLast = false,
+  }) {
+    // Extract progress percentage if available
+    int? progress;
+    if (message.contains('%')) {
+      final match = RegExp(r'(\d+)%').firstMatch(message);
+      if (match != null) {
+        progress = int.tryParse(match.group(1)!);
+      }
+    }
+
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.vertical(
+          top: isFirst ? const Radius.circular(16) : Radius.zero,
+          bottom: isLast ? const Radius.circular(16) : Radius.zero,
+        ),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                decoration: BoxDecoration(
+                  color: _getStatusColor(status).withOpacity(0.2),
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    if (status == 'processing')
+                      Padding(
+                        padding: const EdgeInsets.only(right: 4),
+                        child: SizedBox(
+                          width: 12,
+                          height: 12,
+                          child: CircularProgressIndicator(
+                            strokeWidth: 2,
+                            valueColor: AlwaysStoppedAnimation<Color>(
+                              _getStatusColor(status),
+                            ),
+                          ),
+                        ),
+                      ),
+                    Text(
+                      status.toUpperCase(),
+                      style: baseTextStyle.copyWith(
+                        fontSize: 12,
+                        color: _getStatusColor(status),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(width: 8),
+              Expanded(
+                child: Text(
+                  message,
+                  style: baseTextStyle.copyWith(
+                    fontSize: 14,
+                    color: Colors.white70,
+                  ),
+                ),
+              ),
+            ],
+          ),
+          if (progress != null) ...[
+            const SizedBox(height: 12),
+            ClipRRect(
+              borderRadius: BorderRadius.circular(4),
+              child: LinearProgressIndicator(
+                value: progress / 100,
+                backgroundColor: Colors.white.withOpacity(0.1),
+                valueColor: AlwaysStoppedAnimation<Color>(
+                  _getStatusColor(status),
+                ),
+              ),
+            ),
+          ],
+          const SizedBox(height: 8),
+          Text(
+            description,
+            style: baseTextStyle.copyWith(
+              fontSize: 14,
+              color: Colors.white54,
+            ),
+            maxLines: 2,
+            overflow: TextOverflow.ellipsis,
+          ),
+        ],
+      ),
+    );
+  }
+
+  Color _getStatusColor(String status) {
+    switch (status) {
+      case 'pending':
+        return Colors.orange;
+      case 'processing':
+        return Colors.blue;
+      case 'completed':
+        return Colors.green;
+      case 'error':
+        return Colors.red;
+      default:
+        return Colors.grey;
+    }
+  }
+
+  Widget _buildModelTile({
+    required String title,
+    required String subtitle,
+    required VoidCallback onTap,
+    bool isFirst = false,
+    bool isLast = false,
+  }) {
+    return InkWell(
+      onTap: onTap,
+      borderRadius: BorderRadius.vertical(
+        top: isFirst ? const Radius.circular(16) : Radius.zero,
+        bottom: isLast ? const Radius.circular(16) : Radius.zero,
+      ),
+      child: Container(
+        padding: const EdgeInsets.all(16),
+        child: Row(
+          children: [
+            Container(
+              width: 40,
+              height: 40,
+              decoration: BoxDecoration(
+                color: Colors.green.withOpacity(0.2),
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: Center(
+                child: FaIcon(
+                  FontAwesomeIcons.wandMagicSparkles,
+                  color: Colors.green.shade400,
+                  size: 20,
+                ),
+              ),
+            ),
+            const SizedBox(width: 16),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    title,
+                    style: baseTextStyle.copyWith(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                  Text(
+                    subtitle,
+                    style: baseTextStyle.copyWith(
+                      fontSize: 14,
+                      color: Colors.white70,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            const FaIcon(
+              FontAwesomeIcons.chevronRight,
+              color: Colors.white70,
+              size: 16,
+            ),
           ],
         ),
       ),
     );
   }
 
-  Widget _buildDescriptionTextField() {
-    return TextFormField(
-      controller: gameDescriptionController,
-      decoration: InputDecoration(
-        hintText:
-            'This game will take you on a journey through the streets of Tokyo, where you will visit famous landmarks and hidden gems.',
-        hintStyle: baseTextStyle.copyWith(color: Colors.white38),
-        filled: true,
-        fillColor: Colors.white.withOpacity(0.1),
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12),
-          borderSide: BorderSide.none,
+  Widget _buildTip({required IconData icon, required String text}) {
+    return Row(
+      children: [
+        Icon(
+          icon,
+          color: Colors.blue.shade300,
+          size: 16,
         ),
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12),
-          borderSide: BorderSide(color: Colors.white.withOpacity(0.1)),
-        ),
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12),
-          borderSide: BorderSide(color: Colors.green.shade400),
-        ),
-        contentPadding: const EdgeInsets.all(16),
-      ),
-      maxLines: 4,
-      maxLength: 300,
-      style: baseTextStyle.copyWith(color: Colors.white),
-    );
-  }
-
-  Widget _buildBuyButton() {
-    return SizedBox(
-      width: double.infinity,
-      child: ElevatedButton(
-        style: ElevatedButton.styleFrom(
-          backgroundColor: Colors.red,
-          padding: const EdgeInsets.symmetric(vertical: 16),
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-        ),
-        onPressed: () async {},
-        child: Text('No Tokens Left',
-            style: baseTextStyle.copyWith(color: Colors.white)),
-      ),
-    );
-  }
-
-  Widget _buildGenerateButton() {
-    totalZones = 40;
-    return ElevatedButton(
-      style: ElevatedButton.styleFrom(
-        backgroundColor: Colors.white.withOpacity(0.1),
-        foregroundColor: Colors.white,
-        padding: const EdgeInsets.all(20),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(16),
-          side: BorderSide(color: Colors.white.withOpacity(0.1)),
-        ),
-        elevation: 0,
-      ),
-      onPressed: () async {
-        FocusScope.of(context).unfocus();
-        model = "gpt-4o-mini";
-        if (gameDescriptionController.text.isEmpty) {
-          ToastificationHelper.showErrorToast(
-              context, 'Please enter a game description.');
-          return;
-        }
-
-        setState(() {
-          isLoading = true;
-          loadingMessage = "Making request...";
-        });
-
-        currentUser!.tokens -= 1;
-        await FirebaseFirestore.instance
-            .collection('users')
-            .doc(currentUser!.uid)
-            .update({'tokens': currentUser!.tokens});
-
-        try {
-          List<OpenAIChatCompletionModel> responses =
-              await _generateMultipleZoneMessages(
-                  gameDescriptionController.text, totalZones, [], []);
-          if (responses.isEmpty) {
-            throw Exception('Failed to generate any responses from GPT');
-          }
-
-          var gameData = await _combineZones(responses);
-
-          var gameTemplate = GameTemplate(
-            templateId: const Uuid().v4(),
-            creatorUid: FirebaseAuth.instance.currentUser!.uid,
-            creatorName: 'AI Game Creator',
-            gameType: 'claimthezone',
-            createdAt: DateTime.now(),
-            lastUpdated: DateTime.now(),
-            zones: gameData['zones'] as List<Zone>,
-            gameName: 'AI Generated Game',
-            gameDescription: gameDescriptionController.text,
-            center: GeoPoint(
-                (gameData['zones'] as List<Zone>).first.location.latitude,
-                (gameData['zones'] as List<Zone>).first.location.longitude),
-            coinShopItems: gameData['coinShopItems'] as List<CoinShopItem>,
-          );
-
-          await saveGameTemplate(gameTemplate);
-
-          _showSuccessToast(
-              'Game Generated Successfully! You can view it in the "My Games" section.');
-        } catch (e) {
-          print('Error: $e');
-          ToastificationHelper.showErrorToast(
-              context, 'Error: Failed to generate game. $e');
-        } finally {
-          setState(() {
-            isLoading = false;
-          });
-          Get.offAll(() => const HomeScreen());
-        }
-      },
-      child: Row(
-        children: [
-          Container(
-            width: 40,
-            height: 40,
-            decoration: BoxDecoration(
-              color: Colors.green.withOpacity(0.2),
-              borderRadius: BorderRadius.circular(10),
+        const SizedBox(width: 12),
+        Expanded(
+          child: Text(
+            text,
+            style: baseTextStyle.copyWith(
+              fontSize: 13,
+              color: Colors.white60,
+              height: 1.4,
             ),
-            child: Center(
-              child: FaIcon(
-                FontAwesomeIcons.wandMagicSparkles,
-                color: Colors.green.shade400,
-                size: 20,
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildTokenRequestButton() {
+    return FutureBuilder<int>(
+      future: _getPendingRequestsCount(),
+      builder: (context, snapshot) {
+        final pendingCount = snapshot.data ?? 0;
+
+        return Material(
+          color: Colors.transparent,
+          child: InkWell(
+            borderRadius: BorderRadius.circular(12),
+            onTap: pendingCount > 0 ? null : _showTokenRequestDialog,
+            child: Container(
+              padding: const EdgeInsets.all(16),
+              decoration: BoxDecoration(
+                color: Colors.purple.withOpacity(pendingCount > 0 ? 0.1 : 0.2),
+                borderRadius: BorderRadius.circular(12),
+                border: Border.all(color: Colors.purple.withOpacity(0.3)),
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  FaIcon(
+                    FontAwesomeIcons.coins,
+                    color:
+                        Colors.purple.withOpacity(pendingCount > 0 ? 0.5 : 1),
+                    size: 16,
+                  ),
+                  const SizedBox(width: 8),
+                  Text(
+                    pendingCount > 0
+                        ? '$pendingCount pending request${pendingCount == 1 ? '' : 's'}'
+                        : 'Request Tokens',
+                    style: baseTextStyle.copyWith(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w600,
+                      color:
+                          Colors.purple.withOpacity(pendingCount > 0 ? 0.5 : 1),
+                    ),
+                  ),
+                ],
               ),
             ),
           ),
-          const SizedBox(width: 16),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Generate Basic Game',
-                  style: baseTextStyle.copyWith(
-                    fontSize: 18,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-                Text(
-                  'Basic Model • Smaller Game • 1 Token',
-                  style: baseTextStyle.copyWith(
-                    fontSize: 14,
-                    color: Colors.white70,
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
+        );
+      },
     );
   }
 
-  Widget _buildGenerateButton2() {
-    totalZones = 50;
-    return ElevatedButton(
-      style: ElevatedButton.styleFrom(
-        backgroundColor: Colors.white.withOpacity(0.1),
-        foregroundColor: Colors.white,
-        padding: const EdgeInsets.all(20),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(16),
-          side: BorderSide(color: Colors.white.withOpacity(0.1)),
-        ),
-        elevation: 0,
-      ),
-      onPressed: () async {
-        FocusScope.of(context).unfocus();
-        if (gameDescriptionController.text.isEmpty) {
-          ToastificationHelper.showErrorToast(
-              context, 'Please enter a game description.');
-          return;
-        }
+  Future<int> _getPendingRequestsCount() async {
+    final userId = FirebaseAuth.instance.currentUser!.uid;
+    final snapshot = await FirebaseFirestore.instance
+        .collection('tokenRequests')
+        .where('userId', isEqualTo: userId)
+        .where('status', isEqualTo: 'pending')
+        .count()
+        .get();
 
-        setState(() {
-          isLoading = true;
-          loadingMessage = "Making request...";
-        });
-
-        currentUser!.tokens -= 15;
-        await FirebaseFirestore.instance
-            .collection('users')
-            .doc(currentUser!.uid)
-            .update({'tokens': currentUser!.tokens});
-
-        model = "gpt-4o";
-
-        try {
-          List<OpenAIChatCompletionModel> responses =
-              await _generateMultipleZoneMessages(
-                  gameDescriptionController.text, totalZones, [], []);
-          if (responses.isEmpty) {
-            throw Exception('Failed to generate any responses from GPT');
-          }
-
-          var gameData = await _combineZones(responses);
-
-          var gameTemplate = GameTemplate(
-            templateId: const Uuid().v4(),
-            creatorUid: FirebaseAuth.instance.currentUser!.uid,
-            creatorName: 'AI Game Creator',
-            gameType: 'claimthezone',
-            createdAt: DateTime.now(),
-            lastUpdated: DateTime.now(),
-            zones: gameData['zones'] as List<Zone>,
-            gameName: 'AI Generated Game',
-            gameDescription: gameDescriptionController.text,
-            center: GeoPoint(
-                (gameData['zones'] as List<Zone>).first.location.latitude,
-                (gameData['zones'] as List<Zone>).first.location.longitude),
-            coinShopItems: gameData['coinShopItems'] as List<CoinShopItem>,
-          );
-
-          await saveGameTemplate(gameTemplate);
-
-          _showSuccessToast(
-              'Game Generated Successfully! You can view it in the "My Games" section.');
-        } catch (e) {
-          print('Error: $e');
-          ToastificationHelper.showErrorToast(
-              context, 'Error: Failed to generate game. $e');
-        } finally {
-          setState(() {
-            isLoading = false;
-          });
-          Get.offAll(() => const HomeScreen());
-        }
-      },
-      child: Row(
-        children: [
-          Container(
-            width: 40,
-            height: 40,
-            decoration: BoxDecoration(
-              color: Colors.green.withOpacity(0.2),
-              borderRadius: BorderRadius.circular(10),
-            ),
-            child: Center(
-              child: FaIcon(
-                FontAwesomeIcons.wandMagicSparkles,
-                color: Colors.green.shade400,
-                size: 20,
-              ),
-            ),
-          ),
-          const SizedBox(width: 16),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Generate Advanced Game',
-                  style: baseTextStyle.copyWith(
-                    fontSize: 18,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-                Text(
-                  'Advanced Model • Larger Game • 15 Tokens',
-                  style: baseTextStyle.copyWith(
-                    fontSize: 14,
-                    color: Colors.white70,
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
-    );
+    return snapshot.count ?? 0;
   }
 
-  Widget _buildGenerateButton3() {
-    totalZones = 165;
-    return ElevatedButton(
-      style: ElevatedButton.styleFrom(
-        backgroundColor: Colors.white.withOpacity(0.1),
-        foregroundColor: Colors.white,
-        padding: const EdgeInsets.all(20),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(16),
-          side: BorderSide(color: Colors.white.withOpacity(0.1)),
-        ),
-        elevation: 0,
-      ),
-      onPressed: () async {
-        FocusScope.of(context).unfocus();
-        if (gameDescriptionController.text.isEmpty) {
-          ToastificationHelper.showErrorToast(
-              context, 'Please enter a game description.');
-          return;
-        }
-
-        setState(() {
-          isLoading = true;
-          loadingMessage = "Making request...";
-        });
-
-        currentUser!.tokens -= 15;
-        await FirebaseFirestore.instance
-            .collection('users')
-            .doc(currentUser!.uid)
-            .update({'tokens': currentUser!.tokens});
-
-        model = "gpt-4o";
-
-        try {
-          List<OpenAIChatCompletionModel> responses =
-              await _generateMultipleZoneMessages(
-                  gameDescriptionController.text, totalZones, [], []);
-          if (responses.isEmpty) {
-            throw Exception('Failed to generate any responses from GPT');
-          }
-
-          var gameData = await _combineZones(responses);
-
-          var gameTemplate = GameTemplate(
-            templateId: const Uuid().v4(),
-            creatorUid: FirebaseAuth.instance.currentUser!.uid,
-            creatorName: 'AI Game Creator',
-            gameType: 'claimthezone',
-            createdAt: DateTime.now(),
-            lastUpdated: DateTime.now(),
-            zones: gameData['zones'] as List<Zone>,
-            gameName: 'AI Generated Game',
-            gameDescription: gameDescriptionController.text,
-            center: GeoPoint(
-                (gameData['zones'] as List<Zone>).first.location.latitude,
-                (gameData['zones'] as List<Zone>).first.location.longitude),
-            coinShopItems: gameData['coinShopItems'] as List<CoinShopItem>,
-          );
-
-          await saveGameTemplate(gameTemplate);
-
-          _showSuccessToast(
-              'Game Generated Successfully! You can view it in the "My Games" section.');
-        } catch (e) {
-          print('Error: $e');
-          ToastificationHelper.showErrorToast(
-              context, 'Error: Failed to generate game. $e');
-        } finally {
-          setState(() {
-            isLoading = false;
-          });
-          Get.offAll(() => const HomeScreen());
-        }
-      },
-      child: Row(
-        children: [
-          Container(
-            width: 40,
-            height: 40,
-            decoration: BoxDecoration(
-              color: Colors.green.withOpacity(0.2),
-              borderRadius: BorderRadius.circular(10),
-            ),
-            child: Center(
-              child: FaIcon(
-                FontAwesomeIcons.wandMagicSparkles,
-                color: Colors.green.shade400,
-                size: 20,
-              ),
-            ),
-          ),
-          const SizedBox(width: 16),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Generate Expert Game',
-                  style: baseTextStyle.copyWith(
-                    fontSize: 18,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-                Text(
-                  'Advanced Model • Very Large Game • 50 Tokens',
-                  style: baseTextStyle.copyWith(
-                    fontSize: 14,
-                    color: Colors.white70,
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Future<OpenAIChatCompletionModel> _generateGameWithAI(String prompt) async {
-    final requestMessages = [
-      OpenAIChatCompletionChoiceMessageModel(
-        content: [
-          OpenAIChatCompletionChoiceMessageContentItemModel.text(prompt),
-        ],
-        role: OpenAIChatMessageRole.user,
-      ),
-    ];
-
-    return OpenAI.instance.chat.create(
-      model: model,
-      responseFormat: {"type": "json_object"},
-      messages: requestMessages,
-      temperature: 0.7,
-    );
-  }
-
-  String model = "gpt-4o-mini";
-
-  String getPrompt(String description, int numZones,
-      List<String> existingZoneNames, List<String> existingGeoPoints) {
-    String existingZonesStr =
-        existingZoneNames.isEmpty ? "None" : existingZoneNames.join(", ");
-    String existingGeoPointsStr =
-        existingGeoPoints.isEmpty ? "None" : existingGeoPoints.join(", ");
-
-    return """
-In ClaimRush, teams compete to earn points by claiming "zones" within a time limit. They claim a zone by completing a task there, after which the zone is locked. Each zone has a specific task (question or selfie) and location.
-The game is played via a Flutter/Firebase app, using the following JSON structure:
-{
-  "gameName": "Sample Game",
-  "gameDescription": "A sample game description.",
-  "center": {
-    "latitude": 35.0000, // The center of the game area. It should be a central location given the area of the game.
-    "longitude": 136.0000
-  },
-  "zones": [
-    {
-      "zoneId": "123e4567-e89b-12d3-a456-426614174000",
-      "zoneName": "Famous Building",
-      "location": {
-        "latitude": 35.0000,
-        "longitude": 136.0000
-      },
-      "radius": 25,  // For small buildings/landmarks, 15-25 meters. For big areas, it can be up to 100 meters.
-      "clue": "What is the color of the building?",
-      "answer": "Blue",
-      "taskType": "question",
-      "points": 10,
-      "coins": 5,
-      "originalPoints": 10
-    },
-    {
-      "zoneId": "123e4567-e89b-12d3-a456-426614174001",
-      "zoneName": "Iconic Street",
-      "location": {
-        "latitude": 35.0010,
-        "longitude": 136.0010
-      },
-      "radius": 45,
-      "clue": "Take a selfie here!",
-      "taskType": "selfie",
-      "points": 20,
-      "coins": 5,
-      "originalPoints": 20
-    }
-  ]
-}
-The game ALREADY has the following zone names: [$existingZonesStr]. 
-DO NOT make ANY zones with the same name or location as the existing zones -- NO OVERLAPS.
-Always use SPECIFIC LOCATIONS, ex. like "Space Mountain" instead of "Roller Coaster" (these are just examples). Ensure the names are accurate.
-The names are searched in GOOGLE MAPS to get the exact coordinates, so ONLY locations that would be foumd.
-Try to SPREAD THE ZONES OUT across the area, as it makes the game take longer and be more fun.
-Zones that are harder to get to, have more challenging tasks, or have fewer nearby zones should have higher points (25-50). Zones that are in a cluster, are easier to get to, and have easy tasks should have lower points (5 - 25).
-Based on this structure, generate a JSON object for a game template with $numZones zones. Ensure zones have accurate latitude and longitude coordinates, and the description is: $description. Only return the JSON object, nothing else. If you cannot generate it, respond with "error".
-DO RELEVANT AND INTERSESTING CHALLENGES.
-Example selfie challenges (but make unique ones, just for reference):
-- Take a selfie doing a Mona Lisa smile in front of the Louvre.
-- Take a selfie with a street performer.
-- Make yourself part of the Hollywood sign.
-YOU MUST KNOW AN OBJECTIVE ANSWER TO THE QUESTION.
-Example question challenges (but make unique ones, just for reference):
-- How many steps does it take to climb this building?
-- Which famous person lived in this house?
-- How many windows are on the front of this building?
-""";
-  }
-
-  Future<List<OpenAIChatCompletionModel>> _generateMultipleZoneMessages(
-      String description,
-      int totalZones,
-      List<String> existingZoneNames,
-      List<String> existingGeoPoints) async {
-    int batchSize = 5;
-    List<OpenAIChatCompletionModel> allResponses = [];
-    int zonesRemaining = totalZones;
-
-    while (zonesRemaining > 0) {
-      int numZonesToGenerate =
-          (zonesRemaining >= batchSize) ? batchSize : zonesRemaining;
-      String prompt = getPrompt(description, numZonesToGenerate,
-          existingZoneNames, existingGeoPoints);
-
-      OpenAIChatCompletionModel response = await _generateGameWithAI(prompt);
-
-      print('GPT response: ${response.choices.first.message.content}');
-
-      if (response.choices.isEmpty ||
-          response.choices.first.message.content == null) {
-        throw Exception('No valid content returned in GPT response');
-      }
-
-      String content = response.choices.first.message.content!
-          .map((item) => item.text)
-          .join()
-          .trim();
-
-      if (content.toLowerCase() == "error") {
-        throw Exception('GPT returned an error response.');
-      }
-
-      allResponses.add(response);
-
-      Map<String, dynamic> gameMap = json.decode(content);
-
-      List<String> newZoneNames = gameMap['zones']
-          .map<String>((zone) => zone['zoneName'] as String)
-          .toList();
-
-      List<String> newGeoPoints = gameMap['zones']
-          .map<String>((zone) =>
-              '${zone['location']['latitude']}:${zone['location']['longitude']}')
-          .toList();
-
-      existingZoneNames.addAll(newZoneNames);
-      existingGeoPoints.addAll(newGeoPoints);
-
-      zonesRemaining -= numZonesToGenerate;
-
-      setState(() {
-        double progress = (totalZones - zonesRemaining) / totalZones * 100;
-        loadingMessage =
-            "Generating zones (${progress.toStringAsFixed(0)}%)...";
-      });
-    }
-
-    setState(() {
-      loadingMessage = "Adding boosters...";
-    });
-
-    return allResponses;
-  }
-
-  Future<Map<String, Object>> _combineZones(
-      List<OpenAIChatCompletionModel> allResponses) async {
-    List<Zone> combinedZones = [];
-    Set<String> zoneNames = {};
-    Set<String> geoPoints = {};
-    GeoPoint centerPoint = const GeoPoint(0, 0);
-
-    // Flag to check if center is extracted
-    bool centerExtracted = false;
-
-    for (OpenAIChatCompletionModel response in allResponses) {
-      try {
-        print('Raw GPT response: ${response.choices.first.message.content}');
-
-        String content = response.choices.first.message.content!
-            .map((item) => item.text)
-            .join()
-            .trim();
-
-        Map<String, dynamic> gameMap = json.decode(content);
-
-        if (gameMap.containsKey('zones') && gameMap.containsKey('center')) {
-          // Extract center if not already extracted
-          if (!centerExtracted) {
-            double centerLat =
-                (gameMap['center']['latitude'] as num).toDouble();
-            double centerLon =
-                (gameMap['center']['longitude'] as num).toDouble();
-            centerPoint = GeoPoint(centerLat, centerLon);
-            centerExtracted = true;
-          }
-
-          List<Zone> zonesFromMap = _createZonesFromMap(gameMap);
-
-          for (var zone in zonesFromMap) {
-            String geoPointKey =
-                '${zone.location.latitude}:${zone.location.longitude}';
-
-            if (!zoneNames.contains(zone.zoneName) &&
-                !geoPoints.contains(geoPointKey)) {
-              combinedZones.add(zone);
-              zoneNames.add(zone.zoneName);
-              geoPoints.add(geoPointKey);
-            } else {
-              print('Duplicate zone found: ${zone.zoneName} or $geoPointKey');
-            }
-          }
-        } else {
-          throw Exception('Invalid JSON structure: Missing required fields');
-        }
-      } catch (e) {
-        print('Error decoding JSON: $e');
-      }
-    }
-
-    // Check if center was extracted
-    if (!centerExtracted) {
-      throw Exception('Failed to extract center from GPT responses.');
-    }
-
-    // Use Batch Geocoding API to get more accurate coordinates.
-    setState(() {
-      loadingMessage = "Improving zone coordinates...";
-    });
-
-    // Prepare the list of addresses
-    List<String> addresses =
-        combinedZones.map((zone) => zone.zoneName).toList();
-
-    // Use the extracted center as the bias
-    double biasLongitude = centerPoint.longitude;
-    double biasLatitude = centerPoint.latitude;
-
-    // Add a 5-mile radius filter (8046.72 meters)
-    Map<String, GeoPoint> geocodedLocations =
-        await _geocodeAddresses(addresses, biasLongitude, biasLatitude, 8047);
-
-    // Update the zones with new coordinates.
-    for (var zone in combinedZones) {
-      String zoneName = zone.zoneName;
-      if (geocodedLocations.containsKey(zoneName)) {
-        zone.location = geocodedLocations[zoneName]!;
-      } else {
-        print(
-            'No geocoded location found for zone $zoneName within 5 miles. Using original coordinates.');
-        // Retain original coordinates from ChatGPT
-      }
-    }
-
-    final coinShopItemsJson = [
-      {
-        "itemId": "008ede97-7eee-4f10-ad21-d18e6368a722",
-        "itemName": "Point Boost 1.5x",
-        "itemDescription": "Boosts points earned by 1.5x for 15 minutes.",
-        "itemPrice": 20,
-        "pointsPerCoin": 1,
-        "itemType": "booster",
-        "multiplier": 1.5,
-        "duration": 15
-      },
-      {
-        "itemId": "008ede97-7eee-4f10-ad21-d18e6368a723",
-        "itemName": "Point Boost 2x",
-        "itemDescription": "Boosts points earned by 2x for 15 minutes.",
-        "itemPrice": 30,
-        "pointsPerCoin": 1,
-        "itemType": "booster",
-        "multiplier": 2,
-        "duration": 15
-      },
-      {
-        "itemId": "161cb90e-fb6c-4174-8723-76b18797f128",
-        "itemName": "15 Min Sabotage",
-        "itemDescription": "Disables opponents for 15 minutes.",
-        "itemPrice": 25,
-        "pointsPerCoin": 1,
-        "itemType": "disabler",
-        "multiplier": 1,
-        "duration": 15
-      },
-      {
-        "itemId": "161cb90e-fb6c-4174-8723-76b18797f129",
-        "itemName": "30 Min Sabotage",
-        "itemDescription": "Disables opponents for 30 minutes.",
-        "itemPrice": 45,
-        "pointsPerCoin": 1,
-        "itemType": "disabler",
-        "multiplier": 1,
-        "duration": 30
-      },
-      {
-        "itemId": "72209ce5-10ef-4402-8433-9e6af173e7ec",
-        "itemName": "Coin ATM",
-        "itemDescription": "Earns 2 points for each coin spent.",
-        "itemPrice": 5,
-        "pointsPerCoin": 2,
-        "itemType": "coin",
-        "multiplier": 1,
-        "duration": 0
-      },
-      {
-        "itemId": "694c1bd3-e9ae-47dc-acdd-ed229f0421ca",
-        "itemName": "Task Skip",
-        "itemDescription": "Skips a task.",
-        "itemPrice": 10,
-        "pointsPerCoin": 1,
-        "itemType": "skip",
-        "multiplier": 1,
-        "duration": 0
-      }
-    ];
-
-    List<CoinShopItem> coinShopItems = coinShopItemsJson
-        .map((item) => CoinShopItem.fromJson(item as Map<String, Object>))
-        .toList();
-
-    setState(() {
-      loadingMessage = "Finishing up...";
-    });
-
-    return {"zones": combinedZones, "coinShopItems": coinShopItems};
-  }
-
-  Future<Map<String, GeoPoint>> _geocodeAddresses(List<String> addresses,
-      double biasLongitude, double biasLatitude, double radiusMeters) async {
-    String url =
-        'https://api.geoapify.com/v1/batch/geocode/search?apiKey=$GEOAPIFY_API_KEY&bias=proximity:$biasLongitude,$biasLatitude&filter=circle:$biasLongitude,$biasLatitude,$radiusMeters';
-
-    String requestBody = json.encode(addresses);
-
-    var response = await http.post(
-      Uri.parse(url),
-      headers: {'Content-Type': 'application/json'},
-      body: requestBody,
-    );
-
-    if (response.statusCode != 202) {
-      throw Exception(
-          'Failed to create batch job: ${response.statusCode} ${response.reasonPhrase}');
-    }
-
-    Map<String, dynamic> responseBody = json.decode(response.body);
-
-    String jobId = responseBody['id'];
-    String jobUrl = responseBody['url'];
-
-    bool isCompleted = false;
-    int maxAttempts = 100;
-    int attempts = 0;
-
-    while (!isCompleted && attempts < maxAttempts) {
-      await Future.delayed(const Duration(seconds: 5));
-      attempts++;
-
-      var jobResponse = await http.get(Uri.parse(jobUrl));
-
-      if (jobResponse.statusCode == 200) {
-        isCompleted = true;
-
-        List<dynamic> results = json.decode(jobResponse.body);
-
-        Map<String, GeoPoint> geocodedLocations = {};
-
-        for (var result in results) {
-          String queryText = result['query']['text'];
-          if (result.containsKey('lon') && result.containsKey('lat')) {
-            double lon = result['lon'] is String
-                ? double.parse(result['lon'])
-                : result['lon'].toDouble();
-            double lat = result['lat'] is String
-                ? double.parse(result['lat'])
-                : result['lat'].toDouble();
-            GeoPoint point = GeoPoint(lat, lon);
-            geocodedLocations[queryText] = point;
-          } else {
-            print('No coordinates found for $queryText within 5 miles.');
-          }
-        }
-
-        return geocodedLocations;
-      } else if (jobResponse.statusCode == 202) {
-        print('Job is still pending. Attempts: $attempts');
-        // Job is still pending.
-        continue;
-      } else {
-        throw Exception(
-            'Failed to get batch job result: ${jobResponse.statusCode} ${jobResponse.reasonPhrase}');
-      }
-    }
-
-    throw Exception('Batch job did not complete in time');
-  }
-
-  List<Zone> _createZonesFromMap(Map<String, dynamic> gameMap) {
-    List<Zone> zones = [];
-
-    if (gameMap['zones'] != null) {
-      for (var zone in gameMap['zones']) {
-        try {
-          zones.add(Zone(
-            zoneId: const Uuid().v4(),
-            zoneName: zone['zoneName'],
-            location: GeoPoint(
-              (zone['location']['latitude'] as num).toDouble(),
-              (zone['location']['longitude'] as num).toDouble(),
-            ),
-            radius: zone['radius'] > 50 ? 50 : (zone['radius'] as num).toInt(),
-            clue: zone['clue'],
-            answer: zone['answer'],
-            photoURL: zone['photoURL'] ?? '',
-            qrCode: zone['qrCode'] ?? '',
-            taskType: zone['taskType'],
-            points: zone['points'],
-            coins: zone['coins'],
-            originalPoints: zone['originalPoints'],
-          ));
-        } catch (e) {
-          print('Error processing zone ${zone['zoneName']}: $e');
-        }
-      }
-    } else {
-      print('No zones found in the JSON response.');
-    }
-
-    return zones;
-  }
-
-  void _showSuccessToast(String message) {
-    toastification.show(
-      context: context,
-      style: ToastificationStyle.fillColored,
-      applyBlurEffect: true,
-      type: ToastificationType.success,
-      title: Text(message, style: baseTextStyle.copyWith(color: Colors.white)),
-      autoCloseDuration: const Duration(seconds: 5),
-    );
-  }
+  // Standardize text styles across the app
+  TextStyle get headerStyle => baseTextStyle.copyWith(
+        fontSize: 20,
+        fontWeight: FontWeight.w600,
+        color: Colors.white,
+      );
+
+  TextStyle get subheaderStyle => baseTextStyle.copyWith(
+        fontSize: 16,
+        fontWeight: FontWeight.w600,
+        color: Colors.white,
+      );
+
+  TextStyle get bodyStyle => baseTextStyle.copyWith(
+        fontSize: 14,
+        color: Colors.white70,
+        height: 1.4,
+      );
+
+  TextStyle get captionStyle => baseTextStyle.copyWith(
+        fontSize: 12,
+        color: Colors.white70,
+      );
 }

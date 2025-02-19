@@ -96,7 +96,7 @@ class _CreateGamePageState extends State<CreateGamePage> {
                     value: 'claimthezone',
                     title: 'ClaimRush',
                     players: '2-12 teams',
-                    duration: '1hour - 4hours',
+                    duration: '1-10 hours',
                   ),
                 ],
               ),
